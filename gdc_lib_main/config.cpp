@@ -41,5 +41,13 @@ class CfgFunctions
 				
 			};
 		};
+		class util
+		{
+			file = "\gdc_lib_main\functions\util";
+			class chooseSpawnPos
+			{
+				
+			};			
+		};
 	};
 };
