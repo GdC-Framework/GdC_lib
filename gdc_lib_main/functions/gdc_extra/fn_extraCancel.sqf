@@ -1,14 +1,18 @@
 /*
- * cancel function for gdc_extra, a script for AI piloted extractions
- * the extraction request will be canceled and the helicopter will be removed
- * 
- * Parameters
- * NONE
- *
- * Return : nothing
-*/
-private ["_text","_group","_wp"];
+	Author: Sparfell
 
+	Description:
+	Cancel function for gdc_extra, a script for AI piloted extractions
+	The extraction request will be canceled and the helicopter will be removed
+
+	Parameter(s):
+		NONE
+
+	Returns:
+	nothing
+*/
+
+private ["_text","_group","_wp"];
 
 if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND (([([] call acre_api_fnc_getCurrentRadio)] call acre_api_fnc_getBaseRadio) == gdc_extra_radio)) then {
 	if (isNull gdc_extra_helo) then {
@@ -24,18 +28,6 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 		{
 			[_x] joinSilent _group;
 		} forEach (units group gdc_extra_helo);
-		/*
-		switch true do {
-			case (gdc_extra_spawnpos in [[0,0,0]]): {
-				_wp = _group addWaypoint [((MarkerPos "gdc_extra_mk") getPos [3000,(random 360)]), 0];
-			};
-			case ((typeName gdc_extra_spawnpos) == "STRING"): {
-				_dir = ((markerPos gdc_extra_spawnpos) getdir (MarkerPos "gdc_extra_mk"));
-				_wp = _group addWaypoint [((MarkerPos "gdc_extra_mk") getPos [3000,_dir]), 0];
-			};
-			default {_wp = _group addWaypoint [gdc_extra_spawnpos, 0];};
-		};
-		*/
 		_wp = _group addWaypoint [gdc_extra_spawnposR, 0];
 		_wp setWaypointType "MOVE";
 		_wp setWaypointBehaviour "CARELESS";
@@ -46,7 +38,7 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 		publicVariable "gdc_extra_dispo";
 	};
 } else {
-	// Si c'est le mauvais canal, afficher un texte.
+	// si c'est le mauvais canal, afficher un texte.
 	_text = getText (configFile >> "CfgWeapons" >> gdc_extra_radio >> "displayName");
 	_text = "Selectionner votre " + _text + " et réglez-la sur le canal " + (str gdc_extra_chan) + " pour pouvoir contacter l'hélicoptère.";
 	hint _text;
