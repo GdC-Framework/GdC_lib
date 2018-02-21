@@ -16,7 +16,7 @@ class CfgFunctions
 		class gdc_extra
 		{
 			file = "\gdc_lib_main\functions\gdc_extra";
-			class extraInit
+			class extra
 			{
 				
 			};
@@ -32,7 +32,7 @@ class CfgFunctions
 		class gdc_choppa
 		{
 			file = "\gdc_lib_main\functions\gdc_choppa";
-			class choppaInit
+			class choppa
 			{
 				
 			};
@@ -47,7 +47,15 @@ class CfgFunctions
 			class chooseSpawnPos
 			{
 				
-			};			
+			};
+			class inventoryBriefing
+			{
+				
+			};
+			class rosterBriefing
+			{
+				
+			};
 		};
 	};
 };
