@@ -14,7 +14,7 @@
 		6 (Optional): NUMBER - min spawn distance from terrain object (default: 4)
 
 	Returns:
-	ARRAY - position chosen by the players
+	nothing
 */
 
 params ["_mk",["_units",[]],["_rank","SERGEANT"],["_blist",[]],["_water",1],["_maxDist",30],["_objDist",4]];

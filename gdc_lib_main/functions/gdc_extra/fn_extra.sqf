@@ -23,6 +23,7 @@ params ["_radio","_chan","_side","_type",["_spawnpos",[0,0,0]],["_end",true]];
 private ["_action"];
 
 gdc_extra_dispo = true;
+gdc_extra_left = false;
 gdc_extra_helo = objNull;
 gdc_extra_radio = _radio;
 gdc_extra_chan = _chan;
@@ -38,7 +39,7 @@ _action = [
 	"Appel extraction héliportée",
 	"",
 	{[] call GDC_fnc_extraCall},
-	{(gdc_extra_dispo) && ([_player,gdc_extra_radio] call acre_api_fnc_hasKindOfRadio)}
+	{(!gdc_extra_left) && (gdc_extra_dispo) && ([_player,gdc_extra_radio] call acre_api_fnc_hasKindOfRadio)}
 ] call ace_interact_menu_fnc_createAction;
 [
 	"CAManBase",
@@ -54,7 +55,7 @@ _action = [
 	"Annuler extraction héliportée",
 	"",
 	{[] call GDC_fnc_extraCancel},
-	{(!gdc_extra_dispo) && ([_player,gdc_extra_radio] call acre_api_fnc_hasKindOfRadio)}
+	{(!gdc_extra_left) && (!gdc_extra_dispo) && ([_player,gdc_extra_radio] call acre_api_fnc_hasKindOfRadio)}
 ] call ace_interact_menu_fnc_createAction;
 [
 	"CAManBase",

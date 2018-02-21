@@ -58,18 +58,22 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 			_effect = {};
 			if (gdc_extra_end) then {
 				_effect = {
+					gdc_extra_left = true;
+					publicVariable "gdc_extra_left";
 					[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0];
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
-					_wp setWaypointType 'MOVE';
+					_wp setWaypointType "MOVE";
 					sleep 30;
 					["end1",true,4] remoteExec ["BIS_fnc_endMission", 0];
 				};
 			} else {
 				_effect = {
+					gdc_extra_left = true;
+					publicVariable "gdc_extra_left";
 					[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0];
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
 					_veh = "Land_HelipadEmpty_F" createVehicle gdc_extra_spawnposR;
-					_wp setWaypointType 'TR UNLOAD';
+					_wp setWaypointType "MOVE";
 					_wp setWaypointStatements ["true", "gdc_extra_helo land 'LAND'"];
 				};
 			};
