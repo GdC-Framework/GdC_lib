@@ -44,32 +44,36 @@ if (_area == "") then {
 	_veh setpos (getPos _object);
 };
 if (_alt == -1) then {
-	gdc_halo_alt = switch (_vtype) do {
-		case "B_T_VTOL_01_infantry_F": {6000};
-		case "RHS_C130J": {8000};
-		case "CUP_B_C130J_GB": {8000};
-		case "CUP_B_C130J_USMC": {8000};
-		case "CUP_O_C130J_TKA": {8000};
-		case "CUP_I_C130J_AAF": {8000};
-		case "CUP_I_C130J_RACS": {8000};
-		case "CUP_B_C47_USA": {6000};
-		case "CUP_O_C47_SLA": {6000};
-		case "CUP_C_C47_CIV": {6000};
-		case "CUP_C_DC3_CIV": {6000};
-		case "CUP_C_DC3_TanoAir_CIV": {6000};
-		case "CUP_B_MV22_USMC": {6000};
-		case "LIB_C47_Skytrain": {6000};
-		case "LIB_C47_RAF_bob": {6000};
-		case "LIB_C47_RAF_snafu": {6000};
-		case "LIB_C47_RAF": {6000};
-		case "LIB_Li2": {6000};
-		case "RHS_AN2_B": {3000};
-		case "RHS_AN2": {3000};
-		case "CUP_O_AN2_TK": {4500};
-		case "CUP_C_AN2_CIV": {4500};
-		case "CUP_C_AN2_AEROSCHROT_TK_CIV": {4500};
-		case "CUP_C_AN2_AIRTAK_TK_CIV": {4500};
-		default {6000};
+	if (gdc_halo_lalo) then {
+		gdc_halo_alt = 300;
+	} else {
+		gdc_halo_alt = switch (_vtype) do {
+			case "B_T_VTOL_01_infantry_F": {6000};
+			case "RHS_C130J": {8000};
+			case "CUP_B_C130J_GB": {8000};
+			case "CUP_B_C130J_USMC": {8000};
+			case "CUP_O_C130J_TKA": {8000};
+			case "CUP_I_C130J_AAF": {8000};
+			case "CUP_I_C130J_RACS": {8000};
+			case "CUP_B_C47_USA": {6000};
+			case "CUP_O_C47_SLA": {6000};
+			case "CUP_C_C47_CIV": {6000};
+			case "CUP_C_DC3_CIV": {6000};
+			case "CUP_C_DC3_TanoAir_CIV": {6000};
+			case "CUP_B_MV22_USMC": {6000};
+			case "RHS_AN2_B": {3000};
+			case "RHS_AN2": {3000};
+			case "CUP_O_AN2_TK": {4500};
+			case "CUP_C_AN2_CIV": {4500};
+			case "CUP_C_AN2_AEROSCHROT_TK_CIV": {4500};
+			case "CUP_C_AN2_AIRTAK_TK_CIV": {4500};
+			case "LIB_C47_Skytrain": {6000};
+			case "LIB_C47_RAF_bob": {6000};
+			case "LIB_C47_RAF_snafu": {6000};
+			case "LIB_C47_RAF": {6000};
+			case "LIB_Li2": {6000};
+			default {6000};
+		};
 	};
 };
 if (gdc_halo_dzpos in [[0,0,0]]) then {

@@ -103,17 +103,17 @@ switch (gdc_halo_vtype) do {
 	case "CUP_C_DC3_CIV": {_openRamp = {_veh animateSource ["door_1",1];};};
 	case "CUP_C_DC3_TanoAir_CIV": {_openRamp = {_veh animateSource ["door_1",1];};};
 	case "CUP_B_MV22_USMC": {_openRamp = {_veh animateDoor ["Ramp_Top",1];_veh animateDoor ["Ramp_Bottom",1];};};
-	case "LIB_C47_Skytrain": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF_bob": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF_snafu": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_Li2": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
 	case "RHS_AN2_B": {_openRamp = {_veh animateSource ["door",1];};};
 	case "RHS_AN2": {_openRamp = {_veh animateSource ["door",1];};};
 	case "CUP_O_AN2_TK": {_openRamp = {_veh animateSource ["door",1];};};
 	case "CUP_C_AN2_CIV": {_openRamp = {_veh animateSource ["door",1];};};
 	case "CUP_C_AN2_AEROSCHROT_TK_CIV": {_openRamp = {_veh animateSource ["door",1];};};
 	case "CUP_C_AN2_AIRTAK_TK_CIV": {_openRamp = {_veh animateSource ["door",1];};};
+	case "LIB_C47_Skytrain": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
+	case "LIB_C47_RAF_bob": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
+	case "LIB_C47_RAF_snafu": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
+	case "LIB_C47_RAF": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
+	case "LIB_Li2": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
 	default {_openRamp = {};};
 };
 // Action de fermeture de la rampe en fonction de l'avion
@@ -131,17 +131,17 @@ switch (gdc_halo_vtype) do {
 	case "CUP_C_DC3_CIV": {_closeRamp = {_veh animateSource ["door_1",0];};};
 	case "CUP_C_DC3_TanoAir_CIV": {_closeRamp = {_veh animateSource ["door_1",0];};};
 	case "CUP_B_MV22_USMC": {_closeRamp = {_veh animateDoor ["Ramp_Top",0];_veh animateDoor ["Ramp_Bottom",0];};};
-	case "LIB_C47_Skytrain": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF_bob": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF_snafu": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_Li2": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
 	case "RHS_AN2_B": {_closeRamp = {_veh animateSource ["door",0];};};
 	case "RHS_AN2": {_closeRamp = {_veh animateSource ["door",0];};};
 	case "CUP_O_AN2_TK": {_closeRamp = {_veh animateSource ["door",0];};};
 	case "CUP_C_AN2_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
 	case "CUP_C_AN2_AEROSCHROT_TK_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
 	case "CUP_C_AN2_AIRTAK_TK_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
+	case "LIB_C47_Skytrain": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
+	case "LIB_C47_RAF_bob": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
+	case "LIB_C47_RAF_snafu": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
+	case "LIB_C47_RAF": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
+	case "LIB_Li2": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
 	default {_closeRamp = {};};
 };
 
