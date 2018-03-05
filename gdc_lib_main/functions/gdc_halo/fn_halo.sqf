@@ -16,7 +16,7 @@
 		6 (Optional): NUMBER - plane flying altitude (if -1, ceiling altitude is selected)(default: -1)
 		7 (Optional): ARRAY of STRINGs and/or OBJECTs - list of marker names or trigger names defining blacklisted areas (default: [])
 		8 (Optional): ARRAY - DZ position (if [0,0,0], the players can choose the DZ)(default: [0,0,0])
-		9 (Optional): STRING - plane spawn position (if [0,0,0], the position is randomized)(default: [0,0,0])
+		9 (Optional): ARRAY - plane spawn position (if [0,0,0], the position is randomized)(default: [0,0,0])
 
 	Returns:
 	nothing
