@@ -14,12 +14,13 @@
 			ARRAY - position for helicopter spawn (if = [0,0,0] the position is randomized) (default: [0,0,0])
 			STRING - marker name (the marker should represent the main ennemy position, the helicopter will come from the opposite direction)
 		5 (Optional): BOOL - the extraction will end the mission (default: true)
+		6 (Optional): BOOL - the helicopter can be destroyed (default: true)
 
 	Returns:
 	nothing
 */
 
-params ["_radio","_chan","_side","_type",["_spawnpos",[0,0,0]],["_end",true]];
+params ["_radio","_chan","_side","_type",["_spawnpos",[0,0,0]],["_end",true],["_damage",true]];
 private ["_action"];
 
 gdc_extra_dispo = true;
@@ -32,6 +33,7 @@ gdc_extra_type = _type;
 gdc_extra_spawnpos = _spawnpos;
 gdc_extra_spawnposR = gdc_extra_spawnpos;
 gdc_extra_end = _end;
+gdc_extra_damage = _damage;
 
 // action d'appel
 _action = [

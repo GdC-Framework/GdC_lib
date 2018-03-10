@@ -15,7 +15,7 @@
 private ["_text","_group","_wp"];
 
 if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND (([([] call acre_api_fnc_getCurrentRadio)] call acre_api_fnc_getBaseRadio) == gdc_extra_radio)) then {
-	if (isNull gdc_extra_helo) then {
+	if ((isNull gdc_extra_helo) OR (!canMove gdc_extra_helo)) then {
 	// annulation simple si l'hélico n'existe pas
 		player onMapSingleClick "";
 		hint "Extraction annulée";

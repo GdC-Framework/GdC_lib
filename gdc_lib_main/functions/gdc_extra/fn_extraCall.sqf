@@ -25,17 +25,18 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 		"gdc_extra_mk" setMarkerPosLocal _pos;
 		"gdc_extra_mk" setMarkerAlphaLocal 1;
 		_veh = "Land_HelipadEmpty_F" createVehicle _pos;
-		if (isNull gdc_extra_helo) then {
+		if (surfaceIsWater _pos) then {_veh setposASL [(_pos select 0),(_pos select 1),2];};
+		if ((isNull gdc_extra_helo) OR (!canMove gdc_extra_helo)) then {
 		// création de l'hélico si il n'existe pas
 			// déterminer la position de spawn
 			switch true do {
 				case (gdc_extra_spawnpos in [[0,0,0]]): {
 					// position de spawn aléatoire
-					gdc_extra_spawnposR = _pos getPos [3000,(random 360)];
+					gdc_extra_spawnposR = _pos getPos [3500,(random 360)];
 				};
 				case ((typeName gdc_extra_spawnpos) == "STRING"): {
 					// position de spawn en fonction d'un marqueur
-					gdc_extra_spawnposR = _pos getPos [3000,((markerPos gdc_extra_spawnpos) getdir _pos)];
+					gdc_extra_spawnposR = _pos getPos [3500,((markerPos gdc_extra_spawnpos) getdir _pos)];
 				};
 				default {gdc_extra_spawnposR = gdc_extra_spawnpos;};
 			};
@@ -48,6 +49,10 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 			gdc_extra_helo disableAI "AUTOTARGET";
 			gdc_extra_helo disableAI "AUTOCOMBAT";
 			gdc_extra_helo disableAI "SUPPRESSION";
+			if (gdc_extra_damage) then {
+				gdc_extra_helo allowdamage false;
+				{_x allowdamage false;} forEach (crew gdc_extra_helo);
+			};
 			// ajout du WP sur la lz désignée
 			_wp = _group addWaypoint [_pos, 0];
 			_wp setWaypointType "TR UNLOAD";
