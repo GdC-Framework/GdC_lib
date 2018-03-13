@@ -68,6 +68,10 @@ class CfgFunctions
 			{
 				
 			};
+			class chooseIAHelicoInsert
+			{
+				
+			};
 			class inventoryBriefing
 			{
 				
