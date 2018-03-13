@@ -165,8 +165,10 @@ if (gdc_halo_autojump) then {
 
 					(group _x) leaveVehicle _veh;
 					moveout _x;
+					unassignVehicle _x;
+					[_x] allowGetIn false;
 
-					private _delay =  (1/((speed _veh)/150));
+					private _delay =  (1/(((speed _veh) max 55)/150));
 					sleep _delay;
 					if (gdc_halo_lalo) then {
 						private _para = 'NonSteerable_Parachute_F';
