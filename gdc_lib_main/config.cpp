@@ -13,7 +13,19 @@ class CfgFunctions
 {
 	class GDC
 	{
-		class gdc_extra
+		class gdc_choppa
+		{
+			file = "\gdc_lib_main\functions\gdc_choppa";
+			class choppa
+			{
+				
+			};
+			class choppaCall
+			{
+				
+			};
+		};
+        class gdc_extra
 		{
 			file = "\gdc_lib_main\functions\gdc_extra";
 			class extra
@@ -25,18 +37,6 @@ class CfgFunctions
 				
 			};
 			class extraCancel
-			{
-				
-			};
-		};
-		class gdc_choppa
-		{
-			file = "\gdc_lib_main\functions\gdc_choppa";
-			class choppa
-			{
-				
-			};
-			class choppaCall
 			{
 				
 			};
@@ -60,6 +60,38 @@ class CfgFunctions
 			{
 				
 			};
+		};
+		class gdc_lucy
+		{
+			file = "\gdc_lib_main\functions\gdc_lucy";
+			class lucyInit {};
+			class lucyExecVMHC {};
+            class lucyMoves
+            {
+                file = "\gdc_lib_main\functions\gdc_lucy\moves";
+                class lucyAddWaypoint {};
+                class lucyAddWaypointListMoveCycle {};
+                class lucyGroupRandomPatrol {};
+                class lucyGroupRandomPatrolInArea {};
+            };
+            class lucySpawn
+            {
+                file = "\gdc_lib_main\functions\gdc_lucy\spawn";
+                class lucySpawnGroupInf {};
+                class lucySpawnStaticInf {};                
+            };
+            class lucyUtilities
+            {
+                file = "\gdc_lib_main\functions\gdc_lucy\utilities";
+                class lucyAICleaner {};
+                class lucyAISetConfig {};
+                class lucyGetPosFromEllipse {};
+                class lucyGetPosFromRectangle {};
+                class lucyGetRandomFormation {};
+                class lucyIsInEllipse {};
+                class lucyIsInRectangle {};
+                class lucyRotatePosition {};
+            };
 		};
 		class util
 		{
