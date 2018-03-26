@@ -6,9 +6,9 @@
 	On mission launch, players will be moved inside an AI pilot helicopter transporting them to the designated LZ
 	
 	Parameter(s):
-		0 : STRING - name of the marker that will be moved, the marker defines the spawn position
+		0 : STRING - name of the marker that will be moved, the marker defines the landing zone
 		1 : STRING - classname of the helicopter
-		2 (Optional): SIDE - side of the extraction helicopter (blufor,opfor,independent,civilian) (default: civilian)
+		2 (Optional): SIDE - side of the insertion helicopter (blufor,opfor,independent,civilian) (default: civilian)
 		3 (Optional): ARRAY - array fo unit objects that will be moved in the helicopter at mission start (default: []) if [] all playableunits will be moved
 		4 (Optional): STRING - rank required in order to be able to move the marker (default: "SERGEANT")
 		5 (Optional):
