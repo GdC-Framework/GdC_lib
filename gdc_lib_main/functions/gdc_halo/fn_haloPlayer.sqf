@@ -56,7 +56,7 @@ if (gdc_halo_lalo) then {
 	player allowdamage true;
 } else {
 // Saut HALO
-	private ["_b","_bi","_i"];
+	private ["_b","_bi","_i","_hasGPS"];
 
 	// Fondu au noir
 	titleText ["","BLACK OUT",3];
@@ -66,13 +66,18 @@ if (gdc_halo_lalo) then {
 	// Sauvegarde inventaire
 	_b = backpack player;
 	_bi = backpackItems player;
-	_i = assignedItems player;
 
-	// Ajout parachute + GPS
+	// Ajout parachute
 	removeBackpack player;
 	player addbackpack "B_Parachute";
+	// Ajout GPS
 	if (gdc_halo_gps) then {
-		player linkitem "ItemGPS";
+		_i = assignedItems player;
+		_hasGPS = false;
+		{
+			if (_x in _i) then {_hasGPS = true;};
+		} forEach ["ItemGPS","I_UavTerminal","B_UavTerminal","O_UavTerminal","C_UavTerminal"];
+		if (!_hasGPS) then {player linkitem "ItemGPS"};
 	};
 
 	// Attendre que le joueur soit dans l'avion
@@ -94,7 +99,8 @@ if (gdc_halo_lalo) then {
 	{
 		player additemtobackpack _x;
 	} foreach _bi;
+	// Enlever le GPS
 	if (gdc_halo_gps) then {
-		if (!("ItemGPS" in _i)) then {player unlinkItem "ItemGPS";};
+		if (!_hasGPS) then {player unlinkItem "ItemGPS";};
 	};
 };
