@@ -78,19 +78,23 @@ class CfgFunctions
             {
                 file = "\gdc_lib_main\functions\gdc_lucy\spawn";
                 class lucySpawnGroupInf {};
+                class lucySpawnGroupVehicle {};
                 class lucySpawnStaticInf {};                
+                class lucySpawnVehicleReinforcement {};                
             };
             class lucyUtilities
             {
                 file = "\gdc_lib_main\functions\gdc_lucy\utilities";
                 class lucyAICleaner {};
                 class lucyAISetConfig {};
+                class lucyGetNearestPlayer {};
                 class lucyGetPosFromEllipse {};
                 class lucyGetPosFromRectangle {};
                 class lucyGetRandomFormation {};
                 class lucyIsInEllipse {};
                 class lucyIsInRectangle {};
                 class lucyRotatePosition {};
+                class lucyVehicleRemoveItems {};
             };
 		};
 		class util
