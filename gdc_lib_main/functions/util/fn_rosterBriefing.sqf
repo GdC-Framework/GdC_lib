@@ -14,7 +14,7 @@
 */
 
 params [["_includeAI",false],["_rank",true],["_role",true]];
-private["_strRank","_strRole","_strGrp","_strColorGrp","_strFinal","_oldGrp","_newGrp","_unitsArr"];
+private["_strRank","_strRole","_strGrp","_strColorGrp","_strFinal","_oldGrp","_newGrp","_unitsArr","_nbr"];
 
 _strRank 		= "";//will contain unit's rank
 _strRole 		= "";//will contain unit's role
@@ -71,7 +71,12 @@ if (_includeAI) then {
 	if (_role) then {
 		_strRole = " - " + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName");
 		if((roleDescription _x) != "") then {
-			_strRole = " - " +(roleDescription _x);
+			_nbr = (roleDescription _x) find "@";
+			if (_nbr < 0) then {
+				_strRole = " - " + (roleDescription _x);
+			} else {
+				_strRole = " - " + ((roleDescription _x) select [0,_nbr]);
+			};
 		};
 	};	
 
