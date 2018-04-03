@@ -68,10 +68,10 @@ _final_group = createGroup _group_side;
     
     if (_forEachIndex == 0) then {
         _unit_spawn setRank LUCY_IA_RANK_LEADER;
-        [_final_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "UNSAFE", "RED", "COLUMN", 0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
+        [_final_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN", 0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
     };
 
-    [_unit_spawn, _group_side, _group_skill] call GDC_fnc_lucyAISetConfig;
+    [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
 } forEach _vehicles_array;
 
 // Spawn and assign gunners
@@ -81,7 +81,7 @@ _final_group = createGroup _group_side;
         if (count _x != 0) then {
             _unit_spawn = _final_group createUnit[_x, _unit_pos, [], 0, "NONE"];
     
-            [_unit_spawn, _group_side, _group_skill] call GDC_fnc_lucyAISetConfig;
+            [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
             [_unit_spawn] joinSilent _final_group;
             
             _unit_spawn moveInTurret [_current_vehicle, [_forEachIndex]];
@@ -96,7 +96,7 @@ _final_group = createGroup _group_side;
         if (count _x != 0) then {
             _unit_spawn = _final_group createUnit[_x, _unit_pos, [], 0, "NONE"];
             
-            [_unit_spawn, _group_side, _group_skill] call GDC_fnc_lucyAISetConfig;
+            [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
             [_unit_spawn] joinSilent _final_group;
             
             if (_force_cargo) then {

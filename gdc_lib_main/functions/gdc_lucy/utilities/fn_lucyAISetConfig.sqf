@@ -6,14 +6,13 @@
 
 	Parameter(s):
 		0 : OBJECT - the unit
-        1 : STRING - unit side
-        2 : NUMBER - unit skill
+        1 : NUMBER - unit skill
 
 	Returns:
 	nothing
 */
 
-params ["_unit_spawn", "_unit_side", "_unit_skill"];
+params ["_unit_spawn", "_unit_skill"];
 // Configure IA skill
 if (_unit_skill != -1) then {
     _unit_spawn setSkill _unit_skill;

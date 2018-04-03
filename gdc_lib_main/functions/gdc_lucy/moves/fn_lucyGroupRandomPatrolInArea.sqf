@@ -19,10 +19,10 @@ private ["_random_pos", "_wp", "_wp_timeout"];
 // Generate a random position in the marker
 switch(markerShape _marker) do {
     case ("RECTANGLE"): {
-        _random_pos = _marker call GDC_fnc_lucyGetPosFromRectangle;
+        _random_pos = _marker call BIS_fnc_randomPosTrigger;
     };
     case ("ELLIPSE"): {
-        _random_pos = _marker call GDC_fnc_lucyGetPosFromEllipse;
+        _random_pos = _marker call BIS_fnc_randomPosTrigger;
     };
     default {
         hint format["Unsupported format for fn_lucyGroupRandomPatrolInArea : %1", markerShape _marker];

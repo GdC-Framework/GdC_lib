@@ -11,11 +11,9 @@
     nothing
 */
 params["_arg_script"];
+private["_result"];
 
-nul = [_arg_script] spawn {
-    if (LUCY_LOCAL_SPAWN_UNIT) then {
-        private["_result"];
-        _result = [] execVM (this select 0);
-        waitUntil {scriptDone _result};
-    };
+
+if (LUCY_LOCAL_SPAWN_UNIT) then {
+    [] execVM _arg_script;
 };

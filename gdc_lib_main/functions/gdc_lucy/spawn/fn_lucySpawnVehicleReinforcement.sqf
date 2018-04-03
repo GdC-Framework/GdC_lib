@@ -49,7 +49,7 @@ _group_vehicle = [
     20.0,
     _fly_params,
     _group_skill
-] call GDC_fnc_lucySpawnGroupVehicleAdvanced;
+] call GDC_fnc_lucySpawnGroupVehicle;
 
 leader (_group_vehicle select 0) disableAI "AUTOTARGET";
 
@@ -83,7 +83,7 @@ _delete_statement = ["true", ""];
 {
     if (_delete_vehicle) then {
         if (_forEachIndex == (count _array_go_out_area_pos - 1)) then {
-            _delete_statement = ["true", format["_vehicle = vehicle this; _nearest = [getPos _vehicle] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 3000) then {{_vehicle deleteVehicleCrew _x} forEach crew _vehicle; deleteVehicle _vehicle;};"]];
+            _delete_statement = ["true", format["_vehicle = vehicle this; _nearest = [getPos _vehicle] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 5000) then {{_vehicle deleteVehicleCrew _x} forEach crew _vehicle; deleteVehicle _vehicle;};"]];
         };
     };
     [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0, 
@@ -92,4 +92,3 @@ _delete_statement = ["true", ""];
 
 // Return groups
 [_group_vehicle select 0, (_group_vehicle select 1) select 0, _group_inf];
-

@@ -62,41 +62,36 @@ class CfgFunctions
 			};
 		};
 		class gdc_lucy
-		{
-			file = "\gdc_lib_main\functions\gdc_lucy";
+        {
+			file = "gdc_lib_main\functions\gdc_lucy";
 			class lucyInit {};
 			class lucyExecVMHC {};
-            class lucyMoves
-            {
-                file = "\gdc_lib_main\functions\gdc_lucy\moves";
-                class lucyAddWaypoint {};
-                class lucyAddWaypointListMoveCycle {};
-                class lucyGroupRandomPatrol {};
-                class lucyGroupRandomPatrolInArea {};
-            };
-            class lucySpawn
-            {
-                file = "\gdc_lib_main\functions\gdc_lucy\spawn";
-                class lucySpawnGroupInf {};
-                class lucySpawnGroupVehicle {};
-                class lucySpawnStaticInf {};                
-                class lucySpawnVehicleReinforcement {};                
-            };
-            class lucyUtilities
-            {
-                file = "\gdc_lib_main\functions\gdc_lucy\utilities";
-                class lucyAICleaner {};
-                class lucyAISetConfig {};
-                class lucyGetNearestPlayer {};
-                class lucyGetPosFromEllipse {};
-                class lucyGetPosFromRectangle {};
-                class lucyGetRandomFormation {};
-                class lucyIsInEllipse {};
-                class lucyIsInRectangle {};
-                class lucyRotatePosition {};
-                class lucyVehicleRemoveItems {};
-            };
-		};
+        };
+        class gdc_lucyMoves
+        {
+            file = "gdc_lib_main\functions\gdc_lucy\moves";
+            class lucyAddWaypoint {};
+            class lucyAddWaypointListMoveCycle {};
+            class lucyGroupRandomPatrol {};
+            class lucyGroupRandomPatrolInArea {};
+        };
+        class gdc_lucySpawn
+        {
+            file = "gdc_lib_main\functions\gdc_lucy\spawn";
+            class lucySpawnGroupInf {};
+            class lucySpawnGroupVehicle {};
+            class lucySpawnStaticInf {};                
+            class lucySpawnVehicleReinforcement {};                
+        };
+        class gdc_lucyUtilities
+        {
+            file = "gdc_lib_main\functions\gdc_lucy\utilities";
+            class lucyAICleaner {};
+            class lucyAISetConfig {};
+            class lucyGetNearestPlayer {};
+            class lucyGetRandomFormation {};
+            class lucyVehicleRemoveItems {};
+        };
 		class util
 		{
 			file = "\gdc_lib_main\functions\util";
