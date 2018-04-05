@@ -13,8 +13,7 @@
         5 (optional) : NUMBER - timer to clean destroyed vehicles (default: 3600.0)
         6 (optional) : BOOL - enable/disable fatigue of IA (default: True)
         7 (optional) : BOOL - enable/disable cleaning of vehicle's inventories (default: True)
-        8 (optional) : BOOL - enable/disable infinite fuel for vehicles (default: True)
-        9 (optional) : STRING - rank of group's leaders (default: "COLONEL")
+        8 (optional) : STRING - rank of group's leaders (default: "COLONEL")
 
 	Returns:
 	nothing
@@ -28,7 +27,6 @@ params [["_ia_spawn_delay", 1.0],
         ["_ia_clean_dead_vehicles_timer", 3600.0],
         ["_ia_fatigue_disabled", True],
         ["_ia_vehicles_remove_inventory", True],
-        ["_ia_vehicles_infinite_fuel", True],
         ["_ia_rank_leader", "COLONEL"]];
 LUCY_INIT = FALSE;
 
@@ -50,8 +48,6 @@ LUCY_IA_CLEAN_DEAD_VEHICLES_TIMER = _ia_clean_dead_vehicles_timer;
 LUCY_IA_FATIGUE_DISABLED = _ia_fatigue_disabled;
 // Remove all inventory of all vehicles
 LUCY_IA_REMOVE_VEHICLES_INVENTORY = _ia_vehicles_remove_inventory;
-// Set a refuel every 5min for vehicles
-LUCY_IA_INFINITE_FUEL = _ia_vehicles_infinite_fuel;
 // Rank of IAs groups leaders
 LUCY_IA_RANK_LEADER = _ia_rank_leader;
 

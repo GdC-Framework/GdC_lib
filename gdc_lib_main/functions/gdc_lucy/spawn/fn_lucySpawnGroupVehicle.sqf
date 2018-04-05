@@ -42,16 +42,7 @@ _final_group = createGroup _group_side;
     if ((_fly_params select 2) > 0) then {
         _vehicle_spawn setVelocity [(_fly_params select 2) * (sin _unit_dir), (_fly_params select 2) * (cos _unit_dir), 0];
     };
-    
-    if (LUCY_IA_INFINITE_FUEL) then {
-        infinite_fuel = [_vehicle_spawn] spawn {
-            while {alive (_this select 0)} do {
-                // Refuel every 5 minutes
-                sleep 300.0;
-                (_this select 0) setFuel 1;
-            };
-        };
-    };
+
     if (LUCY_IA_REMOVE_VEHICLES_INVENTORY) then {
         [_vehicle_spawn] call GDC_fnc_lucyVehicleRemoveItems;
     };

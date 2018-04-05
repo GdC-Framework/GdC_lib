@@ -8,6 +8,12 @@
 		0 : GROUP - group
         1 : ARRAY - Array of markers (they will be selected randomly)
         2 (optional): ARRAY - Array of group move & combat parameters - Default : ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]
+            Parameters: 
+            STRING - Waypoint type (MOVE, DESTROY, CYCLE, ...)
+            STRING - Waypoint speed (UNCHANGED, LIMITED, NORMAL, FULL)
+            STRING - Waypoint behaviour (UNCHANGED, CARELESS, SAFE, AWARE, COMBAT, STEALTH)
+            STRING - Waypoint combat mode (NO CHANGE, BLUE, GREEN, WHITE, YELLOW, RED)
+            STRING - Waypoint formation (NO CHANGE, COLUMN, STAG COLUMN, WEDGE, ECH LEFT, ECH RIGHT, VEE, LINE, FILE, DIAMOND)
 
 	Returns:
 	Nothing
