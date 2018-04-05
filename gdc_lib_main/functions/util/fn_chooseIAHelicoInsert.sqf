@@ -22,7 +22,6 @@
 */
 
 params ["_mk","_type",["_side",civilian],["_units",[]],["_rank","SERGEANT"],["_spawnpos",[0,0,0]],["_blist",[]],["_water",1]];
-private ["_pos","_veh","_group","_wp"];
 
 // Si le 2e paramètre n'est pas renseigné toutes les unités jouables sont déplacées
 if ((count _units) == 0) then {
@@ -58,57 +57,61 @@ if (rank player == _rank) then {
 	};
 };
 
-// au début de la mission, désactivation de la possibilité de déplacer le marqeur
-waituntil {time > 0};
-onMapSingleClick "";
+[_mk,_type,_side,_units,_spawnpos] spawn {
+	private ["_pos","_veh","_group","_wp","_spawnpos"];
+	// au début de la mission, désactivation de la possibilité de déplacer le marqeur
+	waituntil {time > 0};
+	onMapSingleClick "";
+	_spawnpos = (_this select 4);
 
-// création de l'hélico et déplacement des unités dedans
-if (isServer) then {
-	_pos = (MarkerPos _mk);
-	// déterminer la position de spawn
-	switch true do {
-		case (_spawnpos in [[0,0,0]]): {
-			// position de spawn aléatoire
-			_spawnpos = _pos getPos [4000,(random 360)];
+	// création de l'hélico et déplacement des unités dedans
+	if (isServer) then {
+		_pos = (MarkerPos (_this select 0));
+		// déterminer la position de spawn
+		switch true do {
+			case (_spawnpos in [[0,0,0]]): {
+				// position de spawn aléatoire
+				_spawnpos = _pos getPos [4000,(random 360)];
+			};
+			case ((typeName _spawnpos) == "STRING"): {
+				// position de spawn en fonction d'un marqueur
+				_spawnpos = _pos getPos [4000,((markerPos _spawnpos) getdir _pos)];
+			};
+			default {_spawnpos = _spawnpos;};
 		};
-		case ((typeName _spawnpos) == "STRING"): {
-			// position de spawn en fonction d'un marqueur
-			_spawnpos = _pos getPos [4000,((markerPos _spawnpos) getdir _pos)];
-		};
-		default {_spawnpos = _spawnpos;};
+		// helipad
+		_veh = "Land_HelipadEmpty_F" createVehicle _pos;
+		if (surfaceIsWater _pos) then {_veh setposASL [(_pos select 0),(_pos select 1),2];};
+		// spawn hélico
+		_veh = [_spawnpos,(_spawnpos getdir _pos),(_this select 1),(_this select 2)] call BIS_fnc_spawnVehicle;
+		_group = _veh select 2;
+		_veh =  _veh select 0;
+		_veh disableAI "AUTOTARGET";
+		_veh disableAI "AUTOCOMBAT";
+		_veh disableAI "SUPPRESSION";
+		_veh allowdamage false;
+		{_x allowdamage false;} forEach  (crew _veh);
+		clearMagazineCargoGlobal _veh;
+		clearWeaponCargoGlobal _veh;
+		clearItemCargoGlobal _veh;
+		clearBackpackCargoGlobal _veh;
+		// ajout du WP sur la LZ
+		_wp = _group addWaypoint [_pos, 0];
+		_wp setWaypointType "TR UNLOAD";
+		_wp setWaypointBehaviour "CARELESS";
+		_wp setWaypointCombatMode "BLUE";
+		_wp setWaypointStatements ["true", "{_x allowdamage true;} forEach (units group this); (vehicle this) allowdamage true;"];
+		// ajout du WP de dépop
+		_wp = _group addWaypoint [_spawnpos, 0];
+		_wp setWaypointType "MOVE";
+		_wp setWaypointBehaviour "CARELESS";
+		_wp setWaypointCombatMode "BLUE";
+		_wp setWaypointStatements ["true", "{ deleteVehicle (vehicle _x); deleteVehicle _x; } forEach units group this;"];
+		// déplacer les unités dans l'hélico
+		{
+			_x assignAsCargoIndex [_veh, (_forEachIndex + 1)];
+			[_x,[_veh,(_forEachIndex + 1)]] remoteExecCall ["moveInCargo",_x];
+			sleep 0.1;
+		} forEach (_this select 3);
 	};
-	// helipad
-	_veh = "Land_HelipadEmpty_F" createVehicle _pos;
-	if (surfaceIsWater _pos) then {_veh setposASL [(_pos select 0),(_pos select 1),2];};
-	// spawn hélico
-	_veh = [_spawnpos,(_spawnpos getdir _pos),_type,_side] call BIS_fnc_spawnVehicle;
-	_group = _veh select 2;
-	_veh =  _veh select 0;
-	_veh disableAI "AUTOTARGET";
-	_veh disableAI "AUTOCOMBAT";
-	_veh disableAI "SUPPRESSION";
-	_veh allowdamage false;
-	{_x allowdamage false;} forEach  (crew _veh);
-	clearMagazineCargoGlobal _veh;
-	clearWeaponCargoGlobal _veh;
-	clearItemCargoGlobal _veh;
-	clearBackpackCargoGlobal _veh;
-	// ajout du WP sur la LZ
-	_wp = _group addWaypoint [_pos, 0];
-	_wp setWaypointType "TR UNLOAD";
-	_wp setWaypointBehaviour "CARELESS";
-	_wp setWaypointCombatMode "BLUE";
-	_wp setWaypointStatements ["true", "{_x allowdamage true;} forEach (units group this); (vehicle this) allowdamage true;"];
-	// ajout du WP de dépop
-	_wp = _group addWaypoint [_spawnpos, 0];
-	_wp setWaypointType "MOVE";
-	_wp setWaypointBehaviour "CARELESS";
-	_wp setWaypointCombatMode "BLUE";
-	_wp setWaypointStatements ["true", "{ deleteVehicle (vehicle _x); deleteVehicle _x; } forEach units group this;"];
-	// déplacer les unités dans l'hélico
-	{
-		_x assignAsCargoIndex [_veh, (_forEachIndex + 1)];
-		[_x,[_veh,(_forEachIndex + 1)]] remoteExecCall ["moveInCargo",_x];
-		sleep 0.1;
-	} forEach _units;
 };

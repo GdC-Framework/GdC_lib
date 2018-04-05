@@ -18,7 +18,6 @@
 */
 
 params ["_mk",["_units",[]],["_rank","SERGEANT"],["_blist",[]],["_water",1],["_maxDist",30],["_objDist",4]];
-private ["_pos"];
 
 // Si le le 2e paramètre n'est pas renseigné toutes les unités jouables sont déplacées
 if ((count _units) == 0) then {
@@ -54,26 +53,29 @@ if (rank player == _rank) then {
 	};
 };
 
-// au début de la mission, désactivation de la possibilité de déplacer le marqeur
-waituntil {time > 0};
-onMapSingleClick "";
-{
-	_x allowdamage false;
-} forEach _units;
-
-// déplacement des objects sélectionnés sur la zone d'insertion
-if (isServer) then {
-	// déplacer sur une position sûre
+[_units,_mk,_maxDist,_objDist,_water] spawn {
+	private ["_pos"];
+	// au début de la mission, désactivation de la possibilité de déplacer le marqeur
+	waituntil {time > 0};
+	onMapSingleClick "";
 	{
-		_pos = [(markerPos _mk),0,_maxDist,_objDist,_water,0,0,[],(markerPos _mk)] call BIS_fnc_findSafePos;
-		if (isPlayer _x) then {
-			[_x,_pos] remoteExec ["setpos",_x];
-		} else {
-			_x setpos _pos;
-		};
-	} forEach _units;
+		_x allowdamage false;
+	} forEach (_this select 0);
+
+	// déplacement des objects sélectionnés sur la zone d'insertion
+	if (isServer) then {
+		// déplacer sur une position sûre
+		{
+			_pos = [(markerPos (_this select 1)),0,(_this select 2),(_this select 3),(_this select 4),0,0,[],(markerPos (_this select 1))] call BIS_fnc_findSafePos;
+			if (isPlayer _x) then {
+				[_x,_pos] remoteExec ["setpos",_x];
+			} else {
+				_x setpos _pos;
+			};
+		} forEach (_this select 0);
+	};
+	sleep 10;
+	{
+		_x allowdamage true;
+	} forEach (_this select 0);
 };
-sleep 10;
-{
-	_x allowdamage true;
-} forEach _units;
