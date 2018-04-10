@@ -61,21 +61,21 @@ class CfgFunctions
 				
 			};
 		};
-		class gdc_lucy
+		class lucy
         {
 			file = "gdc_lib_main\functions\gdc_lucy";
 			class lucyInit {};
 			class lucyExecVMHC {};
         };
-        class gdc_lucyMoves
+        class lucyMoves
         {
             file = "gdc_lib_main\functions\gdc_lucy\moves";
             class lucyAddWaypoint {};
             class lucyAddWaypointListMoveCycle {};
             class lucyGroupRandomPatrol {};
-            class lucyGroupRandomPatrolInArea {};
+            class lucyGroupRandomPatrolFixPoints {};
         };
-        class gdc_lucySpawn
+        class lucySpawn
         {
             file = "gdc_lib_main\functions\gdc_lucy\spawn";
             class lucySpawnGroupInf {};
@@ -83,7 +83,7 @@ class CfgFunctions
             class lucySpawnStaticInf {};                
             class lucySpawnVehicleReinforcement {};                
         };
-        class gdc_lucyUtilities
+        class lucyUtilities
         {
             file = "gdc_lib_main\functions\gdc_lucy\utilities";
             class lucyAICleaner {};
