@@ -25,3 +25,8 @@ if (LUCY_IA_FATIGUE_DISABLED) then {
 if (LUCY_IA_CLEAN_BODIES) then {
     _unit_spawn addEventHandler ['killed',{[_this, LUCY_IA_CLEAN_BODIES_TIMER] spawn GDC_fnc_lucyAICleaner;}];
 };
+
+// Configure IA loadout if needed
+if (LUCY_SCRIPT_CONFIG_LOADOUT_IA_ENABLED) then {
+    [_unit_spawn] call LUCY_SCRIPT_CONFIG_LOADOUT_IA;
+};

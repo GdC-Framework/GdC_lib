@@ -100,5 +100,9 @@ LUCY_SPAWN_VEH_IN_PROGRESS = False;
 //LUCY_LIST_POI_INDEPENDENT = [];
 //LUCY_LIST_POI_CIVILIAN = [];
 
+// Script to configure IA loadouts
+LUCY_SCRIPT_CONFIG_LOADOUT_IA_ENABLED = False;
+LUCY_SCRIPT_CONFIG_LOADOUT_IA = objNull;
+
 // Everything is configured, 
 LUCY_INIT = TRUE;
