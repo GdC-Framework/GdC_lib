@@ -6,7 +6,7 @@
 
 	Parameter(s):
 		0 : GROUP - group
-        1 : ARRAY - Array of markers
+        1 : ARRAY - Array of positions
         2 (optional): STRING - Waypoint speed (UNCHANGED, LIMITED, NORMAL, FULL) - Default is LIMITED
         3 (optional): STRING - Waypoint behaviour (UNCHANGED, CARELESS, SAFE, AWARE, COMBAT, STEALTH) - Default is SAFE
         4 (optional): STRING - Waypoint combat mode (NO CHANGE, BLUE, GREEN, WHITE, YELLOW, RED) - Default is RED
@@ -29,8 +29,8 @@ if (count _wp_timers == 0) then {
 };
 
 {
-    _wp = [_group, getMarkerPos _x, 10, "MOVE", _wp_speed, _wp_behaviour, _wp_combat_mode, _wp_formation, _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
+    _wp = [_group, _x, 10, "MOVE", _wp_speed, _wp_behaviour, _wp_combat_mode, _wp_formation, _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
 } forEach _wp_positions;
 
-_cycle_pos = getMarkerPos (_wp_positions select 0);
+_cycle_pos = _wp_positions select 0;
 _wp = [_group, [(_cycle_pos select 0) + 10, (_cycle_pos select 1) + 10, _cycle_pos select 2], 10, "CYCLE", _wp_speed, _wp_behaviour, _wp_combat_mode, _wp_formation, _wp_completion_radius] call GDC_fnc_lucyAddWaypoint; 

@@ -6,7 +6,7 @@
 
 	Parameter(s):
 		0 : GROUP - group
-        1 : OBJECT - Area marker name or an array of markers (they will be selected randomly)
+        1 : OBJECT - Area marker name or an array of positions (they will be selected randomly)
         2 (optional): ARRAY - Array of group move & combat parameters - Default : ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]
 
 	Returns:
@@ -18,7 +18,7 @@ private ["_random_pos", "_wp", "_wp_timeout"];
 
 if (typename _mkr_param == "ARRAY") then {
     // Generate a random position from marker list
-    _random_pos = getMarkerPos (_mkr_param call BIS_fnc_selectRandom);
+    _random_pos = selectRandom _mkr_param;
 } else {
     // Generate a random position in the marker
     _random_pos = _mkr_param call BIS_fnc_randomPosTrigger;
