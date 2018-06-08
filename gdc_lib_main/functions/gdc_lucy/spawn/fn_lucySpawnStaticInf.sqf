@@ -2,18 +2,24 @@
 	Author: Mystery
 
 	Description:
-	Spawn a static infantery
-    Use the following command to get ASL position and azimuth in the debug console. Then, paste to your script and change unit type and side.
-    _PosDirArray = [];
-    { 
-    _veh = _x; 
-    _pos_dir = [(getPosASL  _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh]; 
-    _PosDirArray = [_pos_dir] + _PosDirArray;
-    } foreach (get3DENSelected "object"); 
-    copyToClipboard str _PosDirArray;
+        Spawn a static infantary, you have to method to get position from your units on the missions
+        Don't forget to set the presence to 0%
+
+        1) 
+            call GDC_fnc_lucyPrepareSpawnStatic;
+
+        2)
+            Use the following command to get ASL position and azimuth in the debug console. Then, paste to your script and change unit type and side.
+            _PosDirArray = [];
+            { 
+            _veh = _x; 
+            _pos_dir = [(getPosASL  _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh]; 
+            _PosDirArray = [_pos_dir] + _PosDirArray;
+            } foreach (get3DENSelected "object"); 
+            copyToClipboard str _PosDirArray;
     
     # Old version...
-    copyToClipboard format["static_unit_x = [SOLDAT, [[%1, %2, %3]], [%4], UNIT_SIDE] call GDC_fnc_lucySpawnStaticInf;", (getPosASL  player select 0), getPosASL player select 1, getPosASL player select 2, getDir player];
+        copyToClipboard format["static_unit_x = [SOLDAT, [[%1, %2, %3]], [%4], UNIT_SIDE] call GDC_fnc_lucySpawnStaticInf;", (getPosASL  player select 0), getPosASL player select 1, getPosASL player select 2, getDir player];
 
 	Parameter(s):
 		0 : STRING - unit class name
@@ -24,7 +30,7 @@
         5 (optional): NUMBER - Unit skill level between 0 and 1 - If not set, no level is set (use the default level)
 
 	Returns:
-	nothing
+	    nothing
 */
 
 params ["_unit_type", "_unit_pos_dir", "_unit_side", ["_unit_weak", "UP"], ["_unit_ai_disable", ["NOTHING"]], ["_unit_skill", -1]];

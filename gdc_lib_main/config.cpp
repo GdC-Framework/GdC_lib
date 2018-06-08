@@ -16,50 +16,23 @@ class CfgFunctions
 		class gdc_choppa
 		{
 			file = "\gdc_lib_main\functions\gdc_choppa";
-			class choppa
-			{
-
-			};
-			class choppaCall
-			{
-
-			};
+			class choppa {};
+			class choppaCall {};
 		};
 		class gdc_extra
 		{
 			file = "\gdc_lib_main\functions\gdc_extra";
-			class extra
-			{
-
-			};
-			class extraCall
-			{
-
-			};
-			class extraCancel
-			{
-
-			};
+			class extra {};
+			class extraCall {};
+			class extraCancel {};
 		};
 		class gdc_halo
 		{
 			file = "\gdc_lib_main\functions\gdc_halo";
-			class halo
-			{
-
-			};
-			class haloPos
-			{
-
-			};
-			class haloPlayer
-			{
-
-			};
-			class haloServer
-			{
-
-			};
+			class halo {};
+			class haloPos {};
+			class haloPlayer {};
+			class haloServer {};
 		};
 		class lucy
 		{
@@ -92,26 +65,15 @@ class CfgFunctions
 			class lucyGetNearestPlayer {};
 			class lucyGetRandomFormation {};
 			class lucyVehicleRemoveItems {};
+			class lucyPrepareSpawnStatic {};
 		};
 		class util
 		{
 			file = "\gdc_lib_main\functions\util";
-			class chooseSpawnPos
-			{
-
-			};
-			class chooseIAHelicoInsert
-			{
-
-			};
-			class inventoryBriefing
-			{
-
-			};
-			class rosterBriefing
-			{
-
-			};
+			class chooseSpawnPos {};
+			class chooseIAHelicoInsert {};
+			class inventoryBriefing {};
+			class rosterBriefing {};
 		};
 	};
 };
