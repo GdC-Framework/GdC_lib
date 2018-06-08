@@ -66,6 +66,7 @@ class CfgFunctions
 			class lucyGetRandomFormation {};
 			class lucyVehicleRemoveItems {};
 			class lucyPrepareSpawnStatic {};
+			class lucySetReference {};
 		};
 		class util
 		{

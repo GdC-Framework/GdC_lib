@@ -9,9 +9,10 @@
     ["CUP_I_GUE_Soldier_MG", [[10043.4,2070.73,6.0013,71.0722]], east] call GDC_fnc_lucySpawnStaticInf;
     ["CUP_I_GUE_Sniper", [[10415.1,2366.27,10.75,193.479]], east] call GDC_fnc_lucySpawnStaticInf;
 
+	If the method GDC_fnc_lucySetReference has been used, the positions will be relative to this reference
 
 	Parameter(s):
-    None
+	nothing
 
 	Returns:
 	nothing
@@ -23,7 +24,13 @@ _br = toString [13,10];
 _pos_by_unit = [];
 { 
 	_veh = _x; 
-	_pos = getPosASL _veh;
+	_pos = [];
+	if(isNull LUCY_REFERENCE) then {
+		_pos = getPosASL _veh;
+	} else {
+		_pos = LUCY_REFERENCE worldToModel (getposATL _veh);
+	};
+
 	_pos_dir = [_pos select 0, _pos select 1, _pos select 2, getDir _veh]; 
 	_class = typeOf _veh;
 	_side = side _veh;
