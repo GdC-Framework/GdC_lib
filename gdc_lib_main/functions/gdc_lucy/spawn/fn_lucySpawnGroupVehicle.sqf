@@ -22,7 +22,7 @@
 */
 
 // Parameters
-params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", objNull], ["_inf_troops", objNull], ["_force_cargo", True], 
+params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", []], ["_inf_troops", []], ["_force_cargo", True], 
     ["_unit_dir", 0], ["_unit_spawn_space", 20.0], ["_fly_params", ["NONE", 0, 0]], ["_group_skill", -1]];
 // Function local variables
 private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_final_group", "_current_vehicle"];
@@ -59,7 +59,7 @@ _final_group = createGroup _group_side;
     
     if (_forEachIndex == 0) then {
         _unit_spawn setRank LUCY_IA_RANK_LEADER;
-        [_final_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN", 0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
+        [_final_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN"] call GDC_fnc_lucyAddWaypoint;
     };
 
     [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
