@@ -66,7 +66,6 @@ class CfgFunctions
 			class lucyGetRandomFormation {};
 			class lucyVehicleRemoveItems {};
 			class lucyPrepareSpawnStatic {};
-			class lucySetReference {};
 		};
 		class util
 		{
@@ -75,6 +74,7 @@ class CfgFunctions
 			class chooseIAHelicoInsert {};
 			class inventoryBriefing {};
 			class rosterBriefing {};
+			class getPositionsFromReference {};
 		};
 	};
 };
