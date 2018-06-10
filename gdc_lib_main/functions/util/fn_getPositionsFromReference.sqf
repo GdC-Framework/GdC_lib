@@ -10,7 +10,8 @@
     ["billboard", [15.1,66.27,10.75], 193.479]
 
 
-	To point the right object, you should debug this: nearestobject screenToWorld getMousePosition;
+	To point the right object, you should debug this: "nearestobject screenToWorld getMousePosition;"
+	And execute the method "call GDC_fnc_getPositionsFromReference"
 
 	Parameter(s):
 	nothing
