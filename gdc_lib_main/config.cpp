@@ -39,6 +39,7 @@ class CfgFunctions
 			file = "gdc_lib_main\functions\gdc_lucy";
 			class lucyInit {};
 			class lucyExecVMHC {};
+			class lucyRemoteExecVMHC {};
 			class lucyConfigLoadoutIA {};
 		};
 		class lucyMoves
