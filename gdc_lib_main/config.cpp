@@ -75,6 +75,7 @@ class CfgFunctions
 			class chooseIAHelicoInsert {};
 			class inventoryBriefing {};
 			class rosterBriefing {};
+			class getPositionsFromReference {};
 		};
 	};
 };
