@@ -24,8 +24,6 @@ if(count _reference > count _string) then {
 _referenceArray = toUpper(_reference) splitString "";
 _stringArray = toUpper(_string) splitString "";
 
-_result = true;
-
 _result = true; 
 for [{ _i= 0}, {_i < (count _referenceArray)}, {_i = _i + 1}] do { 
 	if((_referenceArray select _i) != (_stringArray select _i)) then { 
