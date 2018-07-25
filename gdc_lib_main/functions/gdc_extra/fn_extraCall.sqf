@@ -99,6 +99,6 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 } else {
 	// si c'est le mauvais canal, afficher un texte.
 	_text = getText (configFile >> "CfgWeapons" >> gdc_extra_radio >> "displayName");
-	_text = "Selectionner votre " + _text + " et réglez-la sur le canal " + (str gdc_extra_chan) + " pour pouvoir contacter l'hélicoptère.";
+	_text = "Réglez votre " + _text + " sur le canal " + (str gdc_extra_chan) + " pour pouvoir contacter l'hélicoptère.";
 	hint _text;
 };
