@@ -77,5 +77,11 @@ class CfgFunctions
 			class rosterBriefing {};
 			class getPositionsFromReference {};
 		};
+		class utilInternal
+		{
+			file = "\gdc_lib_main\functions\utilInternal";
+			class hasRadioOnRightChannel {};
+			class StringStartWith {};
+		};
 	};
 };

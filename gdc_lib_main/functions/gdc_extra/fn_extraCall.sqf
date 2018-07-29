@@ -14,7 +14,7 @@
 
 private ["_text","_veh","_group","_wp","_effect","_dir"];
 
-if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND (([([] call acre_api_fnc_getCurrentRadio)] call acre_api_fnc_getBaseRadio) == gdc_extra_radio)) then {
+if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChannel) then {
 	gdc_extra_dispo = false;
 	publicVariable "gdc_extra_dispo";
 	hint "Ouvrez votre map et cliquez à l'endroit désiré pour désigner la LZ";
@@ -99,6 +99,6 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 } else {
 	// si c'est le mauvais canal, afficher un texte.
 	_text = getText (configFile >> "CfgWeapons" >> gdc_extra_radio >> "displayName");
-	_text = "Selectionner votre " + _text + " et réglez-la sur le canal " + (str gdc_extra_chan) + " pour pouvoir contacter l'hélicoptère.";
+	_text = "Réglez votre " + _text + " sur le canal " + (str gdc_extra_chan) + " pour pouvoir contacter l'hélicoptère.";
 	hint _text;
 };
