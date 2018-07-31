@@ -15,20 +15,20 @@ class CfgFunctions
 	{
 		class gdc_choppa
 		{
-			file = "\gdc_lib_main\functions\gdc_choppa";
+			file = "gdc_lib_main\functions\gdc_choppa";
 			class choppa {};
 			class choppaCall {};
 		};
 		class gdc_extra
 		{
-			file = "\gdc_lib_main\functions\gdc_extra";
+			file = "gdc_lib_main\functions\gdc_extra";
 			class extra {};
 			class extraCall {};
 			class extraCancel {};
 		};
 		class gdc_halo
 		{
-			file = "\gdc_lib_main\functions\gdc_halo";
+			file = "gdc_lib_main\functions\gdc_halo";
 			class halo {};
 			class haloPos {};
 			class haloPlayer {};
@@ -70,7 +70,7 @@ class CfgFunctions
 		};
 		class util
 		{
-			file = "\gdc_lib_main\functions\util";
+			file = "gdc_lib_main\functions\util";
 			class chooseSpawnPos {};
 			class chooseIAHelicoInsert {};
 			class inventoryBriefing {};
@@ -79,7 +79,7 @@ class CfgFunctions
 		};
 		class utilInternal
 		{
-			file = "\gdc_lib_main\functions\utilInternal";
+			file = "gdc_lib_main\functions\utilInternal";
 			class hasRadioOnRightChannel {};
 			class StringStartWith {};
 		};
