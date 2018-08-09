@@ -2,7 +2,7 @@
 	Author: Mystery
 
 	Description:
-	Spawn a reinforcement group with a vehicle to drop them
+	Spawn a group of vehicles
 
 	Parameter(s):
 		0 : ARRAY - Spawn position
@@ -25,7 +25,7 @@
 params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", []], ["_inf_troops", []], ["_force_cargo", True], 
     ["_unit_dir", 0], ["_unit_spawn_space", 20.0], ["_fly_params", ["NONE", 0, 0]], ["_group_skill", -1]];
 // Function local variables
-private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_final_group", "_current_vehicle"];
+private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_veh_group", "_current_vehicle"];
 
 
 // Check SPAWN/SCAN system
@@ -34,7 +34,7 @@ LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Spawn vehicles, drivers and assign them
 _vehicles_spawn = [];
-_final_group = createGroup _group_side;
+_veh_group = createGroup _group_side;
 {
     // Create the vehicle
     _vehicle_spawn = createVehicle[_x, [(_unit_pos select 0) + (_unit_spawn_space * _forEachIndex * (sin (_unit_dir + 180))), (_unit_pos select 1) + (_unit_spawn_space * _forEachIndex * (cos (_unit_dir + 180))), (_unit_pos select 2) + (_fly_params select 1)], [], 0, (_fly_params select 0)];
@@ -49,17 +49,17 @@ _final_group = createGroup _group_side;
     if (LUCY_IA_CLEAN_DEAD_VEHICLES) then {
         _vehicle_spawn addEventHandler ['killed',{[_this, LUCY_IA_CLEAN_DEAD_VEHICLES_TIMER] spawn GDC_fnc_lucyAICleaner}];
     };
-    _final_group addVehicle _vehicle_spawn;
+    _veh_group addVehicle _vehicle_spawn;
     _vehicles_spawn = _vehicles_spawn + [_vehicle_spawn];
     
     // Add the driver
-    _unit_spawn = _final_group createUnit[(_inf_drivers select _forEachIndex), _unit_pos, [], 0, "NONE"];
-    [_unit_spawn] joinSilent _final_group;
+    _unit_spawn = _veh_group createUnit[(_inf_drivers select _forEachIndex), _unit_pos, [], 0, "NONE"];
+    [_unit_spawn] joinSilent _veh_group;
     _unit_spawn moveInDriver (_vehicle_spawn);
     
     if (_forEachIndex == 0) then {
         _unit_spawn setRank LUCY_IA_RANK_LEADER;
-        [_final_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN"] call GDC_fnc_lucyAddWaypoint;
+        [_veh_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN"] call GDC_fnc_lucyAddWaypoint;
     };
 
     [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
@@ -70,10 +70,10 @@ _final_group = createGroup _group_side;
     _current_vehicle = _vehicles_spawn select _forEachIndex;
     {
         if (count _x != 0) then {
-            _unit_spawn = _final_group createUnit[_x, _unit_pos, [], 0, "NONE"];
+            _unit_spawn = _veh_group createUnit[_x, _unit_pos, [], 0, "NONE"];
     
             [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
-            [_unit_spawn] joinSilent _final_group;
+            [_unit_spawn] joinSilent _veh_group;
             
             _unit_spawn moveInTurret [_current_vehicle, [_forEachIndex]];
         };
@@ -85,10 +85,10 @@ _final_group = createGroup _group_side;
     _current_vehicle = _vehicles_spawn select _forEachIndex;
     {
         if (count _x != 0) then {
-            _unit_spawn = _final_group createUnit[_x, _unit_pos, [], 0, "NONE"];
+            _unit_spawn = _veh_group createUnit[_x, _unit_pos, [], 0, "NONE"];
             
             [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
-            [_unit_spawn] joinSilent _final_group;
+            [_unit_spawn] joinSilent _veh_group;
             
             if (_force_cargo) then {
                 _unit_spawn moveInCargo [_current_vehicle, _forEachIndex];
@@ -97,6 +97,10 @@ _final_group = createGroup _group_side;
     } forEach _x;
 } forEach _inf_troops;
 
+// Force the leader of this fucking vehiculed group !
+_veh_group selectLeader (effectiveCommander (_vehicles_spawn select 0));
+
+sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 LUCY_SPAWN_VEH_IN_PROGRESS = False;
 
-[_final_group, _vehicles_spawn];
+[_veh_group, _vehicles_spawn];
