@@ -11,18 +11,27 @@
 	nothing
 */
 
+// Vérifie si le path vers l'image est correct (met une image par défaut si nécessaire)
+_VerifyPic =
+{
+	private ["_path"];
+	_path = _this;
+	if (_path == "") then {
+		_path = "\A3\ui_f\data\map\diary\icons\taskFailed_ca";
+	};
+	_path call _addExtPAA;
+};
+
 // Ajoute l'extension .paa si elle n'est pas présente
 _addExtPAA =
 {
-	private["_path", "_array", "_len", "_last4"];
+	private["_path","_last4"];
 	_path = toLower _this;
-	_array = toArray (_path);
-	_len = count _array;
-	_last4 = toString [_array select _len-4, _array select _len-3, _array select _len-2, _array select _len-1];
+	_last4 = _path select [(count _path) - 4];
 	if (_last4 == ".paa") then {_this} else {_this + ".paa"};
 };
 
-// 
+// Ajoute les items dans la liste en vérifiant si un item du même type n'est pas déjà présent
 _addToArray =
 {
 	private["_value", "_array", "_count", "_class", "_found", "_x", "_forEachIndex"];
@@ -65,7 +74,7 @@ _addLoadoutUnitToDiary =
 
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		if (!(_x in items _unit)) then
 		{
 			[_pic, _weaponsList, 1, _x] call _addToArray;
@@ -74,31 +83,31 @@ _addLoadoutUnitToDiary =
 
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _weaponsList, 1, _x] call _addToArray;
 	} forEach (_linkeditems - _weapons - [""]);
 
 	{
 		_cfg = configFile >> "CfgMagazines" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _magasinesList, 1, _x] call _addToArray;
 	} forEach (_magazines);
 
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _itemsList, 1, _x] call _addToArray;
 	} forEach (_items - _magazines - [""]);
 
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _uniformList, 1, _x] call _addToArray;
 	} forEach (_uniform);
 
 	{
 		_cfg = configFile >> "CfgVehicles" >> _x;
-		_pic = getText (_cfg >> "picture") call _addExtPAA;
+		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _uniformList, 1, _x] call _addToArray;
 	} forEach (_back);
 	
