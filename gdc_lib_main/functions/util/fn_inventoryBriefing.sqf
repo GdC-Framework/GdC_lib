@@ -34,11 +34,9 @@ _addExtPAA =
 // Ajoute les items dans la liste en vérifiant si un item du même type n'est pas déjà présent
 _addToArray =
 {
-	private["_value", "_array", "_count", "_class", "_found", "_x", "_forEachIndex"];
-	_value = _this select 0;
-	_array = _this select 1;
-	_count = _this select 2;
-	_class = _this select 3;
+	private["_found", "_x", "_forEachIndex"];
+	params["_value", "_array", "_count", "_class"];
+
 	_found = false;
 	{
 		if (_x select 2 == _class) exitWith {
@@ -55,7 +53,7 @@ _addToArray =
 // Crée le texte+images pour le loadout d'un joueur
 _addLoadoutUnitToDiary =
 {
-	_unit = _this select 0;
+	params["_unit"];
 	
 	_weaponsPrimary = [primaryWeapon _unit] - [""];
 	_weaponsSec = [secondaryWeapon _unit] - [""];
@@ -117,8 +115,7 @@ _addLoadoutUnitToDiary =
 	
 	// Conteneurs et chapeaux
 	{
-		_pic = _x select 0;
-		_count = _x select 1;
+		_x params["_pic", "_count"];
 		for "_i" from 1 to _count do
 		{
 			_text = _text + "<img image=""" + _pic + """ height=50 /> ";
@@ -186,8 +183,7 @@ _addLoadoutUnitToDiary =
 	// Munitions
 	_text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Munitions : </font><br/>";
 	{
-		_pic = _x select 0;
-		_count = _x select 1;
+		_x params["_pic", "_count"];
 		_count = str _count;
 		_text = _text + "<img image=""" + _pic + """ height=35 />" + "<font color='#F193F1'>x" + _count + "</font>   ";
 		_name = getText (configFile >> "CfgMagazines" >> (_x select 2) >> "displayName");
@@ -198,8 +194,7 @@ _addLoadoutUnitToDiary =
 	
 	// Items
 	{
-		_pic = _x select 0;
-		_count = _x select 1;
+		_x params["_pic", "_count"];
 		_count = str _count;
 		_text = _text + "<img image=""" + _pic + """ height=35 />" + "<font color='#F193F1'>x" + _count + "</font>   ";
 		_name = getText(configFile >> "CfgWeapons" >> (_x select 2) >> "displayName");
