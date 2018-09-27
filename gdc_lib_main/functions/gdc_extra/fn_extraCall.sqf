@@ -65,7 +65,7 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 				_effect = {
 					gdc_extra_left = true;
 					publicVariable "gdc_extra_left";
-					[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0];
+					//[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0]; // semble ne pas fonctionner pour l'instant
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
 					_wp setWaypointType "MOVE";
 					sleep 30;
@@ -75,14 +75,14 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 				_effect = {
 					gdc_extra_left = true;
 					publicVariable "gdc_extra_left";
-					[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0];
+					//[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0]; // semble ne pas fonctionner pour l'instant
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
 					_veh = "Land_HelipadEmpty_F" createVehicle gdc_extra_spawnposR;
 					_wp setWaypointType "MOVE";
 					_wp setWaypointStatements ["true", "gdc_extra_helo land 'LAND'"];
 				};
 			};
-			[gdc_extra_helo,["<t color='#ff0000'>Partir</t>",_effect,0,1.5,false,true,"","(vehicle _this) == _target"]] remoteExec ["addaction", 0];
+			[gdc_extra_helo,["<t color='#ff0000'>Partir</t>",_effect,0,1.5,false,true,"","((vehicle _this) == _target) && !gdc_extra_left"]] remoteExec ["addaction", 0];
 		} else {
 		// retour de l'hélico si il est déjà spawn
 			_group = creategroup gdc_extra_side;
