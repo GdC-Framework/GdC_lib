@@ -29,4 +29,12 @@ class CfgMusic
 		theme = "safe";
 		musicClass = "gdc_lib_music";
 	};
+	class gdc_lib_sound_music_doachoice // Musique crée par Looping
+	{
+		name="Do a Choice (by Looping)";
+		sound[]={"\gdc_lib_sound\data\doachoice.ogg",1,1};
+		duration = 221;
+		theme = "safe";
+		musicClass = "gdc_lib_music";
+	};
 };
