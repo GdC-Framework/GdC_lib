@@ -31,16 +31,17 @@
         6 (optional): STRING - Script to execute on the unit's INIT, use "this" in the script to call the current unit
 
 	Returns:
-	    nothing
+        An array which contains all spawned units
 */
 
 params ["_unit_type", "_unit_pos_dir", "_unit_side", ["_unit_weak", "UP"], ["_unit_ai_disable", ["NOTHING"]], ["_unit_skill", -1], ["_unit_init", ""]];
-private["_unit_spawn", "_unit_group", "_i"];
+private["_unit_spawn", "_unit_group", "_i", "_units_spawn"];
 
 // Check SPAWN/SCAN system
 waitUntil{sleep 1.0;(not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
 LUCY_SPAWN_INF_IN_PROGRESS = True;
 
+_units_spawn = [];
 for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
     _unit_group = createGroup _unit_side;
     _unit_type createUnit[getMarkerPos LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME, _unit_group, _unit_init];
@@ -57,8 +58,13 @@ for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
             _unit_spawn disableAI _x;
         };
     } forEach _unit_ai_disable;
+    // Add unit to the list
+    _units_spawn = _units_spawn + [_unit_spawn];
     
     sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 };
 
 LUCY_SPAWN_INF_IN_PROGRESS = False;
+
+// Return all spawned units
+_units_spawn;
