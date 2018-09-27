@@ -72,3 +72,13 @@ createMarkerLocal ["gdc_extra_mk",[0,0,0]];
 "gdc_extra_mk" setMarkerAlphaLocal 0;
 "gdc_extra_mk" setMarkerTypeLocal "mil_Pickup";
 "gdc_extra_mk" setMarkerColorLocal "ColorIndependent";
+
+// Onglet briefing
+player createDiarySubject ["gdc_extra","GDC Extra"];
+player createDiaryRecord ["gdc_extra", ["Instructions","<font size='20'><font color='#FF0000'>Extraction héliportée</font></font>
+<br/><br/>Les joueurs peuvent faire appel à une extraction héliportée à n'importe quel moment de la mission.
+<br/><br/>Réglez votre <font color='#EF7619'>" + (getText (configFile >> "CfgWeapons" >> gdc_extra_radio >> "displayName")) + "</font> sur le <font color='#EF7619'>canal " + (str gdc_extra_chan) + "</font> pour pouvoir contacter l'hélicoptère.
+<br/>Utilisez votre menu ACE d'interaction sur vous-même et selectionnez l'action ""Appel extraction héliportée"" pour désigner la LZ de l'hélicoptère à l'aide d'un simple clic gauche sur la carte.
+<br/>Il est ensuite possible d'annuler l'extraction via le même menu.
+<br/>Une fois que tout le monde est à bord, utilisez l'action molette ""Partir"" pour indiquer à l'hélicoptèree qu'il peut décoller.
+<br/><br/>Type de l'hélicoptère : <font color='#EF7619'>" + (getText (configFile >> "CfgVehicles" >> gdc_extra_type >> "displayName")) + "</font>"]];

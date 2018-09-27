@@ -40,6 +40,16 @@ _action = [
 	true
 ] call ace_interact_menu_fnc_addActionToClass;
 
+// Onglet briefing
+player createDiarySubject ["gdc_choppa","GDC Choppa"];
+player createDiaryRecord ["gdc_choppa", ["Instructions","<font size='20'><font color='#FF0000'>Transport héliporté</font></font>
+<br/><br/>Les joueurs peuvent utiliser un hélicoptère de transport piloté par l'IA qui est disponible pendant toute la mission et qui peut être commandé à distance.
+<br/><br/>Réglez votre <font color='#EF7619'>" + (getText (configFile >> "CfgWeapons" >> gdc_choppa_radio >> "displayName")) + "</font> sur le <font color='#EF7619'>canal " + (str gdc_choppa_chan) + "</font> pour pouvoir contacter l'hélicoptère.
+<br/>Les joueurs à bord de l'hélicoptère peuvent communiquer avec celui-ci sans avoir besoin d'une " + (getText (configFile >> "CfgWeapons" >> gdc_choppa_radio >> "displayName")) + ".
+<br/>Utilisez votre menu ACE d'interaction sur vous-même et selectionnez l'action ""Contacter l'hélicoptère"" pour désigner une nouvelle LZ pour l'hélicoptère à l'aide d'un simple clic gauche sur la carte.
+<br/>Il est ensuite possible donner une nouvelle LZ à tout moment, même lorsque l'hélicoptère est en vol.
+<br/><br/>Type de l'hélicoptère : <font color='#EF7619'>" + (getText (configFile >> "CfgVehicles" >> _type >> "displayName")) + "</font>"]];
+
 if (isServer) then {
 	// création de l'hélico
 	gdc_choppa_helo = createVehicle [_type,_spawnpos,[],0,"NONE"];
