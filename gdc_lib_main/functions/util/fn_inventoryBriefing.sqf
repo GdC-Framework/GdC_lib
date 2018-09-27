@@ -108,9 +108,19 @@ _addLoadoutUnitToDiary =
 		_pic = getText (_cfg >> "picture") call _VerifyPic;
 		[_pic, _uniformList, 1, _x] call _addToArray;
 	} forEach (_back);
-	
+
+	// Affichage du role
+	private _role = getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+	if ((roleDescription _unit) != "") then {
+		_nbr = (roleDescription _unit) find "@";
+		if (_nbr < 0) then {
+			_role = (roleDescription _unit);
+		} else {
+			_role = ((roleDescription _unit) select [0,_nbr]);
+		};
+	};
 	// Premiere ligne
-	_text = _text + "<font size=20><font color='#FFFFBB'>" + (name _unit) + "</font> - " + (if ((roleDescription _unit) != "") then {roleDescription _unit}else{getText (configFile >> "CfgVehicles" >> typeOf(_unit) >> "displayName")}) + " - " + (if (isClass (configFile >> "CfgPatches" >> "ace_main")) then {[_unit] call ace_common_fnc_getWeight} else {""}) + "</font>";
+	_text = _text + "<font size=20><font color='#FFFFBB'>" + (name _unit) + "</font> - " + _role + " - " + (if (isClass (configFile >> "CfgPatches" >> "ace_main")) then {[_unit] call ace_common_fnc_getWeight} else {""}) + "</font>";
 	_text = _text + "<br/><br/>";
 	
 	// Conteneurs et chapeaux
