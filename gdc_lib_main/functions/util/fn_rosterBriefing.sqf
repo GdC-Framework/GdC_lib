@@ -81,7 +81,13 @@ if (_includeAI) then {
 	};	
 
 	if(_newGrp != _oldGrp) then {
-		_strGrp = "<br/>" + (groupID(group _x)) + "<br/>";
+		_nbr = (roleDescription _x) find "@";
+		if (_nbr < 0) then {
+			_strGrp = "<br/>" + (groupID(group _x)) + "<br/>";
+		} else {
+			_strGrp = "<br/>" + ((roleDescription _x) select [_nbr + 1]) + "<br/>";
+		};
+		
 		switch (side _x) do {
 			case EAST:{
 				_strColorGrp = "'#990000'";
