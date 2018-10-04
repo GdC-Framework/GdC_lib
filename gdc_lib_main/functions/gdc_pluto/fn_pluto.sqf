@@ -40,7 +40,9 @@
 		(group this) setVariable ["PLUTO_ARTYERROR",[0,40,100]];
 */
 
-params ["_side",["_rangeReveal",[1000,2000,6000]],["_rangeSensor",[1500,2000,3000]],["_timeoutQRF",120],["_rangeQRF",[1000,2000,6000]],["_QRFDelay",[20,30,60]],["_timeoutarty",120],["_artydelay",[20,30,60]],["_artyrounds",[1,2,4]],["_artyerror",[0,40,100]]];
+if (isMultiplayer && hasInterface) exitWith {};
+
+params ["_side",["_rangeReveal",[1000,2000,6000]],["_rangeSensor",[1500,2000,3000]],["_timeoutQRF",120],["_rangeQRF",[1000,2000,6000]],["_QRFDelay",[20,30,60]],["_timeoutarty",240],["_artydelay",[20,30,60]],["_artyrounds",[1,2,4]],["_artyerror",[0,40,100]]];
 private ["_boucle"];
 
 // Camp qui va être sous le commandement de PLUTO
@@ -59,9 +61,9 @@ gdc_plutoRangeSensorAir = _rangeSensor select 2;
 // Temps minimum entre deux ordres de QRF pour un même groupe (peut être réglé indépendament pour chaque groupe avec PLUTO_QRFTIMEOUT)
 gdc_plutoQRFTimeout = _timeoutQRF;
 // Distance max entre un groupe et une cible pour que le groupe puisse agir dessus (peut être réglé indépendament pour chaque groupe avec PLUTO_QRFRANGE)
-gdc_plutoRangeQRFMan = _rangeQRF select 0; // Distance max entre un groupe et une cible pour que le groupe puisse agir dessus
-gdc_plutoRangeQRFLand = _rangeQRF select 1; // Idem pour véhicule terrestre
-gdc_plutoRangeQRFAir = _rangeQRF select 2; // Idem pour véhicule aérien
+gdc_plutoRangeQRFMan = _rangeQRF select 0;
+gdc_plutoRangeQRFLand = _rangeQRF select 1;
+gdc_plutoRangeQRFAir = _rangeQRF select 2;
 // Délai avant que les QRF ne partent vers leur cible (peut être réglé indépendament pour chaque groupe avec PLUTO_QRFDELAY)
 gdc_plutoQRFDelay = _QRFDelay;
 
@@ -79,15 +81,23 @@ gdc_plutoTargetList = [];
 gdc_plutoGroupList = [];
 gdc_plutoMkDebugList = [];
 
-// Lancement de Pluto
-waitUntil {time > 5};
-systemChat "Pluton se réveille";
+// Debug
+if (isnil "gdc_plutoDebug") then {
+	gdc_plutoDebug = false;
+};
 
-_boucle = 0;
-while {true} do {
-	_boucle = _boucle + 1;
-	systemChat ("Start of loop " + (str _boucle));
-	[] call gdc_fnc_plutoAnalize;
-	[] call gdc_fnc_plutoAction;
-	sleep 10;
+// Lancement de Pluto
+[] spawn {
+	waitUntil {time > 5};
+	if (gdc_plutoDebug) then {systemChat "Pluton se réveille";};
+	_boucle = 0;
+	while {true} do {
+		if (gdc_plutoDebug) then {
+			_boucle = _boucle + 1;
+			systemChat ("Start of loop " + (str _boucle));
+		};
+		[] call gdc_fnc_plutoAnalize;
+		[] call gdc_fnc_plutoAction;
+		sleep 10;
+	};
 };

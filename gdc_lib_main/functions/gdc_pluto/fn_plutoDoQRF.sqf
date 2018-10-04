@@ -19,14 +19,12 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 
 	private ["_veh","_targets","_target","_mk","_range","_condition"];
 
-	_group setVariable ["PLUTO_LASTORDER",time]; // Le groupe recoit un nouvel ordre : mettre à jour son timing
 	_veh = vehicle (leader _group);
 	// Différents range de QRF en fonction du type d'unité.
 	_range = switch true do {
 		case (_veh isKindOf "Man"): {gdc_plutoRangeQRFMan};
-		case (_veh isKindOf "LandVehicle"): {gdc_plutoRangeQRFLand};
 		case (_veh isKindOf "Air"): {gdc_plutoRangeQRFAir};
-		default {gdc_plutoRangeQRFLand};
+		default {gdc_plutoRangeQRFLand}; //"LandVehicle"
 	};
 	_range = _group getVariable ["PLUTO_QRFRANGE",_range]; // Eventuel range custom
 	// Ranger les cibles connues en fonction de la distance par rapport au groupe et ne garder que celles qui sont dans le range du groupe et qui ne sont pas dans des véhicules aériens :
@@ -38,14 +36,17 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	// Si des cibles sont diponibles lancer la QRF
 	if ((count _targets) > 0) then {
 		_target = _targets select 0; // Sélectionner la cible la plus proche
+		_group setVariable ["PLUTO_LASTORDER",time]; // Le groupe recoit un nouvel ordre : mettre à jour son timing
 		// marker de debug
-		if ((markerType (format ["mk_QRF%1",_veh])) == "") then{
-			_mk = createMarkerLocal [(format ["mk_QRF%1",_veh]),(getpos _target)];
-			_mk setMarkerTypeLocal "mil_destroy";
-			_mk setMarkerColorLocal "ColorRed";
-			_mk setMarkerTextLocal ((str _group) + (typeOf _veh));
-		} else {
-			(format ["mk_QRF%1",_veh]) setMarkerPosLocal (getpos _target);
+		if (gdc_plutoDebug) then {
+			if ((markerType (format ["mk_QRF%1",_veh])) == "") then{
+				_mk = createMarkerLocal [(format ["mk_QRF%1",_veh]),(getpos _target)];
+				_mk setMarkerTypeLocal "mil_destroy";
+				_mk setMarkerColorLocal "ColorRed";
+				_mk setMarkerTextLocal ((str _group) + (typeOf _veh));
+			} else {
+				(format ["mk_QRF%1",_veh]) setMarkerPosLocal (getpos _target);
+			};
 		};
 		
 		[_group,_target] spawn gdc_fnc_plutoSAD;

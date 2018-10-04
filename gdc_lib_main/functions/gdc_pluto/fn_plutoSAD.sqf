@@ -20,10 +20,9 @@ _pos = (getpos _target);
 
 // En fonction du type d'unité : différents rayons de patrouille et différentes distance pour activer le WP d'apporche
 _radius = switch true do {
-	case (_veh isKindOf "Man"): {[200,500]};
 	case (_veh isKindOf "LandVehicle"): {[250,1000]};
 	case (_veh isKindOf "Air"): {[500,2000]};
-	default {[200,500]};
+	default {[200,500]}; //"Man"
 };
 
 // delai avant le lancement de la QRF

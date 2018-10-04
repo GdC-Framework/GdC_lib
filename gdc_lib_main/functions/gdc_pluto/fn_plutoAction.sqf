@@ -20,9 +20,8 @@ private ["_unit","_group","_count","_targetList","_range"];
 	// Différents range de reveal en fonction du type d'unité.
 	_range = switch true do {
 		case (_veh isKindOf "Man"): {gdc_plutoRangeRevealMan};
-		case (_veh isKindOf "LandVehicle"): {gdc_plutoRangeRevealLand};
 		case (_veh isKindOf "Air"): {gdc_plutoRangeRevealAir};
-		default {gdc_plutoRangeRevealLand};
+		default {gdc_plutoRangeRevealLand}; //"LandVehicle"
 	};
 	_range = _x getVariable ["PLUTO_REVEALRANGE",_range]; // Eventuel range custom
 	// Parmi la liste de cibles disponibles ne sélectionner que celles qui sont dans le Range et qui ne sont pas déjà connues par le groupe :
@@ -35,13 +34,13 @@ private ["_unit","_group","_count","_targetList","_range"];
 	_count = count _targetList;
 	if (_count > 0) then {
 		// DEBUG
-		systemChat ((str _count) + " units revealed to " + (str _group));
+		if (gdc_plutoDebug) then {systemChat ((str _count) + " units revealed to " + (str _group));};
 		// Actions en fonction de la variable
 		switch (_group getVariable ["PLUTO_ORDER","DEFAULT"]) do {
 			case "QRF": {[_group,_targetList] call gdc_fnc_plutoDoQRF;};
 			case "ARTY": {[_group,_targetList] call gdc_fnc_plutoDoArty;};
-			case "IGNORE": {};
-			case "DEFAULT": {};
+			case "IGNORE";
+			case "DEFAULT";
 			default {};
 		};
 	};

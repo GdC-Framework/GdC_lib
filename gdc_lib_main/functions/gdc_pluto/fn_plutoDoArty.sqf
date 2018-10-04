@@ -19,7 +19,6 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 
 	private ["_veh","_targets","_target","_mk","_range","_error"];
 
-	_group setVariable ["PLUTO_LASTORDER",time]; // Le groupe recoit un nouvel ordre : mettre à jour son timing
 	_unit = (leader _group);
 	_veh = vehicle _unit;
 	_mag = (getArtilleryAmmo [_veh]) select 0;
@@ -37,6 +36,7 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	};
 	// Si des cibles sont diponibles lancer la frappe
 	if ((count _targets) > 0) then {
+		_group setVariable ["PLUTO_LASTORDER",time]; // Le groupe recoit un nouvel ordre : mettre à jour son timing
 		_target = selectrandom _targets; // Sélectionner une cible
 		// Marge d'erreur pour la position de la cible
 		_error = _group getVariable ["PLUTO_ARTYERROR",gdc_plutoArtyError];
@@ -50,13 +50,15 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 			_unit commandArtilleryFire [_pos,_mag,(round (random _rounds))];
 		};
 		// marker de debug
-		if ((markerType (format ["mk_ARTY%1",_veh])) == "") then{
-			_mk = createMarkerLocal [(format ["mk_ARTY%1",_veh]),_pos];
-			_mk setMarkerTypeLocal "mil_end";
-			_mk setMarkerColorLocal "ColorPink";
-			_mk setMarkerTextLocal ((str _group) + (typeOf _veh));
-		} else {
-			(format ["mk_ARTY%1",_veh]) setMarkerPosLocal _pos;
+		if (gdc_plutoDebug) then {
+			if ((markerType (format ["mk_ARTY%1",_veh])) == "") then{
+				_mk = createMarkerLocal [(format ["mk_ARTY%1",_veh]),_pos];
+				_mk setMarkerTypeLocal "mil_end";
+				_mk setMarkerColorLocal "ColorPink";
+				_mk setMarkerTextLocal ((str _group) + (typeOf _veh));
+			} else {
+				(format ["mk_ARTY%1",_veh]) setMarkerPosLocal _pos;
+			};
 		};
 	};
 };
