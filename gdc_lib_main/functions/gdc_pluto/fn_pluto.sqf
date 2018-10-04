@@ -92,8 +92,8 @@ if (isnil "gdc_plutoDebug") then {
 	if (gdc_plutoDebug) then {systemChat "Pluton se réveille";};
 	_boucle = 0;
 	while {true} do {
+		_boucle = _boucle + 1;
 		if (gdc_plutoDebug) then {
-			_boucle = _boucle + 1;
 			systemChat ("Start of loop " + (str _boucle));
 		};
 		[] call gdc_fnc_plutoAnalize;
