@@ -43,35 +43,34 @@ if (_area == "") then {
 	_veh = "VR_Area_01_circle_4_yellow_F" createVehicle (getPos _object);
 	_veh setpos (getPos _object);
 };
+
+// Déterminer la classe de base du véhicule pour l'altitude et les actions spéciales :
+gdc_halo_vehBaseClass = [
+	"VTOL_01_base_F","RHS_C130J","CUP_C130J_Base","CUP_DC3_Base","CUP_B_MV22_USMC","RHS_AN2_Base","CUP_AN2_Base","LIB_C47_Skytrain","LIB_Ju52",
+	"RHS_Mi8_base","RHS_CH_47F_base","rhsusf_CH53E_USMC","CUP_CH53E_Base","CUP_CH47F_base","CUP_Mi8_base","CUP_MI6A_Base","Heli_Transport_03_base_F","Heli_Transport_02_base_F","Heli_Transport_04_base_F"
+];
+gdc_halo_vehBaseClass = gdc_halo_vehBaseClass arrayIntersect ([(configFile >> "CfgVehicles" >> gdc_halo_vtype),true] call BIS_fnc_returnParents);
+if ((count gdc_halo_vehBaseClass) > 0) then {
+	gdc_halo_vehBaseClass = gdc_halo_vehBaseClass select 0;
+} else {
+	gdc_halo_vehBaseClass = "";
+};
+
+// Altitude de vol par défaut
 if (_alt == -1) then {
 	if (gdc_halo_lalo) then {
 		gdc_halo_alt = 300;
 	} else {
-		gdc_halo_alt = switch (_vtype) do {
-			case "B_T_VTOL_01_infantry_F": {6000};
-			case "RHS_C130J": {8000};
-			case "CUP_B_C130J_GB": {8000};
-			case "CUP_B_C130J_USMC": {8000};
-			case "CUP_O_C130J_TKA": {8000};
-			case "CUP_I_C130J_AAF": {8000};
-			case "CUP_I_C130J_RACS": {8000};
-			case "CUP_B_C47_USA": {6000};
-			case "CUP_O_C47_SLA": {6000};
-			case "CUP_C_C47_CIV": {6000};
-			case "CUP_C_DC3_CIV": {6000};
-			case "CUP_C_DC3_TanoAir_CIV": {6000};
-			case "CUP_B_MV22_USMC": {6000};
-			case "RHS_AN2_B": {3000};
-			case "RHS_AN2": {3000};
-			case "CUP_O_AN2_TK": {4500};
-			case "CUP_C_AN2_CIV": {4500};
-			case "CUP_C_AN2_AEROSCHROT_TK_CIV": {4500};
-			case "CUP_C_AN2_AIRTAK_TK_CIV": {4500};
-			case "LIB_C47_Skytrain": {6000};
-			case "LIB_C47_RAF_bob": {6000};
-			case "LIB_C47_RAF_snafu": {6000};
-			case "LIB_C47_RAF": {6000};
-			case "LIB_Li2": {6000};
+		gdc_halo_alt = switch (gdc_halo_vehBaseClass) do {
+			case "RHS_C130J";
+			case "CUP_C130J_Base": {8000};
+			case "RHS_AN2_Base": {3000};
+			case "CUP_AN2_Base": {4500};
+			case "VTOL_01_base_F";
+			case "CUP_DC3_Base";
+			case "CUP_B_MV22_USMC";
+			case "LIB_C47_Skytrain";
+			case "LIB_Ju52";
 			default {6000};
 		};
 	};
