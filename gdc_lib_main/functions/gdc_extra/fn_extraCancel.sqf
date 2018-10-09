@@ -35,6 +35,7 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 		_wp setWaypointCombatMode "BLUE";
 		_wp setWaypointCompletionRadius 100;
 		_wp setWaypointStatements ["true", "{ deleteVehicle (vehicle _x); deleteVehicle _x; } forEach units group this;"];
+		[gdc_extra_helo,0] call GDC_fnc_animVehicleDoor;
 		gdc_extra_dispo = true;
 		publicVariable "gdc_extra_dispo";
 	};

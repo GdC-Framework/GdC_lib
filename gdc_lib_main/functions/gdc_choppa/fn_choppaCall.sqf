@@ -35,11 +35,13 @@ if (([player, gdc_choppa_radio, gdc_choppa_chan] call GDC_fnc_hasRadioOnRightCha
 		_wp setWaypointType "MOVE";
 		_wp setWaypointBehaviour "CARELESS";
 		_wp setWaypointCombatMode "BLUE";
-		_wp setWaypointStatements ["true","gdc_choppa_helo land 'GET IN';"];
+		_wp setWaypointStatements ["true","gdc_choppa_helo land 'GET IN'; [(vehicle this),1] call GDC_fnc_animVehicleDoor;"];
 		_wp = (group gdc_choppa_helo) addWaypoint [_pos,0];
 		_wp setWaypointType "MOVE";
 		_wp setWaypointStatements ["true","gdc_choppa_helo land 'LAND';"];
 		_wp setWaypointTimeout [60,60,60];
+		// Fermeture de la porte
+		[gdc_choppa_helo,0] call GDC_fnc_animVehicleDoor;
 	};
 } else {
 	// si c'est le mauvais canal, afficher un texte.

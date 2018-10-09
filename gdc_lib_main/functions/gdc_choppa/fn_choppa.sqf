@@ -54,8 +54,8 @@ if (isServer) then {
 	// création de l'hélico
 	gdc_choppa_helo = createVehicle [_type,_spawnpos,[],0,"NONE"];
 	publicVariable "gdc_choppa_helo";
-	gdc_choppa_helo setpos _spawnpos;
 	gdc_choppa_helo setdir _dir;
+	gdc_choppa_helo setpos _spawnpos;
 	createVehicleCrew gdc_choppa_helo;
 	// désactivation des dommages
 	if (_damage) then {
@@ -72,6 +72,8 @@ if (isServer) then {
 		gdc_choppa_helo animateSource ["cargolights_hide",0];
 		(gdc_choppa_helo turretUnit [0]) action ["searchlightOn",gdc_choppa_helo];
 	};
+	// Ouverture des portes
+	[gdc_choppa_helo,1] call GDC_fnc_animVehicleDoor;
 	// création de l'hélipad
 	gdc_choppa_pad = "Land_HelipadEmpty_F" createVehicle _spawnpos;
 	publicvariable "gdc_choppa_pad";
