@@ -57,8 +57,8 @@ clearItemCargoGlobal _veh;
 clearBackpackCargoGlobal _veh;
 
 
-// Allumage des lampes intérieures si véhicule RHS
-if (gdc_halo_vehBaseClass in ["RHS_C130J","RHS_Mi8_base","RHS_CH_47F_base","rhsusf_CH53E_USMC"]) then {
+// Allumage des lampes intérieures si disponibles (véhicules RHS)
+if ("cargolights_hide" in (animationNames _veh)) then {
 	_veh animateSource ["cargolights_hide",0];
 	(_veh turretUnit [0]) action ["searchlightOn",_veh];
 };
@@ -110,7 +110,7 @@ switch (gdc_halo_vehBaseClass) do {
 	};
 	case "rhsusf_CH53E_USMC";
 	case "CUP_CH53E_Base";
-	case "RHS_C130J": {
+	case "RHS_C130J_Base": {
 		_openRamp = {_veh animateSource ["ramp",0.75];};
 		_closeRamp ={_veh animateSource ["ramp",0];};
 	};
@@ -153,7 +153,7 @@ if (gdc_halo_autojump) then {
 	[] call _openRamp;
 	// Green light
 	waitUntil {((getpos _veh) distance2D _jumpPos) < 1000};
-	if (gdc_halo_vehBaseClass == "RHS_C130J") then {
+	if ("jumplights_hide" in (animationNames _veh)) then {
 		_veh animateSource ["jumplight",1];
 	};
 	// saut auto
@@ -206,7 +206,7 @@ if (gdc_halo_autojump) then {
 		[] call _openRamp;
 		// Green light
 		waitUntil {((getpos _veh) distance2D _jumpPos) < 1000};
-		if (gdc_halo_vehBaseClass == "RHS_C130J") then {
+		if ("jumplights_hide" in (animationNames _veh)) then {
 			_veh animateSource ["jumplight",1];
 		};
 		
@@ -216,7 +216,7 @@ if (gdc_halo_autojump) then {
 		
 		// Red light
 		waitUntil {((getpos _veh) distance2D _jumpPos) > 1000};
-		if (gdc_halo_vehBaseClass == "RHS_C130J") then {
+		if ("jumplights_hide" in (animationNames _veh)) then {
 			_veh animateSource ["jumplight",0];
 		};
 		// Fermeture de la rampe

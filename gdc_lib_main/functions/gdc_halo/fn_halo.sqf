@@ -46,7 +46,7 @@ if (_area == "") then {
 
 // Déterminer la classe de base du véhicule pour l'altitude et les actions spéciales :
 gdc_halo_vehBaseClass = [
-	"VTOL_01_base_F","RHS_C130J","CUP_C130J_Base","CUP_DC3_Base","CUP_B_MV22_USMC","RHS_AN2_Base","CUP_AN2_Base","LIB_C47_Skytrain","LIB_Ju52",
+	"VTOL_01_base_F","RHS_C130J_Base","CUP_C130J_Base","CUP_DC3_Base","CUP_B_MV22_USMC","RHS_AN2_Base","CUP_AN2_Base","LIB_C47_Skytrain","LIB_Ju52",
 	"RHS_Mi8_base","RHS_CH_47F_base","rhsusf_CH53E_USMC","CUP_CH53E_Base","CUP_CH47F_base","CUP_Mi8_base","CUP_MI6A_Base","Heli_Transport_03_base_F","Heli_Transport_02_base_F","Heli_Transport_04_base_F"
 ];
 gdc_halo_vehBaseClass = gdc_halo_vehBaseClass arrayIntersect ([(configFile >> "CfgVehicles" >> gdc_halo_vtype),true] call BIS_fnc_returnParents);
@@ -62,15 +62,10 @@ if (_alt == -1) then {
 		gdc_halo_alt = 300;
 	} else {
 		gdc_halo_alt = switch (gdc_halo_vehBaseClass) do {
-			case "RHS_C130J";
+			case "RHS_C130J_Base";
 			case "CUP_C130J_Base": {8000};
 			case "RHS_AN2_Base": {3000};
 			case "CUP_AN2_Base": {4500};
-			case "VTOL_01_base_F";
-			case "CUP_DC3_Base";
-			case "CUP_B_MV22_USMC";
-			case "LIB_C47_Skytrain";
-			case "LIB_Ju52";
 			default {6000};
 		};
 	};
