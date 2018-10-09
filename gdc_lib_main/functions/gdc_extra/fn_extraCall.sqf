@@ -53,6 +53,11 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 				gdc_extra_helo allowdamage false;
 				{_x allowdamage false;} forEach (crew gdc_extra_helo);
 			};
+			// Allumage des lampes intérieures si disponibles (véhicules RHS)
+			if ("cargolights_hide" in (animationNames gdc_extra_helo)) then {
+				gdc_extra_helo animateSource ["cargolights_hide",0];
+				(gdc_extra_helo turretUnit [0]) action ["searchlightOn",gdc_extra_helo];
+			};
 			// ajout du WP sur la lz désignée
 			_wp = _group addWaypoint [_pos, 0];
 			_wp setWaypointType "TR UNLOAD";

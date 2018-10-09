@@ -67,6 +67,11 @@ if (isServer) then {
 	[gdc_choppa_helo] joinSilent _group;
 	gdc_choppa_helo disableAI "AUTOTARGET"; gdc_choppa_helo disableAI "AUTOCOMBAT"; gdc_choppa_helo disableAI "SUPPRESSION";
 	{[_x] joinSilent _group; _x disableAI "AUTOTARGET"; _x disableAI "AUTOCOMBAT"; _x disableAI "SUPPRESSION";} foreach (crew gdc_choppa_helo);
+	// Allumage des lampes intérieures si disponibles (véhicules RHS)
+	if ("cargolights_hide" in (animationNames gdc_choppa_helo)) then {
+		gdc_choppa_helo animateSource ["cargolights_hide",0];
+		(gdc_choppa_helo turretUnit [0]) action ["searchlightOn",gdc_choppa_helo];
+	};
 	// création de l'hélipad
 	gdc_choppa_pad = "Land_HelipadEmpty_F" createVehicle _spawnpos;
 	publicvariable "gdc_choppa_pad";
