@@ -23,7 +23,7 @@
 */
 
 params ["_object",["_area",""],["_gps",true],["_autojump",true],["_lalo",false],["_vtype","RHS_C130J"],["_alt",-1],["_blist",[]],["_dzpos",[0,0,0]],["_spawnpos",[0,0,0]]];
-private ["_action","_veh","_txt"];
+private ["_action","_veh","_txt","_vehBaseClass"];
 
 gdc_halo_dispo = true;
 gdc_halo_area = _area;
@@ -44,24 +44,20 @@ if (_area == "") then {
 	_veh setpos (getPos _object);
 };
 
-// Déterminer la classe de base du véhicule pour l'altitude et les actions spéciales :
-gdc_halo_vehBaseClass = [
-	"VTOL_01_base_F","RHS_C130J_Base","CUP_C130J_Base","CUP_DC3_Base","CUP_B_MV22_USMC","RHS_AN2_Base","CUP_AN2_Base","LIB_C47_Skytrain","LIB_Ju52",
-	"RHS_Mi8_base","RHS_CH_47F_base","rhsusf_CH53E_USMC","CUP_CH53E_Base","CUP_CH47F_base","CUP_Mi8_base","CUP_MI6A_Base","Heli_Transport_03_base_F","Heli_Transport_02_base_F","Heli_Transport_04_base_F"
-];
-gdc_halo_vehBaseClass = gdc_halo_vehBaseClass arrayIntersect ([(configFile >> "CfgVehicles" >> gdc_halo_vtype),true] call BIS_fnc_returnParents);
-if ((count gdc_halo_vehBaseClass) > 0) then {
-	gdc_halo_vehBaseClass = gdc_halo_vehBaseClass select 0;
-} else {
-	gdc_halo_vehBaseClass = "";
-};
-
 // Altitude de vol par défaut
 if (_alt == -1) then {
 	if (gdc_halo_lalo) then {
 		gdc_halo_alt = 300;
 	} else {
-		gdc_halo_alt = switch (gdc_halo_vehBaseClass) do {
+		// Déterminer la classe de base du véhicule pour l'altitude en HALO :
+		_vehBaseClass = ["RHS_C130J_Base","CUP_C130J_Base","RHS_AN2_Base","CUP_AN2_Base"];
+		_vehBaseClass = _vehBaseClass arrayIntersect ([(configFile >> "CfgVehicles" >> gdc_halo_vtype),true] call BIS_fnc_returnParents);
+		if ((count _vehBaseClass) > 0) then {
+			_vehBaseClass = _vehBaseClass select 0;
+		} else {
+			_vehBaseClass = "";
+		};
+		gdc_halo_alt = switch (_vehBaseClass) do {
 			case "RHS_C130J_Base";
 			case "CUP_C130J_Base": {8000};
 			case "RHS_AN2_Base": {3000};
