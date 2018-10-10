@@ -24,16 +24,18 @@ if ((([] call acre_api_fnc_getCurrentRadioChannelNumber) == gdc_extra_chan) AND 
 	} else {
 	// annulation avec retour et suppression de l'hélico si il existe
 		hint "Extraction annulée";
-		_group = creategroup gdc_extra_side;
+		_group = group gdc_extra_helo;
+		while {(count (waypoints _group)) > 0} do
 		{
-			[_x] joinSilent _group;
-		} forEach (units group gdc_extra_helo);
+			deleteWaypoint ((waypoints _group) select 0);
+		};
 		_wp = _group addWaypoint [gdc_extra_spawnposR, 0];
 		_wp setWaypointType "MOVE";
 		_wp setWaypointBehaviour "CARELESS";
 		_wp setWaypointCombatMode "BLUE";
 		_wp setWaypointCompletionRadius 100;
 		_wp setWaypointStatements ["true", "{ deleteVehicle (vehicle _x); deleteVehicle _x; } forEach units group this;"];
+		[gdc_extra_helo,0] call GDC_fnc_animVehicleDoor;
 		gdc_extra_dispo = true;
 		publicVariable "gdc_extra_dispo";
 	};

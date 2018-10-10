@@ -53,12 +53,17 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 				gdc_extra_helo allowdamage false;
 				{_x allowdamage false;} forEach (crew gdc_extra_helo);
 			};
+			// Allumage des lampes intérieures si disponibles (véhicules RHS)
+			if ("cargolights_hide" in (animationNames gdc_extra_helo)) then {
+				gdc_extra_helo animateSource ["cargolights_hide",0];
+				(gdc_extra_helo turretUnit [0]) action ["searchlightOn",gdc_extra_helo];
+			};
 			// ajout du WP sur la lz désignée
 			_wp = _group addWaypoint [_pos, 0];
 			_wp setWaypointType "TR UNLOAD";
 			_wp setWaypointBehaviour "CARELESS";
 			_wp setWaypointCombatMode "BLUE";
-			_wp setWaypointStatements ["true", "gdc_extra_helo land 'GET IN'"];
+			_wp setWaypointStatements ["true", "gdc_extra_helo land 'GET IN'; [(vehicle this),1] call GDC_fnc_animVehicleDoor;"];
 			// ajout de l'action "Partir" pour tous les clients
 			_effect = {};
 			if (gdc_extra_end) then {
@@ -68,6 +73,7 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 					//[(_this select 0),(_this select 2)] remoteExec ["removeaction", 0]; // semble ne pas fonctionner pour l'instant
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
 					_wp setWaypointType "MOVE";
+					[(_this select 0),0] call GDC_fnc_animVehicleDoor;
 					sleep 30;
 					["end1",true,4] remoteExec ["BIS_fnc_endMission", 0];
 				};
@@ -79,7 +85,8 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 					_wp = (group (_this select 0)) addWaypoint [gdc_extra_spawnposR, 0];
 					_veh = "Land_HelipadEmpty_F" createVehicle gdc_extra_spawnposR;
 					_wp setWaypointType "MOVE";
-					_wp setWaypointStatements ["true", "gdc_extra_helo land 'LAND'"];
+					_wp setWaypointStatements ["true", "gdc_extra_helo land 'LAND';"];
+					[(_this select 0),0] call GDC_fnc_animVehicleDoor;
 				};
 			};
 			[gdc_extra_helo,["<t color='#ff0000'>Partir</t>",_effect,0,1.5,false,true,"","((vehicle _this) == _target) && !gdc_extra_left"]] remoteExec ["addaction", 0];
@@ -93,7 +100,7 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 			_wp setWaypointType "TR UNLOAD";
 			_wp setWaypointBehaviour "CARELESS";
 			_wp setWaypointCombatMode "BLUE";
-			_wp setWaypointStatements ["true", "gdc_extra_helo land 'GET IN'"];
+			_wp setWaypointStatements ["true", "gdc_extra_helo land 'GET IN'; [(vehicle this),1] call GDC_fnc_animVehicleDoor;"];
 		};
 	};
 } else {
