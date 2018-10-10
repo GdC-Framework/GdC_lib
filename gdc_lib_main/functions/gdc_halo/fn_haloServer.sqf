@@ -41,6 +41,7 @@ _veh = [_spawnPos,_dir,gdc_halo_vtype,civilian] call bis_fnc_spawnvehicle;
 _crew = _veh select 1;
 _group = _veh select 2;
 _veh = _veh select 0;
+_veh allowDamage false;
 _crewCount = count _crew;
 if (gdc_halo_lalo) then {
 	_veh flyInHeight gdc_halo_alt;
@@ -48,24 +49,25 @@ if (gdc_halo_lalo) then {
 	_veh flyInHeightASL [gdc_halo_alt,gdc_halo_alt,gdc_halo_alt];
 };
 _veh setposASL [(_spawnPos select 0),(_spawnPos select 1),gdc_halo_alt];
-_veh setVelocityModelSpace [0,100,0];
-{_x disableAI "AUTOTARGET";_x disableAI "AUTOCOMBAT";} foreach _crew;
+if (_veh isKindOf "Plane") then {_veh setVelocityModelSpace [0,100,0];};
+{_x disableAI "AUTOTARGET";_x disableAI "AUTOCOMBAT"; _x disableAI "CHECKVISIBLE"; _x allowDamage false;} foreach _crew;
 clearMagazineCargoGlobal _veh;
 clearWeaponCargoGlobal _veh;
 clearItemCargoGlobal _veh;
 clearBackpackCargoGlobal _veh;
 
-// Allumage des lampes intérieures si C130 RHS
-if (gdc_halo_vtype == "RHS_C130J") then {
-	_veh animateSource ["cargolights_hide",1];
-	(_veh turretUnit [0]) action ["searchlightOn",  _veh];
+
+// Allumage des lampes intérieures si disponibles (véhicules RHS)
+if ("cargolights_hide" in (animationNames _veh)) then {
+	_veh animateSource ["cargolights_hide",0];
+	(_veh turretUnit [0]) action ["searchlightOn",_veh];
 };
 
 // Création du WP de HALO
 _jumpPos = [(_jumpPos select 0),(_jumpPos select 1),gdc_halo_alt];
 _wp = _group addWaypoint [_jumpPos, 0];
 _wp setWaypointType "MOVE";
-_wp setWaypointBehaviour "SAFE";
+_wp setWaypointBehaviour "STEALTH";
 _wp setWaypointCombatMode "BLUE";
 
 sleep 4;
@@ -88,71 +90,14 @@ publicVariable "gdc_halo_dispo";
 
 sleep 2;
 
-// Action d'ouverture de la rampe en fonction de l'avion
-switch (gdc_halo_vtype) do {
-	case "B_T_VTOL_01_infantry_F": {_openRamp = {_veh animateDoor ["Door_1_source",1];};};
-	case "RHS_C130J": {_openRamp = {_veh animateSource ["ramp",0.75];};};
-	case "CUP_B_C130J_GB": {_openRamp = {_veh animateSource ["ramp_top",0.85];_veh animateSource ["ramp_bottom",0.65];};};
-	case "CUP_B_C130J_USMC": {_openRamp = {_veh animateSource ["ramp_top",0.85];_veh animateSource ["ramp_bottom",0.65];};};
-	case "CUP_O_C130J_TKA": {_openRamp = {_veh animateSource ["ramp_top",0.85];_veh animateSource ["ramp_bottom",0.65];};};
-	case "CUP_I_C130J_AAF": {_openRamp = {_veh animateSource ["ramp_top",0.85];_veh animateSource ["ramp_bottom",0.65];};};
-	case "CUP_I_C130J_RACS": {_openRamp = {_veh animateSource ["ramp_top",0.85];_veh animateSource ["ramp_bottom",0.65];};};
-	case "CUP_B_C47_USA": {_openRamp = {_veh animateSource ["door_1",1];};};
-	case "CUP_O_C47_SLA": {_openRamp = {_veh animateSource ["door_1",1];};};
-	case "CUP_C_C47_CIV": {_openRamp = {_veh animateSource ["door_1",1];};};
-	case "CUP_C_DC3_CIV": {_openRamp = {_veh animateSource ["door_1",1];};};
-	case "CUP_C_DC3_TanoAir_CIV": {_openRamp = {_veh animateSource ["door_1",1];};};
-	case "CUP_B_MV22_USMC": {_openRamp = {_veh animateDoor ["Ramp_Top",1];_veh animateDoor ["Ramp_Bottom",1];};};
-	case "RHS_AN2_B": {_openRamp = {_veh animateSource ["door",1];};};
-	case "RHS_AN2": {_openRamp = {_veh animateSource ["door",1];};};
-	case "CUP_O_AN2_TK": {_openRamp = {_veh animateSource ["door",1];};};
-	case "CUP_C_AN2_CIV": {_openRamp = {_veh animateSource ["door",1];};};
-	case "CUP_C_AN2_AEROSCHROT_TK_CIV": {_openRamp = {_veh animateSource ["door",1];};};
-	case "CUP_C_AN2_AIRTAK_TK_CIV": {_openRamp = {_veh animateSource ["door",1];};};
-	case "LIB_C47_Skytrain": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF_bob": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF_snafu": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_C47_RAF": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	case "LIB_Li2": {_openRamp = {_veh animateSource ["Hide_Door",1];};};
-	default {_openRamp = {};};
-};
-// Action de fermeture de la rampe en fonction de l'avion
-switch (gdc_halo_vtype) do {
-	case "B_T_VTOL_01_infantry_F": {_closeRamp = {_veh animateDoor ["Door_1_source",0];};};
-	case "RHS_C130J": {_closeRamp = {_veh animateSource ["ramp",0];};};
-	case "CUP_B_C130J_GB": {_closeRamp = {_veh animateSource ["ramp_top",0];_veh animateSource ["ramp_bottom",0];};};
-	case "CUP_B_C130J_USMC": {_closeRamp = {_veh animateSource ["ramp_top",0];_veh animateSource ["ramp_bottom",0];};};
-	case "CUP_O_C130J_TKA": {_closeRamp = {_veh animateSource ["ramp_top",0];_veh animateSource ["ramp_bottom",0];};};
-	case "CUP_I_C130J_AAF": {_closeRamp = {_veh animateSource ["ramp_top",0];_veh animateSource ["ramp_bottom",0];};};
-	case "CUP_I_C130J_RACS": {_closeRamp = {_veh animateSource ["ramp_top",0];_veh animateSource ["ramp_bottom",0];};};
-	case "CUP_B_C47_USA": {_closeRamp = {_veh animateSource ["door_1",0];};};
-	case "CUP_O_C47_SLA": {_closeRamp = {_veh animateSource ["door_1",0];};};
-	case "CUP_C_C47_CIV": {_closeRamp = {_veh animateSource ["door_1",0];};};
-	case "CUP_C_DC3_CIV": {_closeRamp = {_veh animateSource ["door_1",0];};};
-	case "CUP_C_DC3_TanoAir_CIV": {_closeRamp = {_veh animateSource ["door_1",0];};};
-	case "CUP_B_MV22_USMC": {_closeRamp = {_veh animateDoor ["Ramp_Top",0];_veh animateDoor ["Ramp_Bottom",0];};};
-	case "RHS_AN2_B": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "RHS_AN2": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "CUP_O_AN2_TK": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "CUP_C_AN2_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "CUP_C_AN2_AEROSCHROT_TK_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "CUP_C_AN2_AIRTAK_TK_CIV": {_closeRamp = {_veh animateSource ["door",0];};};
-	case "LIB_C47_Skytrain": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF_bob": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF_snafu": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_C47_RAF": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	case "LIB_Li2": {_closeRamp = {_veh animateSource ["Hide_Door",0];};};
-	default {_closeRamp = {};};
-};
-
 if (gdc_halo_autojump) then {
 // L'avion fait un seul passage et tous les joueurs sont éjectés un à un.
 	// Ouverture de la rampe
 	waitUntil {((getpos _veh) distance2D _jumpPos) < 2000};
-	[] call _openRamp;
+	[_veh,1] call GDC_fnc_animVehicleDoor;
 	// Green light
 	waitUntil {((getpos _veh) distance2D _jumpPos) < 1000};
-	if (gdc_halo_vtype == "RHS_C130J") then {
+	if ("jumplights_hide" in (animationNames _veh)) then {
 		_veh animateSource ["jumplight",1];
 	};
 	// saut auto
@@ -194,17 +139,18 @@ if (gdc_halo_autojump) then {
 	_wp setWaypointStatements ["true", "{ deleteVehicle (vehicle _x); deleteVehicle _x; } forEach units group this;"];
 	// Fermeture de la rampe
 	waitUntil {(count crew _veh) == _crewCount};
+	_veh allowDamage true;
 	sleep 3;
-	[] call _closeRamp;
+	[_veh,0] call GDC_fnc_animVehicleDoor;
 } else {
 // L'avion fait des boucle sur la DZ jusqu'à ce que tous les joueurs aient sauté
 	while {(count crew _veh) > _crewCount} do {
 		// Ouverture de la rampe
 		waitUntil {((getpos _veh) distance2D _jumpPos) < 2000};
-		[] call _openRamp;
+		[_veh,1] call GDC_fnc_animVehicleDoor;
 		// Green light
 		waitUntil {((getpos _veh) distance2D _jumpPos) < 1000};
-		if (gdc_halo_vtype == "RHS_C130J") then {
+		if ("jumplights_hide" in (animationNames _veh)) then {
 			_veh animateSource ["jumplight",1];
 		};
 		
@@ -214,17 +160,18 @@ if (gdc_halo_autojump) then {
 		
 		// Red light
 		waitUntil {((getpos _veh) distance2D _jumpPos) > 1000};
-		if (gdc_halo_vtype == "RHS_C130J") then {
+		if ("jumplights_hide" in (animationNames _veh)) then {
 			_veh animateSource ["jumplight",0];
 		};
 		// Fermeture de la rampe
 		waitUntil {((getpos _veh) distance2D _jumpPos) > 2000};
-		[] call _closeRamp;
+		[_veh,0] call GDC_fnc_animVehicleDoor;
 		
 		// WP de retour sur DZ
 		_wp = _group addWaypoint [_jumpPos, 0];
 		_wp setWaypointType "MOVE";
 	};
+	_veh allowDamage true;
 
 	// suppression de l'avion
 	sleep 25;
