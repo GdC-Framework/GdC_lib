@@ -76,6 +76,7 @@ class CfgFunctions
 			class inventoryBriefing {};
 			class rosterBriefing {};
 			class getPositionsFromReference {};
+			class createGroupCompo {};
 		};
 		class utilInternal
 		{
