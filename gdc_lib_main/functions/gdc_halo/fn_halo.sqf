@@ -43,6 +43,10 @@ if (_area == "") then {
 	_veh = "VR_Area_01_circle_4_yellow_F" createVehicle (getPos _object);
 	_veh setpos (getPos _object);
 };
+// Nombre de places passagers
+_veh = gdc_halo_vtype createVehicle [0,0,0];
+gdc_halo_seats = _veh emptyPositions "cargo";
+deleteVehicle _veh;
 
 // Altitude de vol par défaut
 if (_alt == -1) then {
@@ -102,7 +106,8 @@ player createDiaryRecord ["gdc_halo", ["Instructions",((if (gdc_halo_lalo) then 
 <br/><br/>" + (if (gdc_halo_autojump) then {"Lorsque l'avion passe au dessus de la DZ (Drop Zone), les joueurs sont automatiquement éjectés hors de l'avion. "} else {"Les joueurs doivent s'éjecter manuellement de l'avion (2xV ou action molette), l'avion passe continuellement au dessus de la DZ (Drop Zone) tant qu'il reste des joueurs dans l'avion."}) + 
 (if (gdc_halo_lalo) then {"<br/>Lors de l'éjection, l'ouverture du parachute est immédiate et automatique. Le parachute est non manoeuvrable."} else {"<br/>Lors de l'éjection, le joueur est en chute libre et doit ouvrir manuellement son parachute au moment voulu. Le parachute est manoeuvrable."}) + 
 "<br/><br/>Type de l'avion : " + (getText (configFile >> "CfgVehicles" >> gdc_halo_vtype >> "displayName")) + 
-"<br/>Altitude de vol : " + (str gdc_halo_alt) + " mètres." + 
+"<br/>Nombre de places : " + (str gdc_halo_seats) + 
+"<br/>Altitude de vol : " + (str gdc_halo_alt) + " mètres" + 
 (if (gdc_halo_gps) then {"<br/><br/>Les joueurs disposent d'un GPS pendant toute la durée du saut."} else {""}) + 
 (if (gdc_halo_spawnpos in [[0,0,0]]) then {"<br/><br/>Afin de définir l'axe d'approche de l'avion sur la DZ, il est possible (mais pas indispensable) de choisir la position de départ de l'avion en créant un marqueur nommé ""AVION"" sur la map dans le canal global."} else {""})
 )]];

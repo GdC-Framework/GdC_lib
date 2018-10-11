@@ -48,7 +48,7 @@ if (gdc_halo_lalo) then {
 } else {
 	_veh flyInHeightASL [gdc_halo_alt,gdc_halo_alt,gdc_halo_alt];
 };
-_veh setposASL [(_spawnPos select 0),(_spawnPos select 1),gdc_halo_alt];
+_veh setpos [(_spawnPos select 0),(_spawnPos select 1),gdc_halo_alt];
 if (_veh isKindOf "Plane") then {_veh setVelocityModelSpace [0,100,0];};
 {_x disableAI "AUTOTARGET";_x disableAI "AUTOCOMBAT"; _x disableAI "CHECKVISIBLE"; _x allowDamage false;} foreach _crew;
 clearMagazineCargoGlobal _veh;
