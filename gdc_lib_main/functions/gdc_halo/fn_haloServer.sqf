@@ -38,9 +38,8 @@ _dir = _spawnPos getDir (MarkerPos "mk_gdc_halo");
 
 // Création de l'avion sur le point d'insertion
 _veh = [_spawnPos,_dir,gdc_halo_vtype,civilian] call bis_fnc_spawnvehicle;
-_crew = _veh select 1;
-_group = _veh select 2;
-_veh = _veh select 0;
+_veh params ["_veh","_crew","_group"];
+
 _veh allowDamage false;
 _crewCount = count _crew;
 if (gdc_halo_lalo) then {
@@ -56,7 +55,6 @@ clearWeaponCargoGlobal _veh;
 clearItemCargoGlobal _veh;
 clearBackpackCargoGlobal _veh;
 
-
 // Allumage des lampes intérieures si disponibles (véhicules RHS)
 if ("cargolights_hide" in (animationNames _veh)) then {
 	_veh animateSource ["cargolights_hide",0];
@@ -69,6 +67,7 @@ _wp = _group addWaypoint [_jumpPos, 0];
 _wp setWaypointType "MOVE";
 _wp setWaypointBehaviour "STEALTH";
 _wp setWaypointCombatMode "BLUE";
+_wp setWaypointSpeed "LIMITED";
 
 sleep 4;
 
@@ -105,31 +104,32 @@ if (gdc_halo_autojump) then {
 		[this] spawn {
 			_veh = vehicle (leader (_this select 0));
 			if(not(local _veh))exitWith{};
+			private _delay =  (1/(((speed _veh) max 55)/150));
+			private _cargo = assignedCargo _veh;
 			{
-				if (_veh getCargoIndex _x >= 0) then{
-
-					(group _x) leaveVehicle _veh;
-					moveout _x;
-					unassignVehicle _x;
-					[_x] allowGetIn false;
-
-					private _delay =  (1/(((speed _veh) max 55)/150));
-					sleep _delay;
-					if (gdc_halo_lalo) then {
-						private _para = 'NonSteerable_Parachute_F';
-						if (isClass (configFile >> 'CfgPatches' >> 'rhs_main')) then {
-							_para = 'rhs_d6_Parachute';
-						};
-						_para = _para createVehicle [0,0,0];
-						_para setPosASL (getPosASLVisual _x);
-						_para setVectorDirAndUp [vectorDirVisual _x,vectorUpVisual _x];
-						if(! local _x)then{[_x,_para] remoteExecCall ['moveInDriver',_x]}else{_x moveInDriver _para;};
-						_x assignAsDriver _para;
-						[_x] allowGetIn true;
-						[_x] orderGetIn true;
+				_x disableCollisionWith _veh;
+				moveout _x;
+				unassignVehicle _x;
+				[_x] allowGetIn false;
+				sleep _delay;
+				if (gdc_halo_lalo) then {
+					private _para = 'NonSteerable_Parachute_F';
+					if (isClass (configFile >> 'CfgPatches' >> 'rhs_main')) then {
+						_para = 'rhs_d6_Parachute';
 					};
+					_para = _para createVehicle [0,0,0];
+					_para setPosASL (getPosASLVisual _x);
+					_para setVectorDirAndUp [vectorDirVisual _x,vectorUpVisual _x];
+					if(! local _x)then{[_x,_para] remoteExecCall ['moveInDriver',_x]}else{_x moveInDriver _para;};
+					_x assignAsDriver _para;
+					[_x] allowGetIn true;
+					[_x] orderGetIn true;
 				};
-			}foreach (crew _veh);
+			} foreach _cargo;
+			{
+				(group _x) leaveVehicle _veh;
+				_x enableCollisionWith _veh;
+			} foreach _cargo;
 		};
 	"];
 	
