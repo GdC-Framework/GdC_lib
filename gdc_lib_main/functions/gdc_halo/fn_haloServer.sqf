@@ -67,7 +67,7 @@ _wp = _group addWaypoint [_jumpPos, 0];
 _wp setWaypointType "MOVE";
 _wp setWaypointBehaviour "STEALTH";
 _wp setWaypointCombatMode "BLUE";
-_wp setWaypointSpeed "LIMITED";
+if (_veh isKindOf "Plane") then {_wp setWaypointSpeed "LIMITED";};
 
 sleep 4;
 
