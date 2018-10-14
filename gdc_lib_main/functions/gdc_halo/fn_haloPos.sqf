@@ -10,6 +10,14 @@
 	Returns:
 	nothing
 */
+private ["_ArrayPlayers"];
+// On vérifie si il n'y a pas trop de monde
+if (isMultiplayer) then {
+	_ArrayPlayers = playableUnits;
+} else {
+	_ArrayPlayers = switchableUnits;
+};
+if (({_x inArea gdc_halo_area} count _ArrayPlayers) > gdc_halo_seats) exitWith {hint ("Trop de monde dans la zone, " + (str gdc_halo_seats) + " personnes max.");};
 
 gdc_halo_dispo = false;
 publicVariable "gdc_halo_dispo";
@@ -40,6 +48,15 @@ if (gdc_halo_dzpos in [[0,0,0]]) then {
 	};	
 } else {
 // Pas de choix de la DZ, DZ imposée
+	if ("mk_gdc_halo" in allMapMarkers) then {
+		"mk_gdc_halo" setMarkerAlpha 0;
+		"mk_gdc_halo" setMarkerPos gdc_halo_dzpos;
+	} else {
+		createMarker ["mk_gdc_halo",gdc_halo_dzpos];
+		"mk_gdc_halo" setMarkerAlpha 0;
+		"mk_gdc_halo" setMarkerType "mil_end";
+		"mk_gdc_halo" setMarkerColor "colorBLUFOR";
+	};
 	[[]] remoteExec ["GDC_fnc_haloPlayer",0];
 	[[],GDC_fnc_haloServer] remoteExec ["spawn",2];
 };
