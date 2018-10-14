@@ -30,9 +30,9 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	_range = _group getVariable ["PLUTO_ARTYRANGE",gdc_plutoRangeQRFLand]; // Eventuel range custom
 	// Ne garder que les cibles qui sont dans le range du groupe et à portée de tir de l'artillerie
 	if ((typeName _range) in ["STRING","OBJECT"]) then {
-		_targets = _targetList select {(_x inArea _range) && ((getpos _x) inRangeOfArtillery [[_unit],_mag])}; // Cas d'une zone
+		_targets = _targetList select {!((vehicle _x) isKindOf "Air") && (_x inArea _range) && ((getpos _x) inRangeOfArtillery [[_unit],_mag])}; // Cas d'une zone
 	} else {
-		_targets = _targetList select {((_veh distance _x) < _range) && ((getpos _x) inRangeOfArtillery [[_unit],_mag])}; // Cas d'une distance
+		_targets = _targetList select {!((vehicle _x) isKindOf "Air") && ((_veh distance _x) < _range) && ((getpos _x) inRangeOfArtillery [[_unit],_mag])}; // Cas d'une distance
 	};
 	// Si des cibles sont diponibles lancer la frappe
 	if ((count _targets) > 0) then {

@@ -86,12 +86,13 @@ if (isnil "gdc_plutoDebug") then {
 	gdc_plutoDebug = false;
 };
 
+gdc_plutoRun = true;
 // Lancement de Pluto
 [] spawn {
 	waitUntil {time > 5};
 	if (gdc_plutoDebug) then {systemChat "Pluton se réveille";};
 	_boucle = 0;
-	while {true} do {
+	while {gdc_plutoRun} do {
 		_boucle = _boucle + 1;
 		if (gdc_plutoDebug) then {
 			systemChat ("Start of loop " + (str _boucle));
