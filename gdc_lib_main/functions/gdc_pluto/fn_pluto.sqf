@@ -28,15 +28,15 @@
 		(group this) setVariable ["PLUTO_ORDER","QRF"];
 		(group this) setVariable ["PLUTO_ORDER","ARTY"];
 		(group this) setVariable ["PLUTO_ORDER","IGNORE"];
-		(group this) setVariable ["PLUTO_REVEALRANGE",800];
+		(group this) setVariable ["PLUTO_REVEALRANGE",1000];
 		(group this) setVariable ["PLUTO_SENSORRANGE",1500];
 		(group this) setVariable ["PLUTO_QRFTIMEOUT",120];
-		(group this) setVariable ["PLUTO_QRFRANGE",800]; // Peut aussi être une zone (marker/trigger) dans ce cas l'action ne se déclenche que si la cible est dans la zone
+		(group this) setVariable ["PLUTO_QRFRANGE",1000]; // Peut aussi être une zone (marker/trigger) dans ce cas l'action ne se déclenche que si la cible est dans la zone
 		(group this) setVariable ["PLUTO_QRFDELAY",[20,30,60]];
 		(group this) setVariable ["PLUTO_ARTYTIMEOUT",240];
 		(group this) setVariable ["PLUTO_ARTYRANGE",2000]; // Peut aussi être une zone (marker/trigger) dans ce cas l'action ne se déclenche que si la cible est dans la zone
-		(group this) setVariable ["PLUTO_ARTYROUNDS",[1,2,4]];
 		(group this) setVariable ["PLUTO_ARTYDELAY",[20,30,60]];
+		(group this) setVariable ["PLUTO_ARTYROUNDS",[1,2,4]];
 		(group this) setVariable ["PLUTO_ARTYERROR",[0,40,100]];
 */
 
@@ -86,7 +86,11 @@ if (isnil "gdc_plutoDebug") then {
 	gdc_plutoDebug = false;
 };
 
-gdc_plutoRun = true;
+// La boucle tourne
+if (isnil "gdc_plutoRun") then {
+	gdc_plutoRun = true;
+};
+
 // Lancement de Pluto
 [] spawn {
 	waitUntil {time > 5};

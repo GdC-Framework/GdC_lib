@@ -27,11 +27,11 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 		default {gdc_plutoRangeQRFLand}; //"LandVehicle"
 	};
 	_range = _group getVariable ["PLUTO_QRFRANGE",_range]; // Eventuel range custom
-	// Ranger les cibles connues en fonction de la distance par rapport au groupe et ne garder que celles qui sont dans le range du groupe et qui ne sont pas dans des véhicules aériens :
+	// Ranger les cibles connues en fonction de la distance par rapport au groupe et ne garder que celles qui sont dans le range du groupe, qui ne sont pas dans des véhicules aériens ou maritimes et qui ne sont pas en déplacement rapide :
 	if ((typeName _range) in ["STRING","OBJECT"]) then {
-		_targets = [_targetList,[_veh],{_input0 distance _x},"ASCEND",{(_x inArea _range) && !((vehicle _x) isKindOf "Air")}] call BIS_fnc_sortBy; // Cas d'une zone
+		_targets = [_targetList,[_veh],{_input0 distance _x},"ASCEND",{!((vehicle _x) isKindOf "Air") && !((vehicle _x) isKindOf "Ship") && ((speed _x) < 30) && (_x inArea _range)}] call BIS_fnc_sortBy; // Cas d'une zone
 	} else {
-		_targets = [_targetList,[_veh],{_input0 distance _x},"ASCEND",{((_input0 distance _x) < _range) && !((vehicle _x) isKindOf "Air")}] call BIS_fnc_sortBy; // Cas d'une distance
+		_targets = [_targetList,[_veh],{_input0 distance _x},"ASCEND",{!((vehicle _x) isKindOf "Air") && !((vehicle _x) isKindOf "Ship") && ((speed _x) < 30) && ((_input0 distance _x) < _range)}] call BIS_fnc_sortBy; // Cas d'une distance
 	};
 	// Si des cibles sont diponibles lancer la QRF
 	if ((count _targets) > 0) then {
