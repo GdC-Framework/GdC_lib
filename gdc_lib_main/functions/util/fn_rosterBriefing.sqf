@@ -108,4 +108,4 @@ if (_includeAI) then {
 }forEach (_unitsArr select {side _x == side player});
 
 player createDiarySubject ["roster","Team Roster"];
-player createDiaryRecord ["roster",["Roster",_strFinal]];
+player createDiaryRecord ["roster",["Composition des équipes",_strFinal]];
