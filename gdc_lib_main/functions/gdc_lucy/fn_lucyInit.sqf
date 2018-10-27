@@ -8,7 +8,7 @@
 		0 (optional) : NUMBER - delay between spawn of each unit (default: 1.0)
         1 (optional) : STRING - name of a marker to initialize spawn of static units (default: "mkr_spawn_static_unit")
         2 (optional) : BOOL - enable/disable cleaning of dead units (default: True)
-        3 (optional) : NUMBER - timer to clean bodies of dead units (default: 600.0)
+        3 (optional) : NUMBER - timer to clean bodies of dead units (default: 3600.0)
         4 (optional) : BOOL - enable/disable cleaning of destroyed vehicles (default: False)
         5 (optional) : NUMBER - timer to clean destroyed vehicles (default: 3600.0)
         6 (optional) : BOOL - enable/disable fatigue of IA (default: True)
@@ -22,7 +22,7 @@
 params [["_ia_spawn_delay", 1.0],
         ["_ia_spawn_static_unit_marker_name", "mkr_spawn_static_unit"],
         ["_ia_clean_bodies", True], 
-        ["_ia_clean_bodies_timer", 600.0], 
+        ["_ia_clean_bodies_timer", 3600.0], 
         ["_ia_clean_dead_vehicles", False],
         ["_ia_clean_dead_vehicles_timer", 3600.0],
         ["_ia_fatigue_disabled", True],
