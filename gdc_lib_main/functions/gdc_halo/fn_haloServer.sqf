@@ -37,8 +37,11 @@ _dir = _spawnPos getDir (MarkerPos "mk_gdc_halo");
 "mk_gdc_halo" setMarkerDir (_dir - 180);
 
 // Création de l'avion sur le point d'insertion
-_veh = [_spawnPos,_dir,gdc_halo_vtype,civilian] call bis_fnc_spawnvehicle;
-_veh params ["_veh","_crew","_group"];
+_veh = createVehicle [gdc_halo_vtype,_spawnPos,[],0,"FLY"];
+createVehicleCrew _veh;
+_crew = crew _veh;
+_group = group _veh;
+_veh setdir _dir;
 
 _veh allowDamage false;
 _crewCount = count _crew;
@@ -78,7 +81,7 @@ if (isMultiplayer) then {
 	_ArrayPlayers = switchableUnits;
 };
 {
-	_x assignAsCargoIndex [_veh, (_forEachIndex + 1)];
+	_x assignAsCargoIndex [_veh,(_forEachIndex + 1)];
 	[_x,[_veh,(_forEachIndex + 1)]] remoteExecCall ["moveInCargo",_x];
 	sleep 0.1;
 } forEach (_ArrayPlayers select {_x inArea gdc_halo_area});
@@ -105,12 +108,12 @@ if (gdc_halo_autojump) then {
 			_veh = vehicle (leader (_this select 0));
 			if(not(local _veh))exitWith{};
 			private _delay =  (1/(((speed _veh) max 55)/150));
-			private _cargo = assignedCargo _veh;
+			private _cargo = (crew _veh) select {(_veh getCargoIndex _x) >= 0};
 			{
 				_x disableCollisionWith _veh;
 				moveout _x;
-				unassignVehicle _x;
 				[_x] allowGetIn false;
+				unassignVehicle _x;
 				sleep _delay;
 				if (gdc_halo_lalo) then {
 					private _para = 'NonSteerable_Parachute_F';
@@ -120,7 +123,7 @@ if (gdc_halo_autojump) then {
 					_para = _para createVehicle [0,0,0];
 					_para setPosASL (getPosASLVisual _x);
 					_para setVectorDirAndUp [vectorDirVisual _x,vectorUpVisual _x];
-					if(! local _x)then{[_x,_para] remoteExecCall ['moveInDriver',_x]}else{_x moveInDriver _para;};
+					if (! local _x) then {[_x,_para] remoteExecCall ['moveInDriver',_x]} else {_x moveInDriver _para;};
 					_x assignAsDriver _para;
 					[_x] allowGetIn true;
 					[_x] orderGetIn true;
