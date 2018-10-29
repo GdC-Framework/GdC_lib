@@ -13,7 +13,7 @@
 */
 
 params ["_group","_target"];
-private ["_wp","_radius","_delay"];
+private ["_wp","_radius","_delay","_wppos","_try"];
 
 _veh = vehicle (leader _group);
 _pos = (getpos _target);
@@ -48,11 +48,14 @@ if ((_veh distance2D _target) > (_radius select 1)) then {
 
 // Ajout de 2 à 5 WP dans un rayon autour de la cible
 for "_i" from 1 to (2 + (floor random 4)) do {
-	_wp = _group addWaypoint [_pos,0];
+	_wppos = _pos getpos [(random (_radius select 0)),(random 360)];
+	_try = 0;
+	while {_try = _try + 1;(_try < 21) && (surfaceIsWater _wppos)} do {_wppos = _pos getpos [(random (_radius select 0)),(random 360)];};
+	_wp = _group addWaypoint [_wppos,0];
 	_wp setWaypointType "SAD";
 	_wp setWaypointCompletionRadius 10;
 	_wp setWaypointTimeout [0,15,30];
-	_wp setWaypointPosition [_pos,(_radius select 0)];
+	//_wp setWaypointPosition [_pos,(_radius select 0)];
 };
 // WP de boucle
 _wp = _group addWaypoint [_pos, 0];
