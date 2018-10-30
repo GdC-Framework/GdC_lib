@@ -28,11 +28,11 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	};
 	// utiliser le range terrestre par défaut
 	_range = _group getVariable ["PLUTO_ARTYRANGE",gdc_plutoRangeQRFLand]; // Eventuel range custom
-	// Ne garder que les cibles qui sont dans le range du groupe, qui sont à portée de tir de l'artillerie, qui ne sont pas dans des véhicules aériens ou maritimes et qui ne sont pas en déplacement rapide
+	// Ne garder que les cibles qui sont dans le range du groupe, qui sont à portée de tir de l'artillerie, qui ne sont pas dans des véhicules aériens, qui ne sont pas sur l'eau et qui ne sont pas en déplacement rapide
 	if ((typeName _range) in ["STRING","OBJECT"]) then {
-		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !((vehicle _x) isKindOf "Ship") && ((speed _x) < 20) && (_x inArea _range)}; // Cas d'une zone
+		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && (_x inArea _range)}; // Cas d'une zone
 	} else {
-		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !((vehicle _x) isKindOf "Ship") && ((speed _x) < 20) && ((_veh distance _x) < _range)}; // Cas d'une distance
+		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && ((_veh distance _x) < _range)}; // Cas d'une distance
 	};
 	// Si des cibles sont diponibles lancer la frappe
 	if ((count _targets) > 0) then {
