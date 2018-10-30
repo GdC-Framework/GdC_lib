@@ -8,11 +8,15 @@ class EditorData
 	toggles=1025;
 	class ItemIDProvider
 	{
-		nextID=26;
+		nextID=27;
+	};
+	class MarkerIDProvider
+	{
+		nextID=1;
 	};
 	class Camera
 	{
-		pos[]={14688.497,58.685917,16688.422};
+		pos[]={14774.866,185.02345,16504.32};
 		dir[]={-0.2231096,-0.72086138,0.65620792};
 		up[]={-0.23204815,0.69307131,0.68249631};
 		aside[]={0.94678879,2.81143e-008,0.32190752};
@@ -96,7 +100,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=9;
+		items=10;
 		class Item0
 		{
 			dataType="Group";
@@ -663,6 +667,14 @@ class Mission
 			a=67.941002;
 			b=60.799999;
 			id=25;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={14444.871,17.91,15886};
+			name="mkr_animVehicleDoor";
+			type="mil_dot";
+			id=26;
 		};
 	};
 };
