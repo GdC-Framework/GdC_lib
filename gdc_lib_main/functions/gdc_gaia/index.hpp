@@ -21,7 +21,7 @@ class GDC_GAIA
         class getsideratio {};
         class SpawnGroup {};
         class ShowLocationOwner {};
-        
+
     };
     class Cache
     {
@@ -77,7 +77,7 @@ class GDC_GAIA
         class issueOrders {};
         class occupy {};
         class removeWaypoints {};
-        
+
     };
     class Orders
     {

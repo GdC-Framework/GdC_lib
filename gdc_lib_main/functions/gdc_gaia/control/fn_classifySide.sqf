@@ -16,42 +16,39 @@ Author:
 
 ---------------------------------------------------------------------------- */
 
-private ["_side","_ClassifiedGroup"];
+private ["_side", "_ClassifiedGroup"];
 
 _side = _this select 0;
 
 
- {
- 	if (
-			//Seems like allgroups opens up with all sorts of empty groups, better check it
-			((side _x) == _side)
-			and
-			(count(units _x)>0)
-		)
-	then
-	 		{
-	 			_ClassifiedGroup = [(units _x)] call GDC_gaia_fnc_getUnitsClassification;
-	 			if (count (_ClassifiedGroup)>0) then
-	 			{
-	 				_PreviousClass = _x getVariable ["GAIA_class","None"];
+{
+	if (
+		//Seems like allgroups opens up with all sorts of empty groups, better check it
+		((side _x) == _side)
+		and (count(units _x)>0)
+	) then {
+		_ClassifiedGroup = [(units _x)] call GDC_gaia_fnc_getUnitsClassification;
 
-	 				//If we set it for the first time, then set them both equal so we dont monitor a class change on first cycle.
-	 				if (_PreviousClass == "None")
-	 				then {_x setVariable ["GAIA_PreviousClass"			, (_ClassifiedGroup select 0), false]}
-	 				else {_x setVariable ["GAIA_PreviousClass"			, _PreviousClass, false]};
+		if (count (_ClassifiedGroup)>0) then {
+			_PreviousClass = _x getVariable ["GAIA_class", "None"];
 
-				//Remember the points so we see how bad we do
-				_x setVariable ["GAIA_PreviousPoints"							, (_x getVariable ["GAIA_points",0]), false];
+			//If we set it for the first time, then set them both equal so we dont monitor a class change on first cycle.
+			if (_PreviousClass == "None")
+			then {_x setVariable ["GAIA_PreviousClass" , (_ClassifiedGroup select 0), false]}
+			else {_x setVariable ["GAIA_PreviousClass" , _PreviousClass, false]};
 
-	 				//[_Class,_speed,_points,_portfolio,cargo]
-	 				_x setVariable ["GAIA_class"							, (_ClassifiedGroup select 0), false];
-	 				_x setVariable ["GAIA_speed"							, (_ClassifiedGroup select 1), false];
-	 				_x setVariable ["GAIA_points"							, (_ClassifiedGroup select 2), false];
-	 				_x setVariable ["GAIA_portfolio"					, (_ClassifiedGroup select 3), false];
-	 				_x setVariable ["GAIA_cargo"							, (_ClassifiedGroup select 4), false];
-	 			};
-	 		};
- }  forEach AllGroups;
+			//Remember the points so we see how bad we do
+			_x setVariable ["GAIA_PreviousPoints" , (_x getVariable ["GAIA_points",0]), false];
+
+			//[_Class,_speed,_points,_portfolio,cargo]
+			_x setVariable ["GAIA_class" , (_ClassifiedGroup select 0), false];
+			_x setVariable ["GAIA_speed" , (_ClassifiedGroup select 1), false];
+			_x setVariable ["GAIA_points" , (_ClassifiedGroup select 2), false];
+			_x setVariable ["GAIA_portfolio" , (_ClassifiedGroup select 3), false];
+			_x setVariable ["GAIA_cargo" , (_ClassifiedGroup select 4), false];
+		};
+	};
+} forEach AllGroups;
 
 
 true;

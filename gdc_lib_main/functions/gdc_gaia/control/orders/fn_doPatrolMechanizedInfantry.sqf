@@ -3,27 +3,20 @@
 // Example: [_group,_zone] call fnc_DoInfPatrol
 // spirit 14-1-2014
 //===========================================================================================================================================================================
-private ["_group","_NrOfBuildingWp","_zone","_pos"];
+private ["_group", "_NrOfBuildingWp", "_zone", "_pos"];
 
-_group 			= _this select 0;
-_zone				=	_this select 1;
-
-
+_group = _this select 0;
+_zone = _this select 1;
 
 [_group] call GDC_gaia_fnc_removeWaypoints;
 
-
 //Go somewhere
-_pos= [_group,_zone,"VEH_HILLS_ROAD_FLAT"] call GDC_gaia_fnc_generateWaypoints;
+_pos = [_group,_zone, "VEH_HILLS_ROAD_FLAT"] call GDC_gaia_fnc_generateWaypoints;
 
-
-
-if (count (waypoints _group) != (currentWaypoint _group)) then
-	{
-			//_dummy 	=  [_group,(position leader _group),"GETIN NEAREST"] call GDC_gaia_fnc_addWaypoint;
-			_dummy 	=  [_group,_pos,"MOVE"] call GDC_gaia_fnc_addWaypoint;
-
-	};
+if (count (waypoints _group) != (currentWaypoint _group)) then {
+	//_dummy =  [_group,(position leader _group), "GETIN NEAREST"] call GDC_gaia_fnc_addWaypoint;
+	_dummy = [_group,_pos, "MOVE"] call GDC_gaia_fnc_addWaypoint;
+};
 
 //Our result is waypoints
 ((count (waypoints _group)) - currentWaypoint _group)

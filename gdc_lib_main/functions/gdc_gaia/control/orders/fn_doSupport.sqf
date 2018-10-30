@@ -3,43 +3,38 @@
 //
 // spirit 14-1-2014
 //===========================================================================================================================================================================
-private ["_group","_pos","_zone"];
+private ["_group", "_pos", "_zone"];
 
 //Get the group
-_group 			= _this select 0;
+_group = _this select 0;
 
 //Clear what ever orders we had before.
 [_group] call GDC_gaia_fnc_removeWaypoints;
 
 //Get the zone
-_zone	 = (((_group) getVariable ["GAIA_zone_intend",[]])select 0);
+_zone = (((_group) getVariable ["GAIA_zone_intend",[]])select 0);
 
-if !(isnil("_Zone")) then
-{
+if !(isnil("_Zone")) then {
 	//Go somewhere
-	_pos= [_group,_zone,"ROAD"] call GDC_gaia_fnc_generateWaypoints;
+	_pos= [_group,_zone, "ROAD"] call GDC_gaia_fnc_generateWaypoints;
 
-	if (count(_pos)>0) then
-		{
+	if (count(_pos)>0) then {
 
+		_pos = selectBestPlaces [_pos, 30, "meadow", 1, 1];
 
-				_pos		= selectBestPlaces [_pos, 30,"meadow", 1, 1];
-					if ((count (_pos))>0) then
-				{
+		if ((count (_pos))>0) then {
+			_dummy =  [_group,(_Pos select 0 select 0), "SUPPORT"] call GDC_gaia_fnc_addWaypoint;
 
-					_dummy 	=  [_group,(_Pos select 0 select 0),"SUPPORT"] call GDC_gaia_fnc_addWaypoint;
-
-					//Lets set the current Order.
-					_group setVariable ["GAIA_Order"							, "DoSupport", false];
-					//Also note when we gave that order and where the unit was. It gives us a chance to check his progress and to 'unstuck' him if needed.
-					//Also all orders have a lifespan. MCC_GAIA_ORDERLIFETIME
-					_group setVariable ["GAIA_OrderTime"					, Time, false];
-					_group setVariable ["GAIA_OrderPosition"			, (position leader _group), false];
-
-
-				};
-
+			//Lets set the current Order.
+			_group setVariable ["GAIA_Order" , "DoSupport", false];
+			//Also note when we gave that order and where the unit was. It gives us a chance to check his progress and to 'unstuck' him if needed.
+			//Also all orders have a lifespan. MCC_GAIA_ORDERLIFETIME
+			_group setVariable ["GAIA_OrderTime" , Time, false];
+			_group setVariable ["GAIA_OrderPosition" , (position leader _group), false];
 		};
+
+	};
 };
+
 //Our result is waypoints
 ((count (waypoints _group)) - currentWaypoint _group)

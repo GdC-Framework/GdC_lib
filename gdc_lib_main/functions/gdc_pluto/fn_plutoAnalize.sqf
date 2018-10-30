@@ -47,7 +47,7 @@ gdc_plutoTargetList = [];
 				gdc_plutoTargetList = gdc_plutoTargetList + [_target]; // ajouter la cible dans la liste
 				// DEBUG
 				if (gdc_plutoDebug) then {
-					_mk  = createMarkerLocal [(format ["mk_target%1",_target]),_targetPos];
+					_mk = createMarkerLocal [(format ["mk_target%1",_target]),_targetPos];
 					_mk setMarkerTypeLocal "mil_dot";
 					_mk setMarkerColorLocal "ColorOrange";
 					gdc_plutoMkDebugList = gdc_plutoMkDebugList + [_mk];

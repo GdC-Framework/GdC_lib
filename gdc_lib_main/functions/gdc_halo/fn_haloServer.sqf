@@ -107,7 +107,7 @@ if (gdc_halo_autojump) then {
 		[this] spawn {
 			_veh = vehicle (leader (_this select 0));
 			if(not(local _veh))exitWith{};
-			private _delay =  (1/(((speed _veh) max 55)/150));
+			private _delay = (1/(((speed _veh) max 55)/150));
 			private _cargo = (crew _veh) select {(_veh getCargoIndex _x) >= 0};
 			{
 				_x disableCollisionWith _veh;

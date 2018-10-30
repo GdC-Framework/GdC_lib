@@ -3,16 +3,16 @@
 // Example: [_group,_targetpos] call fnc_DoAttackInf
 // spirit 20-1-2014
 //===========================================================================================================================================================================
-private ["_group","_TargetPos","_pos","_Degree","_NrOfBuildingWp"];
+private ["_group", "_TargetPos", "_pos", "_Degree", "_NrOfBuildingWp"];
 
-_group 			= _this select 0;
-_TargetPos	=	_this select 1;
+_group = _this select 0;
+_TargetPos	= _this select 1;
 
 
 
 [_group] call GDC_gaia_fnc_removeWaypoints;
 
-_dummy	=[_group,_TargetPos, "MOVE"] call GDC_gaia_fnc_addAttackWaypoint;
+_dummy = [_group,_TargetPos, "MOVE"] call GDC_gaia_fnc_addAttackWaypoint;
 
 ((count (waypoints _group)) - currentWaypoint _group)
 

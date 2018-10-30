@@ -34,7 +34,7 @@ Author:
 
 ---------------------------------------------------------------------------- */
 
-private ["_group","_position","_radius"];
+private ["_group", "_position", "_radius"];
 _group = (_this select 0) call CBA_fnc_getgroup;
 _position = (_this select 1) call CBA_fnc_getpos;
 _radius = if (count _this > 2) then {_this select 2} else {0};

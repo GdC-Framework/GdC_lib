@@ -16,4 +16,5 @@ if (_inRange) then {
     _inSight = count (lineIntersectsWith [eyePos _unit, eyepos _target, _unit, _target]) == 0;
     _knowsAbout = _inView && _inSight;
 };
+
 _knowsAbout;

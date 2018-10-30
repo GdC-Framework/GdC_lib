@@ -25,13 +25,13 @@ MCC_GAIA_CACHE_STAGE2 = [];
 MCC_GAIA_OPERATIONAL = false;
 
 //Used for the breadcrumb blacklist system. How far should a waypoint be from a position a unit has last been?
-MCC_GAIA_CYCLE                  = 1;
-MCC_GAIA_AWARENESSRANGE         = 100;
-MCC_GAIA_CLEARRANGE             = 70;
-MCC_GAIA_SHARETARGET_DELAY      = 5;
-MCC_GAIA_MAX_SLOW_SPEED_RANGE   = 600;
+MCC_GAIA_CYCLE = 1;
+MCC_GAIA_AWARENESSRANGE = 100;
+MCC_GAIA_CLEARRANGE = 70;
+MCC_GAIA_SHARETARGET_DELAY = 5;
+MCC_GAIA_MAX_SLOW_SPEED_RANGE = 600;
 MCC_GAIA_MAX_MEDIUM_SPEED_RANGE = 4500;
-MCC_GAIA_MAX_FAST_SPEED_RANGE   = 80000;
+MCC_GAIA_MAX_FAST_SPEED_RANGE = 80000;
 // The seconds of rest a transporter takes after STARTING his last order
 MCC_GAIA_TRANSPORT_RESTTIME = 40;
 //If an order is older then 10 minutes, cancel it. There is probbaly something wrong.
@@ -86,14 +86,14 @@ MCC_GAIA_FACTIONS_WEST = [];
 MCC_GAIA_FACTIONS_EAST = [];
 MCC_GAIA_FACTIONS_INDEP = [];
 MCC_GAIA_FACTIONS_CIV = [];
-MCC_GAIA_ZONESTATUS_WEST = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_WEST set [_i,"0"];};
-MCC_GAIA_ZONESTATUS_EAST = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_EAST set [_i,"0"];};
-MCC_GAIA_ZONESTATUS_INDEP = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_INDEP set [_i,"0"];};
-MCC_GAIA_ZONESTATUS_CIV = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_INDEP set [_i,"0"];};
-MCC_GAIA_TARGETS_WEST  = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_WEST set [_i,[]];};
-MCC_GAIA_TARGETS_EAST  = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_EAST set [_i,[]];};
+MCC_GAIA_ZONESTATUS_WEST = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_WEST set [_i, "0"];};
+MCC_GAIA_ZONESTATUS_EAST = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_EAST set [_i, "0"];};
+MCC_GAIA_ZONESTATUS_INDEP = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_INDEP set [_i, "0"];};
+MCC_GAIA_ZONESTATUS_CIV = []; for "_i" from 0 to 90 do { MCC_GAIA_ZONESTATUS_INDEP set [_i, "0"];};
+MCC_GAIA_TARGETS_WEST = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_WEST set [_i,[]];};
+MCC_GAIA_TARGETS_EAST = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_EAST set [_i,[]];};
 MCC_GAIA_TARGETS_INDEP = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_INDEP set [_i,[]];};
-MCC_GAIA_TARGETS_CIV  = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_INDEP set [_i,[]];};
+MCC_GAIA_TARGETS_CIV = []; for "_i" from 0 to 90 do { MCC_GAIA_TARGETS_INDEP set [_i,[]];};
 
 
 

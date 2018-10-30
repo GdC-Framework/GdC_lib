@@ -1,4 +1,4 @@
-/* 
+/*
 ----------------------------------------------------------------------------
 Function: fnc_AddGroupToGAIA
 
@@ -8,8 +8,8 @@ Description:
 Parameters:
 	- Group
 	_ zone
-	_ intend 
-	
+	_ intend
+
 
 Returns:
 	true
@@ -20,7 +20,7 @@ Author:
 ----------------------------------------------------------------------------
 */
 
-private ["_group","_zone","_intend"];
+private ["_group", "_zone", "_intend"];
 
 _group = _this select 0;
 _zone = _this select 1;

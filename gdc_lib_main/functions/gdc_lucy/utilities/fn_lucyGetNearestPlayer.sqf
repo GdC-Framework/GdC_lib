@@ -16,7 +16,7 @@ private["_nearest_player", "_nearest_distance", "_current_distance", "_current_p
 
 _arg_pos = _this select 0;
 
-_nearest_distance = 1000000;     // 1000km max distance... you should find nearest player ;)
+_nearest_distance = 1000000; // 1000km max distance... you should find nearest player;)
 if (isMultiplayer) then {_current_players = playableUnits;} else {_current_players = switchableUnits;};
 
 {

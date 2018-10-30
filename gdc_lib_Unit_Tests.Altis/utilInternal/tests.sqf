@@ -5,25 +5,25 @@ _success = true;
 //////////////////////////
 // GDC_fnc_animVehicleDoor
 // {
-// 	_veh = (_x select 1) createVehicle (getMarkerPos 'mkr_animVehicleDoor');
+// _veh = (_x select 1) createVehicle (getMarkerPos 'mkr_animVehicleDoor');
 
-// 	[_veh, 1] call GDC_fnc_animVehicleDoor;
-// 	sleep 5;
-// 	if( !(_veh doorPhase "door" isEqualTo 1) ) then {
-// 		systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2"] + _x); 
-// 		_success = false;
-// 	};
+// [_veh, 1] call GDC_fnc_animVehicleDoor;
+// sleep 5;
+// if( !(_veh doorPhase "door" isEqualTo 1) ) then {
+// systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2"] + _x);
+// _success = false;
+// };
 
-// 	[_veh, 0] call GDC_fnc_animVehicleDoor;
-// 	sleep 5;
-// 	if( !(_veh doorPhase "door" isEqualTo 0) ) then {
-// 		systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2"] + _x); 
-// 		_success = false;
-// 	};
+// [_veh, 0] call GDC_fnc_animVehicleDoor;
+// sleep 5;
+// if( !(_veh doorPhase "door" isEqualTo 0) ) then {
+// systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2"] + _x);
+// _success = false;
+// };
 
-// 	deleteVehicle _veh;
+// deleteVehicle _veh;
 // } foreach [
-// 	["VTOL_01_base_F", "Door_1_source"]
+// ["VTOL_01_base_F", "Door_1_source"]
 // ];
 
 //////////////////////////
@@ -39,7 +39,7 @@ if(!([player, "ACRE_PRC148"] call acre_api_fnc_hasKindOfRadio)) then {
 
 {
 	if( !(((_x select 1) call GDC_fnc_hasRadioOnRightChannel) isEqualTo (_x select 2)) ) then {
-		systemChat format (["%1 GDC_fnc_hasRadioOnRightChannel could return %2"] + _x); 
+		systemChat format (["%1 GDC_fnc_hasRadioOnRightChannel could return %2"] + _x);
 		_success = false;
 	};
 
@@ -57,7 +57,7 @@ if(_has_no_radio) then {
 {
 
 	if( !(((_x select [0, 2]) call GDC_fnc_StringStartWith) isEqualTo (_x select 2)) ) then {
-		systemChat format (["[%1, %2] GDC_fnc_StringStartWith could return %3"] + _x); 
+		systemChat format (["[%1, %2] GDC_fnc_StringStartWith could return %3"] + _x);
 		_success = false;
 	};
 

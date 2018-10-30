@@ -43,7 +43,7 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 			publicVariable "gdc_extra_spawnposR";
 			// spawn de l'hélico
 			_veh = [gdc_extra_spawnposR,(gdc_extra_spawnposR getdir _pos),gdc_extra_type,gdc_extra_side] call BIS_fnc_spawnVehicle;
-			gdc_extra_helo =  _veh select 0;
+			gdc_extra_helo = _veh select 0;
 			publicVariable "gdc_extra_helo";
 			_group = _veh select 2;
 			gdc_extra_helo disableAI "AUTOTARGET";

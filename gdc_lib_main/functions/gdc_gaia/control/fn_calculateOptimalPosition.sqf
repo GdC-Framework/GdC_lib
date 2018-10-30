@@ -1,41 +1,39 @@
-/*  Select a random position from an area defined by a marker.
-    In		: [marker, goal]
-    Out		: [position]
+/* Select a random position from an area defined by a marker.
+    In : [marker, goal]
+    Out : [position]
 
     By Spirit, 7-1-2014
 
 */
 
 private
-["_area"
-,"_blist"
-,"_pos"
-,"_iswater"
-,"_found"
-,"_fPos"
-,"_goal"
-,"_minimum"
-,"_best_effort"
+["_area",
+	"_blist",
+	"_pos",
+	"_iswater",
+	"_found",
+	"_fPos",
+	"_goal",
+	"_minimum",
+	"_best_effort"
 ];
 
-_area  				= _this select 0;
-_goal  				= _this select 1;
-_side					= _this select 2;
-//_blist 				= if (count _this > 2) then {_this select 2} else {[]};
-_pos 					= [];
-_fpos 				= [];
-_best_effort 	= [];
+_area = _this select 0;
+_goal = _this select 1;
+_side = _this select 2;
+//_blist = if (count _this > 2) then {_this select 2} else {[]};
+_pos = [];
+_fpos = [];
+_best_effort = [];
 
 
 // STart with the highest cost ever, before we know the cost (so we dont stop)
-_minimum   	= 10000;
-_best 			= -1000;
+_minimum = 10000;
+_best = -1000;
 
 // Limited loop so the script won't get stuck
 // Also the minimum is set in the formula (later), so we go to maximum 50 tries to the best shot or if we beat our miminum.
-for [{_i = 0}, {((_i<50) and (_best<_minimum))or (_i<10)}, {_i = _i + 1}] do
-
-{
+for [{_i = 0}, {((_i<50) and (_best<_minimum))or (_i<10)}, {_i = _i + 1}] do {
 	// Get a position from the found shaped marker
 	_pos = _area call BIS_fnc_randomPosTrigger;
 
@@ -63,8 +61,7 @@ for [{_i = 0}, {((_i<50) and (_best<_minimum))or (_i<10)}, {_i = _i + 1}] do
 
 
 	//Calculate on formula's if this is a suitable
-	switch (_goal) do
-	{
+	switch (_goal) do {
 		case ("INF_URBAN_ROADS") : {_minimum =040;_found = _sUrban + _sRoads - _sForest - _sSea - _sHills - _sFlat;};
 		case ("INF_HILLS_FLAT_FOREST") : {_minimum = 030;_found = _sHills + _sFlat + _sForest - _sRoads - _sSea - _sUrban;};
 		case ("INF_URBAN_FOREST") : {_minimum = 020;_found = _sUrban + _sForest - _sFlat - _sSea - _sHills - _sRoads;};
@@ -84,56 +81,54 @@ for [{_i = 0}, {((_i<50) and (_best<_minimum))or (_i<10)}, {_i = _i + 1}] do
 
 	//final checks
 	//If we are road depending then make sure we are ON road (good is not good enough).
-	if ((_goal == "VEH_HILLS_ROAD_FLAT" or _goal == "ROAD")and (_found>_best )) then
-	{
+	if ((_goal == "VEH_HILLS_ROAD_FLAT" or _goal == "ROAD")and (_found>_best )) then {
 		_roadlist = _pos nearRoads 60;
-		if (count(_roadlist)>0) then
-			{_pos = position (_roadlist select 0);_found=_minimum;  }
+		if (count(_roadlist)>0) then {
+			_pos = position (_roadlist select 0);_found=_minimum;
+		}
 	};
 
 	//Non road depending check
-	if (!isonroad _pos) then
-	{
-		if ((_goal == "VEH_HILLS_ROAD_FLAT" or _goal == "VEH_HILLS_FOREST_FLAT" or _goal == "ARM_HILLS_FLAT" ) and (_found>_best ) ) then
-		//Make sure the vehicle actualy fits (NOT within 3 meter of objects)
-		{
-				//Maybe Findsafepos fails, so remember the old one
-				//Also somehow Findsafepos comes with absurd out of map positions, so guard it to check if in Area.
-				_oldpos 	 = _pos;
-				_pos = [_pos, 0,40, 12, 0, 60 * (pi / 180), 0]call BIS_fnc_findSafePos;
-				if (count(_pos)==0 or !([_pos,_side] call GDC_gaia_fnc_isBlacklisted)) then
-					{_pos = _oldpos};
+	if (!isonroad _pos) then {
+		if ((_goal == "VEH_HILLS_ROAD_FLAT" or _goal == "VEH_HILLS_FOREST_FLAT" or _goal == "ARM_HILLS_FLAT" ) and (_found>_best ) ) then {
+			//Make sure the vehicle actualy fits (NOT within 3 meter of objects)
+			//Maybe Findsafepos fails, so remember the old one
+			//Also somehow Findsafepos comes with absurd out of map positions, so guard it to check if in Area.
+			_oldpos = _pos;
+			_pos = [_pos, 0,40, 12, 0, 60 * (pi / 180), 0]call BIS_fnc_findSafePos;
+			if (count(_pos)==0 or !([_pos,_side] call GDC_gaia_fnc_isBlacklisted)) then {
+				_pos = _oldpos
+			};
 		};
 	};
 
 	//if ((_goal != "AIR" AND _goal != "WATER") and (surfaceiswater _pos )) then
 		//This wont be good for land dudes, so ignore this one
-	//		{_found= -10000;};
+	// {_found= -10000;};
 	//Since we basicly take "best chance" its good to check the most important one, water.
-	if ( (surfaceiswater _pos) and _goal!="WATER" and _goal!="AIR") then
+	if ( (surfaceiswater _pos) and _goal!="WATER" and _goal!="AIR") then {
 		//This wont be good for land dudes, so ignore this one
-		{_found= -10000;};
-	if ((_goal == "WATER") and !(surfaceiswater _pos )  ) then
+		_found= -10000;
+	};
+	if ((_goal == "WATER") and !(surfaceiswater _pos ) ) then {
 		//If we look for water, then dry surface wont do it
-		{_found= -10000;};
+		_found= -10000;
+	};
 
 
 	//If we have blacklist and the found pos is better then the best so far then....
-	if (_found>_best ) then
-	{
+	if (_found>_best ) then {
 		//If we find nothing in the end, then forget about blacklist.
 		_best_effort = _pos;
 		// Check each blacklist marker
-		if ([_pos,_side] call GDC_gaia_fnc_isBlacklisted) exitwith
-		{
+		if ([_pos,_side] call GDC_gaia_fnc_isBlacklisted) exitwith {
 			_found= -10000;
 		};
 	};
 
 
 	//If we make it up here then this position is actualy the best we got so far.
-	if (_found>_best ) then
-	{
+	if (_found>_best ) then {
 		_best = _found;
 		_Fpos = _pos;
 	};
@@ -141,8 +136,9 @@ for [{_i = 0}, {((_i<50) and (_best<_minimum))or (_i<10)}, {_i = _i + 1}] do
 };
 
 //We failed? Go back to best effort (be advised, it may still be empty!)
-if (count(_fPos) == 0) then
-	{_fPos = _best_effort;};
+if (count(_fPos) == 0) then {
+	_fPos = _best_effort;
+};
 
 
 // Return position

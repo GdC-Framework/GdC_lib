@@ -1,6 +1,6 @@
 // In: [position,distance,direction]
 // Out: position
-private ["_pos","_dst","_dir","_orgX","_orgY","_posX","_posY"];
+private ["_pos", "_dst", "_dir", "_orgX", "_orgY", "_posX", "_posY"];
 _pos = _this select 0;
 _dst = _this select 1;
 _dir = _this select 2;

@@ -29,7 +29,7 @@ _unit_group = createGroup _group_side;
     };
     
     [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
-    [_unit_spawn] joinSilent  _unit_group;
+    [_unit_spawn] joinSilent _unit_group;
 } forEach _unit_type_array;
 
 sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
