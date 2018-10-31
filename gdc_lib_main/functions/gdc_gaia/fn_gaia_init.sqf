@@ -4,58 +4,47 @@
 
 // Is that the last version? => https://github.com/shaygman/mcc_sandbox.Altis/tree/master/gaia ?
 
+params [
+  //GAIA Public (local) variables
+  ["MCC_GAIA_DEBUG", false],
+  ["MCC_GAIA_CA_DEBUG", []],
+
+  //Gaia cache
+  ["MCC_GAIA_CACHE", false],
+  ["GAIA_CACHE_SLEEP", 0.5],
+  ["GAIA_CACHE_STAGE_1", 1000],
+  ["MCC_GAIA_CACHE_STAGE2", []]
+
+  //Used for the breadcrumb blacklist system. How far should a waypoint be from a position a unit has last been?
+  ["MCC_GAIA_CYCLE", 1],
+  ["MCC_GAIA_AWARENESSRANGE", 100],
+  ["MCC_GAIA_CLEARRANGE", 70],
+  ["MCC_GAIA_SHARETARGET_DELAY", 5],
+  ["MCC_GAIA_MAX_SLOW_SPEED_RANGE", 600],
+  ["MCC_GAIA_MAX_MEDIUM_SPEED_RANGE", 4500],
+  ["MCC_GAIA_MAX_FAST_SPEED_RANGE", 80000],
+  // The seconds of rest a transporter takes after STARTING his last order
+  ["MCC_GAIA_TRANSPORT_RESTTIME", 40],
+  //If an order is older then 10 minutes, cancel it. There is probbaly something wrong.
+  ["MCC_GAIA_MAX_ORDER_AGE", 5000],
+  ["MCC_GAIA_MORTAR_TIMEOUT", 300],
+
+  //Ambient Combat
+  ["MCC_GAIA_AC", false],
+  ["MCC_GAIA_AC_MAXRANGE", 1000],
+  ["MCC_GAIA_AC_MAXGROUPS", 35],
+  ["MCC_GAIA_AMBIENT_ZONE_RESERVED", 1000],
+  ["MCC_GAIA_AMBIANT", true],
+  ["MCC_GAIA_AMBIANT_CHANCE", 20],
+
+  // dont CHANGE without knowledge
+  ["MCC_GAIA_OPERATIONAL", false]
+];
+
 GAIA_INIT = FALSE;
 
-//GAIA Public (local) variables
-MCC_GAIA_DEBUG = false;
-MCC_GAIA_CA_DEBUG = [];
-
-
-MCC_GAIA_CACHE = false;
-GAIA_CACHE_SLEEP = 0.5;
-
-GAIA_CACHE_STAGE_1 = 1000;
+// More cache variables
 GAIA_CACHE_STAGE_2 = (2*GAIA_CACHE_STAGE_1);
-MCC_GAIA_CACHE_STAGE2 = [];
-
-
-
-
-// dont CHANGE without knowledge
-MCC_GAIA_OPERATIONAL = false;
-
-//Used for the breadcrumb blacklist system. How far should a waypoint be from a position a unit has last been?
-MCC_GAIA_CYCLE = 1;
-MCC_GAIA_AWARENESSRANGE = 100;
-MCC_GAIA_CLEARRANGE = 70;
-MCC_GAIA_SHARETARGET_DELAY = 5;
-MCC_GAIA_MAX_SLOW_SPEED_RANGE = 600;
-MCC_GAIA_MAX_MEDIUM_SPEED_RANGE = 4500;
-MCC_GAIA_MAX_FAST_SPEED_RANGE = 80000;
-// The seconds of rest a transporter takes after STARTING his last order
-MCC_GAIA_TRANSPORT_RESTTIME = 40;
-//If an order is older then 10 minutes, cancel it. There is probbaly something wrong.
-MCC_GAIA_MAX_ORDER_AGE = 5000;
-MCC_GAIA_MORTAR_TIMEOUT = 300;
-//This switch makes it possible for GAIA to send units into the attack she does not initialy control
-MCC_GAIA_ATTACKS_FOR_NONGAIA = false;
-
-//Ambient Combat
-//<<<<<<< HEAD
-MCC_GAIA_AC = false;
-MCC_GAIA_AC_MAXRANGE = 1000;
-MCC_GAIA_AC_MAXGROUPS = 35;
-//=======
-MCC_GAIA_AMBIANT_COMBAT = true;
-MCC_GAIA_AMBIENT_minRange = 800;
-MCC_GAIA_AMBIENT_maxRange = 1000;
-//>>>>>>> parent of f16fa86... Refactoring of GAIA cache functions
-MCC_GAIA_AMBIENT_ZONE_RESERVED = 1000;
-
-
-MCC_GAIA_AMBIANT = true;
-MCC_GAIA_AMBIANT_CHANCE = 20;
-
 
 //Side specific
 MCC_GAIA_CA_WEST = [];
