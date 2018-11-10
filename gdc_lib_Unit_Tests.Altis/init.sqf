@@ -9,9 +9,8 @@ fileExists = {
     _fileExists
 };
 
-
-
-
+// Init gaia
+[] call GDC_gaia_fnc_init;
 
 ["ACRE_PRC117F", 5, blufor, "RHS_UH60M", [4805.27, 4671.13, 0]] call GDC_fnc_extra;
 
@@ -21,11 +20,7 @@ if (isServer) then
 
   	civilian setFriend [east, 1];
 
-
-
-
 	// Start tests
-
 
 	systemChat 'Start tests';
 
@@ -47,6 +42,5 @@ if (isServer) then
 	];
 
 	systemChat 'End tests';
-
 };
 

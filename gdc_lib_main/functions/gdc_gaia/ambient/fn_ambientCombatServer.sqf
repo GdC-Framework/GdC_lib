@@ -181,13 +181,13 @@ if (isServer) then
 					switch (side _x) do
 					{
 						case west: {
-							if !((faction _x) in _FactionsWest) then {_FactionsWest=_FactionsWest+ [(faction _x)]};
+							if !((faction _x) in _FactionsWest) then { _FactionsWest = _FactionsWest + [(faction _x)] };
 						};
 						case east: {
-							if !((faction _x) in _FactionsEast) then {_FactionsEast=_FactionsEast+ [(faction _x)]};
+							if !((faction _x) in _FactionsEast) then { _FactionsEast = _FactionsEast + [(faction _x)] };
 						};
 						case independent: {
-							if !((faction _x) in _FactionsIndep) then {_FactionsIndep=_FactionsIndep+ [(faction _x)]};
+							if !((faction _x) in _FactionsIndep) then { _FactionsIndep = _FactionsIndep + [(faction _x)] };
 						};
 					};
 				};

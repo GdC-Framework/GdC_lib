@@ -6,7 +6,7 @@ class GDC_GAIA
     {
         file = "gdc_lib_main\functions\gdc_gaia";
 
-        class gaia_init {}; // TODO: To be review to be executed like => call compile preprocessfile "gaia\gaia_init.sqf";
+        class init {}; // TODO: To be review to be executed like => call compile preprocessfile "gaia\gaia_init.sqf";
     };
 
     class ambient

@@ -92,15 +92,15 @@ while {true} do {
 			//Enable the caching no matter what, delayed WILL be cached
 			//_ar set [26,true];
 			[_ar, "mcc_setup", false, false] spawn BIS_fnc_MP;
-			MCC_DELAYED_SPAWNS set [_idx, "delete_me"];
+			MCC_GAIA_DELAYED_SPAWNS set [_idx, "delete_me"];
 
 		};
 
 		_idx= _idx + 1;
-	} forEach MCC_DELAYED_SPAWNS;
+	} forEach MCC_GAIA_DELAYED_SPAWNS;
 
 	// Delete respawned dudes
-	MCC_DELAYED_SPAWNS = MCC_DELAYED_SPAWNS - ["delete_me"];
+	MCC_GAIA_DELAYED_SPAWNS = MCC_GAIA_DELAYED_SPAWNS - ["delete_me"];
 
 	//We checked allgroups so we need a break
 	sleep GAIA_CACHE_SLEEP;

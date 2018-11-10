@@ -50,7 +50,7 @@ switch (_side) do {
 		_Targets = MCC_GAIA_TARGETS_EAST;
 		_factions = MCC_GAIA_FACTIONS_EAST;
 	};
-	case independent {
+	case independent: {
 		_ZoneStatus = MCC_GAIA_ZONESTATUS_INDEP;
 		_Targets = MCC_GAIA_TARGETS_INDEP;
 		_factions = MCC_GAIA_FACTIONS_INDEP;
