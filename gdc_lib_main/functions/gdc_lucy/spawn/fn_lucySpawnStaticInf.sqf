@@ -13,13 +13,13 @@
             _PosDirArray = [];
             { 
             _veh = _x; 
-            _pos_dir = [(getPosASL  _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh]; 
+            _pos_dir = [(getPosASL _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh]; 
             _PosDirArray = [_pos_dir] + _PosDirArray;
             } foreach (get3DENSelected "object"); 
             copyToClipboard str _PosDirArray;
     
     # Old version...
-        copyToClipboard format["static_unit_x = [SOLDAT, [[%1, %2, %3]], [%4], UNIT_SIDE] call GDC_fnc_lucySpawnStaticInf;", (getPosASL  player select 0), getPosASL player select 1, getPosASL player select 2, getDir player];
+        copyToClipboard format["static_unit_x = [SOLDAT, [[%1, %2, %3]], [%4], UNIT_SIDE] call GDC_fnc_lucySpawnStaticInf;", (getPosASL player select 0), getPosASL player select 1, getPosASL player select 2, getDir player];
 
 	Parameter(s):
 		0 : STRING - unit class name

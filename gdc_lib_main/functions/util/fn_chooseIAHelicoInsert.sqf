@@ -85,12 +85,12 @@ if (rank player == _rank) then {
 		// spawn hélico
 		_veh = [_spawnpos,(_spawnpos getdir _pos),(_this select 1),(_this select 2)] call BIS_fnc_spawnVehicle;
 		_group = _veh select 2;
-		_veh =  _veh select 0;
+		_veh = _veh select 0;
 		_veh disableAI "AUTOTARGET";
 		_veh disableAI "AUTOCOMBAT";
 		_veh disableAI "SUPPRESSION";
 		_veh allowdamage false;
-		{_x allowdamage false;} forEach  (crew _veh);
+		{_x allowdamage false;} forEach (crew _veh);
 		clearMagazineCargoGlobal _veh;
 		clearWeaponCargoGlobal _veh;
 		clearItemCargoGlobal _veh;
