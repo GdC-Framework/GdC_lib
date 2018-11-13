@@ -44,6 +44,7 @@ class GDC_GAIA
         class controlGroup {};
         class findClosestPosition {};
         class getDirectionalOffsetPosition {};
+        class hideGaiaMarker {};
         class startGaia {};
     };
     class Control
