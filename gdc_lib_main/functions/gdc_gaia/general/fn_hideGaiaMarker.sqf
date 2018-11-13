@@ -5,5 +5,5 @@
 	if(["gaia_", _x] call GDC_fnc_StringStartWith) then {
 		_x setmarkerAlpha 0;
 	};
-} allMapMarkers;
+} foreach allMapMarkers;
 
