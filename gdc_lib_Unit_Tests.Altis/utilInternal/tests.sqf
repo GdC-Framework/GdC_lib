@@ -1,5 +1,5 @@
 
-systemChat 'UtilInternal tests: Init';
+systemChat 'UtilInternal tests';
 _success = true;
 
 //////////////////////////
