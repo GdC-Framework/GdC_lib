@@ -20,13 +20,19 @@
 	Nothing
 */
 
-params ["_group", "_marker", "_nb_points", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]], ["_blacklist", []]];
+params ["_group", "_marker", "_nb_points", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]], ["_blacklist", nil]];
 private ["_i", "_wp", "_wp_timeout", "_cycle_pos"];
 
 if (LUCY_RANDOM_PATROL_MAX_TIMEOUT < 1) then {
     _wp_timeout = 1;
 } else {
     _wp_timeout = LUCY_RANDOM_PATROL_MAX_TIMEOUT;
+};
+
+
+// If no blacklist sended, we generate the right one
+if(isNil "_blacklist" ) then {
+    _blacklist = [vehicle (leader _group)] call GDC_fnc_prepareBlacklistForRandomPos;
 };
 
 if(typename _marker != "ARRAY") then {

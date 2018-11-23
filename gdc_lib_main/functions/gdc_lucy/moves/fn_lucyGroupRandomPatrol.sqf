@@ -20,8 +20,13 @@
 	Nothing
 */
 
-params ["_group", "_mkr_param", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]], ["_blacklist", []]];
+params ["_group", "_mkr_param", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]], ["_blacklist", nil]];
 private ["_random_pos", "_wp", "_wp_timeout"];
+
+// If no blacklist sended, we generate the right one
+if(isNil "_blacklist" ) then {
+    _blacklist = [vehicle (leader _group)] call GDC_fnc_prepareBlacklistForRandomPos;
+};
 
 if (typename _mkr_param == "ARRAY" && { count _mkr_param > 0 } && { count (_mkr_param select 0) == 3}) then {
     // Generate a random position from marker list
