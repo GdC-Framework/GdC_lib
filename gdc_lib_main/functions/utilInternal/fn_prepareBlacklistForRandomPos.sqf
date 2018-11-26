@@ -6,11 +6,11 @@ if(!isNil "_vehicle") then {
 
 	switch (true) do {
 		// Boat, so we want only water
-		case (vehicle _vehicle) iskindof "ship": {
+		case ((vehicle _vehicle) iskindof "ship"): {
 			["ground"];
 		};
 		// Air could go everywhere... 
-		case (vehicle _vehicle) iskindof "Air": {
+		case ((vehicle _vehicle) iskindof "Air"): {
 			[];
 		};
 		default {
