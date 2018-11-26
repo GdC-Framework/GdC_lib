@@ -11,36 +11,47 @@ fileExists = {
 
 // Init gaia
 [] call GDC_gaia_fnc_init;
+[] call GDC_fnc_lucyInit;
 
-["ACRE_PRC117F", 5, blufor, "RHS_UH60M", [4805.27, 4671.13, 0]] call GDC_fnc_extra;
+[] spawn {
+	sleep 1;
+	["ACRE_PRC117F", 5, blufor, "RHS_UH60M", [4805.27, 4671.13, 0]] call GDC_fnc_extra;
 
-if (isServer) then
-{
-	// call compile preprocessfile "gaia\gaia_init.sqf";
-
-  	civilian setFriend [east, 1];
-
-	// Start tests
-
-	systemChat 'Start tests';
-
+	if (isServer) then
 	{
-		// Check if file exists
-		if (_x call fileExists) then {
-			call compile preprocessFileLineNumbers _x;
-			sleep 1;
-		};
-	} foreach [
-		'gdc_choppa\tests.sqf',
-		'gdc_extra\tests.sqf',
-		'gdc_gaia\tests.sqf',
-		'gdc_halo\tests.sqf',
-		'gdc_lucy\tests.sqf',
-		'gdc_pluto\tests.sqf',
-		'util\tests.sqf',
-		'utilInternal\tests.sqf'
-	];
+		// call compile preprocessfile "gaia\gaia_init.sqf";
 
-	systemChat 'End tests';
+		civilian setFriend [east, 1];
+
+		// Start tests
+
+		systemChat 'Start tests';
+
+		{
+			_file = _x;
+			{
+				// Check if file exists
+				_finalFile = _x + _file + '.sqf';
+				if (_finalFile call fileExists) then {
+					call compile preprocessFileLineNumbers _finalFile;
+					sleep 1;
+				};
+			} foreach [
+				'gdc_choppa\',
+				'gdc_extra\',
+				'gdc_gaia\',
+				'gdc_halo\',
+				'gdc_lucy\',
+				'gdc_pluto\',
+				'util\',
+				'utilInternal\'
+			];
+		} foreach [
+			'init',
+			'tests',
+			'final'
+		];
+
+		systemChat 'End tests';
+	};
 };
-
