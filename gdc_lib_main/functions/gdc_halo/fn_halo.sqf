@@ -17,12 +17,13 @@
 		7 (Optional): ARRAY of STRINGs and/or OBJECTs - list of marker names or trigger names defining blacklisted areas (default: [])
 		8 (Optional): ARRAY - DZ position (if [0,0,0], the players can choose the DZ)(default: [0,0,0])
 		9 (Optional): ARRAY - plane spawn position (if [0,0,0], the position is randomized)(default: [0,0,0])
+		10 (Optional): SIDE - plane side (default: civilian)
 
 	Returns:
 	nothing
 */
 
-params ["_object",["_area",""],["_gps",true],["_autojump",true],["_lalo",false],["_vtype","RHS_C130J"],["_alt",-1],["_blist",[]],["_dzpos",[0,0,0]],["_spawnpos",[0,0,0]]];
+params ["_object",["_area",""],["_gps",true],["_autojump",true],["_lalo",false],["_vtype","RHS_C130J"],["_alt",-1],["_blist",[]],["_dzpos",[0,0,0]],["_spawnpos",[0,0,0]],["_side",civilian]];
 private ["_action","_veh","_txt","_vehBaseClass"];
 
 gdc_halo_dispo = true;
@@ -35,6 +36,7 @@ gdc_halo_alt = _alt;
 gdc_halo_blist = _blist;
 gdc_halo_dzpos = _dzpos;
 gdc_halo_spawnpos = _spawnpos;
+gdc_halo_side = _side;
 if (_area == "") then {
 	gdc_halo_area = createMarkerLocal ["mkz_gdc_halo",_object];
 	gdc_halo_area setMarkerShapeLocal "ELLIPSE";
