@@ -8,18 +8,18 @@ class EditorData
 	toggles=1025;
 	class ItemIDProvider
 	{
-		nextID=27;
+		nextID=47;
 	};
 	class MarkerIDProvider
 	{
-		nextID=1;
+		nextID=2;
 	};
 	class Camera
 	{
-		pos[]={14774.866,185.02345,16504.32};
-		dir[]={-0.2231096,-0.72086138,0.65620792};
-		up[]={-0.23204815,0.69307131,0.68249631};
-		aside[]={0.94678879,2.81143e-008,0.32190752};
+		pos[]={14818.524,584.88074,16384.518};
+		dir[]={-0.18682127,-0.84638023,0.49879718};
+		up[]={-0.29687279,0.53254324,0.792624};
+		aside[]={0.93650126,-1.8546416e-007,0.35076132};
 	};
 };
 binarizationWanted=0;
@@ -29,13 +29,14 @@ addons[]=
 	"A3_Air_F_Beta_Heli_Transport_01",
 	"A3_Characters_F_Exp_Civil",
 	"A3_Modules_F_Curator_Curator",
-	"A3_Ui_F"
+	"A3_Ui_F",
+	"A3_Characters_F_Tank"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=5;
+		items=6;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -71,6 +72,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item5
+		{
+			className="A3_Characters_F_Tank";
+			name="Arma 3 Tank - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 randomSeed=2476013;
@@ -100,7 +108,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=10;
+		items=17;
 		class Item0
 		{
 			dataType="Group";
@@ -477,7 +485,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
@@ -675,6 +683,225 @@ class Mission
 			name="mkr_animVehicleDoor";
 			type="mil_dot";
 			id=26;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={14282.913,17.91,15723.777};
+			name="mkr_lucy_spawn";
+			type="mil_dot";
+			id=27;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={14024.105,16.381001,15533.284};
+			name="mkr_lucy_spawn_zone_whitelist";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=193.13525;
+			b=193.13525;
+			id=30;
+			atlOffset=7.2629042;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={14028.44,13.384,15601.814};
+			name="mkr_lucy_spawn_zone_blacklist";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=50;
+			b=50;
+			id=31;
+			atlOffset=0.00011730194;
+		};
+		class Item13
+		{
+			dataType="Marker";
+			position[]={15399.77,18.289679,17152.273};
+			name="mkr_lucy_patrol_random";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=96.411003;
+			b=96.411003;
+			id=32;
+			atlOffset=1.9073486e-006;
+		};
+		class Item14
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=4;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15429.582,18.459675,17176.793};
+					};
+					side="West";
+					flags=7;
+					class Attributes
+					{
+						rank="SERGEANT";
+					};
+					id=34;
+					type="B_Soldier_TL_F";
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15434.582,18.552691,17171.793};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.44999999;
+						rank="CORPORAL";
+					};
+					id=35;
+					type="B_soldier_AR_F";
+					atlOffset=1.9073486e-006;
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15424.582,18.441484,17171.793};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.40000001;
+					};
+					id=36;
+					type="B_Soldier_F";
+					atlOffset=-1.9073486e-006;
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15439.582,18.631208,17166.793};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.40000001;
+					};
+					id=37;
+					type="B_soldier_LAT2_F";
+					atlOffset=-1.9073486e-006;
+				};
+			};
+			class Attributes
+			{
+				name="group_lucy_random_patrol";
+			};
+			id=33;
+		};
+		class Item15
+		{
+			dataType="Marker";
+			position[]={15408.738,10.453,16944.592};
+			name="mkr_lucy_patrol_random_fix_point";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=96.411003;
+			b=96.411003;
+			id=38;
+			atlOffset=-8.1873064;
+		};
+		class Item16
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=4;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15438.551,18.941189,16969.111};
+					};
+					side="West";
+					flags=7;
+					class Attributes
+					{
+						rank="SERGEANT";
+					};
+					id=40;
+					type="B_Soldier_TL_F";
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15443.551,18.981123,16964.111};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.44999999;
+						rank="CORPORAL";
+					};
+					id=41;
+					type="B_soldier_AR_F";
+					atlOffset=1.9073486e-006;
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15433.551,18.882156,16964.111};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.40000001;
+					};
+					id=42;
+					type="B_Soldier_F";
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={15448.551,18.927797,16959.111};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						skill=0.40000001;
+					};
+					id=43;
+					type="B_soldier_LAT2_F";
+					atlOffset=1.9073486e-006;
+				};
+			};
+			class Attributes
+			{
+				name="group_lucy_random_patrol_fix_point";
+			};
+			id=39;
 		};
 	};
 };

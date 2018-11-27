@@ -124,7 +124,7 @@ _StartTimeIssueOrders = time;
             //The Target of the mortar is no longer a CA
             !((_x getVariable ["GAIA_MortarTarget",[0,0,0]]) in _ca)
             //The order he has is indeed mortar stuff.
-            and ((_x getVariable ["GAIA_Order", ""]) != "DoMorter")
+            and ((_x getVariable ["GAIA_Order", ""]) != "DoMortar")
             //He has actualy opened up his mortar rounds by atleast first cycle
             and (_x getVariable ["GAIA_MortarRound",0]>0)
         ) then {
