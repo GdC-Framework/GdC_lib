@@ -52,12 +52,7 @@ while {true} do {
 	if (MCC_GAIA_DEBUG) then {[_HQ_side, "HQ"] sidechat format ["GAIA %1 wakes up and looks around the place. Man what a night. Time to destroy some player.",_HQ_side]; };
 
 	while { ( {side _x == _HQ_side } count allunits > 0 ) } do {
-		MCC_GAIA_CYCLE = MCC_GAIA_CYCLE + 1;
-		publicVariable "MCC_GAIA_CYCLE";
-		//vlag setvariable ['gaia_cycle',MCC_GAIA_CYCLE,true];
-
 		GAIA_CACHE_STAGE_2 = (2*GAIA_CACHE_STAGE_1);
-
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Phase: Analyze Enemy
