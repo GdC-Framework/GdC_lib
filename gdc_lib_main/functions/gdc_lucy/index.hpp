@@ -19,6 +19,7 @@ class lucySpawn
 {
     file = "gdc_lib_main\functions\gdc_lucy\spawn";
     class lucySpawnGroupInf {};
+    class lucySpawnGroupInfParadrop {};
     class lucySpawnGroupVehicle {};
     class lucySpawnStaticInf {};                
     class lucySpawnVehicleReinforcement {};                
