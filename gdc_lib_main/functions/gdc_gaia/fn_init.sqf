@@ -34,7 +34,7 @@ params [
   ["_MCC_GAIA_AC_MAXGROUPS", 35],
   ["_MCC_GAIA_AMBIENT_ZONE_RESERVED", 1000],
   ["_MCC_GAIA_AMBIANT", true],
-  ["_MCC_GAIA_AMBIANT_CHANCE", 20],
+  ["_MCC_GAIA_AMBIANT_CHANCE", 20]
 ];
 
 /* Init global var */
