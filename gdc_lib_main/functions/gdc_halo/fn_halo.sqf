@@ -42,11 +42,13 @@ if (_area == "") then {
 	gdc_halo_area setMarkerShapeLocal "ELLIPSE";
 	gdc_halo_area setMarkerSizeLocal [4,4];
 	gdc_halo_area setMarkerAlphaLocal 0;
+	if (isServer) then {
 	_veh = "VR_Area_01_circle_4_yellow_F" createVehicle (getPos _object);
 	_veh setpos (getPos _object);
+	};
 };
 // Nombre de places passagers
-_veh = gdc_halo_vtype createVehicle [0,0,0];
+_veh = gdc_halo_vtype createVehicleLocal [0,0,0];
 gdc_halo_seats = _veh emptyPositions "cargo";
 deleteVehicle _veh;
 
