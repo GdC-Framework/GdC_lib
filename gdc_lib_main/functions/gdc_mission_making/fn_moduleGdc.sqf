@@ -52,26 +52,28 @@ if is3DEN then {
 		// Attribute values are saved in module's object space under their class names
 		// _bombYield = _logic getVariable ["Yield",-1]; //(as per the previous example, but you can define your own.) 
 
-		// lancement du script qui affiche le loadout lors du briefing.
-		[] call GDC_fnc_inventoryBriefing; 
-		// lancement du script qui affiche le roster lors du briefing.
-		[] call GDC_fnc_rosterBriefing;
+		if(hasInterface) then {
+			// lancement du script qui affiche le loadout lors du briefing.
+			[] call GDC_fnc_inventoryBriefing; 
+			// lancement du script qui affiche le roster lors du briefing.
+			[] call GDC_fnc_rosterBriefing;
 
-		player addEventHandler ["Killed", {
-			params ["_unit", "_killer", "_instigator", "_useEffects"];
+			player addEventHandler ["Killed", {
+				params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-			//Spectateur ACRE
-			if (isClass(configFile >> "CfgPatches" >> "acre_main")) then {[true] call acre_api_fnc_setSpectator;};
+				//Spectateur ACRE
+				if (isClass(configFile >> "CfgPatches" >> "acre_main")) then {[true] call acre_api_fnc_setSpectator;};
 
-			//Anti mouettes
-			{
-				if(_x isKindOf "seagull") then {
-					_x setPos [0,0,500];
-					hideobjectglobal _x;
-					_x enablesimulationglobal false;
-				};
-			} forEach nearestObjects [player, [], 250];
-		}];
+				//Anti mouettes
+				{
+					if(_x isKindOf "seagull") then {
+						_x setPos [0,0,500];
+						hideobjectglobal _x;
+						_x enablesimulationglobal false;
+					};
+				} forEach nearestObjects [player, [], 250];
+			}];
+		};
 	};
 };
 
