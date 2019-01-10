@@ -18,7 +18,10 @@ class CfgFactionClasses
 	};
 };
 
-#include "functions\gdc_mission_making\CfgVehicles.hpp"
+class CfgVehicles
+{
+	#include "functions\gdc_mission_making\CfgVehicles.hpp"
+};
 
 class CfgFunctions
 {
