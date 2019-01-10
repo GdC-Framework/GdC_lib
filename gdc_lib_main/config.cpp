@@ -20,7 +20,7 @@ class CfgFactionClasses
 
 class CfgVehicles
 {
-	#include "functions\gdc_mission_making\CfgVehicles.hpp"
+	#include "gdc_mission_making\CfgVehicles.hpp"
 };
 
 class CfgFunctions
@@ -31,7 +31,7 @@ class CfgFunctions
 		#include "functions\gdc_extra\index.hpp"
 		#include "functions\gdc_halo\index.hpp"
 		#include "functions\gdc_lucy\index.hpp"
-		#include "functions\gdc_mission_making\index.hpp"
+		#include "gdc_mission_making\index.hpp"
 		#include "functions\gdc_pluto\index.hpp"
 		#include "functions\util\index.hpp"
 		#include "functions\utilInternal\index.hpp"
