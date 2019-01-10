@@ -6,24 +6,16 @@ class CfgVehicles
 	{
 		class AttributesBase
 		{
-			class Default;
-			class Edit; // Default edit box (i.e., text input field)
-			class Combo; // Default combo box (i.e., drop-down menu)
 			class Checkbox; // Default checkbox (returned value is Bool)
-			class CheckboxNumber; // Default checkbox (returned value is Number)
-			class ModuleDescription; // Module description
-			class Units; // Selection of units on which the module is applied
 		};
-		// Description base classes, for more information see below
-		class ModuleDescription
-		{
-			class Anything;
-		};
+		class ModuleDescription;
 	};
 	class GDC_ModuleGdc: Module_F
 	{
 		// Standard object definitions
 		scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
+		scopeCurator = 0; // Hide to zeus
+
 		displayName = "Module d'initialisation GDC"; // Name displayed in the menu
 		// icon = "\myTag_addonName\data\iconNuke_ca.paa"; // Map icon. Delete this entry to use the default icon
 		category = "GDC_moduleGdc";
@@ -45,7 +37,40 @@ class CfgVehicles
 		// Menu displayed when the module is placed or double-clicked on by Zeus
 		curatorInfoType = "RscDisplayAttributeModuleGdc";
 
-		// Module description. Must inherit from base class, otherwise pre-defined entities won't be available        
+
+		// Module attributes, uses https://community.bistudio.com/wiki/Eden_Editor:_Configuring_Attributes#Entity_Specific
+		class Attributes: AttributesBase
+		{
+            class Inventory: Checkbox {
+				property = "GDC_fnc_moduleGdc_inventory"
+                displayName = "Inventaire";
+				tooltip = "Afficher l'inventaire lors du briefing";
+                typeName = "BOOL";
+                defaultValue = 1;
+            };
+            class Roster: Checkbox {
+				property = "GDC_fnc_moduleGdc_roster"
+                displayName = "Roster";
+				tooltip = "Afficher la composition des équipes lors du briefing";
+                typeName = "BOOL";
+                defaultValue = 1;
+            };
+            class AcreSpectator: Checkbox {
+				property = "GDC_fnc_moduleGdc_acrespectator"
+                displayName = "Acre spectateur";
+				tooltip = "Permet aux spectateurs d'écouter les autres joueurs via acre";
+                typeName = "BOOL";
+                defaultValue = 1;
+            };
+            class DeleteSeagull: Checkbox {
+				property = "GDC_fnc_moduleGdc_deleteSeagull"
+                displayName = "Suppression de la mouette";
+				tooltip = "Supprime la mouette créée quand un joueur devient spectateur";
+                typeName = "BOOL";
+                defaultValue = 1;
+            };
+		};
+		
         class ModuleDescription: ModuleDescription {
             description = "Initialise les scripts de base pour une mission canard proof !";
             sync[] = {};
