@@ -40,28 +40,28 @@ class GDC_ModuleGdc: Module_F
 	class Attributes: AttributesBase
 	{
 		class Inventory: Checkbox {
-			property = "GDC_fnc_moduleGdc_inventory"
+			property = "GDC_fnc_moduleGdc_inventory";
 			displayName = "Inventaire";
 			tooltip = "Afficher l'inventaire lors du briefing";
 			typeName = "BOOL";
 			defaultValue = 1;
 		};
 		class Roster: Checkbox {
-			property = "GDC_fnc_moduleGdc_roster"
+			property = "GDC_fnc_moduleGdc_roster";
 			displayName = "Roster";
 			tooltip = "Afficher la composition des équipes lors du briefing";
 			typeName = "BOOL";
 			defaultValue = 1;
 		};
 		class AcreSpectator: Checkbox {
-			property = "GDC_fnc_moduleGdc_acrespectator"
+			property = "GDC_fnc_moduleGdc_acrespectator";
 			displayName = "Acre spectateur";
 			tooltip = "Permet aux spectateurs d'écouter les autres joueurs via acre";
 			typeName = "BOOL";
 			defaultValue = 1;
 		};
 		class DeleteSeagull: Checkbox {
-			property = "GDC_fnc_moduleGdc_deleteSeagull"
+			property = "GDC_fnc_moduleGdc_deleteSeagull";
 			displayName = "Suppression de la mouette";
 			tooltip = "Supprime la mouette créée quand un joueur devient spectateur";
 			typeName = "BOOL";
