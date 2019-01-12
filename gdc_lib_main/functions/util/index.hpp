@@ -8,4 +8,5 @@ class util
     class rosterBriefing {};
     class getPositionsFromReference {};
     class createGroupCompo {};
+    class markerToDAGR {};
 };
