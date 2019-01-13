@@ -24,14 +24,14 @@ if !is3DEN then {
 				[] call GDC_fnc_rosterBriefing;
 			};
 
-			player setVariable ["AcreSpectator", true];
-			player setVariable ["DeleteSeagull", true];
+			player setVariable ["GDC_AcreSpectator", _acreSpectator];
+			player setVariable ["GDC_DeleteSeagull", _deleteSeagull];
 
 			player addEventHandler ["Killed", {
 				params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-				_acreSpectator = player getVariable ["AcreSpectator", true];
-				_deleteSeagull = player getVariable ["DeleteSeagull", true];
+				_acreSpectator = player getVariable ["GDC_AcreSpectator", true];
+				_deleteSeagull = player getVariable ["GDC_DeleteSeagull", true];
 
 
 				//Spectateur ACRE
