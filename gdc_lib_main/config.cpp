@@ -2,19 +2,10 @@ class CfgPatches
 {
 	class gdc_lib_main
 	{
-		units[] = {"GDC_moduleGdc"};
+		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.10;
 		requiredAddons[] = {"A3_Functions_F", "A3_Modules_F", "A3_3DEN","3DEN"};
-	};
-};
-
-class CfgFactionClasses
-{
-	class Multiplayer;
-	class GDC_moduleGdc: Multiplayer
-	{
-		displayName = "GDC modules";
 	};
 };
 
