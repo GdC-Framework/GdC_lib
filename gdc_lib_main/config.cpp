@@ -18,11 +18,6 @@ class CfgFactionClasses
 	};
 };
 
-class CfgVehicles
-{
-	#include "gdc_mission_making\CfgVehicles.hpp"
-};
-
 class CfgFunctions
 {
 	class GDC
@@ -31,7 +26,7 @@ class CfgFunctions
 		#include "functions\gdc_extra\index.hpp"
 		#include "functions\gdc_halo\index.hpp"
 		#include "functions\gdc_lucy\index.hpp"
-		#include "gdc_mission_making\index.hpp"
+		#include "functions\gdc_mission_making\index.hpp"
 		#include "functions\gdc_pluto\index.hpp"
 		#include "functions\util\index.hpp"
 		#include "functions\utilInternal\index.hpp"
@@ -73,15 +68,8 @@ class display3DEN
 				class GDC_spawnHC
 				{
 					text = "Creer le HC";
-					action = "if (({(_x get3DENAttribute 'Name') select 0 == 'HC_Slot' } count (all3DENEntities #3)) < 1) then {_hc = create3DENEntity ['Logic', 'HeadlessClient_F', screenToWorld [0.5,0.5]];	_hc set3DENAttribute ['ControlMP',true];_hc set3DENAttribute ['ControlSP',false];_hc set3DENAttribute ['Description','HC_Slot'];_hc set3DENAttribute ['Name','HC_Slot'];};";
+					action = "if (({(_x get3DENAttribute 'Name') select 0 == 'HC_Slot' } count (all3DENEntities #3)) < 1) then {_hc = create3DENEntity ['Logic', 'HeadlessClient_F', screenToWorld [0.5,0.5]]; _hc set3DENAttribute ['ControlMP',true]; _hc set3DENAttribute ['ControlSP',false]; _hc set3DENAttribute ['Description','HC_Slot']; _hc set3DENAttribute ['Name','HC_Slot'];};";
 				};
-				/*
-				class GDC_spawnModule
-				{
-					text = "Creer le module COOP CanardProof";
-					action = "if (({ typeOf _x == 'GDC_ModuleGdc' } count (all3DENEntities #3)) < 1) then {create3DENEntity ['Logic', 'GDC_ModuleGdc', screenToWorld [0.45,0.45]];};";
-				};
-				*/
 			};
 		};
 	};
@@ -108,7 +96,7 @@ class Cfg3DEN
 							control = "CheckboxNumber";
 							value = 0;
 							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {remoteExecCall ['GDC_fnc_inventoryBriefing',0,false];};";
+							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_inventoryBriefing"", true];};";
 						};
 						class GDC_Roster
 						{
@@ -118,7 +106,7 @@ class Cfg3DEN
 							control = "CheckboxNumber";
 							value = 0;
 							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {remoteExecCall ['GDC_fnc_rosterBriefing',0,false];};";
+							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_rosterBriefing"", true];};";
 						};
 						class GDC_DeleteSeagull
 						{
@@ -128,7 +116,7 @@ class Cfg3DEN
 							control = "CheckboxNumber";
 							value = 0;
 							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {remoteExecCall ['GDC_fnc_DeleteSeagull',0,false];};";
+							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_DeleteSeagull"", true];};";
 						};
 						class GDC_AcreSpectator
 						{
@@ -138,7 +126,7 @@ class Cfg3DEN
 							control = "CheckboxNumber";
 							value = 0;
 							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {remoteExecCall ['GDC_fnc_AcreSpectator',0,false];};";
+							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_AcreSpectator"", true];};";
 						};
 					};
 				};
