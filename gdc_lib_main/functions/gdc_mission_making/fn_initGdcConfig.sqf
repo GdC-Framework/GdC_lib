@@ -1,8 +1,8 @@
 
 // Attribute values are saved in module's object space under their class names
 if(hasInterface) then {
-	_inventory = player getVariable ["GDC_config_inventoryBriefing", true];
-	_roster = player getVariable ["GDC_config_rosterBriefing", true];
+	_inventory = player getVariable ["GDC_config_inventoryBriefing", false];
+	_roster = player getVariable ["GDC_config_rosterBriefing", false];
 
 	// lancement du script qui affiche le loadout lors du briefing.
 	if(_inventory) then {
@@ -16,8 +16,8 @@ if(hasInterface) then {
 	player addEventHandler ["Killed", {
 		params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-		_acreSpectator = player getVariable ["GDC_config_DeleteSeagull", true];
-		_deleteSeagull = player getVariable ["GDC_config_AcreSpectator", true];
+		_acreSpectator = player getVariable ["GDC_config_DeleteSeagull", false];
+		_deleteSeagull = player getVariable ["GDC_config_AcreSpectator", false];
 
 		//Spectateur ACRE
 		if(_acreSpectator) then {
