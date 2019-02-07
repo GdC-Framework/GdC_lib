@@ -84,40 +84,32 @@ class Cfg3DEN
 							property = "GDC_Inventory";
 							displayName = "Inventaire Briefing";
 							tooltip = "Afficher l'inventaire lors du briefing";
-							control = "CheckboxNumber";
+							control = "Checkbox";
 							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_inventoryBriefing"", true];};";
 						};
 						class GDC_Roster
 						{
 							property = "GDC_Roster";
 							displayName = "Team Roster";
 							tooltip = "Afficher la composition des équipes lors du briefing";
-							control = "CheckboxNumber";
+							control = "Checkbox";
 							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_rosterBriefing"", true];};";
 						};
 						class GDC_DeleteSeagull
 						{
 							property = "GDC_DeleteSeagull";
 							displayName = "Suppression de la mouette";
 							tooltip = "Supprime la mouette créée quand un joueur devient spectateur";
-							control = "CheckboxNumber";
+							control = "Checkbox";
 							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_DeleteSeagull"", true];};";
 						};
 						class GDC_AcreSpectator
 						{
 							property = "GDC_AcreSpectator";
 							displayName = "Spectateur ACRE";
 							tooltip = "Active le mode spectateur de ACRE lorsque le joueur meurt et devient spectateur";
-							control = "CheckboxNumber";
+							control = "Checkbox";
 							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_AcreSpectator"", true];};";
 						};
 					};
 				};
