@@ -5,4 +5,6 @@ class Multiplayer
     class initGdcConfig{
         postInit = 1;
     };
+    class 3DENsetGdCAttributes {};
+    class 3DENcreateHCslot {};
 };
