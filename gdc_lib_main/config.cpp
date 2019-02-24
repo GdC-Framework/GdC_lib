@@ -43,7 +43,7 @@ class display3DEN
 				{
 					text = "Attributs mission CanardProof";
 					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
-					action = "[] call GDC_fnc_3DENsetGdCAttributes";
+					action = "[] call GDC_fnc_3denSetGdCAttributes";
 				};
 				class Tools
 				{
@@ -58,7 +58,7 @@ class display3DEN
 				class GDC_spawnHC
 				{
 					text = "Creer le HC";
-					action = "[] call GDC_fnc_3DENcreateHCslot";
+					action = "[] call GDC_fnc_3denCreateHCSlot";
 				};
 			};
 		};
