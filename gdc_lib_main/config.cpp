@@ -43,7 +43,7 @@ class display3DEN
 				{
 					text = "Attributs mission CanardProof";
 					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
-					action = "set3DENMissionAttributes [['Multiplayer','respawn',1],['Scenario','EnableDebugConsole',1],['Multiplayer','RespawnTemplates',['EndMission','Spectator']],['Scenario','GDC_Inventory',1],['Scenario','GDC_Roster',1],['Scenario','GDC_DeleteSeagull',1],['Scenario','GDC_AcreSpectator',1]];";
+					action = "[] call GDC_fnc_3denSetGdCAttributes";
 				};
 				class Tools
 				{
@@ -53,13 +53,12 @@ class display3DEN
 				{
 					text = "Outils GDC";
 					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
-					//items[] = {"GDC_spawnHC","GDC_spawnModule"};
 					items[] = {"GDC_spawnHC"};
 				};
 				class GDC_spawnHC
 				{
 					text = "Creer le HC";
-					action = "if (({(_x get3DENAttribute 'Name') select 0 == 'HC_Slot' } count (all3DENEntities #3)) < 1) then {_hc = create3DENEntity ['Logic', 'HeadlessClient_F', screenToWorld [0.5,0.5]]; _hc set3DENAttribute ['ControlMP',true]; _hc set3DENAttribute ['ControlSP',false]; _hc set3DENAttribute ['Description','HC_Slot']; _hc set3DENAttribute ['Name','HC_Slot'];};";
+					action = "[] call GDC_fnc_3denCreateHCSlot";
 				};
 			};
 		};
@@ -84,40 +83,32 @@ class Cfg3DEN
 							property = "GDC_Inventory";
 							displayName = "Inventaire Briefing";
 							tooltip = "Afficher l'inventaire lors du briefing";
-							control = "CheckboxNumber";
-							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_inventoryBriefing"", true];};";
+							control = "Checkbox";
+							defaultValue = "false";
 						};
 						class GDC_Roster
 						{
 							property = "GDC_Roster";
 							displayName = "Team Roster";
 							tooltip = "Afficher la composition des équipes lors du briefing";
-							control = "CheckboxNumber";
-							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_rosterBriefing"", true];};";
+							control = "Checkbox";
+							defaultValue = "false";
 						};
 						class GDC_DeleteSeagull
 						{
 							property = "GDC_DeleteSeagull";
 							displayName = "Suppression de la mouette";
 							tooltip = "Supprime la mouette créée quand un joueur devient spectateur";
-							control = "CheckboxNumber";
-							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_DeleteSeagull"", true];};";
+							control = "Checkbox";
+							defaultValue = "false";
 						};
 						class GDC_AcreSpectator
 						{
 							property = "GDC_AcreSpectator";
 							displayName = "Spectateur ACRE";
 							tooltip = "Active le mode spectateur de ACRE lorsque le joueur meurt et devient spectateur";
-							control = "CheckboxNumber";
-							value = 0;
-							defaultValue = "0";
-							expression = "if ((_value > 0) && !is3DEN ) then {player setVariable [""GDC_config_AcreSpectator"", true];};";
+							control = "Checkbox";
+							defaultValue = "false";
 						};
 					};
 				};
