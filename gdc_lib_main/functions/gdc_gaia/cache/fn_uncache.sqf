@@ -1,6 +1,3 @@
-if (!MCC_GAIA_HC) then {
-	if (!isServer) exitWith {};
-};
 private ["_count"];
 _count = 0;
 

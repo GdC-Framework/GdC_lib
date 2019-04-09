@@ -1,7 +1,3 @@
-if (!MCC_GAIA_HC) then {
-	if (!isServer) exitWith {};
-};
-
 _sf = _this select 0;
 
 _uv = [];

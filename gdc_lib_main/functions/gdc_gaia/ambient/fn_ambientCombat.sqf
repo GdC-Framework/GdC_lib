@@ -20,7 +20,7 @@ while {!(MCC_GAIA_AC)} do
     sleep 10;
 };
 
-if (isServer) then {[] spawn GDC_gaia_fnc_ambientCombatServer;};
+[] spawn GDC_gaia_fnc_ambientCombatServer;
 /*
 _IsSingleplayer = !isMultiplayer && isServer && !isDedicated;
 _isMultiplayerHost = isMultiplayer && isServer && !isDedicated;

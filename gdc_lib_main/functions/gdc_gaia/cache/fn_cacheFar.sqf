@@ -1,6 +1,3 @@
-if (!MCC_GAIA_HC) then {
-	if (!isServer) exitWith {};
-};
 private ["_group"];
 
 _group = _this select 0;
