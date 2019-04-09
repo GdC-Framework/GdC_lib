@@ -1,4 +1,6 @@
-if(!isServer ) exitWith {};
+if (!MCC_GAIA_HC) then {
+	if (!isServer) exitWith {};
+};
 private["_count"];
 
 

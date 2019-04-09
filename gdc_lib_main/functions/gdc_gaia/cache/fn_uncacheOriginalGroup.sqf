@@ -1,4 +1,6 @@
-if(!isServer) exitWith {};
+if (!MCC_GAIA_HC) then {
+	if (!isServer) exitWith {};
+};
 
 _sf = _this select 0 select 0;
 _respawn = _this select 1;
