@@ -42,6 +42,10 @@ _veh_group = createGroup _group_side;
     if ((_fly_params select 2) > 0) then {
         _vehicle_spawn setVelocity [(_fly_params select 2) * (sin _unit_dir), (_fly_params select 2) * (cos _unit_dir), 0];
     };
+    if ((_fly_params select 1) > 0) then {
+        _vehicle_spawn flyInHeightASL [(_fly_params select 1), (_fly_params select 1), (_fly_params select 1)];
+        _vehicle_spawn setpos [(_unit_pos select 0), (_unit_pos select 1), (_fly_params select 1)];
+    };
 
     if (LUCY_IA_REMOVE_VEHICLES_INVENTORY) then {
         [_vehicle_spawn] call GDC_fnc_lucyVehicleRemoveItems;
