@@ -26,7 +26,7 @@ _success = true;
 	} forEach (waypoints lucyGroup);
 
 	if( !_good ) then {
-		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrol generate wrong waypoint with test number "] + _forEachIndex);
+		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrol generate wrong waypoint with test number ", _forEachIndex]);
 		_success = false;
 	};
 
@@ -55,7 +55,7 @@ _success = true;
 	} forEach (waypoints lucyGroup);
 
 	if( !_good ) then {
-		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrolFixPoints generate wrong waypoint with test number "] + _forEachIndex);
+		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrolFixPoints generate wrong waypoint with test number ", _forEachIndex]);
 		_success = false;
 	};
 
