@@ -9,12 +9,12 @@
 		3 : STRING - Side (WEST, EAST, INDEPENDENT, CIVILIAN)
 		4 : ARRAY - Config for the plane ["plane class name", "pilot class name", "plane altitude (m)", "plane speed (m/s)" (optional)]
 		5 : ARRAY - Array of infantry soldiers (the group which will be paradropped)
-        6 (optional) : STRING - Speed mode of the vehicle - LIMITED, NORMAL, FULL (Default "FULL")
+        6 (optional) : STRING - Speed mode of the vehicle - LIMITED, NORMAL, FULL (Default "LIMITED")
 	Returns:
 	[The group which will be paradropped, the plane group]
 */
 
-params["_pos_spawn", "_pos_drop", "_pos_exit", "_side", "_plane_config", "_infantry_units", ["_veh_speed", "FULL"]];
+params["_pos_spawn", "_pos_drop", "_pos_exit", "_side", "_plane_config", "_infantry_units", ["_veh_speed", "LIMITED"]];
 private["_cleaned_pos_spawn", "_next_waypoint_pos", "_plane_spawn", "_grp_inf", "_drop_statement", "_plane_speed", "_computed_angle", "_plane_group"];
 
 // Extract the first position and get next waypoint to compute the angle
