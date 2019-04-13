@@ -1,5 +1,3 @@
-if (!isServer) exitWith {};
-
 private [ "_condition", "_targetlist", "_mklist", "_ActualTargets", "_cntC", "_target", "_mkname", "_i", "_vehicleClass", "_Handle", "_gaiaunitsfound"];
 
 

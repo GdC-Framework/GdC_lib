@@ -1,7 +1,4 @@
-if(!isServer ) exitWith {};
 private["_count"];
-
-
 
 while {true} do {
 	{

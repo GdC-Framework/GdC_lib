@@ -1,5 +1,3 @@
-if(!isServer) exitWith {};
-
 _sf = _this select 0 select 0;
 _respawn = _this select 1;
 _cache = _this select 2;

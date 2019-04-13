@@ -1,4 +1,3 @@
-if(!isServer) exitWith {};
 private ["_group"];
 
 _group = _this select 0;

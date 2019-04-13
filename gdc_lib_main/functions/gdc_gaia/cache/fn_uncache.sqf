@@ -1,4 +1,3 @@
-if(!isServer) exitWith {};
 private ["_count"];
 _count = 0;
 

@@ -1,5 +1,3 @@
-if(!isServer) exitWith {};
-
 _sf = _this select 0;
 
 _uv = [];
