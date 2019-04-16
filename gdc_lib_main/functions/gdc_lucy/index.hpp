@@ -21,8 +21,10 @@ class lucySpawn
     class lucySpawnGroupInf {};
     class lucySpawnGroupInfParadrop {};
     class lucySpawnGroupVehicle {};
-    class lucySpawnStaticInf {};                
-    class lucySpawnVehicleReinforcement {};                
+    class lucySpawnVehicle {};
+    class lucySpawnVehicleCrew {};
+    class lucySpawnStaticInf {};
+    class lucySpawnVehicleReinforcement {};
 };
 class lucyUtilities
 {
