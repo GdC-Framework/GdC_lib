@@ -14,6 +14,8 @@ class lucyMoves
     class lucyAddWaypointListMoveCycle {};
     class lucyGroupRandomPatrol {};
     class lucyGroupRandomPatrolFixPoints {};
+    class lucyTransportReinforcement {};
+    class lucyReinforcement {};
 };
 class lucySpawn
 {

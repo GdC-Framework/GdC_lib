@@ -19,6 +19,7 @@ params ["_veh","_side","_crew",["_skill",-1]];
 private ["_group","_u"];
 
 _group = createGroup _side;
+if ((count _crew) == 0) exitwith {_group;};
 {
 	_x createUnit [[0,0,0],_group,""];
 	_u = (units _group) select _foreachindex;
