@@ -36,6 +36,8 @@ _unloadPos = (_wpsIN select ((count _wpsIN) - 1));
 _group setSpeedMode (_behavior#0);
 _group setBehaviour (_behavior#1);
 _group setCombatMode (_behavior#2);
+
+// Est-ce vraiment nécessaire ? Si non mieux vaut l'enlever pour éviter les emmerdes.
 {
 	_x disableAI "AUTOTARGET";
 	_x disableAI "AUTOCOMBAT";
@@ -67,7 +69,7 @@ _timeout = if (_veh isKindOf "Helicopter") then {[5,5,5]} else {[10,13,16]}; // 
 {
 	if (_delete) then {
 		if (_forEachIndex == (count _wpsOUT - 1)) then {
-			_statement = ["true",format["private _veh = vehicle this; private _nearest = [getPos _veh] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 5000) then {{_veh deleteVehicleCrew _x} forEach crew _veh; deleteVehicle _veh;};"]];
+			_statement = ["true",format["private _veh = vehicle this; private _nearest = [getPos _veh] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 3000) then {{_veh deleteVehicleCrew _x} forEach crew _veh; deleteVehicle _veh;};"]];
 		};
 	};
 	[_group,_x,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,[0,0,0],_statement] call GDC_fnc_lucyAddWaypoint;

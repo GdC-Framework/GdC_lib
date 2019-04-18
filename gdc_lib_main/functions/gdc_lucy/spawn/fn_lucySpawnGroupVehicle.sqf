@@ -1,3 +1,4 @@
+/* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 /*
 	Author: Mystery
 
@@ -20,6 +21,8 @@
 	Returns:
 	An array which contains: [New group created, list of all group vehicles]
 */
+
+/* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Parameters
 params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", []], ["_inf_troops", []], ["_force_cargo", True], 
@@ -103,6 +106,8 @@ _veh_group = createGroup _group_side;
 
 // Force the leader of this fucking vehiculed group !
 _veh_group selectLeader (effectiveCommander (_vehicles_spawn select 0));
+
+systemchat "WARNING ! GDC_fnc_lucySpawnGroupVehicle is no longer maintained use GDC_fnc_lucySpawnVehicle instead";
 
 sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 LUCY_SPAWN_VEH_IN_PROGRESS = False;

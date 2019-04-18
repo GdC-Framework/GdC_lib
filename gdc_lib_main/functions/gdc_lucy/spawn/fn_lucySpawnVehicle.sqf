@@ -7,7 +7,7 @@
 	Parameter(s):
 		0 : ARRAY - Spawn position
         1 : STRING - Group Side (WEST, EAST, INDEPENDENT, CIVILIAN)
-        2 : STRING - type of vehicles (Vehicles will spawn empty)
+        2 : STRING - type of vehicle (Vehicle will spawn empty)
         3 : ARRAY of STRINGs - Vehicle crew classnames
         4 (optional): NUMBER - Vehicles direction (Azimuth 0 - 360) - Default is 0
         5 (optional): ARRAY - Array flying parameters [Special(NONE, FLY, FORM), Altitude(m) , Speed (m/s)] - Default is ["NONE", 0, 0] - Use them only for aerial vehicles

@@ -1,3 +1,4 @@
+/* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 /*
 	Author: Mystery
 
@@ -21,6 +22,8 @@
 	Returns:
 	An array which contains: [Vehicle group, vehicle object, Infantry landed group]
 */
+
+/* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Function parameters
 params ["_vehicle_params", "_inf_group", "_side", "_vehicle_azimuth", "_spawn_pos", "_array_go_to_land_pos", "_array_go_out_area_pos", ["_array_inf_target_pos", []], 
@@ -89,6 +92,8 @@ _delete_statement = ["true", ""];
     [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0, 
     _array_vehicle_waypoints_params select 1, _array_vehicle_waypoints_params select 2, "COLUMN", 10.0, [0, 0, 0], _delete_statement] call GDC_fnc_lucyAddWaypoint;
 } forEach _array_go_out_area_pos;
+
+systemchat "WARNING ! GDC_fnc_lucySpawnVehicleReinforcement is no longer maintained use GDC_fnc_lucyTransportReinforcement instead";
 
 // Return groups
 [_group_vehicle select 0, (_group_vehicle select 1) select 0, _group_inf];
