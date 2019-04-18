@@ -9,15 +9,15 @@
 		1 : ARRAY - Array of WP positions
 		2 (optional): STRING - condition before the group starts its move - Default is "true"
 		3 (optional): ARRAY - time before the group starts its move [min,mid,max] - Default is [0,0,0]
-		4 (optional): ARRAY - Array for group travel waypoints behaviour [speed, behaviour, combat mode] - Default is ["NORMAL", "AWARE", "YELLOW"]
+		4 (optional): ARRAY - Array for group travel waypoints behaviour [speed, behaviour, combat mode] - Default is ["NORMAL","AWARE","YELLOW"]
 		6 (optional): STRING - travel group formation (NO CHANGE, RANDOM, COLUMN, STAG COLUMN, WEDGE, ECH LEFT, ECH RIGHT, VEE, LINE, FILE, DIAMOND) - Default is "NO CHANGE"
 		+ (optional): STRING - Type of the last WP - Default is "SAD"
-		7 (optional): ARRAY - Array for group last waypoint behaviour [speed, behaviour, combat mode] - Default is ["FULL", "COMBAT", "RED"]
+		7 (optional): ARRAY - Array for group last waypoint behaviour [speed, behaviour, combat mode] - Default is ["FULL","COMBAT","RED"]
 		8 (optional): STRING - last WP group formation (NO CHANGE, RANDOM, COLUMN, STAG COLUMN, WEDGE, ECH LEFT, ECH RIGHT, VEE, LINE, FILE, DIAMOND) - Default is "NO CHANGE"
 		9 (optional): STRING - code executed when the group reaches its last waypoint - Default is ""
 		10 (optional): NUMBER or STRING - Default is 0
-				NUMBER : radius. If > 0 the group will patrol around its last waypoint in the given radius
-				STRING : marker. The group will patrol in the given marker
+				NUMBER : radius. If > 0 the group will patrol around its last waypoint in the given radius (predefined path)
+				STRING : marker. The group will patrol randomly in the given marker
 
 	Returns:
 	Nothing
@@ -55,17 +55,25 @@ if (!(_condition == "true") OR !(_timeout in [[0,0,0]])) then {
 
 
 // Create patrol if requested
-if (((TypeName _patrolRadius) == "SCALAR") && (_patrolRadius > 0)) then {
+switch (TypeName _patrolRadius) do {
+	case "SCALAR" : {
+		if (_patrolRadius > 0) then {
 		// Group will patrol in the given radius
-		_nbr = (round (_patrolRadius/100)) max 4;
-		_timeout = if (LUCY_RANDOM_PATROL_MAX_TIMEOUT < 1) then {1} else {LUCY_RANDOM_PATROL_MAX_TIMEOUT};
-		for "_i" from 1 to _nbr do {
-			[_group,_wpLast,_patrolRadius,_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,5,[0,_timeout/2,_timeout]] call GDC_fnc_lucyAddWaypoint;
+			_nbr = (round (_patrolRadius/100)) max 4;
+			_timeout = if (LUCY_RANDOM_PATROL_MAX_TIMEOUT < 1) then {1} else {LUCY_RANDOM_PATROL_MAX_TIMEOUT};
+			for "_i" from 1 to _nbr do {
+				//_pos = _wpLast getpos [(random [(_patrolRadius/3),_patrolRadius,_patrolRadius]),(random 360)];
+				_pos = _wpLast getpos [(random [0,_patrolRadius,_patrolRadius]),(random 360)];
+				[_group,_pos,0,_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,5,[0,_timeout/2,_timeout]] call GDC_fnc_lucyAddWaypoint;
+			};
+			[_group,_wpLast,0,"CYCLE",(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,5] call GDC_fnc_lucyAddWaypoint;
 		};
-		[_group,_wpLast,0,"CYCLE",(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,5] call GDC_fnc_lucyAddWaypoint;
-} else {
-	if ((TypeName _patrolRadius) == "STRING") then {
-		// Group will patrol in the given marker
-		[_group,_patrolRadius,[_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast]] call GDC_fnc_lucyGroupRandomPatrol;
 	};
+	case "STRING" : {
+		if (_patrolRadius in allMapMarkers) then {
+			// Group will patrol in the given marker
+			[_group,_patrolRadius,[_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast]] call GDC_fnc_lucyGroupRandomPatrol;
+		};
+	};
+	default {};
 };
