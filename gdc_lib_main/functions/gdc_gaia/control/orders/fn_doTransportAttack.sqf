@@ -37,9 +37,13 @@ if ( _wppos distance [0,0,0]>0) then {
             if (
                 //Seems like allgroups opens up with all sorts of empty groups, better check it
                 ((side _TransportGrp) == (side _group))
+                // Ignore SHIP, that was never implemented
+                and _TransportClass != "Ship"
                 and (count(units _TransportGrp)>0)
                 and (alive (leader _TransportGrp))
                 and ((behaviour leader _TransportGrp)!="COMBAT")
+                // Check if the transport unit is Gaia
+				and (count(_x getVariable ["GAIA_zone_intend",[]])>1)
                 //The transport vehicle must not be occupied
                 and ((_x getVariable ["GAIA_Order", ""]) != "DoTransport")
                 //The transport vehicle must not be busy with an attack
@@ -70,7 +74,7 @@ if ( _wppos distance [0,0,0]>0) then {
                         _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_doTransportHelicopter;
                     };
                     case "Ship": {
-                        _dummy = [_group,_TransportGrp] call fnc_DoTransportShip;
+                        // _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_DoTransportShip;
                     };
                 };
             };
