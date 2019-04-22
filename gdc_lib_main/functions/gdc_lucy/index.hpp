@@ -14,6 +14,8 @@ class lucyMoves
     class lucyAddWaypointListMoveCycle {};
     class lucyGroupRandomPatrol {};
     class lucyGroupRandomPatrolFixPoints {};
+    class lucyTransportReinforcement {};
+    class lucyReinforcement {};
 };
 class lucySpawn
 {
@@ -21,8 +23,10 @@ class lucySpawn
     class lucySpawnGroupInf {};
     class lucySpawnGroupInfParadrop {};
     class lucySpawnGroupVehicle {};
-    class lucySpawnStaticInf {};                
-    class lucySpawnVehicleReinforcement {};                
+    class lucySpawnVehicle {};
+    class lucySpawnVehicleCrew {};
+    class lucySpawnStaticInf {};
+    class lucySpawnVehicleReinforcement {};
 };
 class lucyUtilities
 {
