@@ -9,7 +9,7 @@
 		3 : SIDE - Side (WEST, EAST, INDEPENDENT, CIVILIAN)
 		4 : ARRAY - Config for the plane ["plane class name", "pilot class name", "plane altitude (m)", "plane speed (m/s)" (optional)]
 		5 : ARRAY - Array of infantry soldiers (the group which will be paradropped)
-        6 (optional) : STRING - Speed mode of the vehicle - LIMITED, NORMAL, FULL (Default "LIMITED")
+		6 (optional) : STRING - Speed mode of the vehicle - LIMITED, NORMAL, FULL (Default "LIMITED")
 	Returns:
 	[The group which will be paradropped, the plane group]
 */

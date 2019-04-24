@@ -66,6 +66,7 @@ _timeout = if (_veh isKindOf "Helicopter") then {[5,5,5]} else {[10,13,16]}; // 
 [_group,_unloadPos,0,"TR UNLOAD",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,_timeout,["true",(_code + _statement)]] call GDC_fnc_lucyAddWaypoint;
 
 // Create full path OUT for vehicule
+_statement = ["true",""];
 {
 	if (_delete) then {
 		if (_forEachIndex == (count _wpsOUT - 1)) then {
