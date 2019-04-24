@@ -91,6 +91,11 @@ if (isnil "gdc_plutoRun") then {
 	gdc_plutoRun = true;
 };
 
+// En cas d'absence du slot HC
+if (isNil "HC_Slot") then {
+	HC_Slot = objNull;
+};
+
 // Lancement de Pluto
 [] spawn {
 	waitUntil {time > 5};
