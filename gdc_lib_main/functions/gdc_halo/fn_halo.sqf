@@ -43,14 +43,26 @@ if (_area == "") then {
 	gdc_halo_area setMarkerSizeLocal [4,4];
 	gdc_halo_area setMarkerAlphaLocal 0;
 	if (isServer) then {
-	_veh = "VR_Area_01_circle_4_yellow_F" createVehicle (getPos _object);
-	_veh setpos (getPos _object);
+		_veh = "VR_Area_01_circle_4_yellow_F" createVehicle (getPos _object);
+		_veh setpos (getPos _object);
 	};
 };
 // Nombre de places passagers
 _veh = gdc_halo_vtype createVehicleLocal [0,0,0];
 gdc_halo_seats = _veh emptyPositions "cargo";
 deleteVehicle _veh;
+
+// In some case, createVehicleLocal create wrong vehicle with wrong data, 
+// so when the mission is initialized we got the real data
+if (isServer) then {
+	[] spawn {
+		waituntil {time > 0};
+		private _veh = gdc_halo_vtype createVehicleLocal [0,0,0];
+		gdc_halo_seats = _veh emptyPositions "cargo";
+		deleteVehicle _veh;
+		publicVariable "gdc_halo_seats";
+	};
+};
 
 // Altitude de vol par défaut
 if (_alt == -1) then {
@@ -76,15 +88,15 @@ if (_alt == -1) then {
 };
 if (gdc_halo_dzpos in [[0,0,0]]) then {
 	if (gdc_halo_lalo) then {
-	_txt = "Saut LALO (avec choix)";
+		_txt = "Saut LALO (avec choix)";
 	} else {
-	_txt = "Saut HALO (avec choix)";
+		_txt = "Saut HALO (avec choix)";
 	};
 } else {
 	if (gdc_halo_lalo) then {
-	_txt = "Saut LALO (sans choix)";
+		_txt = "Saut LALO (sans choix)";
 	} else {
-	_txt = "Saut HALO (sans choix)";
+		_txt = "Saut HALO (sans choix)";
 	};
 };
 
