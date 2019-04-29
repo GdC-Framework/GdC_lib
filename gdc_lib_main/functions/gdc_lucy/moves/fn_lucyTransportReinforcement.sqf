@@ -9,7 +9,7 @@
 		1 : GROUP - infantry transported in cargo
 		2 : ARRAY - Array of positions to go to unload position - Last position is unload position
 		3 (optional): ARRAY - Array of positions to go out of the area - Default is []
-		4 (optional): ARRAY - Array for vehicle waypoints behaviour [speed, behaviour, combat mode] - Default is ["FULL", "CARELESS", "GREEN"]
+		4 (optional): ARRAY - Array for vehicle waypoints behaviour [speed, behaviour, combat mode] - Default is ["NORMAL", "CARELESS", "GREEN"]
 		5 (optional): STRING - condition before the vehicle starts its move - Default is "true"
 		6 (optional): ARRAY - time before the vehicle starts its move [min,mid,max] - Default is [0,0,0]
 		7 (optional): STRING - code executed when the vehicle reaches its unload waypoint - Default is ""
@@ -19,7 +19,7 @@
 	Nothing
 */
 
-params ["_veh","_cargo","_wpsIN",["_wpsOUT",[]],["_behavior",["FULL","CARELESS","GREEN"]],["_condition","true"],["_timeout",[0,0,0]],["_statement",""],["_delete",true]];
+params ["_veh","_cargo","_wpsIN",["_wpsOUT",[]],["_behavior",["NORMAL","CARELESS","GREEN"]],["_condition","true"],["_timeout",[0,0,0]],["_statement",""],["_delete",true]];
 
 private ["_group","_unloadPos","_code","_wp","_pos"];
 
@@ -66,6 +66,7 @@ _timeout = if (_veh isKindOf "Helicopter") then {[5,5,5]} else {[10,13,16]}; // 
 [_group,_unloadPos,0,"TR UNLOAD",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,_timeout,["true",(_code + _statement)]] call GDC_fnc_lucyAddWaypoint;
 
 // Create full path OUT for vehicule
+_statement = ["true",""];
 {
 	if (_delete) then {
 		if (_forEachIndex == (count _wpsOUT - 1)) then {

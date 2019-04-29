@@ -47,6 +47,7 @@ for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
     _unit_type createUnit[getMarkerPos LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME, _unit_group, _unit_init];
     _unit_spawn = (units _unit_group) select 0;
     _unit_spawn setVariable[LUCY_UNIT_TYPE, LUCY_UNIT_TYPE_STATIC, True];
+    _unit_spawn setDir ((_unit_pos_dir select _i) select 3);
     _unit_spawn setFormDir ((_unit_pos_dir select _i) select 3);
     _unit_spawn setPosASL [(_unit_pos_dir select _i) select 0, (_unit_pos_dir select _i) select 1, (_unit_pos_dir select _i) select 2];      
     _unit_spawn setUnitPos _unit_weak;

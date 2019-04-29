@@ -1,5 +1,9 @@
 
-// Attribute values are saved in module's object space under their class names
+// En cas d'absence du slot HC
+if (isNil "HC_Slot") then {
+	HC_Slot = objNull;
+};
+
 if(hasInterface) then {
 	_inventory = getMissionConfigValue ["GDC_Inventory",false];
 	_roster = getMissionConfigValue ["GDC_Roster",false];
