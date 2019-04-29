@@ -40,7 +40,7 @@
 		(group this) setVariable ["PLUTO_ARTYERROR",[0,40,100]];
 */
 
-//if (isMultiplayer && hasInterface) exitWith {}; // Ceci empêche l'exécution en multi hosté
+if (hasInterface && !isServer) exitWith {};
 
 params ["_side",["_rangeReveal",[1000,2000,6000]],["_rangeSensor",[1500,2000,3000]],["_timeoutQRF",120],["_rangeQRF",[1000,2000,6000]],["_QRFDelay",[20,30,60]],["_timeoutarty",240],["_artydelay",[20,30,60]],["_artyrounds",[1,2,4]],["_artyerror",[0,40,100]]];
 private ["_boucle"];
@@ -89,11 +89,6 @@ if (isnil "gdc_plutoDebug") then {
 // La boucle tourne
 if (isnil "gdc_plutoRun") then {
 	gdc_plutoRun = true;
-};
-
-// En cas d'absence du slot HC
-if (isNil "HC_Slot") then {
-	HC_Slot = objNull;
 };
 
 // Lancement de Pluto
