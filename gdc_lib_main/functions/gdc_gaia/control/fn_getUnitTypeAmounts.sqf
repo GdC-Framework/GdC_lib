@@ -59,7 +59,8 @@ if (isNil "_units") exitWith {
             if (!(_vehicleX in _tempVehicles) and !(_x in (assignedCargo _vehicleX))) then {
 
                 _tempVehicles set [count _tempVehicles, vehicle _x];
-                _SoldierCargo = getNumber (configFile >> "CfgVehicles" >> _typeVehicleX >> "transportSoldier");
+                _SoldierCargo = count ("getNumber (_x >> 'isPersonTurret') > 0" configClasses (configFile >> "CfgVehicles" >> _typeVehicleX >> "Turrets"));
+                _SoldierCargo = _SoldierCargo + (getNumber (configFile >> "CfgVehicles" >> _typeVehicleX >> "transportSoldier"));
                 _simType = tolower (getText (configFile >> "CfgVehicles" >> _typeVehicleX >> "simulation"));
                 _CargoCount = _CargoCount + _SoldierCargo;
                 _TurretWeapons = (_typeVehicleX) call GDC_gaia_fnc_getTurretWeapons;
