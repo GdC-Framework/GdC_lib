@@ -47,22 +47,10 @@ if (_area == "") then {
 		_veh setpos (getPos _object);
 	};
 };
-// Nombre de places passagers
-_veh = gdc_halo_vtype createVehicleLocal [0,0,0];
-gdc_halo_seats = _veh emptyPositions "cargo";
-deleteVehicle _veh;
 
-// In some case, createVehicleLocal create wrong vehicle with wrong data, 
-// so when the mission is initialized we got the real data
-if (isServer) then {
-	[] spawn {
-		waituntil {time > 0};
-		private _veh = gdc_halo_vtype createVehicleLocal [0,0,0];
-		gdc_halo_seats = _veh emptyPositions "cargo";
-		deleteVehicle _veh;
-		publicVariable "gdc_halo_seats";
-	};
-};
+// Nombre de places passagers
+gdc_halo_seats = count ("getNumber (_x >> 'isPersonTurret') > 0" configClasses (configFile >> "CfgVehicles" >> gdc_halo_vtype >> "Turrets"));
+gdc_halo_seats = gdc_halo_seats + (getNumber (configFile >> "CfgVehicles" >> gdc_halo_vtype >> "transportSoldier"));
 
 // Altitude de vol par défaut
 if (_alt == -1) then {
