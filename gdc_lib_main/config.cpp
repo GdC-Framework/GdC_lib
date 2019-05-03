@@ -27,6 +27,7 @@ class CfgFunctions
 };
 
 class ctrlMenuStrip;
+class ctrlMenu;
 class display3DEN
 {
 	class Controls
@@ -60,6 +61,48 @@ class display3DEN
 					text = "Creer le HC";
 					action = "[] call GDC_fnc_3denCreateHCSlot";
 				};
+			};
+		};
+	};
+	class ContextMenu: ctrlMenu
+	{
+		class Items
+		{
+			class Log
+			{
+				items[] += {"GDC_exportMultiplePosAslDir","STDR_exportMultiplePosAgls","STDR_exportMultipleClasses"};
+			};
+			class GDC_exportMultiplePosAslDir
+			{
+				text = "Exporter positions ASL [_x,_y,_z,_dir]";
+				action = "[(get3DENSelected ""object""),0] call GDC_fnc_3denExportMultiplePos;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class STDR_exportMultiplePosAgls
+			{
+				text = "Exporter positions [_x,_y,_z]";
+				action = "[(get3DENSelected ""object""),1] call GDC_fnc_3denExportMultiplePos;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class STDR_exportMultipleClasses
+			{
+				text = "Exporter classnames [""_class"",""_class"",etc]";
+				action = "[(get3DENSelected ""object"")] call GDC_fnc_3denExportMultipleClasses;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class Edit
+			{
+				items[] += {"GDC_FillMedicalBackpack"};
+			};
+			class GDC_FillMedicalBackpack
+			{
+				text = "Sac à dos médical standard";
+				action = "[(get3DENSelected ""object"")] call GDC_fnc_3denFillMedicalBackpack;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 		};
 	};
