@@ -6,4 +6,6 @@ class utilInternal
     class prepareBlacklistForRandomPos {};
     class StringStartWith {};
     class animVehicleDoor {};
+    class getUniqueId {};
+    class expressionToString {};
 };

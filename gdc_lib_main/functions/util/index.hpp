@@ -9,4 +9,6 @@ class util
     class getPositionsFromReference {};
     class createGroupCompo {};
     class markerToDAGR {};
+    class addSingleUseAction {};
+    class addSingleUseHoldAction {};
 };
