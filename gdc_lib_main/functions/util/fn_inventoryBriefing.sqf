@@ -212,6 +212,9 @@ _addLoadoutUnitToDiary =
 	} forEach (_weaponsList + _itemsList);
 };
 
+// If spectator or zeus... there is no inventory so don't care about this feature!
+if(isNull player) exitWith {};
+
 _text = "";
 [player] call _addLoadoutUnitToDiary;
 _name = name player;
