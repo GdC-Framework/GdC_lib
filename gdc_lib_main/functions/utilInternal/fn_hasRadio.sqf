@@ -1,7 +1,7 @@
 /*
 	Description:
 		Check if the unit has a radio with the asked type
-		[_unit, _radioType] call GDC_fnc_hasRadioOnRightChannel
+		[_unit, _radioType] call GDC_fnc_hasRadio
 
 	Parameter(s):
 		0 (optional): STRING - Unit to check
