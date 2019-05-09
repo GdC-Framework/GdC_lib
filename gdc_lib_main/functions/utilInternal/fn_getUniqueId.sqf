@@ -1,6 +1,4 @@
 /*
-	Author: Shinriel
-
 	Description:
 		Extract the unique identifier from an object.
 

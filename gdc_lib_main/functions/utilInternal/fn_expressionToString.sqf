@@ -1,6 +1,4 @@
 /*
-	Author: Shinriel
-
 	Description:
 		To string the expression, and remove the brackets to be able to recompile it.
 

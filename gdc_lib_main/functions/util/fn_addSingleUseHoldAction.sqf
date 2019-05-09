@@ -1,6 +1,4 @@
 /*
-	Author: Shinriel
-
 	Description:
 		Add an action for all user, that should be use only one time.
 		That's mean, when a user use the action, it will be destroy for all of them.
