@@ -66,7 +66,7 @@ _newFunction = _newFunction + "
 	[[_target, _varName], {
 		params[""_target"", ""_varName""];
 		_target removeaction (_target getVariable [_varName, nil]);
-	}] remoteExec [""call"", 2];
+	}] remoteExec [""call"", 0];
 ";
 
 // Update the addActions arguments with the new function
@@ -99,5 +99,5 @@ if ((count _addActionParams) >= 3) then {
 		_action = _obj addAction _addActionParams;
 		_obj setVariable [_varName, _action];
 	}
-] remoteExec ["call", 2];
+] remoteExec ["call", 0];
 

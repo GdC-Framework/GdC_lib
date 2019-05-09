@@ -64,7 +64,7 @@ _newFunction = _newFunction + "
 	[[_target, _varName], {
 		params[""_target"", ""_varName""];
 		[_target, _target getVariable [_varName, -1]] call BIS_fnc_holdActionRemove;
-	}] remoteExec [""call"", 2];
+	}] remoteExec [""call"", 0];
 ";
 
 // Update the new function
@@ -129,5 +129,5 @@ _newThis set [10, [_varName, _arguments]];
 
 	_action = _params call BIS_fnc_holdActionAdd;
 	_obj setVariable [_varName, _action];
-}] remoteExec ["call", 2];
+}] remoteExec ["call", 0];
 
