@@ -13,7 +13,7 @@
 
 private["_functionString", "_functionArray", "_startIndex", "_endIndex"];
 
-_functionString = str _function;
+_functionString = str _this;
 
 // Remove the brackets to convert it as string
 _startIndex = _functionString find "{";

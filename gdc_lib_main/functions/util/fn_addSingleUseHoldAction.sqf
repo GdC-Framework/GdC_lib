@@ -34,45 +34,102 @@
 
 if (!isServer) exitWith {};
 
-private["_obj", "_title", "_uid", "_function", "_newFunction"];
-_obj = _this select 0;
-_title = _this select 1;
-_function = _this select 8;
+params["_obj", "", "", "", "", "", 
+	["_codeStart", {}], ["_codeProgress", {}], ["_codeCompleted", {}], ["_codeInterrupted", {}],
+	["_arguments", []]];
 
-_newFunction = "
-	params [""_target""];
-	private[""_uid""];
+private["_newThis", "_title", "_uid", "_uniqueIndex", "_functionHeader", "_newFunction"];
+_newThis = +_this;
+
+_uniqueIndex = _obj getVariable ["GDC_SingleUseHoldAction_Index", 0];
+// Increment for next action
+_obj setVariable ["GDC_SingleUseHoldAction_Index", _uniqueIndex + 1, true];
+
+
+_newFunction = "";
+_functionHeader = "
+	params [""_target"", ""_caller"", ""_actionId"", ""_arguments""];
+	_arguments params [""_varName"", ""_internalArguments""];
 ";
 
-if(typeName _function == "STRING") then {
-	_newFunction = _newFunction + "
-		_this execVM """ + _function + """;
+if(typeName _codeCompleted == "STRING") then {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeCompleted + """;
 	"; 
 } else {
-	_newFunction = _newFunction + "
-		_this call (compile " + (str (_function call GDC_fnc_expressionToString)) + ");
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeCompleted call GDC_fnc_expressionToString)) + ");
 	"; 
 };
 
 _newFunction = _newFunction + "
-	_uid = _target call GDC_fnc_getUniqueId;
-	_uid = _uid + """ + _title + """;
-	[[_target, _uid], {
-		params[""_target"", ""_uid""];
-		[_target, parseNumber (missionNamespace getVariable [_uid, nil])] call BIS_fnc_holdActionRemove;
+	[[_target, _varName], {
+		params[""_target"", ""_varName""];
+		[_target, _target getVariable [_varName, -1]] call BIS_fnc_holdActionRemove;
 	}] remoteExec [""call"", 2];
 ";
 
 // Update the new function
-_this set [8, compile _newFunction];
+_newThis set [8, compile _newFunction];
 
-_uid = _obj call GDC_fnc_getUniqueId;
-_uid = _uid + _title;
+// Update codeStart
+_newFunction = "";
+if(typeName _codeStart == "STRING") then {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeStart + """;
+	"; 
+} else {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeStart call GDC_fnc_expressionToString)) + ");
+	"; 
+};
 
-[[_this, _uid], {
-	params["_params", "_uid"];
+_newThis set [6, compile _newFunction];
+
+// Update _codeInterrupted
+_newFunction = "";
+if(typeName _codeInterrupted == "STRING") then {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeInterrupted + """;
+	"; 
+} else {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeInterrupted call GDC_fnc_expressionToString)) + ");
+	"; 
+};
+
+_newThis set [9, compile _newFunction];
+
+
+// Update codeProgress
+_newFunction = "";
+_functionHeader = "
+	params [""_target"", ""_caller"", ""_actionId"", ""_arguments"", ""_progress"", ""_maxProgress""];
+	_arguments params [""_varName"", ""_internalArguments""];
+";
+
+if(typeName _codeProgress == "STRING") then {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments, _progress, _maxProgress] execVM """ + _codeProgress + """;
+	"; 
+} else {
+	_newFunction = _functionHeader + "
+		[_target, _caller, _actionId, _internalArguments, _progress, _maxProgress] call (compile " + (str (_codeProgress call GDC_fnc_expressionToString)) + ");
+	"; 
+};
+
+_newThis set [7, compile _newFunction];
+
+
+// _uid = _obj call GDC_fnc_getUniqueId;
+// _uid = _uid + _title;
+_varName = "GDC" + "-singleUseHoldAction-" + (str _uniqueIndex);
+_newThis set [10, [_varName, _arguments]];
+
+[[_obj, _newThis, _varName], {
+	params["_obj", "_params", "_varName"];
 
 	_action = _params call BIS_fnc_holdActionAdd;
-	missionNamespace setVariable [_uid, str _action];
+	_obj setVariable [_varName, _action];
 }] remoteExec ["call", 2];
 

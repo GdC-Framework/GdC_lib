@@ -41,7 +41,7 @@ _addActionParams params[
 	["_arguments", []]
 ];
 
-private["_varName", "_newFunction"];
+private["_varName", "_newFunction"], "_uniqueIndex";
 
 if (!isServer) exitWith {};
 
