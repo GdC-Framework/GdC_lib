@@ -91,7 +91,7 @@ if ((count _addActionParams) >= 3) then {
 	[
 		_obj, 
 		_addActionParams, 
-		_uid
+		_varName
 	], 
 	{
 		params["_obj", "_addActionParams", "_varName"];
