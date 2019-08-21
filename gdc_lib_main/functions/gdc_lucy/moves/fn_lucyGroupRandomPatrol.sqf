@@ -53,12 +53,12 @@ _wp = [
     _group, 
     _random_pos, 
     5, 
-    _grp_params select 0,
-    _grp_params select 1, 
-    _grp_params select 2, 
-    _grp_params select 3,
-    _grp_params select 4,
+    _grp_params #0,
+    _grp_params #1, 
+    _grp_params #2, 
+    _grp_params #3,
+    _grp_params #4,
     15, 
     [0, _wp_timeout/2, _wp_timeout], 
-    ["true", format["nul = [this] spawn {[group (_this select 0), %1, %2, %3] call GDC_fnc_lucyGroupRandomPatrol;};", _mkr_param, _grp_params, _blacklist]]
+    ["true", format["nul = [this] spawn {[group (_this select 0), %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call GDC_fnc_lucyGroupRandomPatrol;};", _mkr_param, (_grp_params #0), _blacklist]]
 ] call GDC_fnc_lucyAddWaypoint;

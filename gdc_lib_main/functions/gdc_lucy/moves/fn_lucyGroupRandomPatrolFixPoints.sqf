@@ -42,17 +42,23 @@ if(typename _blacklist != "ARRAY") then {
     _blacklist = [_blacklist];
 };
 
+// Set speed, behavior, combat mode and formation
+_group setSpeedMode _grp_params #1;
+_group setBehaviour _grp_params #2;
+_group setCombatMode _grp_params #3;
+_group setFormation _grp_params #4;
+
 // Create random points in the area
 for [{_i=0}, {_i < _nb_points}, {_i = _i + 1}] do {
     _wp = [
         _group, 
         [_marker, _blacklist] call BIS_fnc_randomPos, 
         5, 
-        _grp_params select 0,
-        _grp_params select 1, 
-        _grp_params select 2, 
-        _grp_params select 3,
-        _grp_params select 4,
+        _grp_params #0,
+        "UNCHANGED", 
+        "UNCHANGED", 
+        "NO CHANGE",
+        "NO CHANGE",
         15, 
         [0, _wp_timeout/2, _wp_timeout]
     ] call GDC_fnc_lucyAddWaypoint;
@@ -64,13 +70,13 @@ for [{_i=0}, {_i < _nb_points}, {_i = _i + 1}] do {
 
 _wp = [
     _group, 
-    [(_cycle_pos select 0) + 10, (_cycle_pos select 1) + 10, _cycle_pos select 2], 
+    [(_cycle_pos #0) + 10, (_cycle_pos #1) + 10, _cycle_pos #2], 
     10, 
     "CYCLE", 
-    _grp_params select 1, 
-    _grp_params select 2, 
-    _grp_params select 3,
-    _grp_params select 4,
+    "UNCHANGED", 
+    "UNCHANGED", 
+    "NO CHANGE",
+    "NO CHANGE",
     15, 
     [0, _wp_timeout/2, _wp_timeout]
 ] call GDC_fnc_lucyAddWaypoint;
