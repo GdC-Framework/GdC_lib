@@ -11,4 +11,5 @@ class util
     class markerToDAGR {};
     class addSingleUseAction {};
     class addSingleUseHoldAction {};
+    class waitUntilPlayerInMarker {};
 };
