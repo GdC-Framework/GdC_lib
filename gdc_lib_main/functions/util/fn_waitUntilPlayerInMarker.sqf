@@ -18,17 +18,17 @@
 */
 
 params ['_marker', ['_wait', 5]];
-private ['all_players'];
+private ['_all_players'];
 
 if (isMultiplayer) then {
-	all_players = playableUnits;
+	_all_players = playableUnits;
 } else {
-	all_players = switchableUnits;
+	_all_players = switchableUnits;
 };
 
 waitUntil { 
 	sleep _wait;
 	// Check isPlayer, because can be a ia playable, but not a player for now
 	// But the playable unit, could become player ;)
-	({alive _x && isPlayer _x && _x inArea _marker} count all_players) > 0
+	({alive _x && isPlayer _x && _x inArea _marker} count _all_players) > 0
 };
