@@ -14,7 +14,7 @@
 	the new group created
 */
 
-private["_unit_spawn", "_unit_group"];
+private["_unit_group"];
 params ["_unit_pos", "_group_side", "_unit_type_array", ["_group_skill", -1]];
 
 // Check SPAWN/SCAN system
