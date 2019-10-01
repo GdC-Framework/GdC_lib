@@ -28,9 +28,15 @@ if (count _wp_timers == 0) then {
     } forEach _wp_positions;
 };
 
+// Set speed, behavior, combat mode and formation
+_group setSpeedMode _wp_speed;
+_group setBehaviour _wp_behaviour;
+_group setCombatMode _wp_combat_mode;
+_group setFormation _wp_formation;
+
 {
-    _wp = [_group, _x, 10, "MOVE", _wp_speed, _wp_behaviour, _wp_combat_mode, _wp_formation, _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
+    _wp = [_group, _x, 10, "MOVE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
 } forEach _wp_positions;
 
-_cycle_pos = _wp_positions select 0;
-_wp = [_group, [(_cycle_pos select 0) + 10, (_cycle_pos select 1) + 10, _cycle_pos select 2], 10, "CYCLE", _wp_speed, _wp_behaviour, _wp_combat_mode, _wp_formation, _wp_completion_radius] call GDC_fnc_lucyAddWaypoint; 
+_cycle_pos = _wp_positions #0;
+_wp = [_group, [(_cycle_pos #0) + 10, (_cycle_pos #1) + 10, _cycle_pos #2], 10, "CYCLE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius] call GDC_fnc_lucyAddWaypoint; 

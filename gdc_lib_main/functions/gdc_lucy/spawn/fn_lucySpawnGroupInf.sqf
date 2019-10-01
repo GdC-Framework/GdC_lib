@@ -14,7 +14,7 @@
 	the new group created
 */
 
-private["_unit_spawn", "_unit_group", "_unit_pos", "_group_skill", "_group_side", "_unit_type_array"];
+private["_unit_group"];
 params ["_unit_pos", "_group_side", "_unit_type_array", ["_group_skill", -1]];
 
 // Check SPAWN/SCAN system
@@ -23,14 +23,12 @@ LUCY_SPAWN_INF_IN_PROGRESS = True;
 
 _unit_group = createGroup _group_side;
 {
-    _unit_spawn = _unit_group createUnit[_x, _unit_pos, [], 0, "NONE"];
-    if (_forEachIndex == 0) then {
-        _unit_spawn setRank LUCY_IA_RANK_LEADER;
-    };
-    
-    [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
-    [_unit_spawn] joinSilent _unit_group;
+    _x createUnit [_unit_pos,_unit_group,"",0.5,(if (_forEachIndex == 0) then {LUCY_IA_RANK_LEADER} else {"PRIVATE"})];
 } forEach _unit_type_array;
+
+{
+    [_x, _group_skill] call GDC_fnc_lucyAISetConfig;
+} forEach (units _unit_group);
 
 sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 LUCY_SPAWN_INF_IN_PROGRESS = False;
