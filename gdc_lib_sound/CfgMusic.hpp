@@ -37,4 +37,20 @@ class CfgMusic
 		theme = "safe";
 		musicClass = "gdc_lib_music";
 	};
+	class gdc_lib_sound_music_waiting_for // Musique crée par Looping
+	{
+		name="Waiting For (by Looping)";
+		sound[]={"\gdc_lib_sound\data\waiting_for.ogg",1,1};
+		duration = 200;
+		theme = "safe";
+		musicClass = "gdc_lib_music";
+	};
+	class gdc_lib_sound_music_trouble_distress // Musique crée par Looping
+	{
+		name="Trouble Distress (by Looping)";
+		sound[]={"\gdc_lib_sound\data\trouble_distress.ogg",1,1};
+		duration = 42;
+		theme = "safe";
+		musicClass = "gdc_lib_music";
+	};
 };
