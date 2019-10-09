@@ -34,6 +34,7 @@ LUCY_INIT = FALSE;
 // *** LUCY IA CONFIGURATION ***
 // Spawn delay between each unit
 LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT = _ia_spawn_delay;
+LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH = 1 min _ia_spawn_delay;
 // Marker name to temporary spawn static units before move to their position
 LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME = _ia_spawn_static_unit_marker_name;
 // Enable/Disable the remove of IAs bodies

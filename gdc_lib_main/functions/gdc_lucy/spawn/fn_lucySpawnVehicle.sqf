@@ -21,7 +21,7 @@ params ["_pos","_side","_vehType","_crewType",["_dir",0],["_fly_params",["NONE",
 private ["_group","_veh"];
 
 // Check SPAWN/SCAN system
-waitUntil{sleep 1.0;(not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_VEH_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
+waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_VEH_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
 LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Create the vehicle

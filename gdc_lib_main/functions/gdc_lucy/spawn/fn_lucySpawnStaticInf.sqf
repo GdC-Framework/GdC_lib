@@ -38,7 +38,7 @@ params ["_unit_type", "_unit_pos_dir", "_unit_side", ["_unit_weak", "UP"], ["_un
 private["_unit_spawn", "_unit_group", "_i", "_units_spawn"];
 
 // Check SPAWN/SCAN system
-waitUntil{sleep 1.0;(not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
+waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
 LUCY_SPAWN_INF_IN_PROGRESS = True;
 
 _units_spawn = [];
