@@ -32,7 +32,7 @@ private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_veh_group", "_curr
 
 
 // Check SPAWN/SCAN system
-waitUntil{sleep 1.0;(not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_VEH_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
+waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_VEH_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
 LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Spawn vehicles, drivers and assign them
