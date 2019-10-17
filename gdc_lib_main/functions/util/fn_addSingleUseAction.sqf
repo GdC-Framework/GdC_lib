@@ -34,9 +34,9 @@
 
 params["_obj", "_addActionParams"];
 _addActionParams params[
-	["_title", nil], 
-	["_function", {}], 
-	["_arguments", []]
+	["_title", nil, [""] ], 
+	["_function", {}, [{}] ], 
+	["_arguments", [], [[]] ]
 ];
 
 private["_varName", "_newFunction"], "_uniqueIndex";

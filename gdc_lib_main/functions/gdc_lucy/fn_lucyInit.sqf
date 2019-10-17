@@ -19,15 +19,15 @@
 	nothing
 */
 
-params [["_ia_spawn_delay", 1.0],
-        ["_ia_spawn_static_unit_marker_name", "mkr_spawn_static_unit"],
-        ["_ia_clean_bodies", True], 
-        ["_ia_clean_bodies_timer", 3600.0], 
-        ["_ia_clean_dead_vehicles", False],
-        ["_ia_clean_dead_vehicles_timer", 3600.0],
-        ["_ia_fatigue_disabled", True],
-        ["_ia_vehicles_remove_inventory", True],
-        ["_ia_rank_leader", "COLONEL"]];
+params [["_ia_spawn_delay", 1.0, [0]],
+        ["_ia_spawn_static_unit_marker_name", "mkr_spawn_static_unit", [""]],
+        ["_ia_clean_bodies", True, [true]], 
+        ["_ia_clean_bodies_timer", 3600.0, [0]], 
+        ["_ia_clean_dead_vehicles", False, [true]],
+        ["_ia_clean_dead_vehicles_timer", 3600.0, [0]],
+        ["_ia_fatigue_disabled", True, [true]],
+        ["_ia_vehicles_remove_inventory", True, [true]],
+        ["_ia_rank_leader", "COLONEL", [""]]];
 LUCY_INIT = FALSE;
 
 // Load default configuration

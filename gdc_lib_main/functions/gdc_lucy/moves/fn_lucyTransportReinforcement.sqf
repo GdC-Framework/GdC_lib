@@ -19,7 +19,7 @@
 	Nothing
 */
 
-params ["_veh","_cargo","_wpsIN",["_wpsOUT",[]],["_behavior",["NORMAL","CARELESS","GREEN"]],["_condition","true"],["_timeout",[0,0,0]],["_statement",""],["_delete",true]];
+params ["_veh","_cargo","_wpsIN",["_wpsOUT",[],[[]]],["_behavior",["NORMAL","CARELESS","GREEN"],[[]],[3]],["_condition","true",[""]],["_timeout",[0,0,0],[[]],[3]],["_statement","",[""]],["_delete",true,[true]]];
 
 private ["_group","_unloadPos","_code","_wp","_pos"];
 

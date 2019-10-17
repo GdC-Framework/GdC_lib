@@ -18,7 +18,7 @@
 	nothing
 */
 
-params ["_radio","_chan","_side","_type","_spawnpos",["_dir",0],["_damage",false]];
+params ["_radio","_chan","_side","_type","_spawnpos",["_dir",0, [0]],["_damage",false, [true]]];
 private ["_action","_group"];
 
 gdc_choppa_radio = _radio;

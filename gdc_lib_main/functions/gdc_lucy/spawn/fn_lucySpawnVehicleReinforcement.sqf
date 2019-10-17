@@ -26,9 +26,9 @@
 /* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Function parameters
-params ["_vehicle_params", "_inf_group", "_side", "_vehicle_azimuth", "_spawn_pos", "_array_go_to_land_pos", "_array_go_out_area_pos", ["_array_inf_target_pos", []], 
-    ["_array_vehicle_waypoints_params", ["FULL", "CARELESS", "GREEN"]], ["_array_inf_waypoint_params", ["FULL", "AWARE", "RED", "RANDOM", "SAD"]], 
-    ["_delete_vehicle", True], ["_group_skill", -1]];
+params ["_vehicle_params", "_inf_group", "_side", "_vehicle_azimuth", "_spawn_pos", "_array_go_to_land_pos", "_array_go_out_area_pos", ["_array_inf_target_pos", [], [[]]], 
+    ["_array_vehicle_waypoints_params", ["FULL", "CARELESS", "GREEN"], [[]], [0]], ["_array_inf_waypoint_params", ["FULL", "AWARE", "RED", "RANDOM", "SAD"], [[]], [5]], 
+    ["_delete_vehicle", True, [true]], ["_group_skill", -1, [0]]];
     
 // Function local variables
 private ["_group_vehicle", "_group_inf", "_obj_helipad", "_delete_statement", "_fly_params", "_land_pos"];

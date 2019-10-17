@@ -17,7 +17,7 @@
 	An array which contains: [New group created, New vehicle created]
 */
 
-params ["_pos","_side","_vehType","_crewType",["_dir",0],["_fly_params",["NONE",0,0]],["_skill",-1]];
+params ["_pos","_side","_vehType","_crewType",["_dir",0,[0]],["_fly_params",["NONE",0,0],[[]],[3]],["_skill",-1,[0]]];
 private ["_group","_veh"];
 
 // Check SPAWN/SCAN system

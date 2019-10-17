@@ -17,7 +17,7 @@
 	nothing
 */
 
-params ["_mk",["_units",[]],["_rank","SERGEANT"],["_blist",[]],["_water",1],["_maxDist",30],["_objDist",4]];
+params ["_mk",["_units",[],[[]]],["_rank","SERGEANT",[""]],["_blist",[],[[]]],["_water",1,[0]],["_maxDist",30,[0]],["_objDist",4,[0]]];
 
 // Si le le 2e paramètre n'est pas renseigné toutes les unités jouables sont déplacées
 if ((count _units) == 0) then {

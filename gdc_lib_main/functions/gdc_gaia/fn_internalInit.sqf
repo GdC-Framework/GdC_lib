@@ -6,35 +6,35 @@
 
 params [
   //GAIA Public (local) variables
-  ["_MCC_GAIA_DEBUG", false],
-  ["_MCC_GAIA_CA_DEBUG", []],
+  ["_MCC_GAIA_DEBUG", false, [true]],
+  ["_MCC_GAIA_CA_DEBUG", [], [[]]],
 
   //Gaia cache
-  ["_MCC_GAIA_CACHE", false],
-  ["_GAIA_CACHE_SLEEP", 0.5],
-  ["_GAIA_CACHE_STAGE_1", 1000],
-  ["_MCC_GAIA_CACHE_STAGE2", []],
+  ["_MCC_GAIA_CACHE", false, [true]],
+  ["_GAIA_CACHE_SLEEP", 0.5, [0]],
+  ["_GAIA_CACHE_STAGE_1", 1000, [0]],
+  ["_MCC_GAIA_CACHE_STAGE2", [], [[]]],
 
   //Used for the breadcrumb blacklist system. How far should a waypoint be from a position a unit has last been?
-  ["_MCC_GAIA_AWARENESSRANGE", 100],
-  ["_MCC_GAIA_CLEARRANGE", 70],
-  ["_MCC_GAIA_SHARETARGET_DELAY", 5],
-  ["_MCC_GAIA_MAX_SLOW_SPEED_RANGE", 600],
-  ["_MCC_GAIA_MAX_MEDIUM_SPEED_RANGE", 4500],
-  ["_MCC_GAIA_MAX_FAST_SPEED_RANGE", 80000],
+  ["_MCC_GAIA_AWARENESSRANGE", 100, [0]],
+  ["_MCC_GAIA_CLEARRANGE", 70, [0]],
+  ["_MCC_GAIA_SHARETARGET_DELAY", 5, [0]],
+  ["_MCC_GAIA_MAX_SLOW_SPEED_RANGE", 600, [0]],
+  ["_MCC_GAIA_MAX_MEDIUM_SPEED_RANGE", 4500, [0]],
+  ["_MCC_GAIA_MAX_FAST_SPEED_RANGE", 80000, [0]],
   // The seconds of rest a transporter takes after STARTING his last order
-  ["_MCC_GAIA_TRANSPORT_RESTTIME", 40],
+  ["_MCC_GAIA_TRANSPORT_RESTTIME", 40, [0]],
   //If an order is older then 10 minutes, cancel it. There is probbaly something wrong.
-  ["_MCC_GAIA_MAX_ORDER_AGE", 5000],
-  ["_MCC_GAIA_MORTAR_TIMEOUT", 300],
+  ["_MCC_GAIA_MAX_ORDER_AGE", 5000, [0]],
+  ["_MCC_GAIA_MORTAR_TIMEOUT", 300, [0]],
 
   //Ambient Combat
-  ["_MCC_GAIA_AC", false],
-  ["_MCC_GAIA_AC_MAXRANGE", 1000],
-  ["_MCC_GAIA_AC_MAXGROUPS", 35],
-  ["_MCC_GAIA_AMBIENT_ZONE_RESERVED", 1000],
-  ["_MCC_GAIA_AMBIANT", true],
-  ["_MCC_GAIA_AMBIANT_CHANCE", 20]
+  ["_MCC_GAIA_AC", false, [true]],
+  ["_MCC_GAIA_AC_MAXRANGE", 1000, [0]],
+  ["_MCC_GAIA_AC_MAXGROUPS", 35, [0]],
+  ["_MCC_GAIA_AMBIENT_ZONE_RESERVED", 1000, [0]],
+  ["_MCC_GAIA_AMBIANT", true, [true]],
+  ["_MCC_GAIA_AMBIANT_CHANCE", 20, [0]]
 ];
 
 /* Init global var */

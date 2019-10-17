@@ -14,7 +14,7 @@
 	[The group which will be paradropped, the plane group]
 */
 
-params["_pos_spawn", "_pos_drop", "_pos_exit", "_side", "_plane_config", "_infantry_units", ["_veh_speed", "LIMITED"]];
+params["_pos_spawn", "_pos_drop", "_pos_exit", "_side", "_plane_config", "_infantry_units", ["_veh_speed", "LIMITED", [""]]];
 private["_cleaned_pos_spawn", "_next_waypoint_pos", "_plane_spawn", "_grp_inf", "_drop_statement", "_plane_speed", "_computed_angle", "_plane_group"];
 
 // Extract the first position and get next waypoint to compute the angle

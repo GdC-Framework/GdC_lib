@@ -8,7 +8,7 @@
  *
  * Return : ARRAY of STRINGs : the new group composition
 */
-params ["_types","_count",["_leader",""]];
+params ["_types","_count",["_leader","",[""]]];
 private ["_group","_unit","_types2"];
 
 _group = [];

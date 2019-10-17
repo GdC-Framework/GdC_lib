@@ -34,7 +34,7 @@
         An array which contains all spawned units
 */
 
-params ["_unit_type", "_unit_pos_dir", "_unit_side", ["_unit_weak", "UP"], ["_unit_ai_disable", ["NOTHING"]], ["_unit_skill", -1], ["_unit_init", ""]];
+params ["_unit_type", "_unit_pos_dir", "_unit_side", ["_unit_weak", "UP", [""]], ["_unit_ai_disable", ["NOTHING"], [[]]], ["_unit_skill", -1, [0]], ["_unit_init", "", [""]]];
 private["_unit_spawn", "_unit_group", "_i", "_units_spawn"];
 
 // Check SPAWN/SCAN system

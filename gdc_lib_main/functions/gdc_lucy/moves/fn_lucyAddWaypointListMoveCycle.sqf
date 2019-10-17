@@ -18,7 +18,7 @@
 	Nothing
 */
 
-params["_group", "_wp_positions", ["_wp_speed", "LIMITED"], ["_wp_behaviour", "SAFE"], ["_wp_combat_mode", "RED"], ["_wp_formation", "COLUMN"], ["_wp_completion_radius", 30], ["_wp_timers", []]];
+params["_group", "_wp_positions", ["_wp_speed", "LIMITED", [""]], ["_wp_behaviour", "SAFE", [""]], ["_wp_combat_mode", "RED", [""]], ["_wp_formation", "COLUMN", [""]], ["_wp_completion_radius", 30, [0]], ["_wp_timers", [], [[]]]];
 private["_wp", "_cycle_pos"];
 
 // Set default time

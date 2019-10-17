@@ -21,7 +21,7 @@
 	nothing
 */
 
-params ["_mk","_type",["_side",civilian],["_units",[]],["_rank","SERGEANT"],["_spawnpos",[0,0,0]],["_blist",[]],["_water",1]];
+params ["_mk","_type",["_side",civilian,[civilian]],["_units",[],[[]]],["_rank","SERGEANT",[""]],["_spawnpos",[0,0,0],[[],""],[3]],["_blist",[],[[]]],["_water",1,[0]]];
 
 // Si le 2e paramètre n'est pas renseigné toutes les unités jouables sont déplacées
 if ((count _units) == 0) then {

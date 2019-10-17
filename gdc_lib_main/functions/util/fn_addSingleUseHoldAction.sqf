@@ -33,8 +33,8 @@
 if (!isServer) exitWith {};
 
 params["_obj", "", "", "", "", "", 
-	["_codeStart", {}], ["_codeProgress", {}], ["_codeCompleted", {}], ["_codeInterrupted", {}],
-	["_arguments", []]];
+	["_codeStart", {}, [{}]], ["_codeProgress", {}, [{}]], ["_codeCompleted", {}, [{}]], ["_codeInterrupted", {}, [{}]],
+	["_arguments", [], [[]]]];
 
 private["_newThis", "_title", "_uid", "_uniqueIndex", "_functionHeader", "_newFunction"];
 _newThis = +_this;

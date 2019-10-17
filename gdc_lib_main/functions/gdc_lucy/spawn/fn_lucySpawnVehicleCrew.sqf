@@ -15,7 +15,7 @@
 	the new group created
 */
 
-params ["_veh","_side","_crew",["_skill",-1]];
+params ["_veh","_side","_crew",["_skill",-1,[0]]];
 private ["_group","_u"];
 
 _group = createGroup _side;
