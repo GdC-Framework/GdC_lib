@@ -25,8 +25,13 @@ waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROG
 LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Create the vehicle
-_veh = createVehicle [_vehType,_pos,[],0,(_fly_params #0)];
+_veh = createVehicle [_vehType,[0,0,0],[],0,(_fly_params #0)];
+_veh enableSimulation false;
 _veh setDir _dir;
+_veh setpos _pos;
+if ((_pos #2) > 0.2) then {
+	_veh setVectorUp [0,0,1];
+};
 
 // Apply Altitude
 if ((_fly_params #1) > 0) then {
@@ -52,5 +57,7 @@ _group = [_veh,_side,_crewType,_skill] call GDC_fnc_lucySpawnVehicleCrew;
 
 sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 LUCY_SPAWN_VEH_IN_PROGRESS = False;
+
+_veh enableSimulation true;
 
 [_group,_veh];
