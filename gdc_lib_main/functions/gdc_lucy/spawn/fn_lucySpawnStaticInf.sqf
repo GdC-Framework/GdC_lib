@@ -44,7 +44,7 @@ LUCY_SPAWN_INF_IN_PROGRESS = True;
 _units_spawn = [];
 for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
     _unit_group = createGroup _unit_side;
-    _unit_type createUnit[getMarkerPos LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME, _unit_group, _unit_init];
+    _unit_type createUnit[LUCY_IA_STATIC_UNIT_SPAWN_POS, _unit_group, _unit_init];
     _unit_spawn = (units _unit_group) select 0;
     _unit_spawn setVariable[LUCY_UNIT_TYPE, LUCY_UNIT_TYPE_STATIC, True];
     _unit_spawn setDir ((_unit_pos_dir select _i) select 3);
