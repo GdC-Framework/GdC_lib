@@ -25,7 +25,7 @@ waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROG
 LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Create the vehicle
-_veh = createVehicle [_vehType,[0,0,0],[],0,(_fly_params #0)];
+_veh = createVehicle [_vehType,LUCY_IA_STATIC_UNIT_SPAWN_POS,[],0,(_fly_params #0)];
 _veh enableSimulation false;
 _veh setDir _dir;
 _veh setpos _pos;
