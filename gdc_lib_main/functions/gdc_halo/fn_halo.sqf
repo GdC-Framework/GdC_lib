@@ -32,8 +32,8 @@ params [
 	["_vtype","RHS_C130J", [""]],
 	["_alt",-1,[0]],
 	["_blist",[],[[],"",objNull]],
-	["_dzpos",[0,0,0],[[]],[3]],
-	["_spawnpos",[0,0,0],[[]],[3]],
+	["_dzpos",[0,0,0],[[]],[2,3]],
+	["_spawnpos",[0,0,0],[[]],[2,3]],
 	["_side",civilian,[civilian]]];
 private ["_action","_veh","_txt","_vehBaseClass"];
 
