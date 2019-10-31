@@ -18,7 +18,7 @@
 	Nothing
 */
 
-params["_group", "_wp_positions", ["_wp_speed", "LIMITED"], ["_wp_behaviour", "SAFE"], ["_wp_combat_mode", "RED"], ["_wp_formation", "COLUMN"], ["_wp_completion_radius", 30], ["_wp_timers", []]];
+params["_group", "_wp_positions", ["_wp_speed", "LIMITED"], ["_wp_behaviour", "SAFE"], ["_wp_combat_mode", "RED"], ["_wp_formation", "COLUMN"], ["_wp_completion_radius", 30], ["_wp_timers", []], ["_wp_radius", 10,[0]]];
 private["_wp", "_cycle_pos"];
 
 // Set default time
@@ -35,8 +35,8 @@ _group setCombatMode _wp_combat_mode;
 _group setFormation _wp_formation;
 
 {
-    _wp = [_group, _x, 10, "MOVE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
+    _wp = [_group, _x, _wp_radius, "MOVE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
 } forEach _wp_positions;
 
 _cycle_pos = _wp_positions #0;
-_wp = [_group, [(_cycle_pos #0) + 10, (_cycle_pos #1) + 10, _cycle_pos #2], 10, "CYCLE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius] call GDC_fnc_lucyAddWaypoint; 
+_wp = [_group, [(_cycle_pos #0) + _wp_radius, (_cycle_pos #1) + _wp_radius, _cycle_pos #2],_wp_radius, "CYCLE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius] call GDC_fnc_lucyAddWaypoint; 
