@@ -18,7 +18,7 @@
 */
 
 params ["_pos","_side","_vehType","_crewType",["_dir",0],["_fly_params",["NONE",0,0]],["_skill",-1]];
-private ["_group","_veh"];
+private ["_group","_veh","_posASL","_intersection","_normal"];
 
 // Check SPAWN/SCAN system
 waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_VEH_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};
@@ -26,17 +26,24 @@ LUCY_SPAWN_VEH_IN_PROGRESS = True;
 
 // Create the vehicle
 _veh = createVehicle [_vehType,LUCY_IA_STATIC_UNIT_SPAWN_POS,[],0,(_fly_params #0)];
-_veh enableSimulation false;
 _veh setDir _dir;
-_veh setpos _pos;
-if ((_pos #2) > 0.2) then {
-	_veh setVectorUp [0,0,1];
+// Align with terrain
+if (!(surfaceIsWater _pos) && (_fly_params #1) == 0) then {
+	_posASL = AGLToASL _pos;
+	_intersection = (lineIntersectsSurfaces [_posASL,[(_posASL #0),(_posASL #1),0],_veh,objNull,true,1]) #0;
+	_normal = (_intersection #1);
+	if (_normal in [[-0,-0,-1]]) then {_normal = [0,0,1]};
+	_veh setposASL (_intersection #0);
+	_veh setVectorUp _normal;
+} else {
+	_veh setpos _pos;
 };
 
 // Apply Altitude
 if ((_fly_params #1) > 0) then {
 	_veh flyInHeightASL [(_fly_params #1),(_fly_params #1),(_fly_params #1)];
 	_veh setpos [(_pos #0),(_pos #1),(_fly_params #1)];
+	_veh setVectorUp [0,0,1];
 };
 
 // Apply Velocity
@@ -57,7 +64,5 @@ _group = [_veh,_side,_crewType,_skill] call GDC_fnc_lucySpawnVehicleCrew;
 
 sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 LUCY_SPAWN_VEH_IN_PROGRESS = False;
-
-_veh enableSimulation true;
 
 [_group,_veh];
