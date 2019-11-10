@@ -1,5 +1,5 @@
 
-systemChat 'UtilInternal tests';
+'UtilInternal tests' call ShowAndLog;
 _success = true;
 
 //////////////////////////
@@ -10,14 +10,14 @@ _success = true;
 // [_veh, 1] call GDC_fnc_animVehicleDoor;
 // sleep 5;
 // if( !(_veh doorPhase "door" isEqualTo 1) ) then {
-// systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2", _x]);
+// format (["%1 GDC_fnc_animVehicleDoor could return %2", _x]) call ShowAndLog;
 // _success = false;
 // };
 
 // [_veh, 0] call GDC_fnc_animVehicleDoor;
 // sleep 5;
 // if( !(_veh doorPhase "door" isEqualTo 0) ) then {
-// systemChat format (["%1 GDC_fnc_animVehicleDoor could return %2", _x]);
+// format (["%1 GDC_fnc_animVehicleDoor could return %2", _x]) call ShowAndLog;
 // _success = false;
 // };
 
@@ -35,11 +35,12 @@ if(!([player, "ACRE_PRC148"] call acre_api_fnc_hasKindOfRadio)) then {
 	sleep 0.5;
 };
 
-["ACRE_PRC152_ID_123", 5] call acre_api_fnc_setRadioChannel;
+// ["ACRE_PRC152_ID_123", 5] call acre_api_fnc_setRadioChannel;
+[["ACRE_PRC148"] call acre_api_fnc_getRadioByType, 5] call acre_api_fnc_setRadioChannel;
 
 {
-	if( !(((_x select 1) call GDC_fnc_hasRadioOnRightChannel) isEqualTo (_x select 2)) ) then {
-		systemChat format (["%1 GDC_fnc_hasRadioOnRightChannel could return %2", _x]);
+	if( !(((_x select 0) call GDC_fnc_hasRadioOnRightChannel) isEqualTo (_x select 1)) ) then {
+		format (["%1 GDC_fnc_hasRadioOnRightChannel could return %2", _x]) call ShowAndLog;
 		_success = false;
 	};
 
@@ -57,7 +58,7 @@ if(_has_no_radio) then {
 {
 
 	if( !(((_x select [0, 2]) call GDC_fnc_StringStartWith) isEqualTo (_x select 2)) ) then {
-		systemChat format (["[%1, %2] GDC_fnc_StringStartWith could return %3", _x]);
+		format (["[%1, %2] GDC_fnc_StringStartWith could return %3", _x]) call ShowAndLog;
 		_success = false;
 	};
 
@@ -72,7 +73,7 @@ if(_has_no_radio) then {
 
 
 if(_success) then {
-	systemChat 'UtilInternal tests: END with SUCCESS';
+	'UtilInternal tests: END with SUCCESS' call ShowAndLog;
 } else {
-	systemChat 'UtilInternal tests: END and FAIL';
+	'UtilInternal tests: END and FAIL' call ShowAndLog;
 };

@@ -1,8 +1,8 @@
 
-systemChat 'Lucy tests: Final';
+'Lucy tests: Final' call ShowAndLog;
 
 // Finaly delete the temp unit
 // deleteVehicle lucyUnit;
 { deleteVehicle _x } forEach units lucyGroup;
 
-systemChat 'Lucy tests: EndFinal';
+'Lucy tests: EndFinal' call ShowAndLog;

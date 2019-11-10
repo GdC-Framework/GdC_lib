@@ -1,5 +1,5 @@
 
-systemChat 'Lucy tests';
+'Lucy tests' call ShowAndLog;
 _success = true;
 
 //////////////////////////
@@ -26,7 +26,7 @@ _success = true;
 	} forEach (waypoints lucyGroup);
 
 	if( !_good ) then {
-		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrol generate wrong waypoint with test number ", _forEachIndex]);
+		format (["%1 GDC_fnc_lucyGroupRandomPatrol generate wrong waypoint with test number ", _forEachIndex]) call ShowAndLog;
 		_success = false;
 	};
 
@@ -55,7 +55,7 @@ _success = true;
 	} forEach (waypoints lucyGroup);
 
 	if( !_good ) then {
-		systemChat format (["%1 GDC_fnc_lucyGroupRandomPatrolFixPoints generate wrong waypoint with test number ", _forEachIndex]);
+		format (["%1 GDC_fnc_lucyGroupRandomPatrolFixPoints generate wrong waypoint with test number ", _forEachIndex]) call ShowAndLog;
 		_success = false;
 	};
 
@@ -68,7 +68,7 @@ _success = true;
 
 
 if(_success) then {
-	systemChat 'Lucy tests: END with SUCCESS';
+	'Lucy tests: END with SUCCESS' call ShowAndLog;
 } else {
-	systemChat 'Lucy tests: END and FAIL';
+	'Lucy tests: END and FAIL' call ShowAndLog;
 };

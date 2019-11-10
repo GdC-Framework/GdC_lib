@@ -1,4 +1,9 @@
 
+ShowAndLog = {
+	diag_log _this;
+	systemChat _this;
+};
+
 fileExists = {
     private ["_ctrl", "_fileExists"];
     disableSerialization;
@@ -25,7 +30,7 @@ fileExists = {
 
 		// Start tests
 
-		systemChat 'Start tests';
+		'Start tests' call ShowAndLog;
 
 		{
 			_file = _x;
@@ -52,6 +57,6 @@ fileExists = {
 			'final'
 		];
 
-		systemChat 'End tests';
+		'End tests' call ShowAndLog;
 	};
 };

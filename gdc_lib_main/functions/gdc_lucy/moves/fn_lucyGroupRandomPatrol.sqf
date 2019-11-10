@@ -20,7 +20,7 @@
 	Nothing
 */
 
-params ["_group", "_mkr_param", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"], [[]], [5]], ["_blacklist", nil, [[]]]];
+params ["_group", "_mkr_param", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"], [[]], [5]], ["_blacklist", nil, [[], ""]]];
 private ["_random_pos", "_wp", "_wp_timeout"];
 
 // If no blacklist sended, we generate the right one
