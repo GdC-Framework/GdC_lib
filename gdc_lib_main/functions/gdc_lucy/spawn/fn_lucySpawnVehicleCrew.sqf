@@ -16,12 +16,13 @@
 */
 
 params ["_veh","_side","_crew",["_skill",-1,[0]]];
-private ["_group","_u"];
+private ["_group","_u","_pos"];
 
 _group = createGroup _side;
+_pos = getpos _veh;
 if ((count _crew) == 0) exitwith {_group;};
 {
-	_x createUnit [[0,0,0],_group,""];
+	_x createUnit [_pos,_group,""];
 	_u = (units _group) select _foreachindex;
 	[_u,_veh] remoteExecCall ["moveinAny",_veh];
 } forEach _crew;
