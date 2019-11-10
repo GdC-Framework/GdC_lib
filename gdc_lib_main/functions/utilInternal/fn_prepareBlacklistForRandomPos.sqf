@@ -1,6 +1,5 @@
-// Remove dead body after death with timer
 
-params [["_vehicle", nil]];
+params [["_vehicle", nil, [objNull]]];
 
 if(!isNil "_vehicle") then {
 

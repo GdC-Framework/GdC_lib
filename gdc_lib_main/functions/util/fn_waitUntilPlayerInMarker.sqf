@@ -17,7 +17,7 @@
 		Nothing
 */
 
-params ['_marker', ['_wait', 5]];
+params ['_marker', ['_wait', 5, [0]]];
 private ['_all_players'];
 
 if (isMultiplayer) then {

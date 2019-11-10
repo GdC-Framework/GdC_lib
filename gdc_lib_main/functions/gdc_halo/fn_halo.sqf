@@ -23,7 +23,18 @@
 	nothing
 */
 
-params ["_object",["_area",""],["_gps",true],["_autojump",true],["_lalo",false],["_vtype","RHS_C130J"],["_alt",-1],["_blist",[]],["_dzpos",[0,0,0]],["_spawnpos",[0,0,0]],["_side",civilian]];
+params [
+	"_object",
+	["_area","", ["",objNull]],
+	["_gps",true,[true]],
+	["_autojump",true,[true]],
+	["_lalo",false,[true]],
+	["_vtype","RHS_C130J", [""]],
+	["_alt",-1,[0]],
+	["_blist",[],[[],"",objNull]],
+	["_dzpos",[0,0,0],[[]],[2,3]],
+	["_spawnpos",[0,0,0],[[]],[2,3]],
+	["_side",civilian,[civilian]]];
 private ["_action","_veh","_txt","_vehBaseClass"];
 
 gdc_halo_dispo = true;

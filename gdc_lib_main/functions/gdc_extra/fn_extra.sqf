@@ -20,7 +20,7 @@
 	nothing
 */
 
-params ["_radio","_chan","_side","_type",["_spawnpos",[0,0,0]],["_end",true],["_damage",true]];
+params ["_radio", "_chan", "_side", "_type", ["_spawnpos", [0, 0, 0], [[], ""], [2,3] ], ["_end", true, [true]], ["_damage", true, [true]]];
 private ["_action"];
 
 gdc_extra_dispo = true;

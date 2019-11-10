@@ -12,7 +12,7 @@
 		boolean: true if the unit has a radio with the right channel
 */
 
-params[["_unit", player], ["_radioType", "ACRE_PRC117f"], ["_channel", 5]];
+params[["_unit", player, [objNull]], ["_radioType", "ACRE_PRC117f", [""]], ["_channel", 5, [0]]];
 
 // If true foreach will return true, else it will return the last "false"
 { 

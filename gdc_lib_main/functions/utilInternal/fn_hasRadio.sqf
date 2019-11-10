@@ -11,5 +11,5 @@
 		boolean: true if the unit has a radio
 */
 
-params[["_unit", player], ["_radioType", "ACRE_PRC117f"]];
+params[["_unit", player, [objNull]], ["_radioType", "ACRE_PRC117f", [""]]];
 [_unit, _radioType] call acre_api_fnc_hasKindOfRadio;

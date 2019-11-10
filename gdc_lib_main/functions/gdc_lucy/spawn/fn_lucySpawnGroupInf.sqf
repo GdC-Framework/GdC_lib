@@ -15,7 +15,7 @@
 */
 
 private["_unit_group"];
-params ["_unit_pos", "_group_side", "_unit_type_array", ["_group_skill", -1]];
+params ["_unit_pos", "_group_side", "_unit_type_array", ["_group_skill", -1,[0]]];
 
 // Check SPAWN/SCAN system
 waitUntil{sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH; (not LUCY_SCAN_IN_PROGRESS) && (not LUCY_SPAWN_INF_IN_PROGRESS)};

@@ -25,8 +25,8 @@
 /* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Parameters
-params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", []], ["_inf_troops", []], ["_force_cargo", True], 
-    ["_unit_dir", 0], ["_unit_spawn_space", 20.0], ["_fly_params", ["NONE", 0, 0]], ["_group_skill", -1]];
+params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", [], [[]]], ["_inf_troops", [], [[]]], ["_force_cargo", True, [true]], 
+    ["_unit_dir", 0, [0]], ["_unit_spawn_space", 20.0, [0]], ["_fly_params", ["NONE", 0, 0], [[]], [3]], ["_group_skill", -1, [0]]];
 // Function local variables
 private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_veh_group", "_current_vehicle"];
 

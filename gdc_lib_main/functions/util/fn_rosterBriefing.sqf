@@ -13,7 +13,7 @@
 	nothing
 */
 
-params [["_includeAI",false],["_rank",true],["_role",true]];
+params [["_includeAI",false,[true]],["_rank",true,[true]],["_role",true,[true]]];
 private["_strRank","_strRole","_strGrp","_strColorGrp","_strFinal","_oldGrp","_newGrp","_unitsArr","_nbr"];
 
 _strRank 		= "";//will contain unit's rank

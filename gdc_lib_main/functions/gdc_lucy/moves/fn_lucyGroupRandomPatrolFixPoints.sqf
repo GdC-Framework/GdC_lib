@@ -20,7 +20,7 @@
 	Nothing
 */
 
-params ["_group", "_marker", "_nb_points", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"]], ["_blacklist", nil]];
+params ["_group", "_marker", "_nb_points", ["_grp_params", ["MOVE", "LIMITED", "SAFE", "RED", "COLUMN"], [[]], [5]], ["_blacklist", nil, [[]]]];
 private ["_i", "_wp", "_wp_timeout", "_cycle_pos"];
 
 if (LUCY_RANDOM_PATROL_MAX_TIMEOUT < 1) then {
