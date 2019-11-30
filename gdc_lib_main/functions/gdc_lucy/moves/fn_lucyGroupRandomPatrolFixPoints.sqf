@@ -43,10 +43,10 @@ if(typename _blacklist != "ARRAY") then {
 };
 
 // Set speed, behavior, combat mode and formation
-if(_grp_params #1 == "UNCHANGED") then { _group setSpeedMode (_grp_params #1); };
-if(_grp_params #2 == "UNCHANGED") then { _group setBehaviour (_grp_params #2); };
-if(_grp_params #3 == "NO CHANGE") then { _group setCombatMode (_grp_params #3); };
-if(_grp_params #4 == "NO CHANGE") then { _group setFormation (_grp_params #4); };
+if(_grp_params #1 != "UNCHANGED") then { _group setSpeedMode (_grp_params #1); };
+if(_grp_params #2 != "UNCHANGED") then { _group setBehaviour (_grp_params #2); };
+if(_grp_params #3 != "NO CHANGE") then { _group setCombatMode (_grp_params #3); };
+if(_grp_params #4 != "NO CHANGE") then { _group setFormation (_grp_params #4); };
 
 // Create random points in the area
 for [{_i=0}, {_i < _nb_points}, {_i = _i + 1}] do {

@@ -34,9 +34,9 @@ private ["_wpLast","_nbr","_pos","_wp"];
 _wpLast = _wps select ((count _wps) - 1);
 _wps = _wps - [_wpLast];
 
-if(_wpBehavior#0 == "UNCHANGED") then { _group setSpeedMode (_wpBehavior#0); };
-if(_wpBehavior#1 == "UNCHANGED") then { _group setBehaviour (_wpBehavior#1); };
-if(_wpBehavior#2 == "NO CHANGE") then { _group setCombatMode (_wpBehavior#2); };
+if(_wpBehavior#0 != "UNCHANGED") then { _group setSpeedMode (_wpBehavior#0); };
+if(_wpBehavior#1 != "UNCHANGED") then { _group setBehaviour (_wpBehavior#1); };
+if(_wpBehavior#2 != "NO CHANGE") then { _group setCombatMode (_wpBehavior#2); };
 
 if (!(_condition == "true") OR !(_timeout in [[0,0,0]])) then {
 	// Create waiting WP

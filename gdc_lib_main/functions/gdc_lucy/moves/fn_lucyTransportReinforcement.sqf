@@ -33,9 +33,9 @@ _unloadPos = (_wpsIN select ((count _wpsIN) - 1));
 } forEach (units _cargo);
 
 // Vehicle group behavior
-if((_behavior#0) == "UNCHANGED") then { _group setSpeedMode (_behavior#0); };
-if((_behavior#1) == "UNCHANGED") then { _group setBehaviour (_behavior#1); };
-if((_behavior#2) == "NO CHANGE") then { _group setCombatMode (_behavior#2); };
+if((_behavior#0) != "UNCHANGED") then { _group setSpeedMode (_behavior#0); };
+if((_behavior#1) != "UNCHANGED") then { _group setBehaviour (_behavior#1); };
+if((_behavior#2) != "NO CHANGE") then { _group setCombatMode (_behavior#2); };
 
 // Est-ce vraiment nécessaire ? Si non mieux vaut l'enlever pour éviter les emmerdes.
 {

@@ -29,10 +29,10 @@ if (count _wp_timers == 0) then {
 };
 
 // Set speed, behavior, combat mode and formation
-if(_wp_speed == "UNCHANGED") then { _group setSpeedMode _wp_speed; };
-if(_wp_behaviour == "UNCHANGED") then { _group setBehaviour _wp_behaviour; };
-if(_wp_combat_mode == "NO CHANGE") then { _group setCombatMode _wp_combat_mode; };
-if(_wp_formation == "NO CHANGE") then { _group setFormation _wp_formation; };
+if(_wp_speed != "UNCHANGED") then { _group setSpeedMode _wp_speed; };
+if(_wp_behaviour != "UNCHANGED") then { _group setBehaviour _wp_behaviour; };
+if(_wp_combat_mode != "NO CHANGE") then { _group setCombatMode _wp_combat_mode; };
+if(_wp_formation != "NO CHANGE") then { _group setFormation _wp_formation; };
 
 {
     _wp = [_group, _x, _wp_radius, "MOVE", "UNCHANGED", "UNCHANGED", "NO CHANGE", "NO CHANGE", _wp_completion_radius, (_wp_timers select _forEachIndex)] call GDC_fnc_lucyAddWaypoint; 
