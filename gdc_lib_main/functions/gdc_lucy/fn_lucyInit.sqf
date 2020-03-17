@@ -20,7 +20,7 @@
 */
 
 params [["_ia_spawn_delay", 1.0, [0]],
-        ["_ia_spawn_pos_static_unit", "mkr_spawn_static_unit", [""]],
+        ["_ia_spawn_pos_static_unit", "mkr_spawn_static_unit", ["",[]]],
         ["_ia_clean_bodies", True, [true]], 
         ["_ia_clean_bodies_timer", 3600.0, [0]], 
         ["_ia_clean_dead_vehicles", False, [true]],
