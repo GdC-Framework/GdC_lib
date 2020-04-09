@@ -7,6 +7,7 @@ class Multiplayer
     };
     class 3denSetGdCAttributes {};
     class 3denCreateHCSlot {};
+    class 3denCreateEndTrigger {};
     class 3denExportMultiplePos {};
     class 3denExportMultipleClasses {};
     class 3denFillMedicalBackpack {};
