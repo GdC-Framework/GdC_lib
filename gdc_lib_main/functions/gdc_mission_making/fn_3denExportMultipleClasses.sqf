@@ -7,13 +7,13 @@
  * Return : ARRAY of STRING : the classes
 */
 params ["_objects"];
-private ["_classArray","_pos"];
+private ["_output","_pos"];
 
-_classArray = []; 
+_output = []; 
 {
-	_classArray = _classArray + [typeOf _x];
+	_output = _output + [typeOf _x];
 } forEach _objects;
 
-copyToClipboard str _classArray;
+copyToClipboard str _output;
 systemChat (format ["%1 classname(s) copié(s) dans le presse papier.",(count _objects)]);
-_classArray;
+_output;

@@ -54,12 +54,17 @@ class display3DEN
 				{
 					text = "Outils GDC";
 					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
-					items[] = {"GDC_spawnHC"};
+					items[] = {"GDC_spawnHC","GDC_spawnEndTrigger"};
 				};
 				class GDC_spawnHC
 				{
 					text = "Creer le HC";
 					action = "[] call GDC_fnc_3denCreateHCSlot";
+				};
+				class GDC_spawnEndTrigger
+				{
+					text = "Creer trigger radio fin de mission";
+					action = "[] call GDC_fnc_3denCreateEndTrigger";
 				};
 			};
 		};
@@ -70,19 +75,26 @@ class display3DEN
 		{
 			class Log
 			{
-				items[] += {"GDC_exportMultiplePosAslDir","STDR_exportMultiplePosAgls","STDR_exportMultipleClasses"};
+				items[] += {"GDC_exportMultiplePosAslDir","STDR_exportMultiplePosAgls","STDR_exportMultiplePosAgl0","STDR_exportMultipleClasses"};
 			};
 			class GDC_exportMultiplePosAslDir
 			{
-				text = "Exporter positions ASL [_x,_y,_z,_dir]";
+				text = "Exporter position(s) ASL [_x,_y,_z,_dir]";
 				action = "[(get3DENSelected ""object""),0] call GDC_fnc_3denExportMultiplePos;";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class STDR_exportMultiplePosAgls
 			{
-				text = "Exporter positions [_x,_y,_z]";
+				text = "Exporter position(s) [_x,_y,_z]";
 				action = "[(get3DENSelected ""object""),1] call GDC_fnc_3denExportMultiplePos;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class STDR_exportMultiplePosAgl0
+			{
+				text = "Exporter position(s) [_x,_y,0]";
+				action = "[(get3DENSelected ""object""),2] call GDC_fnc_3denExportMultiplePos;";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
 			};
