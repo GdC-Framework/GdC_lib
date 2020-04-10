@@ -41,6 +41,8 @@ if(hasInterface) then {
 			} forEach nearestObjects [player, [], 250];
 		};
 	}];
+
+	[player] call GDC_fnc_addSplints;
 };
 
 true
