@@ -7,9 +7,7 @@
  * Return : Nothing
 */
 
-params ["_unit"];
-
-[_unit] spawn {
+_this spawn {
 	params ["_unit"];
 	private ["_allitems"];
 	waituntil {time > 4}; // Attente des scripts tardifs
