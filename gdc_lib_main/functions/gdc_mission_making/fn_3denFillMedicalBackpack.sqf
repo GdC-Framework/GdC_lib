@@ -23,7 +23,7 @@ _objects = _objects select {_x isKindOf "man"};
 			((getUnitLoadout _x) #2),
 			((getUnitLoadout _x) #3),
 			((getUnitLoadout _x) #4),
-			[_backpack,(_items + [["ACE_surgicalKit",1],["ACE_personalAidKit",1],["ACE_salineIV",2],["ACE_salineIV_250",2],["ACE_salineIV_500",2],["ACE_tourniquet",4],["ACE_morphine",8],["ACE_epinephrine",4],["ACE_packingBandage",15],["ACE_fieldDressing",15],["ACE_elasticBandage",10],["ACE_quikclot",10]])],
+			[_backpack,(_items + [["ACE_surgicalKit",1],["ACE_splint",12],["ACE_salineIV",2],["ACE_salineIV_250",2],["ACE_salineIV_500",2],["ACE_tourniquet",4],["ACE_morphine",8],["ACE_epinephrine",4],["ACE_packingBandage",15],["ACE_fieldDressing",15],["ACE_elasticBandage",10],["ACE_quikclot",10]])],
 			((getUnitLoadout _x) #6),
 			((getUnitLoadout _x) #7),
 			((getUnitLoadout _x) #8),

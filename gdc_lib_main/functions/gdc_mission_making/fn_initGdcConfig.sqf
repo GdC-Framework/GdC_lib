@@ -8,6 +8,14 @@ if(hasInterface) then {
 	_inventory = getMissionConfigValue ["GDC_Inventory",false];
 	_roster = getMissionConfigValue ["GDC_Roster",false];
 
+	// remplacer la trousse de soin par 12 attelles.
+	if (isNil "GDC_allowPAK") then {
+		[
+			"ACE_personalAidKit",
+			["ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint"]
+		] call ace_common_fnc_registerItemReplacement;
+	};
+
 	// lancement du script qui affiche le loadout lors du briefing.
 	if(_inventory isEqualTo true || _inventory isEqualTo 1) then {
 		[] call GDC_fnc_inventoryBriefing; 
