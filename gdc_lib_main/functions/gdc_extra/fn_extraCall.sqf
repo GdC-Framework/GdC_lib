@@ -92,7 +92,7 @@ if ([player, gdc_extra_radio, gdc_extra_chan] call GDC_fnc_hasRadioOnRightChanne
 			[gdc_extra_helo,["<t color='#ff0000'>Partir</t>",_effect,0,1.5,false,true,"","((vehicle _this) == _target) && !gdc_extra_left"]] remoteExec ["addaction", 0];
 		} else {
 		// retour de l'hélico si il est déjà spawn
-			_group = creategroup gdc_extra_side;
+			_group = creategroup [gdc_extra_side,true];
 			{
 				[_x] joinSilent _group;
 			} forEach (units group gdc_extra_helo);

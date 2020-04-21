@@ -40,7 +40,7 @@ _dir = _spawnPos getDir (MarkerPos "mk_gdc_halo");
 _veh = createVehicle [gdc_halo_vtype,_spawnPos,[],0,"FLY"];
 createVehicleCrew _veh;
 _crew = crew _veh;
-_group = createGroup gdc_halo_side;
+_group = createGroup [gdc_halo_side,true];
 _crew joinSilent _group;
 _veh setdir _dir;
 

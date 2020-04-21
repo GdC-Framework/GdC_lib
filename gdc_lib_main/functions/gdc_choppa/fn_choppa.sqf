@@ -63,7 +63,7 @@ if (isServer) then {
 		{_x allowdamage false;} forEach (crew gdc_choppa_helo);
 	};
 	// création du groupe et désactivation de l'IA
-	_group = createGroup _side;
+	_group = createGroup [_side,true];
 	[gdc_choppa_helo] joinSilent _group;
 	gdc_choppa_helo disableAI "AUTOTARGET"; gdc_choppa_helo disableAI "AUTOCOMBAT"; gdc_choppa_helo disableAI "SUPPRESSION";
 	{[_x] joinSilent _group; _x disableAI "AUTOTARGET"; _x disableAI "AUTOCOMBAT"; _x disableAI "SUPPRESSION";} foreach (crew gdc_choppa_helo);
