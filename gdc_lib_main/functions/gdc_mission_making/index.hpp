@@ -11,5 +11,4 @@ class Multiplayer
     class 3denExportMultiplePos {};
     class 3denExportMultipleClasses {};
     class 3denFillMedicalBackpack {};
-    class addSplints {};
 };
