@@ -12,4 +12,6 @@ class util
     class addSingleUseAction {};
     class addSingleUseHoldAction {};
     class waitUntilPlayerInMarker {};
+    class urlFetch {};
+    class urlFetchSimple {};
 };
