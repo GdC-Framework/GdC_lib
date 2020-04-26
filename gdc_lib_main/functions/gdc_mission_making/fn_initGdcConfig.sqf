@@ -12,7 +12,7 @@ if(hasInterface) then {
 	if (isNil "GDC_allowPAK") then {
 		[
 			"ACE_personalAidKit",
-			["ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint"]
+			["ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint","ACE_splint"]
 		] call ace_common_fnc_registerItemReplacement;
 	};
 
