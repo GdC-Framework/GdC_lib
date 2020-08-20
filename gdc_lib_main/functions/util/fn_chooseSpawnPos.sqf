@@ -8,10 +8,11 @@
 		0 : STRING - name of the marker that will be moved, the marker defines the spawn position
 		1 (Optional): ARRAY - array fo objects that will be moved on selected position (default: []) if [] all playableunits will be moved
 		2 (Optional): STRING - rank required in order to be able to move the marker (default: "SERGEANT")
-		3 (Optional): ARRAY of STRINGs and/or OBJECTs - list of marker names or trigger names defining blacklisted areas (default: [])
+		3 (Optional): STRING or ARRAY[string] - list of marker names or trigger names defining blacklisted areas (default: [])
 		4 (Optional): NUMBER - 0: land only, 1: land and water, 2: water only (default: 1)
 		5 (Optional): NUMBER - max spawn distance from marker (default: 30)
 		6 (Optional): NUMBER - min spawn distance from terrain object (default: 4)
+		7 (Optional): STRING or ARRAY[string] - area where the user can move the marker, if nothing passed, the whole map is allowed (default: [])
 
 	Returns:
 	nothing
