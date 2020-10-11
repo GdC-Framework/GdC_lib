@@ -7,6 +7,11 @@
 		0: URL
 		1: Callback ( parameters [_fromUrl, _result] )
 
+	Tests:
+		Could be tested with https://docs.postman-echo.com/
+		GET - 
+			["https://postman-echo.com/get?foo1=bar1", { systemChat str _this }] call GDC_fnc_urlFetch;
+
 	Returns:
 		string: Return nothing
 */

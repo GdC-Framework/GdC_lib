@@ -14,12 +14,16 @@
 		Could be tested with https://docs.postman-echo.com/
 		GET - 
 			systemChat str (["https://postman-echo.com/get?foo1=bar1", "Get"] call GDC_fnc_restCall);
+		GET with callback - 
+			systemChat str (["https://postman-echo.com/get?foo1=bar1", "Get", nil, { systemChat str _this }] call GDC_fnc_restCall);
 		POST - 
 			systemChat str (["https://postman-echo.com/post", "Post", "{ a: 1 }"] call GDC_fnc_restCall);
+		POST with callback - 
+			systemChat str (["https://postman-echo.com/post", "Post", "{ a: 1 }", { systemChat str _this }] call GDC_fnc_restCall);
 		PUT - 
 			systemChat str (["https://postman-echo.com/put", "Put", "{ a: 1 }"] call GDC_fnc_restCall);
 		DELETE - 
-			systemChat str (["https://postman-echo.com/put", "Delete"] call GDC_fnc_restCall);
+			systemChat str (["https://postman-echo.com/delete", "Delete"] call GDC_fnc_restCall);
 
 	Returns:
 		string: the body of the response
@@ -32,7 +36,7 @@ params [
 	["_callback",{},[{}, ""]]
 ];
 
-if(! _verb in ["Get", "Post", "Put", "Delete", "Patch"]) exitWith {
+if(! (_verb in ["Get", "Post", "Put", "Delete", "Patch"])) exitWith {
 	systemChat str ["Wrong verb: ", _verb];
 };
 
