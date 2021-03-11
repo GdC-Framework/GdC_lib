@@ -1,12 +1,10 @@
 /*
-	Author: Shinriel
-
 	Description:
-	Secure a parameter, that can be a string or a string, to return an array
+	Secure a parameter, that can be a string or an array, to return the array or an array containing only one element for the first case.
 
 	Parameter(s):
 		0: ARRAY/STRING - Param to secure
-        1 (optional): ANY - Default value that will be returne, default value is empty array [] 
+        1 (optional): ANY - Default value that will be returned, default value is empty array [] 
 
 	Returns:
 		ARRAY, with one element if a string was passed
