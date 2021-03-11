@@ -49,8 +49,8 @@ if (rank player == _rank) then {
 		_valid = true;
 		// Check if whilisted area
 		// If no whitelist marker, it is valide because all map is valid
-		if(!count _wlist == 0) then {
-			__valid = false;
+		if(count _wlist == 0) then {
+			_valid = false;
 			{
 				if (_pos Inarea _x) then {
 					_valid = true;
