@@ -12,7 +12,7 @@
 // [
 // 	"mkr_util_chooseSpawnPos_moveable",
 // 	nil,
-// 	nil,
+// 	rank player,
 // 	["mkr_util_chooseSpawnPos_blacklist"], // blacklist area 
 // 	0, // Land only
 // 	nil,
