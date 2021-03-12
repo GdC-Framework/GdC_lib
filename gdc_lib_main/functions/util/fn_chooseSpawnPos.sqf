@@ -46,16 +46,17 @@ if (rank player == _rank) then {
 	[_mk, _blist, _wlist, _water] onMapSingleClick {
 		params ["_mk", "_blist", "_wlist", "_water"];
 
-		_valid = true;
-		// Check if whilisted area
-		// If no whitelist marker, it is valide because all map is valid
-		if(count _wlist == 0) then {
-			_valid = false;
+		_valid = false;
+
+		// Check if whilisted area, in other case the whole map is valid
+		if(count _wlist > 0) then {
 			{
 				if (_pos Inarea _x) then {
 					_valid = true;
 				};
 			} forEach (_wlist);
+		} else {
+			_valid = true;
 		};
 
 		// on check si la position choisie n'est pas dans les zones blacklistées
@@ -73,6 +74,7 @@ if (rank player == _rank) then {
 				default {_valid = false};
 			};
 		};
+		
 		// déplacement du marqueur
 		if (_valid) then {
 			_mk setmarkerPos _pos;
