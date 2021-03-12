@@ -3,6 +3,7 @@ class util
 {
     file = "gdc_lib_main\functions\util";
     class chooseSpawnPos {};
+    class chooseSpawnPos_onMapSingleClick {};
     class chooseIAHelicoInsert {};
     class inventoryBriefing {};
     class rosterBriefing {};

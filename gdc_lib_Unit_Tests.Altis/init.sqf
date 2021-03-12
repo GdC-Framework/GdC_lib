@@ -4,7 +4,8 @@ ShowAndLog = {
 	systemChat _this;
 };
 
-fileExists = {
+// Old way to detect if a file exists
+customFileExists = {
     private ["_ctrl", "_fileExists"];
     disableSerialization;
     _ctrl = findDisplay 0 ctrlCreate ["RscHTML", -1];
@@ -37,7 +38,8 @@ fileExists = {
 			{
 				// Check if file exists
 				_finalFile = _x + _file + '.sqf';
-				if (_finalFile call fileExists) then {
+				// if (_finalFile call customFileExists) then {
+				if (fileExists _finalFile) then {
 					call compile preprocessFileLineNumbers _finalFile;
 					sleep 1;
 				};

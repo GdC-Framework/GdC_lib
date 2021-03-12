@@ -43,43 +43,14 @@ if ((count _units) == 0) then {
 
 // si le joueur a le rang requis il peut déplacer le marqeur avec un clic gauche sur la carte
 if (rank player == _rank) then {
-	[_mk, _blist, _wlist, _water] onMapSingleClick {
-		params ["_mk", "_blist", "_wlist", "_water"];
+	missionNamespace setVariable ["chooseSpawnPos_parameters", [_mk, _blist, _wlist, _water] ];
 
-		_valid = false;
+	_eventMapSingleClickHandlerId = addMissionEventHandler ["MapSingleClick", {
+		params ["_units", "_pos", "_alt", "_shift"];
+		(missionNamespace getVariable "chooseSpawnPos_parameters") params ["_mk", "_blist", "_wlist", "_water"];
 
-		// Check if whilisted area, in other case the whole map is valid
-		if(count _wlist > 0) then {
-			{
-				if (_pos Inarea _x) then {
-					_valid = true;
-				};
-			} forEach (_wlist);
-		} else {
-			_valid = true;
-		};
-
-		// on check si la position choisie n'est pas dans les zones blacklistées
-		{
-			if (_pos Inarea _x) then {
-				_valid = false;
-			};
-		} forEach (_blist);
-
-		// on check si la position choisie est sur l'eau ou pas en fonction du paramètre
-		if (_water != 1) then {
-			switch _water do {
-				case 0: {if (surfaceIsWater _pos) then {_valid = false};};
-				case 2: {if !(surfaceIsWater _pos) then {_valid = false};};
-				default {_valid = false};
-			};
-		};
-		
-		// déplacement du marqueur
-		if (_valid) then {
-			_mk setmarkerPos _pos;
-		};
-	};
+		[_mk, _pos, _blist, _water, _wlist] call GDC_fnc_chooseSpawnPos_onMapSingleClick;
+	}];
 };
 
 [_units, _mk, _maxDist, _objDist, _water] spawn {
@@ -88,7 +59,10 @@ if (rank player == _rank) then {
 	private ["_pos"];
 	// au début de la mission, désactivation de la possibilité de déplacer le marqeur
 	waituntil {time > 0};
-	onMapSingleClick "";
+	if (!(isNil "_eventMapSingleClickHandlerId")) then {
+		removeMissionEventHandler ["MapSingleClick", _eventMapSingleClickHandlerId];
+	};
+
 	{
 		_x allowdamage false;
 	} forEach (_units);
