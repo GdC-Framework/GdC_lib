@@ -21,6 +21,9 @@
 
 	Returns:
 	nothing
+
+	Example :
+	[mon_objet_halo,"",true,true,false,"O_T_VTOL_02_infantry_F",-1,[],[0,0,0],[0,0,0]] call GDC_fnc_halo;
 */
 
 params [
@@ -100,19 +103,23 @@ if (gdc_halo_dzpos in [[0,0,0]]) then {
 };
 
 // action sur l'objet
-_action = [
-	"gdc_halo_action",
-	_txt,
-	"",
-	{[] call GDC_fnc_haloPos},
-	{gdc_halo_dispo}
-] call ace_interact_menu_fnc_createAction;
 [
-	_object,
-	0,
-	["ACE_MainActions"],
-	_action
-] call ace_interact_menu_fnc_addActionToObject;
+	_object,											// Object the action is attached to
+	_txt,										// Title of the action
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_takeOff2_ca.paa",	// Idle icon shown on screen
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_takeOff2_ca.paa",	// Progress icon shown on screen
+	"(_this distance _target < 3) && gdc_halo_dispo",						// Condition for the action to be shown
+	"(_caller distance _target < 3) && gdc_halo_dispo",						// Condition for the action to progress
+	{},													// Code executed when action starts
+	{},													// Code executed on every progress tick
+	{[] call GDC_fnc_haloPos},				// Code executed on completion
+	{},													// Code executed on interrupted
+	[],													// Arguments passed to the scripts as _this select 3
+	3,													// Action duration [s]
+	0,													// Priority
+	false,												// Remove on completion
+	false												// Show in unconscious state
+] call BIS_fnc_holdActionAdd;
 
 // Onglet briefing
 player createDiarySubject ["gdc_halo",(if (gdc_halo_lalo) then {"Saut LALO"} else {"Saut HALO"})];
