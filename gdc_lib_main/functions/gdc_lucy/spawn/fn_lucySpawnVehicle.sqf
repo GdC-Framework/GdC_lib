@@ -27,6 +27,8 @@ LUCY_SPAWN_VEH_IN_PROGRESS = True;
 // Create the vehicle
 _veh = createVehicle [_vehType,LUCY_IA_STATIC_UNIT_SPAWN_POS,[],0,(_fly_params #0)];
 _veh setDir _dir;
+// Convert pos2D to pos 3D
+if (count _pos == 2) then {_pos = _pos + [0];};
 // Align with terrain
 if (!(surfaceIsWater _pos) && (_fly_params #1) == 0) then {
 	_posASL = AGLToASL _pos;
