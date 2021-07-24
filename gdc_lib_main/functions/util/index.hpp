@@ -15,4 +15,5 @@ class util
     class waitUntilPlayerInMarker {};
     class urlFetch {};
     class urlFetchSimple {};
+    class hasKindOfRadio {};
 };
