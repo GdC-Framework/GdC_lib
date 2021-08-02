@@ -18,7 +18,7 @@
 params ["_veh","_side","_crew",["_skill",-1,[0]]];
 private ["_group","_u","_pos"];
 
-_group = createGroup [_side,true];
+_group = createGroup [_side,LUCY_IA_REMOVE_EMPTY_GROUPS];
 _pos = getpos _veh;
 if ((count _crew) == 0) exitwith {_group;};
 {

@@ -14,6 +14,7 @@
         6 (optional) : BOOL - enable/disable fatigue of IA (default: True)
         7 (optional) : BOOL - enable/disable cleaning of vehicle's inventories (default: True)
         8 (optional) : STRING - rank of group's leaders (default: "COLONEL")
+        9 (optional) : BOOL - remove empty groups (default: False)
 
 	Returns:
 	nothing
@@ -27,7 +28,9 @@ params [["_ia_spawn_delay", 1.0, [0]],
         ["_ia_clean_dead_vehicles_timer", 3600.0, [0]],
         ["_ia_fatigue_disabled", True, [true]],
         ["_ia_vehicles_remove_inventory", True, [true]],
-        ["_ia_rank_leader", "COLONEL", [""]]];
+        ["_ia_rank_leader", "COLONEL", [""]],
+        ["_ia_remove_empty_groups", False, [true]]
+];
 LUCY_INIT = FALSE;
 
 // Load default configuration
@@ -55,6 +58,8 @@ LUCY_IA_FATIGUE_DISABLED = _ia_fatigue_disabled;
 LUCY_IA_REMOVE_VEHICLES_INVENTORY = _ia_vehicles_remove_inventory;
 // Rank of IAs groups leaders
 LUCY_IA_RANK_LEADER = _ia_rank_leader;
+// Remove Empty Groups 
+LUCY_IA_REMOVE_EMPTY_GROUPS = _ia_remove_empty_groups;
 
 // Maximum waiting time before waypoint completion for random patrols in area
 LUCY_RANDOM_PATROL_MAX_TIMEOUT = 1;
