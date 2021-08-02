@@ -18,6 +18,7 @@
 		10 (optional): NUMBER or STRING - Default is 0
 				NUMBER : radius. If > 0 the group will patrol around its last waypoint in the given radius (predefined path)
 				STRING : marker. The group will patrol randomly in the given marker
+		11 (optionnal): NUMBER - Waypoint completion radius - Default is 0
 
 	Returns:
 	Nothing
@@ -26,7 +27,7 @@
 params [
 	"_group","_wps",
 	["_condition","true",[""]],["_timeout",[0,0,0],[[]],[3]],["_wpBehavior",["NORMAL","AWARE","YELLOW",[""]]],["_wpFormation","NO CHANGE",[""]],
-	["_wpTypeLast","SAD",[""]],["_wpBehaviorLast",["FULL","COMBAT","RED"],[[]],[3]],["_wpFormationLast","NO CHANGE",[""]],["_lastWpStatement","",[""]],["_patrolRadius",0,[0,""]]
+	["_wpTypeLast","SAD",[""]],["_wpBehaviorLast",["FULL","COMBAT","RED"],[[]],[3]],["_wpFormationLast","NO CHANGE",[""]],["_lastWpStatement","",[""]],["_patrolRadius",0,[0,""],["_wpcompletionRadius",0,[0]]
 ];
 
 private ["_wpLast","_nbr","_pos","_wp"];
@@ -41,17 +42,17 @@ if(_wpBehavior#2 != "NO CHANGE") then { _group setCombatMode (_wpBehavior#2); };
 if (!(_condition == "true") OR !(_timeout in [[0,0,0]])) then {
 	// Create waiting WP
 	_pos = (getpos (leader _group));
-	_wp = [_group,_pos,0,"MOVE",(_wpBehavior#0),(_wpBehavior#1),(_wpBehavior#2),_wpFormation,5,_timeout,[_condition,""]] call GDC_fnc_lucyAddWaypoint;
+	_wp = [_group,_pos,0,"MOVE",(_wpBehavior#0),(_wpBehavior#1),(_wpBehavior#2),_wpFormation,_wpcompletionRadius,_timeout,[_condition,""]] call GDC_fnc_lucyAddWaypoint;
 	_wp setWaypointPosition [_pos,0];
 };
 
 // Create full WP path
 {
-	[_group,_x,0,"MOVE",(_wpBehavior#0),(_wpBehavior#1),(_wpBehavior#2),_wpFormation,5] call GDC_fnc_lucyAddWaypoint;
+	[_group,_x,0,"MOVE",(_wpBehavior#0),(_wpBehavior#1),(_wpBehavior#2),_wpFormation,_wpcompletionRadius] call GDC_fnc_lucyAddWaypoint;
 } forEach _wps;
 
 // Create last WP
-[_group,_wpLast,0,_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,5,[0,0,0],["true",_lastWpStatement]] call GDC_fnc_lucyAddWaypoint;
+[_group,_wpLast,0,_wpTypeLast,(_wpBehaviorLast#0),(_wpBehaviorLast#1),(_wpBehaviorLast#2),_wpFormationLast,_wpcompletionRadius,[0,0,0],["true",_lastWpStatement]] call GDC_fnc_lucyAddWaypoint;
 
 
 // Create patrol if requested
