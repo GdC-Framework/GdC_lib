@@ -14,12 +14,13 @@
 		6 (optional): ARRAY - time before the vehicle starts its move [min,mid,max] - Default is [0,0,0]
 		7 (optional): STRING - code executed when the vehicle reaches its unload waypoint - Default is ""
 		8 (optional): BOOL - Enable/Disable delete of vehicle after action - it must be more than 3km of each player - Default is true
+		9 (optionnal): NUMBER - Waypoint completion radius - Default is 0
 
 	Returns:
 	Nothing
 */
 
-params ["_veh","_cargo","_wpsIN",["_wpsOUT",[],[[]]],["_behavior",["NORMAL","CARELESS","GREEN"],[[]],[3]],["_condition","true",[""]],["_timeout",[0,0,0],[[]],[3]],["_statement","",[""]],["_delete",true,[true]]];
+params ["_veh","_cargo","_wpsIN",["_wpsOUT",[],[[]]],["_behavior",["NORMAL","CARELESS","GREEN"],[[]],[3]],["_condition","true",[""]],["_timeout",[0,0,0],[[]],[3]],["_statement","",[""]],["_delete",true,[true]],["_wpcompletionRadius",0,[0]]];
 
 private ["_group","_unloadPos","_code","_wp","_pos"];
 
@@ -51,19 +52,19 @@ if (_veh iskindof "Helicopter") then {
 if (!(_condition == "true") OR !(_timeout in [[0,0,0]])) then {
 	// waiting WP
 	_pos = (getpos _veh);
-	_wp = [_group,_pos,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,_timeout,[_condition,""]] call GDC_fnc_lucyAddWaypoint;
+	_wp = [_group,_pos,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",_wpcompletionRadius,_timeout,[_condition,""]] call GDC_fnc_lucyAddWaypoint;
 	_wp setWaypointPosition [_pos,0];
 };
 
 // Create full path IN for vehicule
 {
-	[_group,_x,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"COLUMN",5] call GDC_fnc_lucyAddWaypoint;
+	[_group,_x,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"COLUMN",_wpcompletionRadius] call GDC_fnc_lucyAddWaypoint;
 } forEach _wpsIN;
 
 // Unload WP
 _code = if ((count _wpsOUT) > 0) then {""} else {"{_x enableAI ""AUTOTARGET"";_x enableAI ""AUTOCOMBAT"";} forEach thisList;"}; // If no WPs OUT the vehicle should be able to fight
 _timeout = if (_veh isKindOf "Helicopter") then {[5,5,5]} else {[10,13,16]}; // The vehicle will wait before going OUT (no rolled-over or thrown overboard passengers)
-[_group,_unloadPos,0,"TR UNLOAD",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,_timeout,["true",(_code + _statement)]] call GDC_fnc_lucyAddWaypoint;
+[_group,_unloadPos,0,"TR UNLOAD",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",_wpcompletionRadius,_timeout,["true",(_code + _statement)]] call GDC_fnc_lucyAddWaypoint;
 
 // Create full path OUT for vehicule
 _statement = ["true",""];
@@ -73,5 +74,5 @@ _statement = ["true",""];
 			_statement = ["true",format["private _veh = vehicle this; private _nearest = [getPos _veh] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 3000) then {{_veh deleteVehicleCrew _x} forEach crew _veh; deleteVehicle _veh;};"]];
 		};
 	};
-	[_group,_x,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",5,[0,0,0],_statement] call GDC_fnc_lucyAddWaypoint;
+	[_group,_x,0,"MOVE",(_behavior#0),(_behavior#1),(_behavior#2),"NO CHANGE",_wpcompletionRadius,[0,0,0],_statement] call GDC_fnc_lucyAddWaypoint;
 } forEach _wpsOUT;
