@@ -27,7 +27,7 @@
 params [
 	"_group","_wps",
 	["_condition","true",[""]],["_timeout",[0,0,0],[[]],[3]],["_wpBehavior",["NORMAL","AWARE","YELLOW",[""]]],["_wpFormation","NO CHANGE",[""]],
-	["_wpTypeLast","SAD",[""]],["_wpBehaviorLast",["FULL","COMBAT","RED"],[[]],[3]],["_wpFormationLast","NO CHANGE",[""]],["_lastWpStatement","",[""]],["_patrolRadius",0,[0,""],["_wpcompletionRadius",0,[0]]
+	["_wpTypeLast","SAD",[""]],["_wpBehaviorLast",["FULL","COMBAT","RED"],[[]],[3]],["_wpFormationLast","NO CHANGE",[""]],["_lastWpStatement","",[""]],["_patrolRadius",0,[0,""]],["_wpcompletionRadius",0,[0]]
 ];
 
 private ["_wpLast","_nbr","_pos","_wp"];
