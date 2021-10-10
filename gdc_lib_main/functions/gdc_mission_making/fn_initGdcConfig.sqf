@@ -4,8 +4,27 @@ if (isNil "HC_Slot") then {
 	HC_Slot = objNull;
 };
 
+// lancement du script qui affiche le loadout lors du briefing.
+_inventory = getMissionConfigValue ["GDC_Inventory",false];
+if(_inventory isEqualTo true || _inventory isEqualTo 1) then {
+	if (isServer && isMultiplayer) then {
+			GDC_playersinbriefing = 0;
+			GDC_inventoryBriefingEH = addMissionEventHandler ["OnUserClientStateChanged", {
+				params ["_networkId", "_clientStateNumber", "_clientState"];
+				if (_clientState == "BRIEFING SHOWN") then {
+					GDC_playersinbriefing = GDC_playersinbriefing + 1;
+					if (GDC_playersinbriefing >= (count allUsers)) then {
+						[] remoteExec ["GDC_fnc_inventoryBriefing_v2",0,true];
+						removeMissionEventHandler ["OnUserClientStateChanged", GDC_inventoryBriefingEH];
+					};
+				};
+			}];
+	} else {
+		[] call GDC_fnc_inventoryBriefing_v2;
+	};
+};
+
 if(hasInterface) then {
-	_inventory = getMissionConfigValue ["GDC_Inventory",false];
 	_roster = getMissionConfigValue ["GDC_Roster",false];
 
 	// remplacer la trousse de soin par 12 attelles.
@@ -16,10 +35,6 @@ if(hasInterface) then {
 		] call ace_common_fnc_registerItemReplacement;
 	};
 
-	// lancement du script qui affiche le loadout lors du briefing.
-	if(_inventory isEqualTo true || _inventory isEqualTo 1) then {
-		[] call GDC_fnc_inventoryBriefing; 
-	};
 	// lancement du script qui affiche le roster lors du briefing.
 	if(_roster isEqualTo true || _roster isEqualTo 1) then {
 		[] call GDC_fnc_rosterBriefing;

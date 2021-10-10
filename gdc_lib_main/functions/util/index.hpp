@@ -5,7 +5,9 @@ class util
     class chooseSpawnPos {};
     class chooseSpawnPos_onMapSingleClick {};
     class chooseIAHelicoInsert {};
+    class getInventoryBriefing {};
     class inventoryBriefing {};
+    class inventoryBriefing_v2 {};
     class rosterBriefing {};
     class getPositionsFromReference {};
     class createGroupCompo {};
