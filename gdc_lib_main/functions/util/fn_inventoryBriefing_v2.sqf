@@ -36,5 +36,3 @@ player createDiarySubject ["inventory","Inventaire"];
 	};
 	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text]];	
 } forEach _allrealplayers;
-
-player setVariable ["GDC_inventoryBriefing_ok",true,true];
