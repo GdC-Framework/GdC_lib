@@ -11,7 +11,7 @@
 	nothing
 */
 
-if (player getVariable ["GDC_inventoryBriefing_ok",false]) exitwith {};
+if (player diarySubjectExists "inventory") exitwith {};
 
 private _allrealplayers = switchableUnits;
 if (isMultiplayer) then {
