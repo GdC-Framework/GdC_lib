@@ -11,7 +11,7 @@
 	nothing
 */
 
-if (player getVariable ["GDC_inventoryBriefing_ok",false]) exitwith {};
+if (player diarySubjectExists "inventory") exitwith {};
 
 private _allrealplayers = switchableUnits;
 if (isMultiplayer) then {
@@ -36,5 +36,3 @@ player createDiarySubject ["inventory","Inventaire"];
 	};
 	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text]];	
 } forEach _allrealplayers;
-
-player setVariable ["GDC_inventoryBriefing_ok",true,true];
