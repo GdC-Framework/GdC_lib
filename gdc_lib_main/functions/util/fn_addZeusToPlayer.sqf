@@ -2,7 +2,7 @@
  * @name addZeusToPlayer
  * Function that add a zeus module and linked it to the player passed as parameter. Work only on hosting machine.
  * 
- * @param {object} [_player = player], player linked to zeus
+ * @param {object} [_player = objNull], player linked to zeus
  *
  * @returns [_zeus_module, _player]
  *
