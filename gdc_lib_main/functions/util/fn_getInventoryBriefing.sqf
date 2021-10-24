@@ -133,6 +133,12 @@ _text = _text + "<br/><br/>";
 } forEach _uniformList;
 _text = _text + "<br/><br/>";
 
+//
+_text = _text + "<font color='#EF7619'>Veste</font> : " + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #1) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #1) >> "descriptionShort")) + "</font>";
+_text = _text + "<br/>";
+_text = _text + "<font color='#EF7619'>Casque</font> : " + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #2) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #2) >> "descriptionShort")) + "</font>";
+_text = _text + "<br/><br/>";
+
 // Arme principale
 if (primaryWeapon _unit != "") then	{
 	_name = getText (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> "displayName");
