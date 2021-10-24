@@ -2,7 +2,7 @@
  * @name posToGrid
  * Extend mapGridPosition command engine for X digits grid map.
  * 
- * @param {object} [_object = player]
+ * @param {object, group, location, array, string} [_object = player]
  * @param {number} [_number_digits = 3], Number of grid coordinates ("_number_digits" digits for each axis)
  *
  * @returns {String} grid coordinates
@@ -10,7 +10,7 @@
  * @author Migoyan, based on Karel Moricky's function BIS_fnc_gridToPos (For recovering offsets part)
  */
 params[
-	["_object", player, [objNull]],
+	["_object", player, [objNull, grpNull, locationNull, [], ""], [2, 3]],
 	["_number_digits", 3, [0]]
 ];
 
@@ -24,7 +24,7 @@ _cfgGrid = configfile >> "CfgWorlds" >> worldname >> "Grid";
 _offsetX = getnumber (_cfgGrid >> "offsetX");
 _offsetY = getnumber (_cfgGrid >> "offsetY");
 
-_obj_pos = getPos _object;
+_obj_pos = _object call BIS_fnc_position;
 
 // We assume that for 10 digits (_number_digits = 5), gird size is 1 meter
 _coeff = 10^(_number_digits - 5);
