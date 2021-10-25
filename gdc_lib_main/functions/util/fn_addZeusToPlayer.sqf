@@ -9,7 +9,7 @@
  * @author Migoyan
  */
 params [
-	["_player", objNull, [objNull]]
+	["_player", player, [objNull]]
 ];
 
 if (!isServer) exitWith {
