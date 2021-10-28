@@ -14,7 +14,7 @@ params[
 	["_number_digits", 3, [0]]
 ];
 
-if ( _number_digits <= 0) throw "fnc_posToGrid : param _number_digits must be a positive non-zero number";
+if ( _number_digits <= 0 && _number_digits > 6) throw "fnc_posToGrid : param _number_digits must between 1 to 6 included";
 
 private [
 	"_posGrid","_cfgGrid","_offsetX","_offsetY", "_obj_pos", "_coeff", "_gridX", "_gridY", "_add_0X", "_add_0Y"
