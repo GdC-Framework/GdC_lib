@@ -66,7 +66,7 @@ if(hasInterface) then {
 	}];
 };
 
-// Léthalité réduite (ACE) pour les missions sans protections
+// Létalité réduite (ACE) pour les missions sans protections
 if (getMissionConfigValue ["GDC_AceDamage", false]) then {
 	ace_medical_playerDamageThreshold = 5;
 };
