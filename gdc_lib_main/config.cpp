@@ -168,8 +168,8 @@ class Cfg3DEN
 						class GDC_Ace_damage
 						{
 							property = "GDC_AceDamage";
-							displayName = "Dégats réduits";
-							tooltip = "Réduit légèrement la létalité des munitions. Prévu uniquement pour les missions sans protections ballistiques";
+							displayName = "Dégats ACE réduits";
+							tooltip = "Réduit légèrement la létalité des munitions. Prévu uniquement pour les missions sans protections ballistiques utilisant ACE.";
 							control = "Checkbox";
 							defaultValue = "false";
 						};
