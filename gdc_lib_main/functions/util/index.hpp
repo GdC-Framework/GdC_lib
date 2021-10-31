@@ -18,6 +18,7 @@ class util
     class urlFetch {};
     class urlFetchSimple {};
     class hasKindOfRadio {};
+    class posToGrid {};
     class addZeusToPlayer {};
     class addZeusToPlayerRemote {};
 };
