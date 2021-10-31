@@ -165,7 +165,7 @@ class Cfg3DEN
 							control = "Checkbox";
 							defaultValue = "false";
 						};
-						class GDC_Ace_damage
+						class GDC_AceDamage
 						{
 							property = "GDC_AceDamage";
 							displayName = "Dégats ACE réduits";
