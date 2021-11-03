@@ -66,4 +66,16 @@ if(hasInterface) then {
 	}];
 };
 
+// Létalité réduite (ACE) pour les missions sans protections
+if (getMissionConfigValue ["GDC_AceDamage", false]) then {
+	gdc_eh_acedamage addMissionEventHandler ["PreloadFinished", {
+		ace_medical_playerDamageThreshold = 5;
+		removeMissionEventHandler ["PreloadFinished",gdc_eh_acedamage];
+	}];
+	if (hasInterface) then {
+		player createDiarySubject["lethality", "Létalité réduite"];
+		player createDiaryRecord["lethality", "<font color='#FF4545' size='18'>Létalité réduite activée.</font color>"];
+	};
+};
+
 true
