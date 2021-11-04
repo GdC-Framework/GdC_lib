@@ -73,3 +73,6 @@ if (isnil "gdc_bft_eh") then {
 		};
 	},_interval,[player,_itemcondition,_otherobjects]] call CBA_fnc_addPerFrameHandler;
 };
+
+player createDiarySubject ["gdc_bft","BFT"];
+player createDiaryRecord ["gdc_bft", ["Instructions",format ["<font size='20'>Blue Force Tracker :</font><br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent ajouter un marqueur BFT au moyen de l'action disponible dans le menu d'interaction sur soi de ACE.<br/><br/>Seuls les joueurs qui disposent d'un <font color='#FF0000'>%1</font> peuvent voir les marqueurs BFT.",(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))]]];
