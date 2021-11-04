@@ -68,9 +68,9 @@ if(hasInterface) then {
 
 // Létalité réduite (ACE) pour les missions sans protections
 if (getMissionConfigValue ["GDC_AceDamage", false]) then {
-	gdc_eh_acedamage addMissionEventHandler ["PreloadFinished", {
+	addMissionEventHandler ["PreloadFinished", {
 		ace_medical_playerDamageThreshold = 5;
-		removeMissionEventHandler ["PreloadFinished",gdc_eh_acedamage];
+		removeMissionEventHandler ["PreloadFinished",_thisEventHandler];
 	}];
 	if (hasInterface) then {
 		player createDiarySubject["lethality", "Létalité réduite"];
