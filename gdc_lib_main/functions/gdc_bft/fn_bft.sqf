@@ -74,5 +74,12 @@ if (isnil "gdc_bft_eh") then {
 	},_interval,[player,_itemcondition,_otherobjects]] call CBA_fnc_addPerFrameHandler;
 };
 
+private _txt = format ["<font size='20'>Blue Force Tracker :</font>
+<br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent ajouter un marqueur BFT au moyen de l'action disponible dans le menu d'interaction sur soi de ACE.
+<br/><br/>Seuls les joueurs qui disposent d'un <font color='#FF0000'>%1</font> peuvent voir les marqueurs BFT.
+<br/><br/><font size='15'>Légende :</font>",(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
+{
+	_txt = _txt + format ["<br/><img image='%1' width='32' height='32'/> %2",(gettext (configfile >> "CfgMarkers" >> _x >> "icon")),(gettext (configfile >> "CfgMarkers" >> _x >> "name"))];
+} forEach ["b_inf","b_motor_inf","b_armor","b_mech_inf","b_air","b_plane","b_uav","b_art","b_naval","b_hq","b_med"];
 player createDiarySubject ["gdc_bft","BFT"];
-player createDiaryRecord ["gdc_bft", ["Instructions",format ["<font size='20'>Blue Force Tracker :</font><br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent ajouter un marqueur BFT au moyen de l'action disponible dans le menu d'interaction sur soi de ACE.<br/><br/>Seuls les joueurs qui disposent d'un <font color='#FF0000'>%1</font> peuvent voir les marqueurs BFT.",(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))]]];
+player createDiaryRecord ["gdc_bft", ["Instructions",_txt]];
