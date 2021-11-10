@@ -21,4 +21,7 @@ class util
     class posToGrid {};
     class addZeusToPlayer {};
     class addZeusToPlayerRemote {};
+    class limitWaypoints {
+        postInit = 1;
+    }
 };
