@@ -2,7 +2,7 @@
 	Author: [GIE] Gavin "Morbakos" Sertix
 	
 	Description:
-		Supprime les waypoints d'un groupe si il y en a plus que 12 (paramétrable)
+		Supprime les waypoints d'un groupe si il y en a plus que 25 (paramétrable)
 	
 	Parameter(s):
 		Nothing 
@@ -14,7 +14,7 @@
 if(!isServer) exitWith {};
 
 gdc_waypointsLimiter_run = true;
-gdc_waypointsLimiter_maxWaypoints = 12; // Max waypoints remaining after deletion
+gdc_waypointsLimiter_maxWaypoints = 25; // Max waypoints remaining after deletion
 gdc_waypointsLimiter_sleepDelay = 300; // in seconds
 
 [] spawn {
