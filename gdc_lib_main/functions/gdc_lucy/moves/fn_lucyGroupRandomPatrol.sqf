@@ -70,7 +70,7 @@ _wp = [
                 {
 	                deleteWaypoint [_group, _i];
                 };
-                nul = _group spawn {[_this, %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call skst_fnc_lucyGroupRandomPatrol;};
+                nul = _group spawn {[_this, %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call GDC_fnc_lucyGroupRandomPatrol;};
             };",
             _mkr_param,
             str(_grp_params #0),
