@@ -65,8 +65,10 @@ _wp = [
         format[
             "
             if (local this && count waypoints this) then {
-                private _group = ;
-                deleteWaypoint [group this, 0];
+                for ""_i"" from count waypoints _group - 1 to 0 step -1 do
+                {
+	                deleteWaypoint [_group, _i];
+                };
                 nul = [this] spawn {[group (_this#0), %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call skst_fnc_lucyGroupRandomPatrol;};
             };",
             _mkr_param,
