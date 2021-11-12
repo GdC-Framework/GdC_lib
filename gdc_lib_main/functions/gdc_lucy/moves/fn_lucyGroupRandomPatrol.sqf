@@ -60,5 +60,17 @@ _wp = [
     _grp_params #4,
     15, 
     [0, _wp_timeout/2, _wp_timeout], 
-    ["true", format["if (local this && (count waypoints group this) < 3) then {nul = [this] spawn {[group (_this select 0), %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call GDC_fnc_lucyGroupRandomPatrol;};};", _mkr_param, str(_grp_params #0), _blacklist]]
+    [
+        "true",
+        format[
+            "
+            if (local this && count waypoints this) then {
+                private _group = ;
+                deleteWaypoint [group this, 0];
+                nul = [this] spawn {[group (_this#0), %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call skst_fnc_lucyGroupRandomPatrol;};
+            };",
+            _mkr_param,
+            str(_grp_params #0),
+            _blacklist]
+        ]
 ] call GDC_fnc_lucyAddWaypoint;
