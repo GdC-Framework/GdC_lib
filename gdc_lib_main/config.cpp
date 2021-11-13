@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.10;
-		requiredAddons[] = {"A3_Functions_F", "A3_Modules_F", "A3_3DEN","3DEN"};
+		requiredAddons[] = {"A3_Functions_F", "A3_Modules_F", "A3_3DEN", "3DEN", "A3_UI_F"};
 	};
 };
 
@@ -13,6 +13,7 @@ class CfgFunctions
 {
 	class GDC
 	{
+		#include "functions\gdc_bft\index.hpp"
 		#include "functions\gdc_choppa\index.hpp"
 		#include "functions\gdc_extra\index.hpp"
 		#include "functions\gdc_halo\index.hpp"
@@ -180,4 +181,4 @@ class Cfg3DEN
 	};
 };
 
-
+#include "ui\index.hpp"
