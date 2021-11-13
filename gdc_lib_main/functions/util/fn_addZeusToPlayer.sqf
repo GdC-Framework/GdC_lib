@@ -24,7 +24,7 @@ _curator addCuratorEditableObjects [allUnits,true];
 _curator addCuratorEditableObjects [vehicles,true];
 _player assignCurator _curator;
 
-diag_log format ["Zeus modul created : %1, unit linked, %2", _curator, _player];
+diag_log format ["Zeus module created : %1, unit linked, %2", _curator, _player];
 ["Zeus créé sur le serveur"] remoteExec ["systemChat"];
 
 [_curator, _player]
