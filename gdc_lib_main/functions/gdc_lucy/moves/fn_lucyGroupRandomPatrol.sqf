@@ -66,7 +66,7 @@ _wp = [
             "
             if (local this) then {
                 private _group = group this;
-                for ""_i"" from count waypoints _group - 2 to 0 step -1 do
+                for ""_i"" from count waypoints _group - 1 to 0 step -1 do
                 {
 	                deleteWaypoint [_group, _i];
                 };
@@ -74,6 +74,7 @@ _wp = [
             };",
             _mkr_param,
             str(_grp_params #0),
-            _blacklist]
+            _blacklist
         ]
+    ]
 ] call GDC_fnc_lucyAddWaypoint;
