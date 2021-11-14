@@ -76,4 +76,3 @@ _wp = [
         ]
     ]
 ] call GDC_fnc_lucyAddWaypoint;
-git commit -m"Update lucyGroupRandomPatrol" -m"Modified the waypoint cleaner to deleting only completed waypoint. Allow the player to broke the infinite patrol by simply adding a new waypoint."
