@@ -63,14 +63,12 @@ _wp = [
     [
         "true",
         format[
-            "
-            if (local this) then {
+            "if (local this) then {
                 private _group = group this;
-                for ""_i"" from count waypoints _group - 1 to 0 step -1 do
-                {
-	                deleteWaypoint [_group, _i];
+                if(currentWaypoint _group == (count waypoints _group - 1)) then {
+                    nul = _group spawn {[_this, %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call GDC_fnc_lucyGroupRandomPatrol;};
                 };
-                nul = _group spawn {[_this, %1, [%2,""UNCHANGED"",""UNCHANGED"",""NO CHANGE"",""NO CHANGE""], %3] call GDC_fnc_lucyGroupRandomPatrol;};
+                deleteWaypoint [_group, currentWaypoint _group];
             };",
             _mkr_param,
             str(_grp_params #0),
@@ -78,3 +76,4 @@ _wp = [
         ]
     ]
 ] call GDC_fnc_lucyAddWaypoint;
+git commit -m"Update lucyGroupRandomPatrol" -m"Modified the waypoint cleaner to deleting only completed waypoint. Allow the player to broke the infinite patrol by simply adding a new waypoint."
