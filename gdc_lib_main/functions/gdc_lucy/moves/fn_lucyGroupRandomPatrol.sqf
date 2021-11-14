@@ -66,7 +66,7 @@ _wp = [
             "
             if (local this) then {
                 private _group = group this;
-                for ""_i"" from count waypoints _group - 1 to 0 step -1 do
+                for ""_i"" from count waypoints _group - 2 to 0 step -1 do
                 {
 	                deleteWaypoint [_group, _i];
                 };
