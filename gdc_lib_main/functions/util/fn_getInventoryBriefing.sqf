@@ -133,11 +133,15 @@ _text = _text + "<br/><br/>";
 } forEach _uniformList;
 _text = _text + "<br/><br/>";
 
-//
-_text = _text + "<font color='#EF7619'>Veste</font> : " + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #1) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #1) >> "descriptionShort")) + "</font>";
-_text = _text + "<br/>";
-_text = _text + "<font color='#EF7619'>Casque</font> : " + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #2) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> ((_uniform) #2) >> "descriptionShort")) + "</font>";
-_text = _text + "<br/><br/>";
+// Affichage des protections
+if ((vest _unit) != "") then {
+	_text = _text + "<font color='#EF7619'>Veste</font> : " + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "descriptionShort")) + "</font>";
+	_text = _text + "<br/>";
+};
+if ((headgear _unit) != "") then {
+	_text = _text + "<font color='#EF7619'>Casque</font> : " + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "descriptionShort")) + "</font>";
+	_text = _text + "<br/><br/>";
+};
 
 // Arme principale
 if (primaryWeapon _unit != "") then	{
