@@ -25,7 +25,7 @@ private ["_unit","_group","_count","_targetList","_range"];
 	};
 	_range = _x getVariable ["PLUTO_REVEALRANGE",_range]; // Eventuel range custom
 	// Parmi la liste de cibles disponibles ne sélectionner que celles qui sont dans le Range et qui ne sont pas déjà connues par le groupe :
-	_targetList = gdc_plutoTargetList select {((_unit distance _x) < _range)};
+	_targetList = gdc_plutoTargetList select {((_unit distance _x) < _range) && ((_unit knowsAbout _x) < 1.5)};
 	// Révéler les cibles ainsi sélectionnées :
 	{
 		_group reveal _x;
