@@ -20,6 +20,7 @@ class CfgFunctions
 		#include "functions\gdc_lucy\index.hpp"
 		#include "functions\gdc_mission_making\index.hpp"
 		#include "functions\gdc_pluto\index.hpp"
+		#include "functions\gdc_mrkFilter\index.hpp"
 		#include "functions\util\index.hpp"
 		#include "functions\utilInternal\index.hpp"
 	};

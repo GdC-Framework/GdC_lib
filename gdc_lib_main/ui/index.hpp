@@ -25,6 +25,7 @@ class RscActivePictureKeepAspect;
 class RscStructuredText;
 class RscToolbox;
 class RscControlsGroup;
+class ControlsBackground;
 class RscControlsGroupNoScrollbars;
 class RscControlsGroupNoHScrollbars;
 class RscControlsGroupNoVScrollbars;
@@ -36,5 +37,9 @@ class RscButtonMenuSteam;
 class RscMapControl;
 class RscMapControlEmpty;
 class RscCheckBox;
+class HScrollbar;
+class VScrollbar;
+class ScrollBar;
 
 #include "bft.hpp"
+#include "mrkFilter\gdc_RscDisplayMainMap.hpp"
