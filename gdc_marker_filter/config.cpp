@@ -1,6 +1,6 @@
 class CfgPatches 
 {
-    class gdc_lib_main 
+    class gdc_marker_filter 
     {
         units[] = {};
         weapons[] = {};
@@ -34,7 +34,7 @@ class RscDisplayMainMap {
                 text = "\GDC_mrkFilter\data\icon-filter.jpg";
                 tooltip = "Filtrer les marqueurs";
                 onLoad = "uiNamespace setVariable ['BtnMrkFilter', _this select 0];[] call GDC_fnc_restoreCtrlState";
-        }
+        };
         #include "ui\gdc_ctrlMrkFilter.hpp"
     };
 };
