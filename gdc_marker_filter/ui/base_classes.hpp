@@ -1,0 +1,10 @@
+class RscText;
+class RscActiveText;
+class RscButton;
+class RscCheckbox;
+class RscControlsGroup;
+class ControlsBackground;
+class HScrollbar;
+class VScrollbar;
+class RscListNBox;
+class ScrollBar;
