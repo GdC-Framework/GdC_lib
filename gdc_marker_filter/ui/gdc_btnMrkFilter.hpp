@@ -15,7 +15,7 @@ class gdc_btnMrkFilter: RscActiveText
 	y = 0;
 	w = 0.020625 * safezoneW;
 	h = 0.033 * safezoneH;
-	text = "\GDC_mrkFilter\data\icon-filter.jpg";
+	text = "\gdc_marker_filter\data\icon-filter.jpg";
 	tooltip = "Filtrer les marqueurs";
 	onButtonClick = "";
 	onLoad = "";

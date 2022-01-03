@@ -31,7 +31,7 @@ class RscDisplayMainMap {
                 onButtonClick = "_ctrl = uiNameSpace getVariable 'grpMrkFilter';if !(ctrlShown _ctrl) then {_ctrl ctrlShow true} else {_ctrl ctrlShow false}";
                 x = safeZoneW + safeZoneX - (0.020630 * safezoneW);
                 y = safezoneY;
-                text = "\GDC_mrkFilter\data\icon-filter.jpg";
+                text = "\gdc_marker_filter\data\icon-filter.jpg";
                 tooltip = "Filtrer les marqueurs";
                 onLoad = "uiNamespace setVariable ['BtnMrkFilter', _this select 0];[] call GDC_fnc_restoreCtrlState";
         };
