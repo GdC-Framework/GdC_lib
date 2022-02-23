@@ -24,21 +24,22 @@ private ["_unit","_group","_count","_targetList","_range"];
 		default {gdc_plutoRangeRevealLand}; //"LandVehicle"
 	};
 	_range = _x getVariable ["PLUTO_REVEALRANGE",_range]; // Eventuel range custom
-	// Parmi la liste de cibles disponibles ne sélectionner que celles qui sont dans le Range et qui ne sont pas déjà connues par le groupe :
-	_targetList = gdc_plutoTargetList select {((_unit distance (_x #0)) < _range) && ((_unit knowsAbout (_x #0)) < 1)};
+	// Parmi la liste de cibles disponibles ne sélectionner que celles qui sont dans le Range du groupe :
+	_targetList = gdc_plutoTargetList select {(_unit distance _x) < _range};
 	// Révéler les cibles ainsi sélectionnées :
 	{
-		_group reveal [(_x #0),(_x #1)];
+		_group reveal _x;
 	} forEach _targetList;
 	// Si des cibles ont été révélées, générer des actions en fonction des ordres des unités
+	_targetList = _targetList select {(_unit knowsAbout _x) >= 1}; // Ne lancer des actions spéciales que si la cible est suffisament connue
 	_count = count _targetList;
 	if (_count > 0) then {
 		// DEBUG
 		if (gdc_plutoDebug) then {systemChat ((str _count) + " units revealed to " + (str _group));};
 		// Actions en fonction de la variable
 		switch (_group getVariable ["PLUTO_ORDER","DEFAULT"]) do {
-			case "QRF": {[_group,((flatten _targetList) select {(typeName _x) == "OBJECT"})] call gdc_fnc_plutoDoQRF;};
-			case "ARTY": {[_group,((flatten _targetList) select {(typeName _x) == "OBJECT"})] call gdc_fnc_plutoDoArty;};
+			case "QRF": {[_group,_targetList] call gdc_fnc_plutoDoQRF;};
+			case "ARTY": {[_group,_targetList] call gdc_fnc_plutoDoArty;};
 			case "IGNORE";
 			case "DEFAULT";
 			default {};

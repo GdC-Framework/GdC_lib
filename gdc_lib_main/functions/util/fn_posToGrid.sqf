@@ -2,16 +2,18 @@
  * @name posToGrid
  * Extend mapGridPosition command engine for X digits grid map.
  * 
- * @param {object, group, location, array, string} [_object = player]
- * @param {number} [_number_digits = 3], Number of grid coordinates ("_number_digits" digits for each axis)
+ * @param {object, group, location, array, string} [_object = player].
+ * @param {number} [_number_digits = 3], Number of grid coordinates ("_number_digits" digits for each axis), 6 digits max.
+ * @param {string} [_separator = ""], Symbol used to separate the x-grid and y-grid coordinates.
  *
- * @returns {String} grid coordinates
+ * @returns {string} grid coordinates.
  *
- * @author Migoyan, based on Karel Moricky's function BIS_fnc_gridToPos (For recovering offsets part)
+ * @author Migoyan, based on Karel Moricky's function BIS_fnc_gridToPos (For recovering offsets part).
  */
 params[
 	["_object", player, [objNull, grpNull, locationNull, [], ""], [2, 3]],
-	["_number_digits", 3, [0]]
+	["_number_digits", 3, [0]],
+	["_separator", "", [""]]
 ];
 
 if ( _number_digits <= 0 || _number_digits > 6) throw "fnc_posToGrid : param _number_digits must between 1 to 6 included";
@@ -45,4 +47,4 @@ for "_i" from 1 to _add_0Y do {
 	_gridY = "0" + _gridY;
 };
 
-_gridX + _gridY
+_gridX + _separator + _gridY

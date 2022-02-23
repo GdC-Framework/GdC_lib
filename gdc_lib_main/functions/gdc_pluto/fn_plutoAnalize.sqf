@@ -40,11 +40,12 @@ gdc_plutoTargetList = [];
 	_targetList = _unit nearTargets _range;
 	{
 		_x params ["_targetPos","","_targetSide","","_target","_targetPosAcc"];
+		if ((count (crew _target)) > 0) then {_targetSide = side ((crew _target) #0);};
 		// Vérifier que la cible n'est pas le HC, qu'elle n'est pas déjà dans la liste, qu'elle n'est pas amie et qu'elle est bien réelle
 		if ((_target != HC_Slot) && !(_target in gdc_plutoTargetList) && (_targetSide != gdc_plutoSide) && ((gdc_plutoSide getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
-			// Vérifier que la cible est vivante, que le groupe a suffisament d'infos sur la cible et que la cible n'est pas captive
-			if ((alive _target) && ((_unit knowsAbout _target) > 1.5) && (_targetPosAcc < 20) && (!captive _target)) then {
-				gdc_plutoTargetList = gdc_plutoTargetList + [[_target,(_unit knowsAbout _target)]]; // ajouter la cible dans la liste
+			// Vérifier que la cible est vivante, que le groupe a suffisament d'infos sur la cible, que la cible n'est pas captive et que ce n'est pas un véhicule vide
+			if ((alive _target) && ((_unit knowsAbout _target) >= 0.2) && (!captive _target) && ((count (crew _target)) > 0)) then {
+				gdc_plutoTargetList = gdc_plutoTargetList + [_target]; // ajouter la cible dans la liste
 				// DEBUG
 				if (gdc_plutoDebug) then {
 					_mk = createMarkerLocal [(format ["mk_target%1",_target]),_targetPos];
