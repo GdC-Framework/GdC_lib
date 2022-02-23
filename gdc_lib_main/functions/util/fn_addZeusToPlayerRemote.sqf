@@ -12,7 +12,6 @@ params [
 	["_player", player, [objNull]]
 ];
 
-private _index = count allCurators;
 private _error = [_player] remoteExecCall ["GDC_fnc_addZeusToPlayer", 2];
 if (isNil "_error") exitWith {
 	false
