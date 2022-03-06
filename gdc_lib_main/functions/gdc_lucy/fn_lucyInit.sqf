@@ -41,6 +41,7 @@ LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH = 1 min _ia_spawn_delay;
 // Position to temporary spawn static units before move to their position
 if (typeName _ia_spawn_pos_static_unit == "STRING") then {
     _ia_spawn_pos_static_unit = getMarkerPos _ia_spawn_pos_static_unit;
+    _ia_spawn_pos_static_unit set [2, 500];
 };
 LUCY_IA_STATIC_UNIT_SPAWN_POS = _ia_spawn_pos_static_unit;
 LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME = _ia_spawn_pos_static_unit; //legacy
