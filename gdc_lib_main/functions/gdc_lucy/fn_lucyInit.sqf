@@ -22,14 +22,14 @@
 
 params [["_ia_spawn_delay", 1.0, [0]],
         ["_ia_spawn_pos_static_unit", "mkr_spawn_static_unit", ["",[]]],
-        ["_ia_clean_bodies", True, [true]], 
+        ["_ia_clean_bodies", true, [true]], 
         ["_ia_clean_bodies_timer", 3600.0, [0]], 
-        ["_ia_clean_dead_vehicles", False, [true]],
+        ["_ia_clean_dead_vehicles", false, [true]],
         ["_ia_clean_dead_vehicles_timer", 3600.0, [0]],
-        ["_ia_fatigue_disabled", True, [true]],
-        ["_ia_vehicles_remove_inventory", True, [true]],
+        ["_ia_fatigue_disabled", true, [true]],
+        ["_ia_vehicles_remove_inventory", true, [true]],
         ["_ia_rank_leader", "COLONEL", [""]],
-        ["_ia_remove_empty_groups", False, [true]]
+        ["_ia_remove_empty_groups", false, [true]]
 ];
 LUCY_INIT = FALSE;
 
@@ -39,9 +39,15 @@ LUCY_INIT = FALSE;
 LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT = _ia_spawn_delay;
 LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT_REFRESH = 1 min _ia_spawn_delay;
 // Position to temporary spawn static units before move to their position
-if (typeName _ia_spawn_pos_static_unit == "STRING") then {
-    _ia_spawn_pos_static_unit = getMarkerPos _ia_spawn_pos_static_unit;
-    _ia_spawn_pos_static_unit set [2, 500];
+if (_ia_spawn_pos_static_unit isEqualType "") then {
+    if (getMarkerType _ia_spawn_pos_static_unit == "") then {
+        // When the marker doesn't exist Arma return [0,0,0] for the marker position, so we spawn the unit 500 meters above the water
+        _ia_spawn_pos_static_unit = getMarkerPos _ia_spawn_pos_static_unit;
+        _ia_spawn_pos_static_unit set [2, 500];
+    } else {
+        // If the player has defined the marker, he's responsible of its own ****
+        _ia_spawn_pos_static_unit = getMarkerPos _ia_spawn_pos_static_unit;
+    };
 };
 LUCY_IA_STATIC_UNIT_SPAWN_POS = _ia_spawn_pos_static_unit;
 LUCY_IA_MARKER_SPAWN_STATIC_UNIT_NAME = _ia_spawn_pos_static_unit; //legacy
@@ -71,16 +77,16 @@ LUCY_LOCAL_SPAWN_UNIT = nil;
 if !(isMultiplayer) then {
     if (isServer) then {
         // Editing mode, enable spawn units
-        LUCY_LOCAL_SPAWN_UNIT = True;
+        LUCY_LOCAL_SPAWN_UNIT = true;
     };
 } else {
     if !(hasInterface or isServer) then {
         // HC, spawn units 
-        LUCY_LOCAL_SPAWN_UNIT = True;
+        LUCY_LOCAL_SPAWN_UNIT = true;
     }
     else {
         // Not HC, don't spawn units
-        LUCY_LOCAL_SPAWN_UNIT = False;
+        LUCY_LOCAL_SPAWN_UNIT = false;
     };
 };
 
@@ -102,9 +108,9 @@ LUCY_UNIT_TYPE_MOVE     = "LUCY_UNIT_MOVE";
 //LUCY_CIVILIAN_RANDOM_ACTION_NUMBER                  = 2;
 
 // Variables
-LUCY_SCAN_IN_PROGRESS = False;
-LUCY_SPAWN_INF_IN_PROGRESS = False;
-LUCY_SPAWN_VEH_IN_PROGRESS = False;
+LUCY_SCAN_IN_PROGRESS = false;
+LUCY_SPAWN_INF_IN_PROGRESS = false;
+LUCY_SPAWN_VEH_IN_PROGRESS = false;
 //LUCY_NUM_CIVILIAN_KILLED = 0;
 //LUCY_LIST_POI_WEST = [];
 //LUCY_LIST_POI_EAST = [];
@@ -112,8 +118,8 @@ LUCY_SPAWN_VEH_IN_PROGRESS = False;
 //LUCY_LIST_POI_CIVILIAN = [];
 
 // Script to configure IA loadouts
-LUCY_SCRIPT_CONFIG_LOADOUT_IA_ENABLED = False;
+LUCY_SCRIPT_CONFIG_LOADOUT_IA_ENABLED = false;
 LUCY_SCRIPT_CONFIG_LOADOUT_IA = objNull;
 
 // Everything is configured, 
-LUCY_INIT = TRUE;
+LUCY_INIT = true;

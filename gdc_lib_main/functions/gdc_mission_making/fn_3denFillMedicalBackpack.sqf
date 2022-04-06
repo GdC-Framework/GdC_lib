@@ -8,39 +8,40 @@
 */
 
 params ["_objects"];
-private ["_backpack","_items"];
+private ["_backpack","_items", "_unit_loadout"];
 
 _objects = _objects select {_x isKindOf "man"};
 
 {
-	_backpack = (getUnitLoadout _x) #5;
+	_unit_loadout = getUnitLoadout _x;
+	_backpack = (_unit_loadout) #5;
 	if (count _backpack > 0) then {
 		_items = _backpack #1;
 		_backpack = _backpack #0;
 		_x setUnitLoadout [
-			((getUnitLoadout _x) #0),
-			((getUnitLoadout _x) #1),
-			((getUnitLoadout _x) #2),
-			((getUnitLoadout _x) #3),
-			((getUnitLoadout _x) #4),
+			((_unit_loadout) #0),
+			((_unit_loadout) #1),
+			((_unit_loadout) #2),
+			((_unit_loadout) #3),
+			((_unit_loadout) #4),
 			[_backpack,(_items + [["ACE_surgicalKit",1],["ACE_splint",12],["ACE_salineIV",2],["ACE_salineIV_250",2],["ACE_salineIV_500",2],["ACE_tourniquet",4],["ACE_morphine",8],["ACE_epinephrine",4],["ACE_packingBandage",15],["ACE_fieldDressing",15],["ACE_elasticBandage",10],["ACE_quikclot",10]])],
-			((getUnitLoadout _x) #6),
-			((getUnitLoadout _x) #7),
-			((getUnitLoadout _x) #8),
-			((getUnitLoadout _x) #9)
+			((_unit_loadout) #6),
+			((_unit_loadout) #7),
+			((_unit_loadout) #8),
+			((_unit_loadout) #9)
 		];
 		if ((loadBackpack _x) > 1) then { // Annulation si pas assez de place
 			_x setUnitLoadout [
-				((getUnitLoadout _x) #0),
-				((getUnitLoadout _x) #1),
-				((getUnitLoadout _x) #2),
-				((getUnitLoadout _x) #3),
-				((getUnitLoadout _x) #4),
+				((_unit_loadout) #0),
+				((_unit_loadout) #1),
+				((_unit_loadout) #2),
+				((_unit_loadout) #3),
+				((_unit_loadout) #4),
 				[_backpack,_items],
-				((getUnitLoadout _x) #6),
-				((getUnitLoadout _x) #7),
-				((getUnitLoadout _x) #8),
-				((getUnitLoadout _x) #9)
+				((_unit_loadout) #6),
+				((_unit_loadout) #7),
+				((_unit_loadout) #8),
+				((_unit_loadout) #9)
 			];
 			systemchat (format ["Unité %1 : pas assez de place dans le sac.",str (str _x)]);
 		} else {
