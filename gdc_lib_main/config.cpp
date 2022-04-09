@@ -113,7 +113,28 @@ class display3DEN
 			class GDC_FillMedicalBackpack
 			{
 				text = "Sac à dos médical standard";
-				action = "[(get3DENSelected ""object"")] call GDC_fnc_3denFillMedicalBackpack;";
+				action = "[(get3DENSelected ""object""), false] call GDC_fnc_3denFillMedicalBackpack;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class GDC_FillHeavyMedicalBackpack
+			{
+				text = "Sac à dos médical lourd";
+				action = "[(get3DENSelected ""object""), true] call GDC_fnc_3denFillMedicalBackpack;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class GDC_FillBasicItemsRadio
+			{
+				text = "Équipement de base avec radio (uniforme)";
+				action = "[(get3DENSelected ""object""), true] call GDC_fnc_3denFillBasicStuff;";
+				conditionShow = "selectedObject * hoverObject";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class GDC_FillBasicItems
+			{
+				text = "Équipement de base sans radio (uniforme)";
+				action = "[(get3DENSelected ""object""), false] call GDC_fnc_3denFillBasicStuff;";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
 			};
