@@ -108,7 +108,13 @@ class display3DEN
 			};
 			class Edit
 			{
-				items[] += {"GDC_FillMedicalBackpack"};
+				items[] += {"GDC_medical","GDC_radio"};
+			};
+			class GDC_medical
+			{
+				text = "GDC stuff médical";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				items[] = {"GDC_FillMedicalBackpack","GDC_FillHeavyMedicalBackpack"};
 			};
 			class GDC_FillMedicalBackpack
 			{
@@ -123,6 +129,12 @@ class display3DEN
 				action = "[(get3DENSelected ""object""), true] call GDC_fnc_3denFillMedicalBackpack;";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+			};
+			class GDC_radio
+			{
+				text = "GDC stuff de base";
+				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				items[] = {"GDC_FillBasicItemsRadio","GDC_FillBasicItems"};
 			};
 			class GDC_FillBasicItemsRadio
 			{

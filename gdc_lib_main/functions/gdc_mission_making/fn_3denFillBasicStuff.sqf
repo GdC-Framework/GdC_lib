@@ -24,7 +24,7 @@ _objects apply {
 	_old_loadout = getUnitLoadout _x;
 	_new_loadout = _old_loadout;
 	_new_loadout#3 set [1, _new_loadout#3#1 + _items];
-	_new_loadout#7 set [2, ""];
+	_new_loadout#9 set [2, ""];
 
 	_uniform = (_old_loadout) #3;
 	if (count _uniform > 0) then {
@@ -39,17 +39,6 @@ _objects apply {
 		};
 		save3DENInventory [_x];
 	} else {
-		systemchat (format ["Unité %1 : pas d'uniforme' trouvé.",str (str _x)]);
+		systemchat (format ["Unité %1 : pas d'uniforme trouvé.",str (str _x)]);
 	};
 };
-[
-	["arifle_MX_ACO_pointer_F","","acc_pointer_IR","optic_Aco",["30Rnd_65x39_caseless_mag",30],[],""],
-	[],
-	["hgun_P07_F","","","",["16Rnd_9x21_Mag",17],[],""],
-	["U_B_CombatUniform_mcam",[["FirstAidKit",1],["30Rnd_65x39_caseless_mag",2,30]]],
-	["V_PlateCarrier1_rgr",[["30Rnd_65x39_caseless_mag",7,30],["16Rnd_9x21_Mag",2,17],["SmokeShell",1,1],["SmokeShellGreen",1,1],["Chemlight_green",2,1],["HandGrenade",2,1]]],
-	[],
-	"H_HelmetB","G_Aviator",
-	[],
-	["ItemMap","","ItemRadio","ItemCompass","ItemWatch","NVGoggles"]
-]

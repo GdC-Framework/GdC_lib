@@ -79,7 +79,7 @@ if (_heavy_medical) then {
 			if (_heavy_medical) then {
 				systemchat (format ["Unité %1 : pas assez de place dans le sac (6,35Kg minimum).",str (str _x)]);
 			} else {
-				systemchat (format ["Unité %1 : pas assez de place dans le sac (6,35Kg minimum).",str (str _x)]);
+				systemchat (format ["Unité %1 : pas assez de place dans le sac (11,25Kg minimum).",str (str _x)]);
 			};
 		} else {
 			systemchat (format ["Unité %1 : loadout modifié.",str (str _x)]);
