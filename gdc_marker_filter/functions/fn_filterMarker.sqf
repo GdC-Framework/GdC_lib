@@ -13,7 +13,7 @@ if (count _tbMrk > 1) then {
 		if (_show) then {_mrkAlpha = 1};
 		{
 			if (([(_x),0,14] call BIS_fnc_trimString) isEqualTo "_USER_DEFINED #") then {
-				(_x) setMarkerAlpha _mrkAlpha;
+				(_x) setMarkerAlphaLocal _mrkAlpha;
 			};
 		} forEach allMapMarkers;
 		[] call gdc_fnc_setBtnState;
