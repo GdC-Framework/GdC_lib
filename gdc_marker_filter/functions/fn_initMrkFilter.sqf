@@ -15,24 +15,24 @@ tbAllCtrl = ['chkAllMM','chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll','c
 	switch true do {
 		//AAP BLUFOR markers
 		case (_mrkPrefix isEqualTo "b_"): {
-			tbMrkAAPBlufor pushBack [_x, markerAlpha _x];
+			tbMrkAAPBlufor pushBack [_x, markerAlphaLocal _x];
 		};
 		//AAP OPFOR markers
 		case (_mrkPrefix isEqualTo "o_"): {
-			tbMrkAAPOpfor pushBack [_x, markerAlpha _x];
+			tbMrkAAPOpfor pushBack [_x, markerAlphaLocal _x];
 		};
 		//AAP Guerria markers
 		case (_mrkPrefix isEqualTo "n_"): {
-			tbMrkAAPGuer pushBack [_x, markerAlpha _x];
+			tbMrkAAPGuer pushBack [_x, markerAlphaLocal _x];
 		};
 		//Area markers
 		case (getMarkerType _x isEqualTo ""): {
-			tbMrkZn pushBack [_x, markerAlpha _x];
+			tbMrkZn pushBack [_x, markerAlphaLocal _x];
 		};
 		//Exclude player created markers
 		case (([_x,0,14] call BIS_fnc_trimString) isEqualTo "_USER_DEFINED #"): {};
 		//Other markers
-		default {tbMrkOther pushBack [_x, markerAlpha _x]};
+		default {tbMrkOther pushBack [_x, markerAlphaLocal _x]};
 	};
 } forEach allMapMarkers;
 
