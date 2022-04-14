@@ -12,5 +12,3 @@ if (_isFilterActive) then {
 } else {
 	_btn ctrlSetTextColor [1,1,1,1];
 }
-
-
