@@ -127,7 +127,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             w = 1.2 * (((safezoneW / safezoneH) min 1.2) / 40);
             h = 1.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25);
             onLoad = "uiNamespace setVariable ['chkAllMM', _this select 0];['chkAllMM'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[['chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll','chkZn','chkOther'], cbChecked (_this#0)] call gdc_fnc_setChkState;[tbMrkAllMM, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[['chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll','chkZn','chkOther'], cbChecked (_this#0)] call gdc_fnc_setChkState;[GDC_tbMrkAllMM, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //APP Markers blufor
         class gdc_ChkBox2a: gdc_ChkBox
@@ -136,7 +136,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             x = 42 * GRID_W;
             y = 15 * GRID_H;
             onLoad = "uiNamespace setVariable ['chkAAPBlufor', _this select 0];['chkAAPBlufor'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkAAPBlufor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkAAPBlufor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //APP Markers opfor
         class gdc_ChkBox2b: gdc_ChkBox2a
@@ -144,7 +144,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99903;
             x = 48 * GRID_W;
             onLoad = "uiNamespace setVariable ['chkAAPOpfor', _this select 0];['chkAAPOpfor'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";   
+            onCheckedChanged = "[GDC_tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";   
         };
         //APP Markers guer
         class gdc_ChkBox2c: gdc_ChkBox2a
@@ -152,7 +152,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99904;
             x = 54 * GRID_W;
             onLoad = "uiNamespace setVariable ['chkAAPGuer', _this select 0];['chkAAPGuer'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkAAPGuer, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkAAPGuer, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //All APP Markers
         class gdc_ChkBox2d: gdc_ChkBox2a
@@ -160,7 +160,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99905;
             x = 62 * GRID_W;
             onLoad = "uiNamespace setVariable ['chkAAPAll', _this select 0];['chkAAPAll'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkAAPGuer, cbChecked (_this#0)] call gdc_fnc_filterMarker;[['chkAAPBlufor','chkAAPOpfor','chkAAPGuer'], cbChecked (_this#0) ] call gdc_fnc_setChkState;[tbMrkAAPBlufor, cbChecked (_this#0)] call gdc_fnc_filterMarker;[tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkAAPGuer, cbChecked (_this#0)] call gdc_fnc_filterMarker;[['chkAAPBlufor','chkAAPOpfor','chkAAPGuer'], cbChecked (_this#0) ] call gdc_fnc_setChkState;[GDC_tbMrkAAPBlufor, cbChecked (_this#0)] call gdc_fnc_filterMarker;[GDC_tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //Area markers           
         class gdc_ChkBox3: gdc_ChkBox
@@ -169,7 +169,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             x = 42 * GRID_W;
             y = 21 * GRID_H;
             onLoad = "uiNamespace setVariable ['chkZn', _this select 0];['chkZn'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkZn, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkZn, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //Other markers        
         class gdc_ChkBox4: gdc_ChkBox
@@ -177,7 +177,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99907;
             y = 27 * GRID_H;
             onLoad = "uiNamespace setVariable ['chkOther', _this select 0];['chkOther'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkOther, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkOther, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //All player created markers       
         class gdc_ChkBox5: gdc_ChkBox
@@ -185,7 +185,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99908;
             y = 35 * GRID_H;
             onLoad = "uiNamespace setVariable ['chkPlayer', _this select 0];['chkPlayer'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[tbMrkPlayer, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
+            onCheckedChanged = "[GDC_tbMrkPlayer, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
     };
 };

@@ -51,7 +51,7 @@ class RscDisplayGetReady: RscDisplayMainMap {
             y = safezoneY;
             w = 0.020625 * safezoneW;
             onLoad = "uiNamespace setVariable ['BtnMrkFilter', _this select 0];[] call GDC_fnc_initMrkFilter;";
-            onDestroy = "[tbAllCtrl] call gdc_fnc_saveCtrlstate";
+            onDestroy = "[GDC_tbAllCtrl] call gdc_fnc_saveCtrlstate";
         };
         #include "ui\gdc_ctrlMrkFilter.hpp"
     };
@@ -69,7 +69,7 @@ class RscDisplayClientGetReady: RscDisplayGetReady {
             y = safezoneY;
             w = 0.020625 * safezoneW;
             onLoad = "uiNamespace setVariable ['BtnMrkFilter', _this select 0];[] call GDC_fnc_initMrkFilter;";
-            onDestroy = "[tbAllCtrl] call gdc_fnc_saveCtrlstate";
+            onDestroy = "[GDC_tbAllCtrl] call gdc_fnc_saveCtrlstate";
         };
         #include "ui\gdc_ctrlMrkFilter.hpp"
     };
@@ -86,7 +86,7 @@ class RscDisplayServerGetReady: RscDisplayGetReady {
             y = safezoneY;
             w = 0.020625 * safezoneW;
             onLoad = "uiNamespace setVariable ['BtnMrkFilter', _this select 0];[] call GDC_fnc_initMrkFilter;";
-            onDestroy = "[tbAllCtrl] call gdc_fnc_saveCtrlstate";
+            onDestroy = "[GDC_tbAllCtrl] call gdc_fnc_saveCtrlstate";
         };
         #include "ui\gdc_ctrlMrkFilter.hpp"
     };

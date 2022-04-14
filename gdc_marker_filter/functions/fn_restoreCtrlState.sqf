@@ -1,7 +1,7 @@
 {
 	_ctrl = uiNameSpace getVariable (_x#0);
 	_ctrl cbSetChecked (_x#1);
-} forEach tbCtrlStateA;
+} forEach GDC_tbCtrlStateA;
 
 //restore BtnMrkFilter state
 _btn = uiNamespace getVariable "BtnMrkFilter";

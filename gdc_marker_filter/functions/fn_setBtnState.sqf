@@ -4,7 +4,7 @@ _isFilterActive = false;
 	if !(cbChecked _ctrl) exitWith {
 		_isFilterActive = true;
 	};
-} forEach tbAllCtrl;
+} forEach GDC_tbAllCtrl;
 
 _btn = uiNamespace getVariable "BtnMrkFilter";
 if (_isFilterActive) then {

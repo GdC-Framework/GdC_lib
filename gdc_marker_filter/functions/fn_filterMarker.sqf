@@ -4,7 +4,7 @@ params [
 ];
 
 //If briefing has been skipped, initialize arrays
-if (isNil "tbMrkAAPBlufor") then {[] call gdc_fnc_initMrkFilter;};
+if (isNil "GDC_tbMrkAAPBlufor") then {[] call gdc_fnc_initMrkFilter;};
 
 private _mrkAlpha = 0;
 if (count _tbMrk > 1) then {

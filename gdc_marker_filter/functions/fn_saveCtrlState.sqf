@@ -1,9 +1,9 @@
 params ["_tbCtrl"];
-tbCtrlStateA = [];
+GDC_tbCtrlStateA = [];
 {
 	_ctrl = uiNameSpace getVariable _x;
 	_ctrlState = cbChecked _ctrl;
-	tbCtrlStateA pushBack [_x, _ctrlState];
+	GDC_tbCtrlStateA pushBack [_x, _ctrlState];
 } forEach _tbCtrl;
 
 //save BtnMrkFilter state
