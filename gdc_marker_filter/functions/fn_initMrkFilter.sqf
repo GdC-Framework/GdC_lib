@@ -32,7 +32,7 @@ GDC_tbMrkAllMM = [allMapMarkers, { !("bis_fnc_moduleCoverMap" in _x) }] call BIS
 			GDC_tbMrkZn pushBack [_x, markerAlpha _x];
 		};
 		//Exclude player created markers
-		case ((_x select [0,14];) isEqualTo "_USER_DEFINED #"): {};
+		case ((_x select [0,15];) isEqualTo "_USER_DEFINED #"): {};
 		//Other markers
 		default {GDC_tbMrkOther pushBack [_x, markerAlpha _x]};
 	};
