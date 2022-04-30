@@ -10,6 +10,8 @@ GDC_tbMrkOther = [];
 GDC_tbMrkPlayer = [["_USER_DEFINED #fake",0]];
 GDC_tbAllCtrl = ['chkAllMM','chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll','chkZn','chkOther','chkPlayer'];
 
+private _all_markers = [allMapMarkers, { !("bis_fnc_moduleCoverMap" in _x) }] call BIS_fnc_conditionalSelect;
+
 {
 	private _mrkPrefix = [getMarkerType _x,0,1] call BIS_fnc_trimString;
 	switch true do {
@@ -34,7 +36,7 @@ GDC_tbAllCtrl = ['chkAllMM','chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll
 		//Other markers
 		default {GDC_tbMrkOther pushBack [_x, markerAlpha _x]};
 	};
-} forEach allMapMarkers;
+} forEach _all_markers;
 
 GDC_tbMrkAllMM = GDC_tbMrkAAPBlufor + GDC_tbMrkAAPGuer + GDC_tbMrkAAPOpfor + GDC_tbMrkZn + GDC_tbMrkOther;
 
