@@ -9,10 +9,10 @@ if (isNil "GDC_tbMrkAAPBlufor") then {[] call gdc_fnc_initMrkFilter;};
 private _mrkAlpha = 0;
 if (count _tbMrk > 1) then {
 	//Dynamic array for player created markers
-	if (([(_tbMrk#0#0),0,14] call BIS_fnc_trimString) isEqualTo "_USER_DEFINED #") exitWith {
+	if (((_tbMrk#0#0) select [0,14];) isEqualTo "_USER_DEFINED #") exitWith {
 		if (_show) then {_mrkAlpha = 1};
 		{
-			if (([(_x),0,14] call BIS_fnc_trimString) isEqualTo "_USER_DEFINED #") then {
+			if ((_x select [0,14];) isEqualTo "_USER_DEFINED #") then {
 				(_x) setMarkerAlphaLocal _mrkAlpha;
 			};
 		} forEach allMapMarkers;

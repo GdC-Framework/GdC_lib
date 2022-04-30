@@ -10,7 +10,7 @@ GDC_tbMrkOther = [];
 GDC_tbMrkPlayer = [["_USER_DEFINED #fake",0]];
 GDC_tbAllCtrl = ['chkAllMM','chkAAPBlufor','chkAAPOpfor','chkAAPGuer','chkAAPAll','chkZn','chkOther','chkPlayer'];
 
-private _all_markers = [allMapMarkers, { !("bis_fnc_moduleCoverMap" in _x) }] call BIS_fnc_conditionalSelect;
+GDC_tbMrkAllMM = [allMapMarkers, { !("bis_fnc_moduleCoverMap" in _x) }] call BIS_fnc_conditionalSelect;
 
 {
 	private _mrkPrefix = [getMarkerType _x,0,1] call BIS_fnc_trimString;
@@ -32,13 +32,11 @@ private _all_markers = [allMapMarkers, { !("bis_fnc_moduleCoverMap" in _x) }] ca
 			GDC_tbMrkZn pushBack [_x, markerAlpha _x];
 		};
 		//Exclude player created markers
-		case (([_x,0,14] call BIS_fnc_trimString) isEqualTo "_USER_DEFINED #"): {};
+		case ((_x select [0,14];) isEqualTo "_USER_DEFINED #"): {};
 		//Other markers
 		default {GDC_tbMrkOther pushBack [_x, markerAlpha _x]};
 	};
 } forEach _all_markers;
-
-GDC_tbMrkAllMM = GDC_tbMrkAAPBlufor + GDC_tbMrkAAPGuer + GDC_tbMrkAAPOpfor + GDC_tbMrkZn + GDC_tbMrkOther;
 
 //Reset button status
 _btn = uiNamespace getVariable "BtnMrkFilter";
