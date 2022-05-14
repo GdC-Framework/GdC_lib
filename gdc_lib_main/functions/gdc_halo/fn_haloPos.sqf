@@ -45,7 +45,7 @@ if (gdc_halo_dzpos in [[0,0,0]]) then {
 			[[],GDC_fnc_haloServer] remoteExec ["spawn",2];
 			onMapSingleClick "";
 		};
-	};	
+	};
 } else {
 // Pas de choix de la DZ, DZ imposée
 	if ("mk_gdc_halo" in allMapMarkers) then {

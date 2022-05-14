@@ -22,5 +22,4 @@ class CfgMusicClasses
 	};
 };
 
-
 #include "CfgMusic.hpp"

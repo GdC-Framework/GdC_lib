@@ -1,6 +1,6 @@
 /*
  * Create a group composition
- * 
+ *
  * Parameters
  * 0 - ARRAY of STRINGs and NUMBERs : possible classnames of units with indiviual weights for each class. Ex : ["classname1",0.8,"classname2",0.5,"classname3",0.5,"classnameN",0.2] or [["classname1",0.8],["classname2",0.5],["classname3",0.5],["classnameN",0.2]]
  * 1 - NUMBER or ARRAY : number of units in the group. if ARRAY then [min,moy,max]

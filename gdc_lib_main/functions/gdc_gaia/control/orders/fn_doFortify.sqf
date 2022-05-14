@@ -25,5 +25,3 @@ if !(isnil("_Zone")) then {
 	_group setVariable ["GAIA_OrderPosition", _TargetPos, false];
 };
 true
-
-

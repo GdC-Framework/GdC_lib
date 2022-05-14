@@ -48,7 +48,7 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 				(format ["mk_QRF%1",_veh]) setMarkerPosLocal (getpos _target);
 			};
 		};
-		
+
 		[_group,_target] spawn gdc_fnc_plutoSAD;
 	};
 };

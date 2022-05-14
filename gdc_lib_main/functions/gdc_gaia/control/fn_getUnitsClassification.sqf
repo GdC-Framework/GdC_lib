@@ -324,5 +324,4 @@ switch(true) do {
     };
 };
 
-
 [_Class,_speed,_points,_portfolio,_CargoCount]

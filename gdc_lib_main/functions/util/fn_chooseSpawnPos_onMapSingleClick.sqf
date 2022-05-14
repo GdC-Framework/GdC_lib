@@ -2,10 +2,10 @@
 	Description:
 
 	Check if the position passed is valid to update the marker's.
-	
+
 	Parameter(s):
 		0 : STRING - name of the marker that will be moved, the marker defines the spawn position
-		1 : ARRAY - position to check 
+		1 : ARRAY - position to check
 		3 (Optional): STRING or ARRAY[string] - list of marker names or trigger names defining blacklisted areas (default: [])
 		4 (Optional): NUMBER - 0: land only, 1: land and water, 2: water only (default: 1)
 		7 (Optional): STRING or ARRAY[string] - area where the user can move the marker, if nothing passed, the whole map is allowed (default: [])

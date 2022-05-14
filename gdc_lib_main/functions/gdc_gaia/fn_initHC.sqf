@@ -6,8 +6,7 @@ if !(isMultiplayer) then {
   };
 } else {
   if !(hasInterface or isServer) then {
-    // HC 
+    // HC
     _this spawn GDC_GAIA_FNC_internalInit;
   };
 };
-

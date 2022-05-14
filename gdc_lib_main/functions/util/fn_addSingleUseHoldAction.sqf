@@ -7,7 +7,7 @@
 
 	Parameter(s):
 		See full parameters on https://community.bistudio.com/wiki/BIS_fnc_holdActionAdd
-			Example params 
+			Example params
 			[
 				_myLaptop,											// Object the action is attached to
 				"Hack Laptop",										// Title of the action
@@ -23,7 +23,7 @@
 				12,													// Action duration [s]
 				0,													// Priority
 				true,												// Remove on completion
-				false												// Show in unconscious state 
+				false												// Show in unconscious state
 			]
 
 	Returns:
@@ -32,7 +32,7 @@
 
 if (!isServer) exitWith {};
 
-params["_obj", "", "", "", "", "", 
+params["_obj", "", "", "", "", "",
 	["_codeStart", {}, [{}]], ["_codeProgress", {}, [{}]], ["_codeCompleted", {}, [{}]], ["_codeInterrupted", {}, [{}]],
 	["_arguments", [], [[]]]];
 
@@ -53,11 +53,11 @@ _functionHeader = "
 if(typeName _codeCompleted == "STRING") then {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeCompleted + """;
-	"; 
+	";
 } else {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeCompleted call GDC_fnc_expressionToString)) + ");
-	"; 
+	";
 };
 
 _newFunction = _newFunction + "
@@ -75,11 +75,11 @@ _newFunction = "";
 if(typeName _codeStart == "STRING") then {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeStart + """;
-	"; 
+	";
 } else {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeStart call GDC_fnc_expressionToString)) + ");
-	"; 
+	";
 };
 
 _newThis set [6, compile _newFunction];
@@ -89,11 +89,11 @@ _newFunction = "";
 if(typeName _codeInterrupted == "STRING") then {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] execVM """ + _codeInterrupted + """;
-	"; 
+	";
 } else {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_codeInterrupted call GDC_fnc_expressionToString)) + ");
-	"; 
+	";
 };
 
 _newThis set [9, compile _newFunction];
@@ -109,11 +109,11 @@ _functionHeader = "
 if(typeName _codeProgress == "STRING") then {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments, _progress, _maxProgress] execVM """ + _codeProgress + """;
-	"; 
+	";
 } else {
 	_newFunction = _functionHeader + "
 		[_target, _caller, _actionId, _internalArguments, _progress, _maxProgress] call (compile " + (str (_codeProgress call GDC_fnc_expressionToString)) + ");
-	"; 
+	";
 };
 
 _newThis set [7, compile _newFunction];
@@ -130,4 +130,3 @@ _newThis set [10, [_varName, _arguments]];
 	_action = _params call BIS_fnc_holdActionAdd;
 	_obj setVariable [_varName, _action];
 }] remoteExec ["call", 0];
-

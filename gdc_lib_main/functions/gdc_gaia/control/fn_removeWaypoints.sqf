@@ -53,7 +53,7 @@ for [{_i=0},{_i < count _TempArray},{_i=_i+1}] do {
 //In case of combined orders (for now transportation), then in case of we are the transporting party do unload the load
 if (!isnull(_group getVariable ["GAIA_CombinedOrder",grpNull])) then {
 
-    if !(_group getVariable ["GAIA_class", ""] in ["Infantry", "ReconInfantry"]) then { 
+    if !(_group getVariable ["GAIA_class", ""] in ["Infantry", "ReconInfantry"]) then {
         _wpTransporter = _x addWaypoint [(position leader _group), 0];
         _wpTransporter setWaypointType "TR UNLOAD";
         _wpTransporter setWaypointCompletionRadius 20;

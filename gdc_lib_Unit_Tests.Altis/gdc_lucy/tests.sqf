@@ -6,7 +6,7 @@ _success = true;
 // GDC_fnc_lucyGroupRandomPatrol
 
 
-{	
+{
 	// Delete all waypoints
 	while {(count (waypoints lucyGroup)) > 0} do {
 		deleteWaypoint ((waypoints lucyGroup) select 0);
@@ -36,7 +36,7 @@ _success = true;
 
 //////////////////////////
 // GDC_fnc_fn_lucyGroupRandomPatrolFixPoints
-{	
+{
 	// Delete all waypoints
 	while {(count (waypoints lucyGroup)) > 0} do {
 		deleteWaypoint ((waypoints lucyGroup) select 0);
@@ -63,9 +63,6 @@ _success = true;
 	['mkr_lucy_spawn_zone_whitelist', 'mkr_lucy_spawn_zone_blacklist', 'mkr_lucy_spawn_zone_whitelist', 'mkr_lucy_spawn_zone_blacklist'],
 	[['mkr_lucy_spawn_zone_whitelist'], ['mkr_lucy_spawn_zone_blacklist'], 'mkr_lucy_spawn_zone_whitelist', 'mkr_lucy_spawn_zone_blacklist']
 ];
-
-
-
 
 if(_success) then {
 	'Lucy tests: END with SUCCESS' call ShowAndLog;

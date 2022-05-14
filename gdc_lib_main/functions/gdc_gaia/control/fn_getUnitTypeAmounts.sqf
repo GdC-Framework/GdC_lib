@@ -187,4 +187,3 @@ if (isNil "_units") exitWith {
 } foreach _units;
 
 [_infantryCount,_CarCount,_tankCount,_artilleryCount,_airCount,_shipCount,_reconCount,_supportCount,_autonomousCount,_staticCount,_submarineCount,_AACOUNT,_CargoCount,_MortarCount,[_CarClass,_tankClass,_artilleryClass,_airClass,_boatClass,_supportClass,_autonomousClass,_AAClass,_MortarClass],[_at,_aa]];
-

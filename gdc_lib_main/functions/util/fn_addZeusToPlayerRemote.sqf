@@ -1,7 +1,7 @@
 /**
  * @name addZeusToPlayerLocal
  * Remote version of addZeusToPlayer function for multiplayer.
- * 
+ *
  * @param {object} [_player = player], player linked to zeus
  *
  * @returns {Bool} true if successfull

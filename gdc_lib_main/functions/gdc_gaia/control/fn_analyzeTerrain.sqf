@@ -58,4 +58,3 @@ _sGr = _sGr/10;
 } foreach ["Houses", "Trees", "Forest", "Hills", "Meadow", "Sea"];
 
 [_urban,_forest,_hills,_flat,_sea,_sGr]
-

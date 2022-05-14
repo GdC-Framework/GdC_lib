@@ -51,32 +51,32 @@ if(_grp_params #4 != "NO CHANGE") then { _group setFormation (_grp_params #4); }
 // Create random points in the area
 for [{_i=0}, {_i < _nb_points}, {_i = _i + 1}] do {
     _wp = [
-        _group, 
-        [_marker, _blacklist] call BIS_fnc_randomPos, 
-        5, 
+        _group,
+        [_marker, _blacklist] call BIS_fnc_randomPos,
+        5,
         _grp_params #0,
-        "UNCHANGED", 
-        "UNCHANGED", 
+        "UNCHANGED",
+        "UNCHANGED",
         "NO CHANGE",
         "NO CHANGE",
-        15, 
+        15,
         [0, _wp_timeout/2, _wp_timeout]
     ] call GDC_fnc_lucyAddWaypoint;
-    // Save first position 
+    // Save first position
     if (_i == 0) then {_cycle_pos = waypointPosition _wp;};
     sleep 0.01;
 };
 
 
 _wp = [
-    _group, 
-    [(_cycle_pos #0) + 10, (_cycle_pos #1) + 10, _cycle_pos #2], 
-    10, 
-    "CYCLE", 
-    "UNCHANGED", 
-    "UNCHANGED", 
+    _group,
+    [(_cycle_pos #0) + 10, (_cycle_pos #1) + 10, _cycle_pos #2],
+    10,
+    "CYCLE",
+    "UNCHANGED",
+    "UNCHANGED",
     "NO CHANGE",
     "NO CHANGE",
-    15, 
+    15,
     [0, _wp_timeout/2, _wp_timeout]
 ] call GDC_fnc_lucyAddWaypoint;

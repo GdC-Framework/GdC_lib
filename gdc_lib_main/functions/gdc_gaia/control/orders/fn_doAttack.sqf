@@ -20,35 +20,35 @@ if (
 	if (!IsNil("_class") ) then {
 		switch(_class) do {
 			//Infantry
-			case "Infantry": { 
+			case "Infantry": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackInfantry;
 			};
-			case "ReconInfantry": { 
+			case "ReconInfantry": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackRecon;
 			};
-			case "Car": { 
+			case "Car": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackCar;
 			};
-			case "MotorizedRecon": { 
+			case "MotorizedRecon": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackMotorizedRecon;
 			};
-			case "MechanizedInfantry": { 
+			case "MechanizedInfantry": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_MechanizedInfantry;
 			};
-			case "MotorizedInfantry": { 
+			case "MotorizedInfantry": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackMotorizedInfantry;
 			};
-			case "Tank": { 
+			case "Tank": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackMotorizedRecon;
 			};
-			case "Helicopter": { 
+			case "Helicopter": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackHelicopter;
 			};
 			//Autonomous for now the same
-			case "Autonomous": { 
+			case "Autonomous": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackHelicopter;
 			};
-			case "Ship": { 
+			case "Ship": {
 				_dummy = [_group,_TargetPos] call GDC_gaia_fnc_doAttackShip;
 			};
 		};
@@ -64,4 +64,3 @@ if (
 };
 
 true
-

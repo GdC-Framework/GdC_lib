@@ -45,7 +45,7 @@ while {(count _players) == 0} do {
 						} count allgroups
 					);
 
-	        if ((_amount - _ActiveAmb)>0) then { 
+	        if ((_amount - _ActiveAmb)>0) then {
 						_players set[(count _players), _x];
 					};
 	      };

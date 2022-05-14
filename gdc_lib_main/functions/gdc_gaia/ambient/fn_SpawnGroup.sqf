@@ -62,7 +62,7 @@ if (_simu == "soldier") then {
 	_amount = (floor random 10) max 3;
 	_dude = [];
 	_GrpUnit= [];
-	
+
 	for [{_i=0}, {_i < _amount}, {_i=_i+1}] do {
 		_dude = _unitarray select (floor random (count _unitarray));
 
@@ -85,5 +85,4 @@ if (_simu == "soldier") then {
 };
 
 ( _grp) setVariable ["GAIA_AMBIENT",true, false];
-
 _grp

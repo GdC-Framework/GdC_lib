@@ -10,16 +10,16 @@
 		0 : OBJECT - Object where we want to add the action
 		1 : ARRAY - All params for AddAction => See full parameters on https://community.bistudio.com/wiki/addAction
 
-			Default params 
+			Default params
 			[
-				"<title>", 
+				"<title>",
 				{
 					params ["_target", "_caller", "_actionId", "_arguments"];
 				},
 				[],
-				1.5, 
-				true, 
-				true, 
+				1.5,
+				true,
+				true,
 				"",
 				"true", // _target, _this, _originalTarget
 				50,
@@ -34,8 +34,8 @@
 
 params["_obj", "_addActionParams"];
 _addActionParams params[
-	["_title", nil, [""] ], 
-	["_function", {}, [{}] ], 
+	["_title", nil, [""] ],
+	["_function", {}, [{}] ],
 	["_arguments", [], [[]] ]
 ];
 
@@ -55,11 +55,11 @@ _newFunction = "
 if(typeName _function == "STRING") then {
 	_newFunction = _newFunction + "
 		[_target, _caller, _actionId, _internalArguments] execVM """ + _function + """;
-	"; 
+	";
 } else {
 	_newFunction = _newFunction + "
 		[_target, _caller, _actionId, _internalArguments] call (compile " + (str (_function call GDC_fnc_expressionToString)) + ");
-	"; 
+	";
 };
 
 _newFunction = _newFunction + "
@@ -89,10 +89,10 @@ if ((count _addActionParams) >= 3) then {
 
 [
 	[
-		_obj, 
-		_addActionParams, 
+		_obj,
+		_addActionParams,
 		_varName
-	], 
+	],
 	{
 		params["_obj", "_addActionParams", "_varName"];
 
@@ -100,4 +100,3 @@ if ((count _addActionParams) >= 3) then {
 		_obj setVariable [_varName, _action];
 	}
 ] remoteExec ["call", 0];
-

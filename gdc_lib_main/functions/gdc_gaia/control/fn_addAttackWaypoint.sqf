@@ -39,5 +39,3 @@ _waypoint setWaypointSpeed "FULL";
 _waypoint setWaypointFormation "VEE";
 _waypoint setWaypointCompletionRadius _Radius;
 _waypoint;
-
-

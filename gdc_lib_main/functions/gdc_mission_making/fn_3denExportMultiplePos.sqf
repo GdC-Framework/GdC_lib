@@ -1,6 +1,6 @@
 /*
  * Export positions in ASL [x,y,z,dir] or AGLS [x,y,z] - The result is an array of array exported to cliboard
- * 
+ *
  * Parameters
  * 0 - ARRAY of objects : objects selected in 3DEN for instance
  * 1 - NUMBER : export mode : 0=ASL [x,y,z,dir] ; 1=AGLS [x,y,z] ; 2=AGL [x,y,0]
@@ -10,7 +10,7 @@
 params ["_objects","_mode"];
 private ["_output","_pos"];
 
-_output = []; 
+_output = [];
 
 switch (_mode) do {
 	case 0 : { // ASL [x,y,z,dir]

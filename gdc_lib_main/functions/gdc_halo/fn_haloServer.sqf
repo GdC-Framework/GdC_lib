@@ -136,7 +136,7 @@ if (gdc_halo_autojump) then {
 			} foreach _cargo;
 		};
 	"];
-	
+
 	// WP d'éloignement
 	_wp = _group addWaypoint [(_veh getRelPos [8000, 0]), 0];
 	_wp setWaypointType "MOVE";
@@ -157,11 +157,11 @@ if (gdc_halo_autojump) then {
 		if ("jumplights_hide" in (animationNames _veh)) then {
 			_veh animateSource ["jumplight",1];
 		};
-		
+
 		// WP d'éloignement
 		_wp = _group addWaypoint [(_veh getRelPos [6000, 0]), 0];
 		_wp setWaypointType "MOVE";
-		
+
 		// Red light
 		waitUntil {((getpos _veh) distance2D _jumpPos) > 1000};
 		if ("jumplights_hide" in (animationNames _veh)) then {
@@ -170,7 +170,7 @@ if (gdc_halo_autojump) then {
 		// Fermeture de la rampe
 		waitUntil {((getpos _veh) distance2D _jumpPos) > 2000};
 		[_veh,0] call GDC_fnc_animVehicleDoor;
-		
+
 		// WP de retour sur DZ
 		_wp = _group addWaypoint [_jumpPos, 0];
 		_wp setWaypointType "MOVE";

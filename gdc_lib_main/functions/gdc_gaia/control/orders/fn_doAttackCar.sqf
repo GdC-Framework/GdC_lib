@@ -15,6 +15,3 @@ _TargetPos	= _this select 1;
 _dummy = [_group,_TargetPos, "MOVE"] call GDC_gaia_fnc_addAttackWaypoint;
 
 ((count (waypoints _group)) - currentWaypoint _group)
-
-
-

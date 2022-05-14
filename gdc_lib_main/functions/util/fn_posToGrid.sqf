@@ -1,7 +1,7 @@
 /**
  * @name posToGrid
  * Extend mapGridPosition command engine for X digits grid map.
- * 
+ *
  * @param {object, group, location, array, string} [_object = player].
  * @param {number} [_number_digits = 3], Number of grid coordinates ("_number_digits" digits for each axis), 6 digits max.
  * @param {string} [_separator = ""], Symbol used to separate the x-grid and y-grid coordinates.

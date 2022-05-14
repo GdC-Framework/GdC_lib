@@ -17,12 +17,12 @@ while {true} do {
 					!(_x getVariable ["GAIA_CACHED_STAGE_1",false])
 					and !([getPosATL(leader _x),GAIA_CACHE_STAGE_1] call GDC_gaia_fnc_isNearPlayer)
 					and (behaviour(leader _x)!="COMBAT")
-					and ( 
+					and (
 						(
 							(count(_x getVariable ["GAIA_zone_intend",[]])>1)
 							and !("DoMortar" in (_x getVariable ["GAIA_Portfolio",[]]))
 							and !("DoArtillery" in (_x getVariable ["GAIA_Portfolio",[]]))
-						) 
+						)
 						or (
 							(count(_x getVariable ["GAIA_zone_intend",[]])==0)
 						)

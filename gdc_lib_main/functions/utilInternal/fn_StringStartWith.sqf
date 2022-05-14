@@ -18,4 +18,3 @@ params["_reference", "_string"];
 
 if(count _reference > count _string) exitWith { false };
 _reference == (_string select [0,count _reference]);
-

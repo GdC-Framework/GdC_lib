@@ -30,7 +30,7 @@ class CfgGroups
 			name = "GDC";
 			class militaire // Catégorie de classement (possible d'en ajouter d'autres)
 			{
-				name = "Militaire"; // Nom de la catégorie	
+				name = "Militaire"; // Nom de la catégorie
 				class hq_tente_fortifiee
 				{
 					name = "Tente fortifiée";
@@ -386,7 +386,7 @@ class CfgGroups
 					class Object60	{side = 8; vehicle = "PortableHelipadLight_01_red_F"; rank = ""; position[] = {0.267761,-14.301,0}; dir = 0;};
 					class Object61	{side = 8; vehicle = "PortableHelipadLight_01_red_F"; rank = ""; position[] = {29.994,-14.4237,-0.0329285}; dir = 0;};
 					class Object62	{side = 8; vehicle = "PortableHelipadLight_01_red_F"; rank = ""; position[] = {-0.151917,71.0854,0}; dir = 0;};
-					class Object63	{side = 8; vehicle = "PortableHelipadLight_01_red_F"; rank = ""; position[] = {29.744,71.155,0}; dir = 0;};					
+					class Object63	{side = 8; vehicle = "PortableHelipadLight_01_red_F"; rank = ""; position[] = {29.744,71.155,0}; dir = 0;};
 				};
 			};
 			class roadblocks
@@ -396,7 +396,7 @@ class CfgGroups
 				{
 					name = "Barrage guerilla (Petit) 01";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_BagFence_Round_F"; rank = ""; position[] = {-0.738281,2.44922,-0.0930023}; dir = 110.543;};
 					class Object1	{side = 8; vehicle = "Land_Razorwire_F"; rank = ""; position[] = {-2.76758,1.10547,-1.04807}; dir = 78.9;};
 					class Object2	{side = 8; vehicle = "Land_BagFence_Short_F"; rank = ""; position[] = {0.931641,-0.464844,-0.0178223}; dir = 227.555;};
@@ -413,7 +413,7 @@ class CfgGroups
 				{
 					name = "Barrage guerilla (Petit) 02";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_Razorwire_F"; rank = ""; position[] = {-1.98535,-0.353516,-0.833649}; dir = 5.99225;};
 					class Object1	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {-5.18457,1.76758,-0.0197372}; dir = 0;};
 					class Object2	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {-3.66895,2.60938,-0.110229}; dir = 40.7758;};
@@ -427,7 +427,7 @@ class CfgGroups
 				{
 					name = "Barrage (Moyen) 01";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_CzechHedgehog_01_new_F"; rank = ""; position[] = {8.03809,7.05469,0}; dir = 257.67;};
 					class Object1	{side = 8; vehicle = "Land_CzechHedgehog_01_new_F"; rank = ""; position[] = {8.13379,13.0137,0}; dir = 72.9496;};
 					class Object2	{side = 8; vehicle = "Land_CzechHedgehog_01_new_F"; rank = ""; position[] = {-2.78027,7.64453,0}; dir = 36.8465;};
@@ -449,7 +449,7 @@ class CfgGroups
 				{
 					name = "Barrage guerilla (Moyen) 01";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";				
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {2.13867,1.05078,0.0121231}; dir = 24.0583;};
 					class Object1	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {1.97266,-3.36523,0.172752}; dir = 222.692;};
 					class Object2	{side = 8; vehicle = "Land_CzechHedgehog_01_F"; rank = ""; position[] = {-1.18262,-2.26758,0.0199432}; dir = 0;};
@@ -463,10 +463,10 @@ class CfgGroups
 					class Object10	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {-1.82031,3.75586,0.0338821}; dir = 243.264;};
 				};
 				class barrage_guerilla_moyen_02
-				{	
+				{
 					name = "Barrage guerilla (Moyen) 02";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_Barricade_01_4m_F"; rank = ""; position[] = {11.8076,-5.05273,-1.52588e-005}; dir = 116.622;};
 					class Object1	{side = 8; vehicle = "Land_Barricade_01_4m_F"; rank = ""; position[] = {13.5254,-2.34961,-0.00271606}; dir = 17.7256;};
 					class Object2	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {6.21289,-3.52344,-0.0166473}; dir = 67.9476;};
@@ -477,13 +477,13 @@ class CfgGroups
 					class Object7	{side = 8; vehicle = "Land_CncBarrierMedium_F"; rank = ""; position[] = {-3.32031,2.4043,0.000114441}; dir = 268.657;};
 					class Object8	{side = 8; vehicle = "Box_FIA_Support_F"; rank = ""; position[] = {10.5244,-2.35547,0.00431824}; dir = 281.83;};
 					class Object9	{side = 8; vehicle = "Box_IND_WpsLaunch_F"; rank = ""; position[] = {9.46875,-1.66797,0.00728607}; dir = 296.367;};
-	
+
 				};
 				class barrage_large_01
 				{
 					name = "Barrage (Large) 01";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_CampingChair_V2_F"; rank = ""; position[] = {-11.5479,12.293,0.000221252}; dir = 299.752;};
 					class Object1	{side = 8; vehicle = "Land_CampingTable_small_F"; rank = ""; position[] = {-10.5283,12.2637,-0.000198364}; dir = 260.741;};
 					class Object2	{side = 8; vehicle = "Land_CncBarrier_F"; rank = ""; position[] = {-7.38086,3.51563,0.0231705}; dir = 147.253;};
@@ -522,7 +522,7 @@ class CfgGroups
 				{
 					name = "Barrage (Large) 02";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_HBarrier_5_F"; rank = ""; position[] = {0.908203,7.34766,-0.983871}; dir = 350.046;};
 					class Object1	{side = 8; vehicle = "Land_HBarrier_1_F"; rank = ""; position[] = {0.636719,9.44336,-1.18264}; dir = 17.7925;};
 					class Object2	{side = 8; vehicle = "Land_HBarrier_1_F"; rank = ""; position[] = {-6.28809,6.88477,-0.112709}; dir = 66.4746;};
@@ -559,7 +559,7 @@ class CfgGroups
 				};
 			};
 			class camps_guerilla
-			{	
+			{
 				name = "Camps (Guerilla)";
 				class camp_fisher
 				{
@@ -603,9 +603,9 @@ class CfgGroups
 					class Object34	{side = 8; vehicle = "Land_Graffiti_01_F"; rank = ""; position[] = {1.56677,-1.30493,1.95773}; dir = 0;};
 					class Object35	{side = 8; vehicle = "Land_WoodenTable_large_F"; rank = ""; position[] = {-0.0943604,2.60632,0.5}; dir = 269.072;};
 					class Object36	{side = 8; vehicle = "Land_ChairWood_F"; rank = ""; position[] = {-0.501953,3.40247,0.5}; dir = 343.942;};
-					class Object37	{side = 8; vehicle = "Land_ChairWood_F"; rank = ""; position[] = {0.310364,1.63354,0.5}; dir = 164.313;};	
+					class Object37	{side = 8; vehicle = "Land_ChairWood_F"; rank = ""; position[] = {0.310364,1.63354,0.5}; dir = 164.313;};
 				};
-				class camp_tapir					
+				class camp_tapir
 				{
 					name = "Camp Tapir";
 					side = 8;
@@ -660,7 +660,7 @@ class CfgGroups
 					class Object47	{side = 8; vehicle = "Land_u_House_Small_01_V1_F"; rank = ""; position[] = {13.6084,-4.0625,0}; dir = 303;};
 					class Object48	{side = 8; vehicle = "Land_i_Garage_V1_F"; rank = ""; position[] = {4.61621,-7.95313,0}; dir = 214;};
 				};
-				class camp_cerbere					
+				class camp_cerbere
 				{
 					name = "Camp Cerbère";
 					side = 8;
@@ -854,7 +854,7 @@ class CfgGroups
 				{
 					name = "Position retranchée (Pierres, Moyen)";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {4.72461,-5.32813,-0.658203}; dir = 88.4889;};
 					class Object1	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {-1.77148,-6.56641,-0.728958}; dir = 262;};
 					class Object2	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {-7.74219,-0.927734,-0.198456}; dir = 317.093;};
@@ -868,7 +868,7 @@ class CfgGroups
 				{
 					name = "Position retranchée (Pierres, Long)";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {-6.38574,-9.0957,-0.0764313}; dir = 179.359;};
 					class Object1	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {5.74707,-2.75,-0.376633}; dir = 137.448;};
 					class Object2	{side = 8; vehicle = "CraterLong"; rank = ""; position[] = {-5.11523,3.89844,-0.497238}; dir = 225.908;};
@@ -902,7 +902,7 @@ class CfgGroups
 				{
 					name = "Position retranchée (Sable) 01";
 					side = 8;
-					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";	
+					icon = "\a3\Ui_f\data\Map\VehicleIcons\iconVehicle_ca.paa";
 					class Object0	{side = 8; vehicle = "Land_BagFence_Round_F"; rank = ""; position[] = {4.73242,2.47266,0.00106049}; dir = 244.977;};
 					class Object1	{side = 8; vehicle = "Land_BagFence_Long_F"; rank = ""; position[] = {4.24023,-0.432861,9.91821e-005}; dir = 105.515;};
 					class Object2	{side = 8; vehicle = "Land_BagFence_Long_F"; rank = ""; position[] = {3.98926,-0.0883789,9.91821e-005}; dir = 105.515;};

@@ -4,7 +4,7 @@
 	Description:
 	this function will allow the players to register into the DAGR the positions of several markers placed during the briefing
 	[] call GDC_fnc_markerToDAGR
-	
+
 	Parameter(s): none
 
 	Returns:

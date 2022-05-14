@@ -226,7 +226,7 @@ if (MCC_GAIA_DEBUG and _HQ_side==(Side player)) then {
 		_OldTargetInfo = _x getVariable ["GAIA_TargetInfo",[]];
 		_mkname setMarkerPosLocal (_OldTargetInfo select 1);
 		_mkname setMarkerDirLocal getDir _x;
-		_mkname setMarkerAlphaLocal (1 - getDammage _x);
+		_mkname setMarkerAlphaLocal (1 - damage _x);
 		if (_x in _ActualTargets) then {_mkname setMarkerColorLocal "ColorGreen"	};
 		if (_x in _RecentTargets) then {_mkname setMarkerColorLocal "ColorOrange"	};
 		if (_x in _OldTargets) then {_mkname setMarkerColorLocal "ColorRed"	};
@@ -235,6 +235,4 @@ if (MCC_GAIA_DEBUG and _HQ_side==(Side player)) then {
 
 };
 
-
 _mklist
-

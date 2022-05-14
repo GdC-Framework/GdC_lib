@@ -37,10 +37,10 @@ _group setVariable ["mcc_gaia_cache", true,true];
 		//_un setdir (_x select 6);
 		_role = (_x select 5);
 		if ((_role select 0) == "Driver") then {
-			_un moveInDriver _cv; 
+			_un moveInDriver _cv;
 		};
 		if ((_role select 0) == "Turret") then {
-			_un moveInTurret [_cv, (_role select 1)]; 
+			_un moveInTurret [_cv, (_role select 1)];
 		};
 		if ((_role select 0) == "Cargo") then {
 			_un assignAsCargo _cv;

@@ -25,8 +25,8 @@ private ["_br", "_pos_by_unit", "_reference"];
 _reference = nearestobject screenToWorld getMousePosition;
 _br = toString [13,10]; // \r\n
 _pos_by_unit = [];
-{ 
-	_veh = _x; 
+{
+	_veh = _x;
 	_type = typeOf _veh;
 	_pos = _reference worldToModel (getposATL _veh);
 	_azimute = getDir _veh;
@@ -37,4 +37,3 @@ _pos_by_unit = [];
 } foreach (get3DENSelected "object");
 
 copyToClipboard str composeText _pos_by_unit;
-

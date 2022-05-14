@@ -1,4 +1,4 @@
-class gdc_btnMrkFilter: RscActiveText 
+class gdc_btnMrkFilter: RscActiveText
 {
 	idc= 1;
 	style = 48;

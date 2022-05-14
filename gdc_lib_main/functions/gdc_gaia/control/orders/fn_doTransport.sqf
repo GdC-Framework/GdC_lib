@@ -58,19 +58,19 @@ if ( _wppos distance [0,0,0]>0) then {
                 //and ((time-(_TransportGrp getVariable ["GAIA_Ordertime",0]))>MCC_GAIA_TRANSPORT_RESTTIME)
                 //and Cars only support patrols that are out of zone, they refure combat (until bis pays them more)
             ) then {
-                
+
                 switch(_TransportClass) do {
                     //Infantry
-                    case "Car": { 
+                    case "Car": {
                         _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_doTransportCar;
                     };
-                    case "Tank": { 
+                    case "Tank": {
                         _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_doTransportTank;
                     };
-                    case "Helicopter": { 
+                    case "Helicopter": {
                         _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_doTransportHelicopter;
                     };
-                    case "Ship": { 
+                    case "Ship": {
                         // _dummy = [_group,_TransportGrp] call GDC_gaia_fnc_DoTransportShip;
                     };
 

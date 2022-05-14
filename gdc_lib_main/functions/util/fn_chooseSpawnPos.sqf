@@ -3,7 +3,7 @@
 
 	Description:
 	this function will allow the players to choose their spawn position during the briefing by moving a marker on the map using leftmousebutton
-	
+
 	Parameter(s):
 		0 : STRING - name of the marker that will be moved, the marker defines the spawn position
 		1 (Optional): ARRAY - array fo objects that will be moved on selected position (default: []) if [] all playableunits will be moved

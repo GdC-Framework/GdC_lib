@@ -45,5 +45,3 @@ if (_closetZone == "") then {
 };
 
 _distance
-
-

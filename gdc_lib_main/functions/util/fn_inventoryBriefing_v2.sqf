@@ -3,7 +3,7 @@
 
 	Description:
 	Adds an "inventory" tab in the diary displaying every player's inventory
-	
+
 	Parameter(s):
 		NONE
 
@@ -34,5 +34,5 @@ player createDiarySubject ["inventory","Inventaire"];
 			_role = ((roleDescription _unit) select [0,_nbr]);
 		};
 	};
-	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text]];	
+	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text]];
 } forEach _allrealplayers;

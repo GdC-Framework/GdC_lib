@@ -86,11 +86,3 @@ if (!isnil(_Zone)) then {_points = _points *3} else {_points = _points *2};
 _CACost set [2,_Points ];
 
 _CACost
-
-
-
-
-
-
-
-

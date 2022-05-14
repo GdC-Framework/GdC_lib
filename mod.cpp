@@ -6,7 +6,7 @@ logoOver = "gdc_lib_main\data\logo_big.paa";
 actionName = "GitHub";
 action = "https://github.com/GdC-Framework/GdC_lib/wiki";
 tooltipOwned = "GDC LIB";
-dlcColor[] = 
+dlcColor[] =
 {
 	0.23,
 	0.39,

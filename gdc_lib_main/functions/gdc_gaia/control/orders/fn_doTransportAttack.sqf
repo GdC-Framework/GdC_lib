@@ -61,7 +61,7 @@ if ( _wppos distance [0,0,0]>0) then {
                 //and
                 //Cars only support patrols that are out of zone, they refure combat (until bis pays them more)
             ) then {
-                
+
                 switch(_TransportClass) do {
                     //Infantry
                     case "Car": {

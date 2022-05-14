@@ -4,7 +4,7 @@
 
 	Parameter(s):
 		0: ARRAY/STRING - Param to secure
-        1 (optional): ANY - Default value that will be returned, default value is empty array [] 
+        1 (optional): ANY - Default value that will be returned, default value is empty array []
 
 	Returns:
 		ARRAY, with one element if a string was passed
@@ -25,4 +25,3 @@ if (typename _paramToSecure == "ARRAY") exitWith {
 };
 
 [_paramToSecure];
-

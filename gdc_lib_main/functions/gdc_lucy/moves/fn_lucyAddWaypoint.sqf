@@ -23,11 +23,11 @@
 */
 
 
-params ["_group", "_wp_pos", "_wp_radius", "_wp_type", 
-        ["_wp_speed", "UNCHANGED", [""]], ["_wp_behaviour", "UNCHANGED", [""]], ["_wp_combat_mode", "NO CHANGE", [""]], 
+params ["_group", "_wp_pos", "_wp_radius", "_wp_type",
+        ["_wp_speed", "UNCHANGED", [""]], ["_wp_behaviour", "UNCHANGED", [""]], ["_wp_combat_mode", "NO CHANGE", [""]],
         ["_wp_formation", "NO CHANGE", [""]], ["_wp_completion_radius", 30, [0]], ["_wp_timeout", [0,0,0], [[]], [3]], ["_wp_condition_statement", ["true", ""], [[]]]];
 private["_wp"];
-        
+
 if (_wp_formation == "RANDOM") then {
     _wp_formation = [] call GDC_fnc_lucyGetRandomFormation;
 };

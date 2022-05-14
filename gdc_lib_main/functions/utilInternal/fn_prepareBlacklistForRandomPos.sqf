@@ -8,7 +8,7 @@ if(!isNil "_vehicle") then {
 		case ((vehicle _vehicle) iskindof "ship"): {
 			["ground"];
 		};
-		// Air could go everywhere... 
+		// Air could go everywhere...
 		case ((vehicle _vehicle) iskindof "Air"): {
 			[];
 		};
@@ -25,4 +25,3 @@ if(!isNil "_vehicle") then {
 } else {
 	[];
 };
-

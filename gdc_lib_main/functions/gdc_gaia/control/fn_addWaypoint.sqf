@@ -42,5 +42,3 @@ _waypoint setWaypointCompletionRadius _Radius;
 _waypoint setWaypointTimeout [20, 30, 25];
 
 _waypoint;
-
-

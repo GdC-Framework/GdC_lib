@@ -7,7 +7,7 @@
 	Parameter(s):
 		0 : STRING - script to execute
 
-	Returns: 
+	Returns:
     nothing
 */
 params["_arg_script"];

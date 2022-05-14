@@ -14,40 +14,40 @@ if (!IsNil("_class") and !Isnil("_zone")) then {
 	switch(_class) do
 	{
 		//Infantry
-		case "Infantry": { 
+		case "Infantry": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolInfantry;
 		};
-		case "ReconInfantry": { 
+		case "ReconInfantry": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolRecon;
 		};
-		case "MechanizedInfantry": { 
+		case "MechanizedInfantry": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolMechanizedInfantry;
 		};
-		case "MotorizedInfantry": { 
+		case "MotorizedInfantry": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolMotorizedInfantry;
 		};
-		case "Car": { 
+		case "Car": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolCar;
 		};
-		case "MotorizedRecon": { 
+		case "MotorizedRecon": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolMotorizedInfantry;
 		};
-		case "Ship": { 
+		case "Ship": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolShip;
 		};
-		case "Submarine": { 
+		case "Submarine": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolShip;
 		};
-		case "Helicopter": { 
+		case "Helicopter": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolHelicopter;
 		};
 		//Autonomous for now the same as heli (might change later)
-		case "Autonomous": { 
+		case "Autonomous": {
 			_dummy = [_group,_zone] call GDC_gaia_fnc_doPatrolHelicopter;
 		};
 
 	};
-	
+
 	//Lets set the current Order.
 	_group setVariable ["GAIA_Order", "DoPatrol", false];
 	//Also note when we gave that order and where the unit was. It gives us a chance to check his progress and to 'unstuck' him if needed.
@@ -57,5 +57,3 @@ if (!IsNil("_class") and !Isnil("_zone")) then {
 };
 
 true
-
-

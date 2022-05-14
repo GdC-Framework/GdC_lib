@@ -26,17 +26,17 @@ _MarkerColor= "";
 			if ((_sideRatios select 0)==_tot) then {
 				_MarkerType = "mil_dot";
 				_MarkerColor = "ColorBlue";
-				_set=true; 
+				_set=true;
 			};
 			if ((_sideRatios select 1)==_tot) then {
 				_MarkerType = "mil_dot";
 				_MarkerColor = "ColorRed";
-				_set=true; 
+				_set=true;
 			};
 			if ((_sideRatios select 2)==_tot) then {
 				_MarkerType = "mil_dot";
 				_MarkerColor = "ColorGreen";
-				_set=true; 
+				_set=true;
 			};
 		};
 		if !(_set) then {

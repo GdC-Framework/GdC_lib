@@ -40,7 +40,7 @@ if (_disttot>0) then {
 		((_max > 0.6) and _min==0)
 	) then {
 		_i=0;
-		
+
 		{
 			if (_x!=_max) then {
 				_sideRatios set [_i,0];

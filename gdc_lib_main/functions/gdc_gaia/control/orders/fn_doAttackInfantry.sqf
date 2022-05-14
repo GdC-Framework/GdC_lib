@@ -50,6 +50,3 @@ if !(surfaceiswater _TargetPos ) then {
 };
 
 ((count (waypoints _group)) - currentWaypoint _group)
-
-
-

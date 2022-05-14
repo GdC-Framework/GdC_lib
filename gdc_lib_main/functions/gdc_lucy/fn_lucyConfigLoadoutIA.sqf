@@ -8,7 +8,7 @@
 	Parameter(s):
 		0 : STRING - script which execute
 
-	Returns: 
+	Returns:
     nothing
 */
 params["_loadout_script"];

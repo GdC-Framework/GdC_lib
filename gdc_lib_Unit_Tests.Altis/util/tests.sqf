@@ -26,7 +26,6 @@ _moveable_mkr = "mkr_util_chooseSpawnPos_moveable";
 	["mkr_util_chooseSpawnPos_water_in", false]
 ];
 
-
 if(_success) then {
 	'Util tests: END with SUCCESS' call ShowAndLog;
 } else {

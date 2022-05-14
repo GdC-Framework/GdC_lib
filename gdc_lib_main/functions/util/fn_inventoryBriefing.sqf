@@ -3,7 +3,7 @@
 
 	Description:
 	Adds an "inventory" tab in the diary displaying player's inventory
-	
+
 	Parameter(s):
 		NONE
 

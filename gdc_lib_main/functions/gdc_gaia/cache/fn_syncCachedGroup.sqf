@@ -16,4 +16,3 @@ if (!(simulationEnabled (leader _this))) then {
 
         _count = _count + 1;
 };
-

@@ -3,7 +3,7 @@
 	Visit https://www.bohemia.net/community/licenses/arma-public-license-nd for more informations.
 */
 
-class CfgMusic 
+class CfgMusic
 {
 	class gdc_lib_sound_music_unairdorient // Musique crée par Looping
 	{

@@ -4,7 +4,7 @@
 	Description:
 	this function will allow the players to choose their helicopter insertion position during the briefing by moving a marker on the map using leftmousebutton
 	On mission launch, players will be moved inside an AI pilot helicopter transporting them to the designated LZ
-	
+
 	Parameter(s):
 		0 : STRING - name of the marker that will be moved, the marker defines the landing zone
 		1 : STRING - classname of the helicopter

@@ -69,7 +69,3 @@ if (count(_NearestEnemyGroups)>0) then {
 		};
  	};
  };
-
-
-
-

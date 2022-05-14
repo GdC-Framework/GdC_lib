@@ -12,7 +12,7 @@
 private ["_obj", "_id", "_find"];
 
 _obj = str(param[0,objNull]);
-_id = ""; 
+_id = "";
 
 _find = (_obj find "#");
 if (_find > 1) then {

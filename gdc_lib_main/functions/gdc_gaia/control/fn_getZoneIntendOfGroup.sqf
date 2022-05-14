@@ -24,5 +24,3 @@ _zone_intend = [];
 _zone_intend = _group getVariable ["GAIA_ZONE_INTEND",[]];
 
 _zone_intend
-
-

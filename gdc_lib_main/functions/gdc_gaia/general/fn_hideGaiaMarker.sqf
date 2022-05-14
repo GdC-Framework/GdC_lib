@@ -6,4 +6,3 @@
 		_x setmarkerAlpha 0;
 	};
 } foreach allMapMarkers;
-

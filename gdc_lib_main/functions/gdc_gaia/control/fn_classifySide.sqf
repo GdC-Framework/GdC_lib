@@ -50,5 +50,4 @@ _side = _this select 0;
 	};
 } forEach AllGroups;
 
-
 true;

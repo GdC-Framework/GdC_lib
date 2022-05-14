@@ -70,8 +70,6 @@ if(_has_no_radio) then {
 	['ABC', 'abc', true]
 ];
 
-
-
 if(_success) then {
 	'UtilInternal tests: END with SUCCESS' call ShowAndLog;
 } else {

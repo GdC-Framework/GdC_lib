@@ -1,6 +1,6 @@
 /*
  * Export classnames - The result is an array of strings exported to cliboard
- * 
+ *
  * Parameters
  * 0 - ARRAY of objects : objects selected in 3DEN for instance
  *
@@ -9,7 +9,7 @@
 params ["_objects"];
 private ["_output","_pos"];
 
-_output = []; 
+_output = [];
 {
 	_output = _output + [typeOf _x];
 } forEach _objects;

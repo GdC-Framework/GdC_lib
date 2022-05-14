@@ -362,7 +362,7 @@ _StartTimeIssueOrders = time;
             _MinimumResponseSend = (_NrGrpsSend>_MinimumResponse);
 
             //Group is already busy going there, no need to make him go nuts.
-            _GroupBusy = 
+            _GroupBusy =
                 (((_x getVariable ["GAIA_OrderPosition",[0,0,0]]) distance _SelectCA)==0)
                 or ((_x getVariable ["GAIA_Order", ""]) in ["DoTransport"]);
 

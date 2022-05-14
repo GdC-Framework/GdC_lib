@@ -5,19 +5,19 @@
         Spawn a static infantary, you have to method to get position from your units on the missions
         Don't forget to set the presence to 0%
 
-        1) 
+        1)
             call GDC_fnc_lucyPrepareSpawnStatic;
 
         2)
             Use the following command to get ASL position and azimuth in the debug console. Then, paste to your script and change unit type and side.
             _PosDirArray = [];
-            { 
-            _veh = _x; 
-            _pos_dir = [(getPosASL _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh]; 
+            {
+            _veh = _x;
+            _pos_dir = [(getPosASL _veh select 0), (getPosASL _veh select 1), getPosASL _veh select 2, getDir _veh];
             _PosDirArray = [_pos_dir] + _PosDirArray;
-            } foreach (get3DENSelected "object"); 
+            } foreach (get3DENSelected "object");
             copyToClipboard str _PosDirArray;
-    
+
     # Old version...
         copyToClipboard format["static_unit_x = [SOLDAT, [[%1, %2, %3]], [%4], UNIT_SIDE] call GDC_fnc_lucySpawnStaticInf;", (getPosASL player select 0), getPosASL player select 1, getPosASL player select 2, getDir player];
 
@@ -49,9 +49,9 @@ for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
     _unit_spawn setVariable[LUCY_UNIT_TYPE, LUCY_UNIT_TYPE_STATIC, True];
     _unit_spawn setDir ((_unit_pos_dir select _i) select 3);
     _unit_spawn setFormDir ((_unit_pos_dir select _i) select 3);
-    _unit_spawn setPosASL [(_unit_pos_dir select _i) select 0, (_unit_pos_dir select _i) select 1, (_unit_pos_dir select _i) select 2];      
+    _unit_spawn setPosASL [(_unit_pos_dir select _i) select 0, (_unit_pos_dir select _i) select 1, (_unit_pos_dir select _i) select 2];
     _unit_spawn setUnitPos _unit_weak;
-    
+
     [_unit_spawn, _unit_skill] call GDC_fnc_lucyAISetConfig;
 
     {
@@ -61,7 +61,7 @@ for [{_i=0}, {_i < count _unit_pos_dir}, {_i = _i + 1}] do {
     } forEach _unit_ai_disable;
     // Add unit to the list
     _units_spawn = _units_spawn + [_unit_spawn];
-    
+
     sleep LUCY_IA_DELAY_BETWEEN_SPAWN_UNIT;
 };
 

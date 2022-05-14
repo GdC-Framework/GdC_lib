@@ -3,12 +3,12 @@
 
 	Description:
 	get the string for fn_inventoryBriefing.sqf
-	
+
 	Parameter(s):
 		OBJECT : unit we need the inventory from
 
 	Returns:
-	STRING : 
+	STRING :
 */
 
 params ["_unit"];
@@ -53,7 +53,7 @@ _addToArray =
 };
 
 // Crée le texte+images pour le loadout d'un joueur
-	
+
 _weaponsPrimary = [primaryWeapon _unit] - [""];
 _weaponsSec = [secondaryWeapon _unit] - [""];
 _weaponsHandgun = [handgunWeapon _unit] - [""];

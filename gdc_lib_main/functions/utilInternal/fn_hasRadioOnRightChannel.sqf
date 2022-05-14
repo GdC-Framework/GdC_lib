@@ -15,8 +15,8 @@
 params[["_unit", player, [objNull]], ["_radioType", "ACRE_PRC117f", [""]], ["_channel", 5, [0]]];
 
 // If true foreach will return true, else it will return the last "false"
-{ 
-	if(([_radioType, _x] call GDC_fnc_StringStartWith) && ([_x] call acre_api_fnc_getRadioChannel == _channel)) 
+{
+	if(([_radioType, _x] call GDC_fnc_StringStartWith) && ([_x] call acre_api_fnc_getRadioChannel == _channel))
 		exitWith { true };
-	false; 
+	false;
 } foreach ([_unit] call acre_api_fnc_getCurrentRadioList);

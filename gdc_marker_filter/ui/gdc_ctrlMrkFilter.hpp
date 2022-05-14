@@ -24,7 +24,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
 	fade = 0;
 
     class controls {
-    
+
         class Backgrd: RscText
         {
             idc = -1;
@@ -43,7 +43,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             type = 0;
             style = 1;
             text = "Tous les marqueurs MM";
-            tooltip = "Affiche/masque tous les marqueurs posés par le créateur de mission"; 
+            tooltip = "Affiche/masque tous les marqueurs posés par le créateur de mission";
             x = 9 * GRID_W;
             y = 5 * GRID_H;
             w = 34 * GRID_W;
@@ -55,19 +55,19 @@ class gdc_MrkFilter_grp: RscControlsGroup
         class lbl2: gdc_lbl
         {
             idc = 9902;
-            text = "Marqueurs AAP"; 
+            text = "Marqueurs AAP";
             y = 17 * GRID_H;
         };
         class lbl3: gdc_lbl
         {
             idc = -1;
-            text = "Marqueurs de zone"; 
+            text = "Marqueurs de zone";
             y = 23 * GRID_H;
         };
         class lbl4: gdc_lbl
         {
             idc = -1;
-            text = "Marqueurs autres"; 
+            text = "Marqueurs autres";
             y = 29 * GRID_H;
         };
         class lbl5: gdc_lbl
@@ -115,10 +115,10 @@ class gdc_MrkFilter_grp: RscControlsGroup
             colorText[] = {1,1,1,1};
             colorBackground[] = {-1,-1,-1,0};
             sizeEx = 0.015 * safezoneH;
-        }; 
+        };
 
         //All MM Created markers
-        class gdc_ChkBox: RscCheckbox 
+        class gdc_ChkBox: RscCheckbox
         {
             idc = 99901;
             checked = 1;
@@ -144,7 +144,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             idc = 99903;
             x = 48 * GRID_W;
             onLoad = "uiNamespace setVariable ['chkAAPOpfor', _this select 0];['chkAAPOpfor'] call gdc_fnc_restoreCtrlState";
-            onCheckedChanged = "[GDC_tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";   
+            onCheckedChanged = "[GDC_tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
         //APP Markers guer
         class gdc_ChkBox2c: gdc_ChkBox2a
@@ -162,7 +162,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             onLoad = "uiNamespace setVariable ['chkAAPAll', _this select 0];['chkAAPAll'] call gdc_fnc_restoreCtrlState";
             onCheckedChanged = "[GDC_tbMrkAAPGuer, cbChecked (_this#0)] call gdc_fnc_filterMarker;[['chkAAPBlufor','chkAAPOpfor','chkAAPGuer'], cbChecked (_this#0) ] call gdc_fnc_setChkState;[GDC_tbMrkAAPBlufor, cbChecked (_this#0)] call gdc_fnc_filterMarker;[GDC_tbMrkAAPOpfor, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
-        //Area markers           
+        //Area markers
         class gdc_ChkBox3: gdc_ChkBox
         {
             idc = 99906;
@@ -171,7 +171,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             onLoad = "uiNamespace setVariable ['chkZn', _this select 0];['chkZn'] call gdc_fnc_restoreCtrlState";
             onCheckedChanged = "[GDC_tbMrkZn, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
-        //Other markers        
+        //Other markers
         class gdc_ChkBox4: gdc_ChkBox
         {
             idc = 99907;
@@ -179,7 +179,7 @@ class gdc_MrkFilter_grp: RscControlsGroup
             onLoad = "uiNamespace setVariable ['chkOther', _this select 0];['chkOther'] call gdc_fnc_restoreCtrlState";
             onCheckedChanged = "[GDC_tbMrkOther, cbChecked (_this#0)] call gdc_fnc_filterMarker;";
         };
-        //All player created markers       
+        //All player created markers
         class gdc_ChkBox5: gdc_ChkBox
         {
             idc = 99908;

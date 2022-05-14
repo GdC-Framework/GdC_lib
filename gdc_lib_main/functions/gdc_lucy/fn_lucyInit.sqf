@@ -22,8 +22,8 @@
 
 params [["_ia_spawn_delay", 1.0, [0]],
         ["_ia_spawn_pos_static_unit", "mkr_spawn_static_unit", ["",[]]],
-        ["_ia_clean_bodies", true, [true]], 
-        ["_ia_clean_bodies_timer", 3600.0, [0]], 
+        ["_ia_clean_bodies", true, [true]],
+        ["_ia_clean_bodies_timer", 3600.0, [0]],
         ["_ia_clean_dead_vehicles", false, [true]],
         ["_ia_clean_dead_vehicles_timer", 3600.0, [0]],
         ["_ia_fatigue_disabled", true, [true]],
@@ -65,7 +65,7 @@ LUCY_IA_FATIGUE_DISABLED = _ia_fatigue_disabled;
 LUCY_IA_REMOVE_VEHICLES_INVENTORY = _ia_vehicles_remove_inventory;
 // Rank of IAs groups leaders
 LUCY_IA_RANK_LEADER = _ia_rank_leader;
-// Remove Empty Groups 
+// Remove Empty Groups
 LUCY_IA_REMOVE_EMPTY_GROUPS = _ia_remove_empty_groups;
 
 // Maximum waiting time before waypoint completion for random patrols in area
@@ -81,7 +81,7 @@ if !(isMultiplayer) then {
     };
 } else {
     if !(hasInterface or isServer) then {
-        // HC, spawn units 
+        // HC, spawn units
         LUCY_LOCAL_SPAWN_UNIT = true;
     }
     else {
@@ -121,5 +121,5 @@ LUCY_SPAWN_VEH_IN_PROGRESS = false;
 LUCY_SCRIPT_CONFIG_LOADOUT_IA_ENABLED = false;
 LUCY_SCRIPT_CONFIG_LOADOUT_IA = objNull;
 
-// Everything is configured, 
+// Everything is configured,
 LUCY_INIT = true;

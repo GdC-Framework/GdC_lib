@@ -26,10 +26,10 @@
 /* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Function parameters
-params ["_vehicle_params", "_inf_group", "_side", "_vehicle_azimuth", "_spawn_pos", "_array_go_to_land_pos", "_array_go_out_area_pos", ["_array_inf_target_pos", [], [[]]], 
-    ["_array_vehicle_waypoints_params", ["FULL", "CARELESS", "GREEN"], [[]], [0]], ["_array_inf_waypoint_params", ["FULL", "AWARE", "RED", "RANDOM", "SAD"], [[]], [5]], 
+params ["_vehicle_params", "_inf_group", "_side", "_vehicle_azimuth", "_spawn_pos", "_array_go_to_land_pos", "_array_go_out_area_pos", ["_array_inf_target_pos", [], [[]]],
+    ["_array_vehicle_waypoints_params", ["FULL", "CARELESS", "GREEN"], [[]], [0]], ["_array_inf_waypoint_params", ["FULL", "AWARE", "RED", "RANDOM", "SAD"], [[]], [5]],
     ["_delete_vehicle", True, [true]], ["_group_skill", -1, [0]]];
-    
+
 // Function local variables
 private ["_group_vehicle", "_group_inf", "_obj_helipad", "_delete_statement", "_fly_params", "_land_pos"];
 
@@ -42,8 +42,8 @@ if (count _vehicle_params > 3) then {
 
 // Create vehicle group and disable stupid IA
 _group_vehicle = [
-    _spawn_pos, _side, 
-    [_vehicle_params select 0], 
+    _spawn_pos, _side,
+    [_vehicle_params select 0],
     [_vehicle_params select 1],
     [_vehicle_params select 2],
     [[]],
@@ -63,8 +63,8 @@ _group_inf = [_spawn_pos, _side, _inf_group, _group_skill] call GDC_fnc_lucySpaw
 } forEach units _group_inf;
 
 {
-    [_group_inf, _x, 5.0, _array_inf_waypoint_params select 4, 
-    _array_inf_waypoint_params select 0, _array_inf_waypoint_params select 1, 
+    [_group_inf, _x, 5.0, _array_inf_waypoint_params select 4,
+    _array_inf_waypoint_params select 0, _array_inf_waypoint_params select 1,
     _array_inf_waypoint_params select 2, _array_inf_waypoint_params select 3, 5.0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
 } forEach _array_inf_target_pos;
 
@@ -75,11 +75,11 @@ if (typeOf ((_group_vehicle select 1) select 0) == "Helicopter") then {
 
 // Create full path for vehicule
 {
-    [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0, 
+    [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0,
     _array_vehicle_waypoints_params select 1, _array_vehicle_waypoints_params select 2, "COLUMN", 5.0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
 } forEach _array_go_to_land_pos;
 
-[_group_vehicle select 0, _land_pos, 5.0, "TR UNLOAD",_array_vehicle_waypoints_params select 0, 
+[_group_vehicle select 0, _land_pos, 5.0, "TR UNLOAD",_array_vehicle_waypoints_params select 0,
 _array_vehicle_waypoints_params select 1, _array_vehicle_waypoints_params select 2, "COLUMN", 5.0, [0, 0, 0]] call GDC_fnc_lucyAddWaypoint;
 
 _delete_statement = ["true", ""];
@@ -89,7 +89,7 @@ _delete_statement = ["true", ""];
             _delete_statement = ["true", format["_vehicle = vehicle this; _nearest = [getPos _vehicle] call GDC_fnc_lucyGetNearestPlayer; if ((_nearest select 1) > 5000) then {{_vehicle deleteVehicleCrew _x} forEach crew _vehicle; deleteVehicle _vehicle;};"]];
         };
     };
-    [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0, 
+    [_group_vehicle select 0, _x, 5.0, "MOVE", _array_vehicle_waypoints_params select 0,
     _array_vehicle_waypoints_params select 1, _array_vehicle_waypoints_params select 2, "COLUMN", 10.0, [0, 0, 0], _delete_statement] call GDC_fnc_lucyAddWaypoint;
 } forEach _array_go_out_area_pos;
 

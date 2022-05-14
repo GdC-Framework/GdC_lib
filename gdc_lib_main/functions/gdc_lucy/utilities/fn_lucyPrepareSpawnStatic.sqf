@@ -22,10 +22,10 @@ private ["_br", "_pos_by_unit"];
 
 _br = toString [13,10];
 _pos_by_unit = [];
-{ 
-	_veh = _x; 
+{
+	_veh = _x;
 	_pos = getPosASL _veh;
-	_pos_dir = [_pos select 0, _pos select 1, _pos select 2, getDir _veh]; 
+	_pos_dir = [_pos select 0, _pos select 1, _pos select 2, getDir _veh];
 	_class = typeOf _veh;
 	_side = side _veh;
 	_pos_by_unit find _class;

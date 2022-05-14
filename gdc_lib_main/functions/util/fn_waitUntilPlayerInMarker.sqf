@@ -26,7 +26,7 @@ if (isMultiplayer) then {
 	_all_players = switchableUnits;
 };
 
-waitUntil { 
+waitUntil {
 	sleep _wait;
 	// Check isPlayer, because can be a ia playable, but not a player for now
 	// But the playable unit, could become player ;)

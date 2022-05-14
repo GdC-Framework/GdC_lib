@@ -1,6 +1,6 @@
 /*
  * add default medic equipement in the backpack of the selected units
- * 
+ *
  * Parameters
  * 0 - ARRAY of objects : objects selected in 3DEN for instance
  * 1 - BOOLEAN : heavy medical equipement

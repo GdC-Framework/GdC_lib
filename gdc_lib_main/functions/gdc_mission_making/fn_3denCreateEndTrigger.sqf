@@ -1,6 +1,6 @@
 /*
  * create a radio trigger that ends the mission
- * 
+ *
  * Parameters
  * NONE
  *

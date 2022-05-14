@@ -20,10 +20,10 @@ if (
 	if (!IsNil("_class") ) then {
 		switch(_class) do {
 			//Infantry
-			case "Infantry": { 
+			case "Infantry": {
 				_dummy = [_group,_SpotPos] call GDC_gaia_fnc_doClearInfantry;
 			};
-			case "ReconInfantry": { 
+			case "ReconInfantry": {
 				_dummy = [_group,_SpotPos] call GDC_gaia_fnc_doClearRecon;
 			};
 		};
@@ -37,6 +37,5 @@ if (
 		_group setVariable ["GAIA_OrderPosition", _SpotPos, false];
 	};
 };
-
 
 true

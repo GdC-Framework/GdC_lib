@@ -3,7 +3,7 @@
 
 	Description:
 	Adds a "roster" tab in the diary displaying teams' composition.
-	
+
 	Parameter(s):
 		0 (Optional): BOOL - AI are included (default: false)
 		1 (Optional): BOOL - rank inclued (default: true)
@@ -38,7 +38,7 @@ if (_includeAI) then {
 {//forEach
 	_newGrp = group _x;
 	_strGrp = "";
-	
+
 	if(_rank) then {
 		switch(rankID _x) do {
 			case 0:{
@@ -78,7 +78,7 @@ if (_includeAI) then {
 				_strRole = " - " + ((roleDescription _x) select [0,_nbr]);
 			};
 		};
-	};	
+	};
 
 	if(_newGrp != _oldGrp) then {
 		_nbr = (roleDescription _x) find "@";
@@ -87,7 +87,7 @@ if (_includeAI) then {
 		} else {
 			_strGrp = "<br/>" + ((roleDescription _x) select [_nbr + 1]) + "<br/>";
 		};
-		
+
 		switch (side _x) do {
 			case EAST:{
 				_strColorGrp = "'#990000'";

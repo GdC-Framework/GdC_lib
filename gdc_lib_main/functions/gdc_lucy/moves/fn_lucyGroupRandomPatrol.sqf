@@ -50,16 +50,16 @@ if (LUCY_RANDOM_PATROL_MAX_TIMEOUT < 1) then {
 
 // Statement will recall the function when waypoint is reached
 _wp = [
-    _group, 
-    _random_pos, 
-    5, 
+    _group,
+    _random_pos,
+    5,
     _grp_params #0,
     _grp_params #1,
     _grp_params #2,
     _grp_params #3,
     _grp_params #4,
-    15, 
-    [0, _wp_timeout/2, _wp_timeout], 
+    15,
+    [0, _wp_timeout/2, _wp_timeout],
     [
         "true",
         format[

@@ -25,7 +25,7 @@
 /* WARNING ! : This function is no longer maintained use GDC_fnc_lucySpawnVehicle instead */
 
 // Parameters
-params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", [], [[]]], ["_inf_troops", [], [[]]], ["_force_cargo", True, [true]], 
+params["_unit_pos", "_group_side", "_vehicles_array", "_inf_drivers", ["_inf_gunners", [], [[]]], ["_inf_troops", [], [[]]], ["_force_cargo", True, [true]],
     ["_unit_dir", 0, [0]], ["_unit_spawn_space", 20.0, [0]], ["_fly_params", ["NONE", 0, 0], [[]], [3]], ["_group_skill", -1, [0]]];
 // Function local variables
 private["_unit_spawn", "_vehicle_spawn", "_vehicles_spawn", "_veh_group", "_current_vehicle"];
@@ -58,12 +58,12 @@ _veh_group = createGroup _group_side;
     };
     _veh_group addVehicle _vehicle_spawn;
     _vehicles_spawn = _vehicles_spawn + [_vehicle_spawn];
-    
+
     // Add the driver
     _unit_spawn = _veh_group createUnit[(_inf_drivers select _forEachIndex), _unit_pos, [], 0, "NONE"];
     [_unit_spawn] joinSilent _veh_group;
     _unit_spawn moveInDriver (_vehicle_spawn);
-    
+
     if (_forEachIndex == 0) then {
         _unit_spawn setRank LUCY_IA_RANK_LEADER;
         [_veh_group, [(_unit_pos select 0) + (2 * (sin _unit_dir)), (_unit_pos select 1) + (2 * (cos _unit_dir)), (_unit_pos select 2) + (_fly_params select 1)], 0, "MOVE", "LIMITED", "CARELESS", "RED", "COLUMN"] call GDC_fnc_lucyAddWaypoint;
@@ -78,10 +78,10 @@ _veh_group = createGroup _group_side;
     {
         if (count _x != 0) then {
             _unit_spawn = _veh_group createUnit[_x, _unit_pos, [], 0, "NONE"];
-    
+
             [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
             [_unit_spawn] joinSilent _veh_group;
-            
+
             _unit_spawn moveInTurret [_current_vehicle, [_forEachIndex]];
         };
     } forEach _x;
@@ -93,10 +93,10 @@ _veh_group = createGroup _group_side;
     {
         if (count _x != 0) then {
             _unit_spawn = _veh_group createUnit[_x, _unit_pos, [], 0, "NONE"];
-            
+
             [_unit_spawn, _group_skill] call GDC_fnc_lucyAISetConfig;
             [_unit_spawn] joinSilent _veh_group;
-            
+
             if (_force_cargo) then {
                 _unit_spawn moveInCargo [_current_vehicle, _forEachIndex];
             };
