@@ -11,7 +11,7 @@
  * @note GDC_fnc_lucySpawnVehicle eat [position, side, "classname", crew, orientation], reduce the array to [side, "classname", crew, orientation] for this function to work
  * or give a dummy param.
  */
-_params_correctly_defined = params[
+params[
 	["_positions", [], [[]]],
 	["_param_to_lucy", [], [[]]],
 	["_safe_zone", 10, [0]]
@@ -19,25 +19,23 @@ _params_correctly_defined = params[
 
 _positions = _positions apply { _x call BIS_fnc_position; };
 // Internal variables
-private ["_veh", "_marker", "_occupied", "_params_correctly_defined"];
+private ["_veh", "_position", "_occupied"];
 
 // Choose a marker and test if there is already a vehicule within 10m of range of the marker position.
 _occupied = true;
 while {_occupied}
 do{
-	_marker = selectRandom _positions;
-	if (nearestObjects [getMarkerPos _marker, ["AllVehicles"], _safe_zone] isEqualTo [])
+	_position = selectRandom _positions;
+	if (nearestObjects [_position, ["AllVehicles"], _safe_zone] isEqualTo [])
 	then{
 		_occupied = false;
 	};
 };
 
 if (_param_to_lucy#0 isEqualType west) then {
-	_param_to_lucy = [getMarkerPos _marker] + _param_to_lucy;
+	_param_to_lucy = [_position] + _param_to_lucy;
 } else {
-	_param_to_lucy set [getMarkerPos _marker, 0];
+	_param_to_lucy set [_position, 0];
 };
 
-_veh = _param_to_lucy call GDC_fnc_lucySpawnVehicle;
-
-_veh
+_param_to_lucy call GDC_fnc_lucySpawnVehicle
