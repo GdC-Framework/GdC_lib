@@ -19,7 +19,7 @@ params[
 
 _positions = _positions apply { _x call BIS_fnc_position; };
 // Internal variables
-private ["_veh", "_position", "_occupied"];
+private ["_position", "_occupied"];
 
 // Choose a marker and test if there is already a vehicule within 10m of range of the marker position.
 _occupied = true;
