@@ -3,7 +3,7 @@
  *
  * @param {Array} _positions, elements can be Arrays, Objects, Groups, Locations and Strings. (see BIS_fnc_position)
  * @param {Array} [_param_to_lucy] - list of the parameters of GDC_fnc_lucySpawnVehicle function (use the order of lucySpawnVehicle function).
- * @param {number} [_safe_zone = 10] -  radius of the safe zone around the spawn waypoint where the funciton check for other vehicle.
+ * @param {number} [_safe_zone = 10] -  radius of the safe zone around the spawn waypoint where the function check for other vehicle.
  *
  * @returns {Array} - #0 unit group, #1 vehicle.
  * @author Migoyan
