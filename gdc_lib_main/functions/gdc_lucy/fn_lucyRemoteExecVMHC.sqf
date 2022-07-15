@@ -28,7 +28,5 @@ params["_arg_script"];
 		};
 
 		_this remoteExec ["execVM", _hc_netid];
-
-		_return
 	}
 ] remoteExec ["call", 2];
