@@ -17,4 +17,4 @@ if(isNull player) exitWith {};
 private _text = [player] call GDC_fnc_getInventoryBriefing;
 private _name = name player;
 player createDiarySubject ["inventory","Inventaire"];
-player createDiaryRecord ["inventory", ["Matos de " + _name, _text]];
+player createDiaryRecord ["inventory", ["Matos de " + _name, _text,(format ["\a3\ui_f\data\gui\cfg\ranks\%1_gs.paa",(tolower rank player)])]];
