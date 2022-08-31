@@ -125,21 +125,25 @@ _text = _text + "<br/><br/>";
 
 // Conteneurs et chapeaux
 {
-	_x params["_pic", "_count"];
+	_x params["_pic", "_count","_class"];
 	for "_i" from 1 to _count do
 	{
-		_text = _text + "<img image=""" + _pic + """ height=50 /> ";
+		_cfg = if (_class isKindOf "Bag_Base") then {configFile >> "CfgVehicles" >> _class} else {configFile >> "CfgWeapons" >> _class};
+		_name = getText(_cfg >> "displayName");
+		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+		_desc = _desc joinString endl;
+		_text = _text + format ["<img title='%1' image='%2' height=%3 />",_name,_pic,50];
 	};
 } forEach _uniformList;
 _text = _text + "<br/><br/>";
 
 // Affichage des protections
 if ((vest _unit) != "") then {
-	_text = _text + "<font color='#EF7619'>Veste</font> : " + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "descriptionShort")) + "</font>";
+	_text = _text + "<font color='#EF7619'>Veste</font> : " +  "<font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "descriptionShort")) + "</font>";
 	_text = _text + "<br/>";
 };
 if ((headgear _unit) != "") then {
-	_text = _text + "<font color='#EF7619'>Casque</font> : " + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "displayName")) + " : <font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "descriptionShort")) + "</font>";
+	_text = _text + "<font color='#EF7619'>Casque</font> : " + "<font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "descriptionShort")) + "</font>";
 	_text = _text + "<br/><br/>";
 };
 
@@ -148,16 +152,13 @@ if (primaryWeapon _unit != "") then	{
 	_name = getText (configFile >> "CfgWeapons" >> (primaryWeapon _unit) >> "displayName");
 	_text = _text + "<font size=15><font color='#EF7619'>Arme principale : </font>" + _name + "</font>";
 	_text = _text + "<br/>";
-	if (count (primaryWeaponItems _unit - [""]) != 0) then {
-		{
-			_text = _text + " + " + (getText (configFile >> "CfgWeapons" >> _x >> "displayName"));
-		} forEach (primaryWeaponItems _unit - [""]);
-		_text = _text + "<br/>";
-	};
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
-		_text = _text + "<img image=""" + _pic + (if (_forEachIndex == 0) then {""" height=60 /> "} else {""" height=40 /> "});
+		_name = getText(_cfg >> "displayName");
+		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+		_desc = _desc joinString endl;
+		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsPrimary) + (primaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -167,16 +168,13 @@ if (secondaryWeapon _unit != "") then	{
 	_name = getText (configFile >> "CfgWeapons" >> (secondaryWeapon _unit) >> "displayName");
 	_text = _text + "<font size=15><font color='#EF7619'>Lanceur : </font>" + _name + "</font>";
 	_text = _text + "<br/>";
-	if (count (secondaryWeaponItems _unit - [""]) != 0) then {
-		{
-			_text = _text + " + " + (getText(configFile >> "CfgWeapons" >> _x >> "displayName"));
-		} forEach (secondaryWeaponItems _unit - [""]);
-		_text = _text + "<br/>";
-	};
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText (_cfg >> "picture") call _addExtPAA;
-		_text = _text + "<img image=""" + _pic + (if (_forEachIndex == 0) then {""" height=60 /> "} else {""" height=40 /> "});
+		_name = getText(_cfg >> "displayName");
+		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+		_desc = _desc joinString endl;
+		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsSec) + (secondaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -186,16 +184,13 @@ if (handgunWeapon _unit != "") then	{
 	_name = getText(configFile >> "CfgWeapons" >> (handgunWeapon _unit) >> "displayName");
 	_text = _text + "<font size=15><font color='#EF7619'>Arme de poing : </font>" + _name + "</font>";
 	_text = _text + "<br/>";
-	if (count (handgunItems _unit - [""]) != 0) then {
-		{
-			_text = _text + " + " + (getText (configFile >> "CfgWeapons" >> _x >> "displayName"));
-		} forEach (handgunItems _unit - [""]);
-		_text = _text + "<br/>";
-	};
 	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
-		_text = _text + "<img image=""" + _pic + (if (_forEachIndex == 0) then {""" height=50 /> "} else {""" height=40 /> "});
+		_name = getText(_cfg >> "displayName");
+		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+		_desc = _desc joinString endl;
+		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {50} else {40})];
 	} forEach (_weaponsHandgun) + (handgunItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -203,22 +198,26 @@ if (handgunWeapon _unit != "") then	{
 // Munitions
 _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Munitions : </font><br/>";
 {
-	_x params["_pic", "_count"];
-	_count = str _count;
-	_text = _text + "<img image=""" + _pic + """ height=35 />" + "<font color='#F193F1'>x" + _count + "</font>   ";
-	_name = getText (configFile >> "CfgMagazines" >> (_x select 2) >> "displayName");
-	_text = _text + _name + "<br/>";
+	_x params ["_pic", "_count", "_class"];
+	_cfg = configFile >> "CfgMagazines" >> _class;
+	_name = getText(_cfg >> "displayName");
+	_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+	_desc = _desc joinString endl;
+	_text = _text + format ["<img title='%1' image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",_desc,_pic,35,_count,_name];
+	_text = _text + "<br/>";
 } forEach _magasinesList;
 
 _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Items : </font><br/>";
 
 // Items
 {
-	_x params["_pic", "_count"];
-	_count = str _count;
-	_text = _text + "<img image=""" + _pic + """ height=35 />" + "<font color='#F193F1'>x" + _count + "</font>   ";
-	_name = getText(configFile >> "CfgWeapons" >> (_x select 2) >> "displayName");
-	_text = _text + _name + "<br/>";
+	_x params ["_pic", "_count", "_class"];
+	_cfg = configFile >> "CfgWeapons" >> _class;
+	_name = getText(_cfg >> "displayName");
+	_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
+	_desc = _desc joinString endl;
+	_text = _text + format ["<img title='%1' image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",_desc,_pic,35,_count,_name];
+	_text = _text + "<br/>";
 } forEach (_weaponsList + _itemsList);
 
 _text;
