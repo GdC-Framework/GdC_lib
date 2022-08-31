@@ -28,6 +28,7 @@ class lucySpawn
     class lucySpawnStaticInf {};
     class lucySpawnVehicleReinforcement {};
     class lucySpawnWithoutCollision {};
+    class lucySpawnRandomPatrols {};
 };
 class lucyUtilities
 {
