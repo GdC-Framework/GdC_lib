@@ -34,5 +34,5 @@ player createDiarySubject ["inventory","Inventaire"];
 			_role = ((roleDescription _unit) select [0,_nbr]);
 		};
 	};
-	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text]];
+	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text, (format ["\a3\ui_f\data\gui\cfg\ranks\%1_gs.paa",(tolower rank _unit)])]];
 } forEach _allrealplayers;
