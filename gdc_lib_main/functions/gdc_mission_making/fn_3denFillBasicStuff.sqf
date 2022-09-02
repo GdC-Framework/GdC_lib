@@ -2,6 +2,9 @@
  */
 params["_objects", ["_radio", true, [true]]];
 private["_old_loadout", "_new_loadout", "_uniform", "_old_items", "_items"];
+
+_objects = _objects select {_x isKindOf "man"};
+
 if (_radio) then {
 	_items = [
 		["ACE_CableTie",1],
