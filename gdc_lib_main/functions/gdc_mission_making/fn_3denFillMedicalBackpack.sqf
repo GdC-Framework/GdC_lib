@@ -46,40 +46,39 @@ if (_heavy_medical) then {
 };
 
 {
-	_unit_loadout = getUnitLoadout _x;
-	_backpack = (_unit_loadout) #5;
+	_backpack = (getUnitLoadout _x) #5;
 	if (count _backpack > 0) then {
 		_items = _backpack #1;
 		_backpack = _backpack #0;
 		_x setUnitLoadout [
-			((_unit_loadout) #0),
-			((_unit_loadout) #1),
-			((_unit_loadout) #2),
-			((_unit_loadout) #3),
-			((_unit_loadout) #4),
-			[_backpack,(_items + _medical_equipement)],
-			((_unit_loadout) #6),
-			((_unit_loadout) #7),
-			((_unit_loadout) #8),
-			((_unit_loadout) #9)
+			nil,
+			nil,
+			nil,
+			nil,
+			nil,
+			[_backpack, (_items + _medical_equipement)],
+			nil,
+			nil,
+			nil,
+			nil
 		];
 		if ((loadBackpack _x) > 1) then { // Annulation si pas assez de place
 			_x setUnitLoadout [
-				((_unit_loadout) #0),
-				((_unit_loadout) #1),
-				((_unit_loadout) #2),
-				((_unit_loadout) #3),
-				((_unit_loadout) #4),
-				[_backpack,_items],
-				((_unit_loadout) #6),
-				((_unit_loadout) #7),
-				((_unit_loadout) #8),
-				((_unit_loadout) #9)
+				nil,
+				nil,
+				nil,
+				nil,
+				nil,
+				[_backpack, _items],
+				nil,
+				nil,
+				nil,
+				nil
 			];
 			if (_heavy_medical) then {
-				systemchat (format ["Unité %1 : pas assez de place dans le sac (6,35Kg minimum).",str (str _x)]);
-			} else {
 				systemchat (format ["Unité %1 : pas assez de place dans le sac (11,25Kg minimum).",str (str _x)]);
+			} else {
+				systemchat (format ["Unité %1 : pas assez de place dans le sac (6,35Kg minimum).",str (str _x)]);
 			};
 		} else {
 			systemchat (format ["Unité %1 : loadout modifié.",str (str _x)]);
