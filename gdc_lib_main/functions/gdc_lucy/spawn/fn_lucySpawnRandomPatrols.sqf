@@ -5,7 +5,7 @@
  * @param {Array} _positions, elements can be Arrays, Objects, Groups, Locations and Strings. (see BIS_fnc_position).
  * @param {Array} [_blacklist = ["water"]], blacklisted position. (see BIS_fnc_position)
  * @param {Number} [_numbers = 10], number of patrol
- * @param {Arrays} [_size = [4, 8, 13]], Array [min,mid,max] (Gaussian distribution). Max is excluded (floored result).
+ * @param {Arrays} [_size = [4, 8, 13]], Random sizes of patrols, Array [min,mid,max] (Gaussian distribution). Max is excluded (floored result).
  * @param {Side} [_side = east], side of patrols.
  * @param {String} [_classname = "O_Soldier_F"], Classname of units spawned.
  * @param {Array} [_patrol_params = ["MOVE", "UNCHANGED", "SAFE", "NO CHANGE", "COLUMN"]], parameters of the patrols. (see GDC_fnc_lucyGroupRandomPatrol)
