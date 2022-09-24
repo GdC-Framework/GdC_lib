@@ -130,9 +130,8 @@ _text = _text + "<br/><br/>";
 	{
 		_cfg = if (_class isKindOf "Bag_Base") then {configFile >> "CfgVehicles" >> _class} else {configFile >> "CfgWeapons" >> _class};
 		_name = getText(_cfg >> "displayName");
-		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-		_desc = _desc joinString endl;
-		_text = _text + format ["<img title='%1' image='%2' height=%3 />",_name,_pic,50];
+		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	};
 } forEach _uniformList;
 _text = _text + "<br/><br/>";
@@ -156,9 +155,8 @@ if (primaryWeapon _unit != "") then	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
-		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-		_desc = _desc joinString endl;
-		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsPrimary) + (primaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -172,9 +170,8 @@ if (secondaryWeapon _unit != "") then	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText (_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
-		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-		_desc = _desc joinString endl;
-		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsSec) + (secondaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -188,9 +185,8 @@ if (handgunWeapon _unit != "") then	{
 		_cfg = configFile >> "CfgWeapons" >> _x;
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
-		_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-		_desc = _desc joinString endl;
-		_text = _text + format ["<img title='%1' image='%2' height=%3 />",(_name + endl + _desc),_pic,(if (_forEachIndex == 0) then {50} else {40})];
+		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsHandgun) + (handgunItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -201,9 +197,8 @@ _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Munitions : </fon
 	_x params ["_pic", "_count", "_class"];
 	_cfg = configFile >> "CfgMagazines" >> _class;
 	_name = getText(_cfg >> "displayName");
-	_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-	_desc = _desc joinString endl;
-	_text = _text + format ["<img title='%1' image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",_desc,_pic,35,_count,_name];
+	_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+	_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	_text = _text + "<br/>";
 } forEach _magasinesList;
 
@@ -214,9 +209,8 @@ _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Items : </font><b
 	_x params ["_pic", "_count", "_class"];
 	_cfg = configFile >> "CfgWeapons" >> _class;
 	_name = getText(_cfg >> "displayName");
-	_desc = [(getText(_cfg >> "descriptionShort")), "<br />", true] call BIS_fnc_splitString;
-	_desc = _desc joinString endl;
-	_text = _text + format ["<img title='%1' image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",_desc,_pic,35,_count,_name];
+	_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+	_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	_text = _text + "<br/>";
 } forEach (_weaponsList + _itemsList);
 
