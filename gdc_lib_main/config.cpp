@@ -19,7 +19,9 @@ class CfgFunctions
 		#include "functions\gdc_halo\index.hpp"
 		#include "functions\gdc_lucy\index.hpp"
 		#include "functions\gdc_mission_making\index.hpp"
+		#include "functions\gdc_opfortracker\index.hpp"
 		#include "functions\gdc_pluto\index.hpp"
+		#include "functions\gdc_zeushicom\index.hpp"
 		#include "functions\util\index.hpp"
 		#include "functions\utilInternal\index.hpp"
 	};
