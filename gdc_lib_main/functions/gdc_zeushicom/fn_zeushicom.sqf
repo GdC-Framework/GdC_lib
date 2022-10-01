@@ -17,9 +17,11 @@
 
 params [
 	["_zeusmodules",[],[[]]],
-	["_itemcondition","itemmap",[""]]
+	["_itemcondition","itemmap",[""]],
+	["_limitcuratorattributes",true,[true]]
 ];
 
+// ACE actions
 private _action = [
 	"gdc_zeushicom_action",
 	"High Command",
@@ -70,3 +72,19 @@ private _action = [
 	_action,
 	true
 ] call ace_interact_menu_fnc_addActionToClass;
+
+//Curator attributes
+if (_limitcuratorattributes) then {
+	{
+		[
+			_x,
+			"object",
+			["UnitPos"]
+		] call BIS_fnc_setCuratorAttributes;
+		[
+			_x,
+			"group",
+			["GroupID","Behaviour","Formation","SpeedMode","UnitPos"]
+		] call BIS_fnc_setCuratorAttributes;
+	} forEach _zeusmodules;
+};

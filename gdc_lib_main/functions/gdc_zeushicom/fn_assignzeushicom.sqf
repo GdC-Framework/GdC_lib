@@ -23,23 +23,3 @@ if ((getAssignedCuratorUnit _zeusmodule) == _player) then { // cas d'un HICOM oc
 	[_player,_zeusmodule] remoteExec ["assignCurator",2];
 	hint "Vous avez obtenu ce High Command";
 };
-
-
-/*
-
-if ((getAssignedCuratorUnit _zeusmodule) == objNull) then { // cas d'un HICOM libre
-	[getAssignedCuratorLogic _player] remoteExec ["unassignCurator",2];
-	[_player,_zeusmodule] remoteExec ["assignCurator",2];
-	hint "Vous avez obtenu ce High Command";
-} else {
-	if ((getAssignedCuratorUnit _zeusmodule) == _player) then { // cas d'un HICOM occupé par le joueur
-		[_zeusmodule] remoteExec ["unassignCurator",2];
-		hint "Vous avez quitté ce High Command";
-	} else { // cas d'un HICOM occupé par un autre joueur
-		[getAssignedCuratorLogic _player] remoteExec ["unassignCurator",2];
-		[_zeusmodule] remoteExec ["unassignCurator",2];
-		[_player,_zeusmodule] remoteExec ["assignCurator",2];
-		hint "Vous avez obtenu ce High Command";
-	};
-};
-*/
