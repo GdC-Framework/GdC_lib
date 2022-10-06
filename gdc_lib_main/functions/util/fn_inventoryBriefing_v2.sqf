@@ -5,11 +5,15 @@
 	Adds an "inventory" tab in the diary displaying every player's inventory
 
 	Parameter(s):
-		NONE
+		ARRAY of OBJECTS (optionnal) : blacklist of units that should not appear in the loadout list
 
 	Returns:
 	nothing
 */
+
+params [
+	["_blist",[],[[]]]
+];
 
 if (player diarySubjectExists "inventory") exitwith {};
 
@@ -35,4 +39,4 @@ player createDiarySubject ["inventory","Inventaire"];
 		};
 	};
 	player createDiaryRecord ["inventory", [(_role + " - " + _name), _text, (format ["\a3\ui_f\data\gui\cfg\ranks\%1_gs.paa",(tolower rank _unit)])]];
-} forEach _allrealplayers;
+} forEach (_allrealplayers - _blist);
