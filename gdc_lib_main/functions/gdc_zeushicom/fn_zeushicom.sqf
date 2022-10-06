@@ -7,6 +7,8 @@
 	Parameter(s):
 		ARRAY of OBJECTS : zeus HICOM modules accessible for players (default=[])
 		STRING (optionnal) : classname of the item the player must have in order to get the reports (default="itemmap")
+		BOOL (optionnal) : if true the hicom will be executed if he kills another player (default=false)
+		BOOL (optionnal) : if true, the attributes that can be modified through zeus are limited (default=true)
 
 	Returns:
 	nothing
@@ -18,8 +20,10 @@
 params [
 	["_zeusmodules",[],[[]]],
 	["_itemcondition","itemmap",[""]],
+	["_nohicomkill",false,[false]],
 	["_limitcuratorattributes",true,[true]]
 ];
+gdc_zeushicommodules = _zeusmodules;
 
 // ACE actions
 private _action = [
@@ -72,6 +76,27 @@ private _action = [
 	_action,
 	true
 ] call ace_interact_menu_fnc_addActionToClass;
+
+if (_nohicomkill) then {
+	{
+		_x addEventHandler ["Killed", {
+			params ["_unit", "_killer", "_instigator", "_useEffects"];
+			if (isnull _instigator) then {
+				_instigator = _killer;
+			};
+			if (_instigator in (gdc_zeushicommodules apply {getAssignedCuratorUnit _x})) then {
+				[["Le hicom a tué un joueur, il va mourrir.","PLAIN DOWN"]] remoteExec ["titleText",0];
+				[_instigator] spawn {
+					params ["_instigator"];
+					sleep 2;
+					private _tempTarget = createSimpleObject ["Land_HelipadEmpty_F", getPosASL _instigator];
+					[_tempTarget, nil, true] spawn BIS_fnc_moduleLightning;
+					_instigator setDamage 1;
+				};
+			};
+		}];
+	} forEach ((playableUnits + switchableUnits) - (gdc_zeushicommodules apply {getAssignedCuratorUnit _x}));
+};
 
 //Curator attributes
 if (_limitcuratorattributes) then {
