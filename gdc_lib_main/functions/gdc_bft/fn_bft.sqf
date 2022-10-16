@@ -27,7 +27,7 @@ params [
 private _action = [
 	"gdc_bft_action",
 	"BFT",
-	"",
+	"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 	{
 		if (!dialog) then {createDialog "gdc_bft_display";};
 	},
