@@ -92,13 +92,3 @@ private _txt = format ["<font size='20'>High Command Opfor Tracker :</font>
 } forEach ["o_inf","o_motor_inf","o_armor","o_mech_inf","o_art","o_mortar","o_support","o_antiair","o_air","o_plane","o_naval"];
 player createDiaryRecord ["gdc_hicom", ["Opfor Tracker",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa"]];
 player createDiaryRecord ["gdc_hicom", ["Infos contacts","Ici sont enregistrées les communications radios reçues au cours de la mission.","a3\ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"]];
-
-
-/*
-"a3\ui_f\data\IGUI\Cfg\simpletasks\Types\talk_ca.paa"
-"a3\ui_f\data\IGUI\Cfg\simpletasks\Types\use_ca.paa"
-"a3\ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"
-"a3\ui_f\data\IGUI\Cfg\simpletasks\Types\radio_ca.paa"
-
-
-*/
