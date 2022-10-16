@@ -21,7 +21,7 @@ params [
 	["_zeusmodules",[],[[]]],
 	["_itemcondition","itemmap",[""]],
 	["_nohicomkill",false,[false]],
-	["_limitcuratorattributes",true,[true]]
+	["_limitcurator",true,[true]]
 ];
 gdc_zeushicommodules = _zeusmodules;
 
@@ -84,13 +84,14 @@ if (_nohicomkill) then {
 			if (isnull _instigator) then {
 				_instigator = _killer;
 			};
+			if (_instigator == _unit) exitwith {}; //suicide
 			if (_instigator in (gdc_zeushicommodules apply {getAssignedCuratorUnit _x})) then {
 				[["Le hicom a tué un joueur, il va mourrir.","PLAIN DOWN"]] remoteExec ["titleText",0];
 				[_instigator] spawn {
 					params ["_instigator"];
 					sleep 2;
 					private _tempTarget = createSimpleObject ["Land_HelipadEmpty_F", getPosASL _instigator];
-					[_tempTarget, nil, true] spawn BIS_fnc_moduleLightning;
+					[_tempTarget, nil, true] remoteExec ["BIS_fnc_moduleLightning",0];
 					_instigator setDamage 1;
 				};
 			};
@@ -98,8 +99,9 @@ if (_nohicomkill) then {
 	} forEach ((playableUnits + switchableUnits) - (gdc_zeushicommodules apply {getAssignedCuratorUnit _x}));
 };
 
-//Curator attributes
-if (_limitcuratorattributes) then {
+//Curator limitations
+if (_limitcurator) then {
+	// attributes
 	{
 		[
 			_x,
@@ -112,4 +114,43 @@ if (_limitcuratorattributes) then {
 			["GroupID","Behaviour","Formation","SpeedMode","UnitPos"]
 		] call BIS_fnc_setCuratorAttributes;
 	} forEach _zeusmodules;
+	if (isServer) then {
+		[] spawn {
+			waitUntil {time > 1};
+			{
+				// available addons
+				removeAllCuratorAddons _x;
+				_x addCuratorAddons ["ace_zeus","ace_zeus_captives"];
+				[
+					_x,
+					[
+						"ace_zeus_moduleDefendArea",0,
+						"ace_zeus_modulePatrolArea",0,
+						"ace_zeus_moduleSearchArea",0,
+						"ace_zeus_moduleSearchNearby",0,
+						"ace_zeus_moduleGarrison",0,
+						"ace_zeus_moduleUnGarrison",0,
+						"ace_zeus_moduleToggleNvg",0,
+						"ace_zeus_moduleToggleFlashlight",0,
+						"ace_zeus_moduleSuppressiveFire",0,
+						"ace_zeus_moduleCaptive",0,
+						"ace_zeus_moduleSurrender",0
+					]
+				] call BIS_fnc_curatorObjectRegisteredTable;
+				// camera and editing area 
+				_x addCuratorCameraArea [_foreachindex,[0,0,0],1];
+				_x addCuratorEditingArea [_foreachindex,[0,0,0],1];
+				_x setCuratorCameraAreaCeiling 1;
+			} forEach gdc_zeushicommodules;
+		};
+	};
 };
+
+//Briefing stuff
+if !(player diarySubjectExists "gdc_hicom") then {
+	player createDiarySubject ["gdc_hicom","HICOM"];
+};
+private _txt = format ["<font size='20'>High Command :</font>
+<br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent accéder au high command via le menu d'interaction sur soi de ACE.",
+(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
+player createDiaryRecord ["gdc_hicom", ["Accès HICOM",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_requestLeadership_ca.paa"]];

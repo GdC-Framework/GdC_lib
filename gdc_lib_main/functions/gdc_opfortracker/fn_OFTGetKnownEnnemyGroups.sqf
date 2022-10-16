@@ -15,6 +15,7 @@ private ["_unit","_side","_veh","_targetList","_targetPos","_targetSide","_targe
 _hicomGroupsList = [];
 {
 	private _hicomobjects = curatorEditableObjects _x;
+	_hicomobjects = _hicomobjects + gdc_OFTotherUnits;
 	{
 		_hicomGroupsList pushBackUnique (group _x);
 	} forEach (_hicomobjects select {alive _x});
