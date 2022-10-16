@@ -31,7 +31,7 @@ private _action = [
 	{
 		if (!dialog) then {createDialog "gdc_bft_display";};
 	},
-	{params ["_target","_player","_params"];(_params #0) in (items _player);},
+	{params ["_target","_player","_params"];({_x isKindOf [(_params #0),(configFile >> "CfgWeapons")] || {_x isKindOf (_params #0)}} count (items _player) > 0);},
 	{},
 	[_itemcondition]
 ] call ace_interact_menu_fnc_createAction;
@@ -51,8 +51,8 @@ if (isnil "gdc_bft_eh") then {
 			deleteMarkerLocal _x;
 		} forEach (allMapMarkers select {"gdc_bft_" in _x});
 
-		if (_itemcondition in (items _unit)) then {
-			private _playerobjects = (playableUnits + switchableUnits) select {(_itemcondition in (items _x)) && (_x getvariable ["gdc_bft_activated",false]) && !(_x in _otherobjects)};
+		if ({_x isKindOf [_itemcondition,(configFile >> "CfgWeapons")] || {_x isKindOf _itemcondition}} count (items _unit) > 0) then {
+			private _playerobjects = (playableUnits + switchableUnits) select {({_x isKindOf [_itemcondition,(configFile >> "CfgWeapons")] || {_x isKindOf _itemcondition}} count (items _x) > 0) && (_x getvariable ["gdc_bft_activated",false]) && !(_x in _otherobjects)};
 			{
 				private _object = _x;
 				if !((_object != vehicle _object) && ((vehicle _object) in _otherobjects)) then {
