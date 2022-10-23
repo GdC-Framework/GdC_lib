@@ -2,7 +2,7 @@
 	Author: Sparfell
 
 	Description:
-	Generates HICOM briefing.
+	Subfunction of zeushicom. Generates HICOM briefing.
 
 	Parameter(s):
 		STRING : classname of the item the player must have in order to get the reports (default="itemmap")

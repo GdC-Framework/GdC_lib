@@ -2,7 +2,7 @@
 	Author: Sparfell
 
 	Description:
-	Generates HICOM ACE selfaction.
+	Subfunction of zeushicom. Generates HICOM ACE selfaction.
 
 	Parameter(s):
 		STRING : classname of the item the player must have in order to get the reports (default="itemmap")
@@ -34,6 +34,9 @@ private _action = [
 				"Créer HICOM",
 				"a3\ui_f\data\map\mapcontrol\taskIcon_ca.paa",
 				{
+					{
+						deleteVehicle _x;
+					} forEach gdc_zeushicommodules;
 					gdc_zeushicommodules = [];
 					publicVariable "gdc_zeushicommodules";
 					{

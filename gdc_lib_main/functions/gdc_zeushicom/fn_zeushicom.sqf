@@ -32,7 +32,7 @@ params [
 	["_nohicomkill",false,[false]],
 	["_limitcurator",true,[true]]
 ];
-gdc_zeushicommodules = [];
+//gdc_zeushicommodules = [];
 gdc_zeushicomlogics = [];
 gdc_zeushicomlimit = _limitcurator;
 
@@ -49,9 +49,14 @@ if (isServer) then {
 	[_itemcondition,_activateBFT,_activateOFT] remoteExec ["gdc_fnc_createhicombriefing",0,true];
 
 	// zeus modules creation
+	gdc_zeushicommodules = [];
 	{
 		[_x,_foreachindex,gdc_zeushicomlimit] call gdc_fnc_createhicommodule;
 	} forEach gdc_zeushicomlogics;
+	[] spawn {
+		waitUntil {time > 0};
+		publicVariable "gdc_zeushicommodules";
+	};
 
 	// ACE actions
 	[_itemcondition] remoteExec ["gdc_fnc_createhicomaceactions",0,true];
