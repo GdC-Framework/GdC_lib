@@ -2,80 +2,62 @@
 	Author: Sparfell
 
 	Description:
-	Main function for Zeus HICOM system. Generates ACE selfaction .
+	Main function for Zeus HICOM system.
 
 	Parameter(s):
-		ARRAY of OBJECTS : zeus HICOM modules accessible for players (default=[])
+		ARRAY of ARRAYs : hicom modules available ["hicomname",logicname] the logicname is the name of the logic synchronized with the objects controlled by the hicom (default=[])
 		STRING (optionnal) : classname of the item the player must have in order to get the reports (default="itemmap")
+		BOOL (optionnal) : if true, the HICOM BFT is activated (default=true)
+		BOOL (optionnal) : if true, the HICOM OFT is activated (default=true)
+		ARRAY of OBJECTS (optionnal) : other units that should report contact to the hicom with OFT (default=[])
 		BOOL (optionnal) : if true the hicom will be executed if he kills another player (default=false)
 		BOOL (optionnal) : if true, the attributes that can be modified through zeus are limited (default=true)
 
 	Returns:
 	nothing
-	
+
 	TODO :
-	- nom des modules hicom dans la liste du menu
+	- tuto 3den
+	- modules ACE pas dispos
+	- repop le hicom immédiatement si il est supprimé :
+	https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#Deleted
 */
 
 params [
-	["_zeusmodules",[],[[]]],
+	["_hicoms",[],[[]]],
 	["_itemcondition","itemmap",[""]],
+	["_activateBFT",true,[true]],
+	["_activateOFT",true,[true]],
+	["_otherunits",[],[[]]],
 	["_nohicomkill",false,[false]],
 	["_limitcurator",true,[true]]
 ];
-gdc_zeushicommodules = _zeusmodules;
+gdc_zeushicommodules = [];
+gdc_zeushicomlogics = [];
+gdc_zeushicomlimit = _limitcurator;
 
-// ACE actions
-private _action = [
-	"gdc_zeushicom_action",
-	"High Command",
-	"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_requestLeadership_ca.paa",
-	{
-		
-	},
-	{params ["_target","_player","_params"];({_x isKindOf [(_params #0),(configFile >> "CfgWeapons")] || {_x isKindOf (_params #0)}} count (items _player) > 0);},
-	{
-		params ["_target", "_player", "_params"];
-		private _zeusmodules = _params #1;
-		// Add children to this action
-		private _actions = [];
-		{
-			private _icon = switch (getAssignedCuratorUnit _x) do {
-				case _player: {"a3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa"};
-				case objNull: {"a3\ui_f\data\map\mapcontrol\taskIconCreated_ca.paa"};
-				default {if (alive (getAssignedCuratorUnit _x)) then {"a3\ui_f\data\map\mapcontrol\taskIconCanceled_ca.paa"} else {"a3\ui_f\data\map\mapcontrol\taskIconCreated_ca.paa"}};
-			};
-			private _playername = name (getAssignedCuratorUnit _x);
-			if (_playername in ["Error: No vehicle",""]) then {_playername = "";} else {_playername = format [" (%1)",_playername];};
-			private _zeusname = _x getVariable ["name",""];
-			if (_zeusname in [""]) then {_zeusname = format ["Hicom %1",(_forEachIndex + 1)];};
-			private _action = [
-				(format ["gdc_zeushicom_%1_action",_x]),
-				(format ["%1%2",_zeusname,_playername]),
-				_icon,
-				{
-					params ["_target","_player","_params"];
-					private _zeusmodule = _params #0;
-					[_player,_zeusmodule] call gdc_fnc_assignzeushicom;
-				},
-				{true},
-				{},
-				[_x]
-			] call ace_interact_menu_fnc_createAction;
-			_actions pushBack [_action, [], _target]; // New action, it's children, and the action's target
-		} forEach _zeusmodules;
+{
+	_x params ["_name","_logic"];
+	_logic setVariable ["gdc_hicom_name",_name,true];
+	gdc_zeushicomlogics pushBack _logic;
+} forEach _hicoms;
 
-		_actions
-	},
-	[_itemcondition,_zeusmodules]
-] call ace_interact_menu_fnc_createAction;
-[
-	"CAManBase",
-	1,
-	["ACE_SelfActions"],
-	_action,
-	true
-] call ace_interact_menu_fnc_addActionToClass;
+if (isServer) then {
+	// BFT
+	if (_activateBFT) then {[_itemcondition] remoteExec ["GDC_fnc_hicombft",0,true];};
+	// Briefing stuff
+	[_itemcondition,_activateBFT,_activateOFT] remoteExec ["gdc_fnc_createhicombriefing",0,true];
+
+	// zeus modules creation
+	{
+		[_x,_foreachindex,gdc_zeushicomlimit] call gdc_fnc_createhicommodule;
+	} forEach gdc_zeushicomlogics;
+
+	// ACE actions
+	[_itemcondition] remoteExec ["gdc_fnc_createhicomaceactions",0,true];
+	// opfor tracker
+	if (_activateOFT) then {[gdc_zeushicomlogics,_itemcondition,_otherunits] remoteExec ["gdc_fnc_InitOpforTracker",0,true];};
+};
 
 if (_nohicomkill) then {
 	{
@@ -96,61 +78,5 @@ if (_nohicomkill) then {
 				};
 			};
 		}];
-	} forEach ((playableUnits + switchableUnits) - (gdc_zeushicommodules apply {getAssignedCuratorUnit _x}));
+	} forEach (playableUnits + switchableUnits);
 };
-
-//Curator limitations
-if (_limitcurator) then {
-	// attributes
-	{
-		[
-			_x,
-			"object",
-			["UnitPos"]
-		] call BIS_fnc_setCuratorAttributes;
-		[
-			_x,
-			"group",
-			["GroupID","Behaviour","Formation","SpeedMode","UnitPos"]
-		] call BIS_fnc_setCuratorAttributes;
-	} forEach _zeusmodules;
-	if (isServer) then {
-		[] spawn {
-			waitUntil {time > 1};
-			{
-				// available addons
-				removeAllCuratorAddons _x;
-				_x addCuratorAddons ["ace_zeus","ace_zeus_captives"];
-				[
-					_x,
-					[
-						"ace_zeus_moduleDefendArea",0,
-						"ace_zeus_modulePatrolArea",0,
-						"ace_zeus_moduleSearchArea",0,
-						"ace_zeus_moduleSearchNearby",0,
-						"ace_zeus_moduleGarrison",0,
-						"ace_zeus_moduleUnGarrison",0,
-						"ace_zeus_moduleToggleNvg",0,
-						"ace_zeus_moduleToggleFlashlight",0,
-						"ace_zeus_moduleSuppressiveFire",0,
-						"ace_zeus_moduleCaptive",0,
-						"ace_zeus_moduleSurrender",0
-					]
-				] call BIS_fnc_curatorObjectRegisteredTable;
-				// camera and editing area 
-				_x addCuratorCameraArea [_foreachindex,[0,0,0],1];
-				_x addCuratorEditingArea [_foreachindex,[0,0,0],1];
-				_x setCuratorCameraAreaCeiling 1;
-			} forEach gdc_zeushicommodules;
-		};
-	};
-};
-
-//Briefing stuff
-if !(player diarySubjectExists "gdc_hicom") then {
-	player createDiarySubject ["gdc_hicom","HICOM"];
-};
-private _txt = format ["<font size='20'>High Command :</font>
-<br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent accéder au high command via le menu d'interaction sur soi de ACE.",
-(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
-player createDiaryRecord ["gdc_hicom", ["Accès HICOM",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_requestLeadership_ca.paa"]];

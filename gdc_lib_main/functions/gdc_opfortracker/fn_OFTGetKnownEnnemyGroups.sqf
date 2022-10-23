@@ -14,12 +14,12 @@ private ["_unit","_side","_veh","_targetList","_targetPos","_targetSide","_targe
 // Update groups under the command of High command
 _hicomGroupsList = [];
 {
-	private _hicomobjects = curatorEditableObjects _x;
+	private _hicomobjects = synchronizedObjects _x;
 	_hicomobjects = _hicomobjects + gdc_OFTotherUnits;
 	{
 		_hicomGroupsList pushBackUnique (group _x);
 	} forEach (_hicomobjects select {alive _x});
-} forEach gdc_OFTzeusModules;
+} forEach gdc_OFThicomLogics;
 
 // clear target list
 gdc_OFTtargetsList = [];

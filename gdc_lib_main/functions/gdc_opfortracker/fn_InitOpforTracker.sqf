@@ -29,10 +29,13 @@
 	- faire tourner le tout côté serveur ?
 	- reporter les tirs subis ? les ennemis détruits ?
 	- vérifier la compat JIP
+	- utiliser CBA_fnc_addPerFrameHandler
 */
 
+if (isDedicated OR !(isnil "gdc_OFTRun")) exitwith {};
+
 params [
-	["_zeusModules",[],[[]]],
+	["_hicomLogics",[],[[]]],
 	["_accessItem","itemmap",[""]],
 	["_otherUnits",[],[[]]],
 	["_scanDelay",10,[999]],
@@ -42,7 +45,7 @@ params [
 ];
 private ["_boucle"];
 
-gdc_OFTzeusModules = _zeusModules;
+gdc_OFThicomLogics = _hicomLogics;
 gdc_OFTaccessItem = _accessItem;
 gdc_OFTotherUnits = _otherUnits;
 gdc_OFTcreateMkDelay = _createMkDelay;
@@ -81,14 +84,13 @@ if (isnil "gdc_OFTRun") then {
 };
 
 //Briefing stuff
-if !(player diarySubjectExists "gdc_hicom") then {
-	player createDiarySubject ["gdc_hicom","HICOM"];
-};
+if (player diarySubjectExists "gdc_hicom") exitwith {};
+player createDiarySubject ["gdc_oft","Opfor Tracker"];
 private _txt = format ["<font size='20'>High Command Opfor Tracker :</font>
 <br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> voient et lisent les contact ennemis repérés par les unités contrôlées par le High Command.
 <br/><br/><font size='15'>Légende :</font>",(gettext (configfile >> "CfgWeapons" >> _accessItem >> "displayname"))];
 {
 	_txt = _txt + format ["<br/><img image='%1' width='32' height='32'/> %2",(gettext (configfile >> "CfgMarkers" >> _x >> "icon")),(gettext (configfile >> "CfgMarkers" >> _x >> "name"))];
 } forEach ["o_inf","o_motor_inf","o_armor","o_mech_inf","o_art","o_mortar","o_support","o_antiair","o_air","o_plane","o_naval"];
-player createDiaryRecord ["gdc_hicom", ["Opfor Tracker",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa"]];
-player createDiaryRecord ["gdc_hicom", ["Infos contacts","Ici sont enregistrées les communications radios reçues au cours de la mission.","a3\ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"]];
+player createDiaryRecord ["gdc_oft", ["Opfor Tracker",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa"]];
+player createDiaryRecord ["gdc_oft", ["Infos contacts","Ici sont enregistrées les communications radios reçues au cours de la mission.","a3\ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"]];
