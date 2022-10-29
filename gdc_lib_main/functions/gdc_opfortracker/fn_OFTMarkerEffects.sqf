@@ -25,6 +25,7 @@ _this spawn
 	// blinking
 	sleep 1;
 	for "_i" from 1 to 6 do {
+		[_mk] spawn gdc_fnc_OFTMarkerPing;
 		_mk setMarkerColorLocal "ColorRED";
 		_mk setMarkerSizeLocal [1.5,1.5];
 		sleep 0.5;

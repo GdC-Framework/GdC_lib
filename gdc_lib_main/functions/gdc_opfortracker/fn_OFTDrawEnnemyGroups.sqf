@@ -75,7 +75,7 @@ _loopMkCount2 = 0;
 					sleep gdc_OFTcreateMkDelay;
 					params ["_mk"];
 					[_mk] call gdc_fnc_OFTMarkerEffects;
-					
+					playsound "TacticalPing4";
 				};
 				_loopMkCount2 = _loopMkCount2 + 1;
 			};

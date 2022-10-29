@@ -17,7 +17,7 @@
 */
 
 params ["_detector","_target","_targetType","_targetPos"];
-private ["_txt"];
+private ["_txt","_targetLoc"];
 
 _txt = _target getVariable ["gdc_OFTTargetType","default"]; // Use custom type if defined
 if (_txt == "default") then {
@@ -36,9 +36,16 @@ if (_txt == "default") then {
 		default {"Contact non identifié"};
 	};
 };
-_targetPos = mapGridPosition _targetPos;
 
-_txt = format ["%1 adverse repéré(e), position %2",_txt,_targetPos];
+_targetLoc = nearestLocations [_targetPos, ["Name","NameCity","NameCityCapital","NameLocal","NameMarine","NameVillage","Airport","Hill"],2000,_targetPos];
+_targetPos = mapGridPosition _targetPos;
+if ((count _targetLoc) > 0) then {
+	_targetLoc = text (_targetLoc #0);
+	_txt = format ["%1 adverse repéré(e), environs de %2 (%3)",_txt,_targetLoc,_targetPos];
+} else {
+	_txt = format ["%1 adverse repéré(e), position %2",_txt,_targetPos];
+};
+
 _detector = vehicle _detector;
 _detector SideChat _txt;
 playsound "TacticalPing4";

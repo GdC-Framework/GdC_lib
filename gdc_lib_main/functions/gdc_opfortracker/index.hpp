@@ -7,4 +7,5 @@ class gdc_opfortracker
 	class OFTDrawEnnemyGroups {};
 	class OFTGenerateRadioMessage {};
 	class OFTMarkerEffects {};
+	class OFTMarkerPing {};
 };
