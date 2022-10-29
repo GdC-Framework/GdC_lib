@@ -64,7 +64,7 @@ _loopMkCount2 = 0;
 			sleep gdc_OFTcreateMkDelay;
 			params ["_mk","_mkParams"];
 			_mk setMarkerAlphaLocal 1;
-			[_mk] call gdc_fnc_OFTMarkerEffects;
+			[_mk,true] call gdc_fnc_OFTMarkerEffects;
 			_mkParams call gdc_fnc_OFTGenerateRadioMessage;
 		};
 		_loopMkCount = _loopMkCount + 1;

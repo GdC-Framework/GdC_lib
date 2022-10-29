@@ -20,7 +20,7 @@ _mk setMarkerBrushLocal "Border";
 _mk setMarkerColorLocal gdc_OFTMkColor;
 _mk setMarkerSizeLocal [1,1];
 
-for "_i" from 1 to 150 do {
+for "_i" from 1 to 100 do {
 	private _size = markerSize _mk;
 	_mk setMarkerSizeLocal [(_size #0) + _i,(_size #1) + _i];
 	sleep 0.01;
