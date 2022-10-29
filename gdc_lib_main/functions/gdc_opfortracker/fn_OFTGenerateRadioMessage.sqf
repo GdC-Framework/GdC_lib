@@ -39,6 +39,7 @@ if (_txt == "default") then {
 
 _targetLoc = nearestLocations [_targetPos, ["Name","NameCity","NameCityCapital","NameLocal","NameMarine","NameVillage","Airport","Hill"],2000,_targetPos];
 _targetPos = mapGridPosition _targetPos;
+_targetPos = (_targetPos select [0,3]) + "-" + (_targetPos select [3,6]);
 if ((count _targetLoc) > 0) then {
 	_targetLoc = text (_targetLoc #0);
 	_txt = format ["%1 adverse repéré(e), environs de %2 (%3)",_txt,_targetLoc,_targetPos];
