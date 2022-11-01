@@ -131,7 +131,8 @@ _text = _text + "<br/><br/>";
 		_cfg = if (_class isKindOf "Bag_Base") then {configFile >> "CfgVehicles" >> _class} else {configFile >> "CfgWeapons" >> _class};
 		_name = getText(_cfg >> "displayName");
 		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
-		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+		_desc = _desc regexReplace ["""/g", "''"];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,50];
 	};
 } forEach _uniformList;
 _text = _text + "<br/><br/>";
@@ -139,10 +140,14 @@ _text = _text + "<br/><br/>";
 // Affichage des protections
 if ((vest _unit) != "") then {
 	_text = _text + "<font color='#EF7619'>Veste</font> : " +  "<font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (vest _unit) >> "descriptionShort")) + "</font>";
+	private _armor = [["passthrough",(configFile >> "CfgWeapons" >> (vest _unit)),[[0, 0.63],[0.01, 1],false]] call ace_arsenal_fnc_statBarStatement_default,["armor",(configFile >> "CfgWeapons" >> (vest _unit)),[[0, 0.63],[0.01, 1],false]] call ace_arsenal_fnc_statBarStatement_default];
+	_text = _text + format [" (balistique = %1%3) (explosifs = %2%3)",(round ((_armor #0) * 100)),(round ((_armor #1) * 100)),"%"];
 	_text = _text + "<br/>";
 };
 if ((headgear _unit) != "") then {
 	_text = _text + "<font color='#EF7619'>Casque</font> : " + "<font color='#F193F1'>" + (gettext (configFile >> "CfgWeapons" >> (headgear _unit) >> "descriptionShort")) + "</font>";
+	private _armor = [["passthrough",(configFile >> "CfgWeapons" >> (headgear _unit)),[[0, 0.63],[0.01, 1],false]] call ace_arsenal_fnc_statBarStatement_default,["armor",(configFile >> "CfgWeapons" >> (headgear _unit)),[[0, 0.63],[0.01, 1],false]] call ace_arsenal_fnc_statBarStatement_default];
+	_text = _text + format [" (balistique = %1%3) (explosifs = %2%3)",(round ((_armor #0) * 100)),(round ((_armor #1) * 100)),"%"];
 	_text = _text + "<br/><br/>";
 };
 
@@ -156,6 +161,7 @@ if (primaryWeapon _unit != "") then	{
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
 		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_desc = _desc regexReplace ["""/g", "''"];
 		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsPrimary) + (primaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
@@ -171,6 +177,7 @@ if (secondaryWeapon _unit != "") then	{
 		_pic = getText (_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
 		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
+		_desc = _desc regexReplace ["""/g", "''"];
 		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
 	} forEach (_weaponsSec) + (secondaryWeaponItems _unit - [""]);
 	_text = _text + "<br/>";
@@ -186,7 +193,8 @@ if (handgunWeapon _unit != "") then	{
 		_pic = getText(_cfg >> "picture") call _addExtPAA;
 		_name = getText(_cfg >> "displayName");
 		_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
-		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+		_desc = _desc regexReplace ["""/g", "''"];
+		_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {50} else {40})];
 	} forEach (_weaponsHandgun) + (handgunItems _unit - [""]);
 	_text = _text + "<br/>";
 };
@@ -198,7 +206,8 @@ _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Munitions : </fon
 	_cfg = configFile >> "CfgMagazines" >> _class;
 	_name = getText(_cfg >> "displayName");
 	_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
-	_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+	_desc = _desc regexReplace ["""/g", "''"];
+	_text = _text + format ["<img title=%1 image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",('"' + _name + endl + _desc  + '"'),_pic,35,_count,_name];
 	_text = _text + "<br/>";
 } forEach _magasinesList;
 
@@ -210,7 +219,8 @@ _text = _text + "<br/>" + "<font size=15><font color='#EF7619'>Items : </font><b
 	_cfg = configFile >> "CfgWeapons" >> _class;
 	_name = getText(_cfg >> "displayName");
 	_desc = (getText(_cfg >> "descriptionShort")) regexReplace ["<br\s*\/?>/gi", endl];
-	_text = _text + format ["<img title=%1 image='%2' height=%3 />",('"' + _name + endl + _desc  + '"'),_pic,(if (_forEachIndex == 0) then {60} else {40})];
+	_desc = _desc regexReplace ["""/g", "''"];
+	_text = _text + format ["<img title=%1 image='%2' height=%3 /><font color='#F193F1'>%4x</font>   %5",('"' + _name + endl + _desc  + '"'),_pic,35,_count,_name];
 	_text = _text + "<br/>";
 } forEach (_weaponsList + _itemsList);
 
