@@ -27,25 +27,27 @@ gdc_OFTtargetsList = [];
 // while on all groups under hicom control
 {
 	_unit = leader _x;
-	_unitside = side _unit;
-	_veh = vehicle _unit;
-	_range = switch true do {
-		case (_veh isKindOf "Man"): {1500};
-		case (_veh isKindOf "Air"): {3000};
-		default {2000}; //"LandVehicle"
-	};
-	// while on all target in group's vicinity
-	_targetList = _unit nearTargets _range;
-	{
-		_x params ["_targetPos","","_targetSide","","_target","_targetPosAcc"];
-		// target should not be HC, not already in the list, not friendly and real
-		if ((_target != HC_Slot) && !(_target in gdc_OFTtargetsList) && (_targetSide != _unitside) && ((_unitside getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
-			// check if target is alive and well know and not captive
-			if ((alive _target) && ((_unit knowsAbout _target) > 1.5) && (_targetPosAcc < 20) && (!captive _target)) then {
-				gdc_OFTtargetsList = gdc_OFTtargetsList + [[_target,_unit]]; // add target in list
-			};
+	if !(isPlayer _unit) then { //player should not report targets
+		_unitside = side _unit;
+		_veh = vehicle _unit;
+		_range = switch true do {
+			case (_veh isKindOf "Man"): {1500};
+			case (_veh isKindOf "Air"): {3000};
+			default {2000}; //"LandVehicle"
 		};
-	} forEach _targetList;
+		// while on all target in group's vicinity
+		_targetList = _unit nearTargets _range;
+		{
+			_x params ["_targetPos","","_targetSide","","_target","_targetPosAcc"];
+			// target should not be HC, not already in the list, not friendly and real
+			if ((_target != HC_Slot) && !(_target in gdc_OFTtargetsList) && (_targetSide != _unitside) && ((_unitside getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
+				// check if target is alive and well know and not captive and not an emty vehicle
+				if ((alive _target) && ((_unit knowsAbout _target) > 1.5) && (_targetPosAcc < 20) && (!captive _target) && (count (crew _target) > 0)) then {
+					gdc_OFTtargetsList = gdc_OFTtargetsList + [[_target,_unit]]; // add target in list
+				};
+			};
+		} forEach _targetList;
+	};
 } forEach _hicomGroupsList;
 
 if (gdc_OFTDebug) then {systemChat format ["%1 ennemy detected",count gdc_OFTtargetsList];};
