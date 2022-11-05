@@ -37,7 +37,7 @@ if (_txt == "default") then {
 	};
 };
 
-_targetLoc = nearestLocations [_targetPos, ["Name","NameCity","NameCityCapital","NameLocal","NameMarine","NameVillage","Airport","Hill"],2000,_targetPos];
+_targetLoc = nearestLocations [_targetPos, ["Name","NameCity","NameCityCapital","NameLocal","NameVillage","Airport","Hill"],2000,_targetPos];
 _targetPos = mapGridPosition _targetPos;
 _targetPos = (_targetPos select [0,3]) + "-" + (_targetPos select [3,6]);
 if ((count _targetLoc) > 0) then {
