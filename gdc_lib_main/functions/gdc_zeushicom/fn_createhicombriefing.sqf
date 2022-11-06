@@ -25,7 +25,7 @@ private _txt = format ["<font size='20'>High Command :</font>
 <br/><br/>Une fois le High Command obtenu, ouvrez l'interface Zeus avec la touche dédiée pour donner des ordres à vos unités.
 <br/><br/><font size='20'>Conseils :</font>
 <br/>- Pour changer l'attitude d'un groupe (vitesse, comportement), double-cliquez sur le waypoint de ce groupe.
-<br/>- Pour faire sortir un groupe d'un véhicule, créez un waypoint pour ce groupe, double-cliquez dessus et sélectionnez le type de waypoint ""Sortir"".
+<br/>- Pour faire sortir un groupe d'un véhicule, créez un waypoint pour ce groupe, double-cliquez dessus et sélectionnez le type de waypoint ""Sortir"". Ou bien sélectionnez le groupe et appuyez sur la touche ""k"".
 <br/>- Vous pouvez placer certains modules ACE afin de demander des tirs de suppression, générer des patrouilles aléatoires, placer des groupes dans des batiments, etc.",
 (gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
 player createDiaryRecord ["gdc_hicom", ["Accès HICOM",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_requestLeadership_ca.paa"]];
@@ -43,7 +43,7 @@ if (_activateOFT) then {
 	<br/><br/><font size='15'>Légende :</font>",(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
 	{
 		_txt = _txt + format ["<br/><img image='%1' width='32' height='32'/> %2",(gettext (configfile >> "CfgMarkers" >> _x >> "icon")),(gettext (configfile >> "CfgMarkers" >> _x >> "name"))];
-	} forEach ["o_inf","o_motor_inf","o_armor","o_mech_inf","o_art","o_mortar","o_support","o_antiair","o_air","o_plane","o_naval"];
+	} forEach ["o_inf","o_motor_inf","o_armor","o_mech_inf","o_art","o_mortar","o_installation","o_antiair","o_air","o_plane","o_naval"];
 	player createDiaryRecord ["gdc_hicom", ["Opfor Tracker",_txt,"a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa"]];
 	player createDiaryRecord ["gdc_hicom", ["Infos contacts","Ici sont enregistrées les communications radios reçues au cours de la mission.","a3\ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"]];
 };
