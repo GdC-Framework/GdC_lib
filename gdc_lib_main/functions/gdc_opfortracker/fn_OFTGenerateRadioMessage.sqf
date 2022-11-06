@@ -19,23 +19,22 @@
 params ["_detector","_target","_targetType","_targetPos"];
 private ["_txt","_targetLoc"];
 
-_txt = _target getVariable ["gdc_OFTTargetType","default"]; // Use custom type if defined
-if (_txt == "default") then {
-	_txt = switch _targetType do {
-		case "o_inf": {"Infanterie"};
-		case "o_motor_inf": {"Véhicule"};
-		case "o_mech_inf": {"Véhicule blindé léger"};
-		case "o_armor": {"véhicule blindé"};
-		case "o_air": {"Hélicoptère"};
-		case "o_plane": {"Avion"};
-		case "o_naval": {"Bateau"};
-		case "o_mortar": {"Mortier"};
-		case "o_art": {"Artillerie"};
-		case "o_antiair": {"Arme AA"};
-		case "o_support": {"Arme fixe"};
-		default {"Contact non identifié"};
-	};
+_txt = gettext (configfile >> "CfgMarkers" >> _targetType >> "name");
+_txt = switch _targetType do {
+	case "o_inf": {"Infanterie"};
+	case "o_motor_inf": {"Véhicule"};
+	case "o_mech_inf": {"Véhicule blindé léger"};
+	case "o_armor": {"véhicule blindé"};
+	case "o_air": {"Hélicoptère"};
+	case "o_plane": {"Avion"};
+	case "o_naval": {"Bateau"};
+	case "o_mortar": {"Mortier"};
+	case "o_art": {"Artillerie"};
+	case "o_antiair": {"Arme AA"};
+	case "o_installation": {"Arme fixe"};
+	default {_txt};
 };
+_txt = _target getVariable ["gdc_OFTTargetType",_txt]; // Use custom type if defined
 
 _targetLoc = nearestLocations [_targetPos, ["Name","NameCity","NameCityCapital","NameLocal","NameVillage","Airport","Hill"],2000,_targetPos];
 _targetPos = mapGridPosition _targetPos;
