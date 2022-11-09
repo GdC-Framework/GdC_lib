@@ -42,7 +42,9 @@ if (isnil "gdc_bfthicom_eh") then {
 			{
 				private _object = leader _x;
 				private _markerText = _object getVariable ["gdc_bft_markertext",(if (_object isKindOf "Man") then {groupId (group _object)} else {gettext (configfile >> "CfgVehicles" >> (typeOf _object) >> "displayname")})];
-				private _markerType = (_object getVariable ["gdc_bft_markertype",[([group _object] call ace_common_fnc_getMarkerType),0]]) #0;
+				private _markerType = [group _object] call ace_common_fnc_getMarkerType;
+				_markerType = _markerType regexReplace ["n_|o_","b_"];
+				_markerType = (_object getVariable ["gdc_bft_markertype",[_markerType,0]]) #0;
 				private _markerColor = (_object getVariable ["gdc_bft_markercolor",["colorBLUFOR",0]]) #0;
 				private _marker = createMarkerLocal [format ["gdc_bfthicom_%1", _object], getPos _object];
 				_marker setMarkerTextLocal _markerText;

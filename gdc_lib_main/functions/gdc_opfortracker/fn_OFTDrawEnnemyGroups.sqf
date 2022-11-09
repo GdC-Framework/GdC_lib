@@ -18,31 +18,15 @@ _loopMkCount2 = 0;
 {
 	_target = _x #0;
 	_targetPos = getpos _target;
-	_targetType = switch true do { // TODO : possibilité d'assigner un type de marqueur via une variable pour s'assurer d'avoir le bon type ?
-		case (_target isKindOf "Man"): {"o_inf"};
-		case (_target isKindOf "Car"): {
-			switch true do {
-				case (_target isKindOf "Wheeled_APC_F");
-				case (_target isKindOf "MRAP_01_base_F"): {"o_mech_inf"};
-				default {"o_motor_inf"};
-			};
+	_targetType = [group _target] call ace_common_fnc_getMarkerType;
+	_targetType = _targetType regexReplace ["n_|b_","o_"];
+	if (_target isKindOf "StaticWeapon") then {
+		_targetType = switch true do {
+			case (_target isKindOf "StaticMGWeapon");
+			case (_target isKindOf "StaticATWeapon");
+			case (_target isKindOf "StaticGrenadeLauncher"): {"o_installation"};
+			default {_targetType};
 		};
-		case (_target isKindOf "Tank"): {"o_armor"};
-		case (_target isKindOf "Helicopter"): {"o_air"};
-		case (_target isKindOf "Plane"): {"o_plane"};
-		case (_target isKindOf "Ship"): {"o_naval"};
-		case (_target isKindOf "StaticWeapon"): {
-			switch true do {
-				case (_target isKindOf "StaticMortar"): {"o_mortar"};
-				case (_target isKindOf "StaticCannon"): {"o_art"};
-				case (_target isKindOf "StaticAAWeapon"): {"o_antiair"};
-				case (_target isKindOf "StaticMGWeapon");
-				case (_target isKindOf "StaticATWeapon");
-				case (_target isKindOf "StaticGrenadeLauncher"): {"o_support"};
-				default {"o_unknown"};
-			};
-		};
-		default {"o_unknown"};
 	};
 	_detector = _x #1;
 	
