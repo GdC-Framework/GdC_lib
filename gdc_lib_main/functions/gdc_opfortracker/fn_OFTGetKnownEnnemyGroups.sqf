@@ -40,7 +40,7 @@ gdc_OFTtargetsList = [];
 		{
 			_x params ["_targetPos","","_targetSide","","_target","_targetPosAcc"];
 			// target should not be HC, not already in the list, not friendly and real
-			if ((_target != HC_Slot) && !(_target in gdc_OFTtargetsList) && (_targetSide != _unitside) && ((_unitside getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
+			if (((typeOf _target) != "HeadlessClient_F") && !(_target in gdc_OFTtargetsList) && (_targetSide != _unitside) && ((_unitside getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
 				// check if target is alive and well know and not captive and not an emty vehicle
 				if ((alive _target) && ((_unit knowsAbout _target) > 1.5) && (_targetPosAcc < 20) && (!captive _target) && (count (crew _target) > 0)) then {
 					gdc_OFTtargetsList = gdc_OFTtargetsList + [[_target,_unit]]; // add target in list
