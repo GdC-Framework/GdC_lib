@@ -21,17 +21,20 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 
 	_unit = (leader _group);
 	_veh = vehicle _unit;
+	_veh setVehicleAmmo 1;
 	_mag = (getArtilleryAmmo [_veh]);
 	if ((count _mag) == 0) exitwith { // pas de frappe si le vehicule n'est pas un véhicule d'artillerie (cas d'un groupe débarqué suite à destruction du véhicule)
 		if (gdc_plutoDebug) then {
 			systemChat format ["ERROR ARTY %1 ""%2"" : no arty ammo available",typeof _veh,_group];
 		};
 	};
-	_mag = (getArtilleryAmmo [_veh]) select 0;
+	_mag = _mag #0;
+	/*
 	if (isNil _mag) then {
 		private _weap = (_veh weaponsTurret ((assignedVehicleRole _unit) select 1)) select 0;
 		_mag = (getArray (configFile >> "CfgWeapons" >> _weap >> "magazines")) select 0;
 	};
+	*/
 	// utiliser le range terrestre par défaut
 	_range = _group getVariable ["PLUTO_ARTYRANGE",gdc_plutoRangeQRFLand]; // Eventuel range custom
 	// Ne garder que les cibles qui sont dans le range du groupe, qui sont à portée de tir de l'artillerie, qui ne sont pas dans des véhicules aériens, qui ne sont pas sur l'eau et qui ne sont pas en déplacement rapide
@@ -48,13 +51,12 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 		private _error = _group getVariable ["PLUTO_ARTYERROR",gdc_plutoArtyError];
 		_pos = (getpos _target) getpos [(random _error),(random 360)];
 		// Le tir effectif se fait avec un délai
-		[_unit,_pos,_mag,_group] spawn {
-			params ["_unit","_pos","_mag","_group"];
+		[_unit,_pos,_mag,_group,_veh] spawn {
+			params ["_unit","_pos","_mag","_group","_veh"];
 			private _delay = _group getVariable ["PLUTO_ARTYDELAY",gdc_plutoArtyDelay];
 			sleep (random _delay);
 			private _rounds = _group getVariable ["PLUTO_ARTYROUNDS",gdc_plutoArtyRounds];
 			_unit commandArtilleryFire [_pos,_mag,(round (random _rounds))];
-			_veh setVehicleAmmo 1;
 		};
 		// marker de debug
 		if (gdc_plutoDebug) then {
