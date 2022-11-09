@@ -51,8 +51,8 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 		private _error = _group getVariable ["PLUTO_ARTYERROR",gdc_plutoArtyError];
 		_pos = (getpos _target) getpos [(random _error),(random 360)];
 		// Le tir effectif se fait avec un délai
-		[_unit,_pos,_mag,_group,_veh] spawn {
-			params ["_unit","_pos","_mag","_group","_veh"];
+		[_unit,_pos,_mag,_group] spawn {
+			params ["_unit","_pos","_mag","_group"];
 			private _delay = _group getVariable ["PLUTO_ARTYDELAY",gdc_plutoArtyDelay];
 			sleep (random _delay);
 			private _rounds = _group getVariable ["PLUTO_ARTYROUNDS",gdc_plutoArtyRounds];
