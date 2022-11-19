@@ -57,7 +57,7 @@ params [
 
 // Camp qui va être sous le commandement de PLUTO
 gdc_plutoSide = _sides;
-if (_side isEqualType west) then { // retro compat
+if (_sides isEqualType west) then { // retro compat
 	_sides = [_sides];
 };
 
