@@ -4,13 +4,16 @@
 	Description:
 	Reveal the targets to the appropriate groups and execute actions if necesssary
 
-	Parameter(s): None
+	Parameter(s): 
+		SIDE : side that will act
+		ARRAY : groups list of the active side
+		ARRAY : targets list of the active side
 
 	Returns:
 	nothing
 */
-
-private ["_unit","_group","_count","_targetList","_range"];
+params ["_side","_groupList","_targetList"];
+private ["_unit","_group","_count","_range"];
 
 // Boucle sur tous les groupes sous le commandement de PLUTO
 {
@@ -25,24 +28,24 @@ private ["_unit","_group","_count","_targetList","_range"];
 	};
 	_range = _x getVariable ["PLUTO_REVEALRANGE",_range]; // Eventuel range custom
 	// Parmi la liste de cibles disponibles ne sélectionner que celles qui sont dans le Range du groupe :
-	_targetList = gdc_plutoTargetList select {(_unit distance _x) < _range};
+	_targets = _targetList select {(_unit distance _x) < _range};
 	// Révéler les cibles ainsi sélectionnées :
 	{
 		_group reveal _x;
-	} forEach _targetList;
+	} forEach _targets;
 	// Si des cibles ont été révélées, générer des actions en fonction des ordres des unités
-	_targetList = _targetList select {(_unit knowsAbout _x) >= 1}; // Ne lancer des actions spéciales que si la cible est suffisament connue
-	_count = count _targetList;
+	_targets = _targets select {(_unit knowsAbout _x) >= 1}; // Ne lancer des actions spéciales que si la cible est suffisament connue
+	_count = count _targets;
 	if (_count > 0) then {
 		// DEBUG
-		if (gdc_plutoDebug) then {systemChat ((str _count) + " units revealed to " + (str _group));};
+		//if (gdc_plutoDebug) then {systemChat ((str _count) + " units revealed to " + (str _group));};
 		// Actions en fonction de la variable
 		switch (_group getVariable ["PLUTO_ORDER","DEFAULT"]) do {
-			case "QRF": {[_group,_targetList] call gdc_fnc_plutoDoQRF;};
-			case "ARTY": {[_group,_targetList] call gdc_fnc_plutoDoArty;};
+			case "QRF": {[_group,_targets] call gdc_fnc_plutoDoQRF;};
+			case "ARTY": {[_group,_targets] call gdc_fnc_plutoDoArty;};
 			case "IGNORE";
 			case "DEFAULT";
 			default {};
 		};
 	};
-} forEach gdc_plutoGroupList;
+} forEach _groupList;

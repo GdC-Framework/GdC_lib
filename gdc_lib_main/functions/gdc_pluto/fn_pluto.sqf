@@ -7,10 +7,10 @@
 	A chaque boucle, PLUTO analyse les groupes sous son commandement et crée une liste de toutes les cibles ennemies connues.
 	Ensuite, il transmet les informations sur les cibles ennemies aux groupes qui n'ont pas encore l'information en fonction des paramètres de REVEALRANGE
 	Enfin, il donne des ordres aux groupes qui ont des ordres spéciaux : QRF et ARTY
-	Par défaut toutes les IA du camp défini sont prise en compte par PLUTO mais il est possible de faire en sorte qu'un groupe soit ignoré.
+	Par défaut toutes les IA des camps définis sont prisent en compte par PLUTO mais il est possible de faire en sorte qu'un groupe soit ignoré.
 
 	Parameter(s):
-		0 : SIDE - PLUTO side
+		0 : SIDE or ARRAY of SIDEs - PLUTO side(s)
 		1 (optionnal): ARRAY - reveal range [man,land,air] (default=[1000,2000,6000])
 		2 (optionnal): ARRAY - sensor range [man,land,air] (default=[1500,2000,3000])
 		3 (optionnal): NUMBER - QRF timeout (min time between two QRF orders) (default=120)
@@ -43,7 +43,7 @@
 if (hasInterface && !isServer) exitWith {};
 
 params [
-	"_side",
+	"_sides",
 	["_rangeReveal",[1000,2000,6000]],
 	["_rangeSensor",[1500,2000,3000]],
 	["_timeoutQRF",120],
@@ -57,7 +57,10 @@ params [
 private ["_boucle"];
 
 // Camp qui va être sous le commandement de PLUTO
-gdc_plutoSide = _side;
+gdc_plutoSide = _sides;
+if ((typeName _sides) == "SIDE") then { // retro compat
+	_sides = [_sides];
+};
 
 // Distance max entre un groupe et une cible pour que l'info sur cette cible lui soit communiquée (peut être réglé indépendament pour chaque groupe avec PLUTO_SENSORRANGE)
 gdc_plutoRangeRevealMan = _rangeReveal select 0;
@@ -88,9 +91,31 @@ gdc_plutoArtyRounds = _artyrounds;
 gdc_plutoArtyError = _artyerror;
 
 // Listes
-gdc_plutoTargetList = [];
-gdc_plutoGroupList = [];
-gdc_plutoMkDebugList = [];
+gdc_plutoTargetList = []; //just here for retro compat
+gdc_plutoGroupList = []; //just here for retro compat
+
+{
+	publicVariable _x;
+} forEach [
+	"gdc_plutoSide",
+	"gdc_plutoRangeRevealMan",
+	"gdc_plutoRangeRevealLand",
+	"gdc_plutoRangeRevealAir",
+	"gdc_plutoRangeSensorMan",
+	"gdc_plutoRangeSensorLand",
+	"gdc_plutoRangeSensorAir",
+	"gdc_plutoQRFTimeout",
+	"gdc_plutoRangeQRFMan",
+	"gdc_plutoRangeQRFLand",
+	"gdc_plutoRangeQRFAir",
+	"gdc_plutoQRFDelay",
+	"gdc_plutoArtyTimeout",
+	"gdc_plutoArtyDelay",
+	"gdc_plutoArtyRounds",
+	"gdc_plutoArtyError",
+	"gdc_plutoTargetList",
+	"gdc_plutoGroupList"
+];
 
 // Debug
 if (isnil "gdc_plutoDebug") then {
@@ -103,7 +128,8 @@ if (isnil "gdc_plutoRun") then {
 };
 
 // Lancement de Pluto
-[] spawn {
+[_sides] spawn {
+	params ["_sides"];
 	waitUntil {time > 5};
 	if (gdc_plutoDebug) then {systemChat "Pluton se réveille";};
 	_boucle = 0;
@@ -112,8 +138,10 @@ if (isnil "gdc_plutoRun") then {
 		if (gdc_plutoDebug) then {
 			systemChat ("Start of loop " + (str _boucle));
 		};
-		[] call gdc_fnc_plutoAnalize;
-		[] call gdc_fnc_plutoAction;
+		{
+			private _return = [_x] call gdc_fnc_plutoAnalize;
+			_return call gdc_fnc_plutoAction;
+		} forEach _sides;
 		sleep 10;
 	};
 };
