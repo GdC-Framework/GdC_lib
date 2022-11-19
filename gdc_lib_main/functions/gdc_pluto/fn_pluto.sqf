@@ -54,7 +54,6 @@ params [
 	["_artyrounds",[1,2,4]],
 	["_artyerror",[0,40,100]]
 ];
-private ["_boucle"];
 
 // Camp qui va être sous le commandement de PLUTO
 gdc_plutoSide = _sides;
@@ -94,6 +93,17 @@ gdc_plutoArtyError = _artyerror;
 gdc_plutoTargetList = []; //just here for retro compat
 gdc_plutoGroupList = []; //just here for retro compat
 
+
+// Debug
+if (isnil "gdc_plutoDebug") then {
+	gdc_plutoDebug = false;
+};
+
+// La boucle tourne
+if (isnil "gdc_plutoRun") then {
+	gdc_plutoRun = true;
+};
+
 {
 	publicVariable _x;
 } forEach [
@@ -114,25 +124,16 @@ gdc_plutoGroupList = []; //just here for retro compat
 	"gdc_plutoArtyRounds",
 	"gdc_plutoArtyError",
 	"gdc_plutoTargetList",
-	"gdc_plutoGroupList"
+	"gdc_plutoGroupList",
+	"gdc_plutoRun"
 ];
-
-// Debug
-if (isnil "gdc_plutoDebug") then {
-	gdc_plutoDebug = false;
-};
-
-// La boucle tourne
-if (isnil "gdc_plutoRun") then {
-	gdc_plutoRun = true;
-};
 
 // Lancement de Pluto
 [_sides] spawn {
 	params ["_sides"];
 	waitUntil {time > 5};
 	if (gdc_plutoDebug) then {systemChat "Pluton se réveille";};
-	_boucle = 0;
+	private _boucle = 0;
 	while {gdc_plutoRun} do {
 		_boucle = _boucle + 1;
 		if (gdc_plutoDebug) then {
