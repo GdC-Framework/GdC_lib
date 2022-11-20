@@ -4,27 +4,27 @@
 	Description:
 	Creates a list of ennemy targets known by the pluto side
 
-	Parameter(s): None
+	Parameter(s): 
+		SIDE - side to analyze
 
 	Returns:
-	nothing
+	[_side,_groupList,_targetList]
 */
-
-private ["_unit","_veh","_targetList","_targetPos","_targetSide","_target","_targetPosAcc","_range"];
+params ["_side"];
+private ["_unit","_veh","_targets","_range"];
 
 // Supprimer les markers de debug
 if (gdc_plutoDebug) then {
 	{
 		deleteMarker _x;
-	} forEach gdc_plutoMkDebugList;
-	gdc_plutoMkDebugList = [];
+	} forEach (allMapMarkers select {(_x find "mk_plutotarget") >= 0});
 };
 
 // Mettre à jour la liste des groupes sous le commandement de PLUTO
-gdc_plutoGroupList = (allGroups select {(side _x == gdc_plutoSide) && ((count (units _x)) > 0) && ((_x getVariable ["PLUTO_ORDER","DEFAULT"]) != "IGNORE")});
+private _groupList = (allGroups select {(side _x == _side) && !(isPlayer (leader _x)) && ((count (units _x)) > 0) && ((_x getVariable ["PLUTO_ORDER","DEFAULT"]) != "IGNORE")});
 
 // Vider la liste des cibles avant de la mettre à jour
-gdc_plutoTargetList = [];
+private _targetList = [];
 
 // Boucle sur tous les groupes sous le commandement de PLUTO
 {
@@ -37,29 +37,30 @@ gdc_plutoTargetList = [];
 	};
 	_range = _x getVariable ["PLUTO_SENSORRANGE",_range]; // Eventuel range custom
 	// Boucle sur toutes les cibles dans le range du groupe
-	_targetList = _unit nearTargets _range;
+	_targets = _unit nearTargets _range;
 	{
 		_x params ["_targetPos","","_targetSide","","_target","_targetPosAcc"];
 		if ((count (crew _target)) > 0) then {_targetSide = side ((crew _target) #0);};
 		// Vérifier que la cible n'est pas le HC, qu'elle n'est pas déjà dans la liste, qu'elle n'est pas amie et qu'elle est bien réelle
-		if ((_target != HC_Slot) && !(_target in gdc_plutoTargetList) && (_targetSide != gdc_plutoSide) && ((gdc_plutoSide getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
+		if ((_target != HC_Slot) && !(_target in _targetList) && (_targetSide != _side) && ((_side getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
 			// Vérifier que la cible est vivante, que le groupe a suffisament d'infos sur la cible, que la cible n'est pas captive et que ce n'est pas un véhicule vide
 			if ((alive _target) && ((_unit knowsAbout _target) >= 0.2) && (!captive _target) && ((count (crew _target)) > 0)) then {
-				gdc_plutoTargetList = gdc_plutoTargetList + [_target]; // ajouter la cible dans la liste
+				_targetList = _targetList + [_target]; // ajouter la cible dans la liste
 				// DEBUG
 				if (gdc_plutoDebug) then {
-					_mk = createMarkerLocal [(format ["mk_target%1",_target]),_targetPos];
+					_mk = createMarkerLocal [(format ["mk_plutotarget_%1",_target]),_targetPos];
 					_mk setMarkerTypeLocal "mil_dot";
-					_mk setMarkerColorLocal "ColorOrange";
-					gdc_plutoMkDebugList = gdc_plutoMkDebugList + [_mk];
+					_mk setMarkerColorLocal ("Color" + (str _targetSide));
 				};
 			};
 		};
-	} forEach _targetList;
-} forEach gdc_plutoGroupList;
+	} forEach _targets;
+} forEach _groupList;
 
 // DEBUG
 if (gdc_plutoDebug) then {
-	systemChat ("known targets : " + (str (count gdc_plutoTargetList)));
-	//systemChat ("known targets : " + (str gdc_plutoTargetList));
+	systemChat ((str _side) + " targets : " + (str (count _targetList)));
+	//systemChat ("known targets : " + (str _targetList));
 };
+
+[_side,_groupList,_targetList];

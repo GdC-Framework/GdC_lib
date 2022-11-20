@@ -12,12 +12,12 @@
 	nothing
 */
 
-params ["_group","_targetList"];
+params ["_group","_targets"];
 
 // Ne lancer une frappe que si la dernière frappe date de plus de x minutes (x étant défini par plutoQRFTimeout)
 if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["PLUTO_ARTYTIMEOUT",gdc_plutoArtyTimeout])) then {
 
-	private ["_veh","_targets","_range","_mag"];
+	private ["_veh","_range","_mag"];
 
 	_unit = (leader _group);
 	_veh = vehicle _unit;
@@ -39,9 +39,9 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	_range = _group getVariable ["PLUTO_ARTYRANGE",gdc_plutoRangeQRFLand]; // Eventuel range custom
 	// Ne garder que les cibles qui sont dans le range du groupe, qui sont à portée de tir de l'artillerie, qui ne sont pas dans des véhicules aériens, qui ne sont pas sur l'eau et qui ne sont pas en déplacement rapide
 	if ((typeName _range) in ["STRING","OBJECT"]) then {
-		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && (_x inArea _range)}; // Cas d'une zone
+		_targets = _targets select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && (_x inArea _range)}; // Cas d'une zone
 	} else {
-		_targets = _targetList select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && ((_veh distance _x) < _range)}; // Cas d'une distance
+		_targets = _targets select {((getpos _x) inRangeOfArtillery [[_unit],_mag]) && !((vehicle _x) isKindOf "Air") && !(surfaceIsWater (getpos _x)) && ((speed _x) < 20) && ((_veh distance _x) < _range)}; // Cas d'une distance
 	};
 	// Si des cibles sont diponibles lancer la frappe
 	if ((count _targets) > 0) then {
@@ -63,8 +63,8 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 			if ((markerType (format ["mk_ARTY%1",_veh])) == "") then{
 				private _mk = createMarkerLocal [(format ["mk_ARTY%1",_veh]),_pos];
 				_mk setMarkerTypeLocal "mil_end";
-				_mk setMarkerColorLocal "ColorPink";
-				_mk setMarkerTextLocal ((str _group) + (typeOf _veh));
+				_mk setMarkerColorLocal ("Color" + (str (side _group)));
+				_mk setMarkerTextLocal (format ["ARTY %1 (%2)",(groupId _group),(gettext (configFile >> "CfgVehicles" >> (typeOf _veh) >> "Displayname"))]);
 			} else {
 				(format ["mk_ARTY%1",_veh]) setMarkerPosLocal _pos;
 			};
