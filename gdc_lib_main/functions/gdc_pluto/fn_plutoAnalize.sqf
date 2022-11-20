@@ -17,7 +17,7 @@ private ["_unit","_veh","_targets","_range"];
 if (gdc_plutoDebug) then {
 	{
 		deleteMarker _x;
-	} forEach (allMapMarkers select {(_x find "mk_plutotarget") >= 0});
+	} forEach (allMapMarkers select {(_x find ("mk_plutotarget_" + (str _side))) >= 0});
 };
 
 // Mettre à jour la liste des groupes sous le commandement de PLUTO
@@ -44,11 +44,11 @@ private _targetList = [];
 		// Vérifier que la cible n'est pas le HC, qu'elle n'est pas déjà dans la liste, qu'elle n'est pas amie et qu'elle est bien réelle
 		if ((_target != HC_Slot) && !(_target in _targetList) && (_targetSide != _side) && ((_side getFriend _targetSide) < 0.6) && (_target iskindof "AllVehicles")) then {
 			// Vérifier que la cible est vivante, que le groupe a suffisament d'infos sur la cible, que la cible n'est pas captive et que ce n'est pas un véhicule vide
-			if ((alive _target) && ((_unit knowsAbout _target) >= 0.2) && (!captive _target) && ((count (crew _target)) > 0)) then {
+			if ((alive _target) && ((_unit knowsAbout _target) >= 1.6) && (!captive _target) && ((count (crew _target)) > 0)) then {
 				_targetList = _targetList + [_target]; // ajouter la cible dans la liste
 				// DEBUG
 				if (gdc_plutoDebug) then {
-					_mk = createMarkerLocal [(format ["mk_plutotarget_%1",_target]),_targetPos];
+					_mk = createMarkerLocal [(format ["mk_plutotarget_%2_%1",_target,_side]),_targetPos];
 					_mk setMarkerTypeLocal "mil_dot";
 					_mk setMarkerColorLocal ("Color" + (str _targetSide));
 				};
