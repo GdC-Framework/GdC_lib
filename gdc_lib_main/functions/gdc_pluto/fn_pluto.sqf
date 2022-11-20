@@ -38,6 +38,7 @@
 		(group this) setVariable ["PLUTO_ARTYDELAY",[20,30,60]];
 		(group this) setVariable ["PLUTO_ARTYROUNDS",[1,2,4]];
 		(group this) setVariable ["PLUTO_ARTYERROR",[0,40,100]];
+		(group this) setVariable ["PLUTO_ARTYAMMOTYPE","magazineclassname"];
 */
 
 if (hasInterface && !isServer) exitWith {};
