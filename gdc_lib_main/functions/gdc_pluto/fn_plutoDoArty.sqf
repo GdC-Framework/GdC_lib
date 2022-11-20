@@ -23,6 +23,12 @@ if ((time - (_group getVariable ["PLUTO_LASTORDER",0])) > (_group getVariable ["
 	_veh = vehicle _unit;
 	_veh setVehicleAmmo 1;
 	_mag = (getArtilleryAmmo [_veh]);
+	if ((_group getVariable ["PLUTO_ARTYAMMOTYPE","DEFAULT"]) != "DEFAULT") then {
+		_mag = (_group getVariable ["PLUTO_ARTYAMMOTYPE",(_mag #0)]);
+		_veh addMagazine _mag;
+		_mag = [_mag];
+	};
+	
 	if ((count _mag) == 0) exitwith { // pas de frappe si le vehicule n'est pas un véhicule d'artillerie (cas d'un groupe débarqué suite à destruction du véhicule)
 		if (gdc_plutoDebug) then {
 			systemChat format ["ERROR ARTY %1 ""%2"" : no arty ammo available",typeof _veh,_group];
