@@ -13,7 +13,7 @@
 	nothing
 */
 params ["_side","_groupList","_targetList"];
-private ["_unit","_group","_count","_range"];
+private ["_unit","_group","_count","_range","_targets"];
 
 // Boucle sur tous les groupes sous le commandement de PLUTO
 {
@@ -31,7 +31,7 @@ private ["_unit","_group","_count","_range"];
 	_targets = _targetList select {(_unit distance _x) < _range};
 	// Révéler les cibles ainsi sélectionnées :
 	{
-		_group reveal _x;
+		_group reveal [_x,1.5];
 	} forEach _targets;
 	// Si des cibles ont été révélées, générer des actions en fonction des ordres des unités
 	_targets = _targets select {(_unit knowsAbout _x) >= 1}; // Ne lancer des actions spéciales que si la cible est suffisament connue
