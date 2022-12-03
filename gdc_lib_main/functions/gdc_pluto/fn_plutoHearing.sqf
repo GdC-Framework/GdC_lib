@@ -4,11 +4,10 @@
  * @returns {int} - MissionEventHanler ID.
  * @author Migoyan
  */
-_firedEvent = {
-	// We want to add the event handler where unit is local
-	if (!local _this || {!(_this isKindOf "Man")}) exitWith {};
-
-	_this addEventHandler["FiredMan", {
+[
+	"CAManBase",
+	"FiredMan",
+	{
 		if (_unit getVariable ["pluto_lastShot", 0] < time + 2) exitWith {}; // We don't the event to fire too often
 		if (_weapon isEqualTo "Put" || _weapon isEqualTo "Throw") exitwith {}; // We filter grenades out
 
@@ -23,26 +22,14 @@ _firedEvent = {
 		{
 			// nearEntities doesn't returns units inside vehicles, entities does but doesn't have radius argument.
 			// We got bohemia trolled
-			if (_x isKindOf "Man") then {
+			if (_x isKindOf "CAManBase") then {
 				_x reveal [_unit,( _x knowsAbout _unit + .25)];
 			} else {
 				crew _x apply {_x reveal [_unit,( _x knowsAbout _unit + linearConversion [0, _distance, _x distance _units, .35, .15])];}
 			};
 		} forEach _unit nearEntities [
-			["Man", "Car", "StaticWeapon", "Helicopter", "Ship"],
+			["ManCAManBase", "Car", "StaticWeapon", "Helicopter", "Ship"],
 			_distance
 		];
-	}];
-};
-
-// adding event for all 3den units
-{
-	_x call _firedEvent;
-} forEach allUnits;
-
-// adding event for all further spawned units
-addMissionEventHandler ["EntityCreated", {
-	params ["_entity"];
-
-	_entity call _firedEvent;
-}];
+	}
+] call CBA_fnc_addClassEventHandler;
