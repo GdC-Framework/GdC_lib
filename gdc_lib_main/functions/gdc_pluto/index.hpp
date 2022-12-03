@@ -7,5 +7,6 @@ class gdc_pluto
     class plutoAnalize {};
     class plutoDoArty {};
     class plutoDoQRF {};
+    class plutoHearing{};
     class plutoSAD {};
 };

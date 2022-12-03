@@ -129,8 +129,12 @@ if (isnil "gdc_plutoRun") then {
 	"gdc_plutoArtyError",
 	"gdc_plutoTargetList",
 	"gdc_plutoGroupList",
-	"gdc_plutoRun"
+	"gdc_plutoRun",
+	"gdc_hearingRanges"
 ];
+
+// Witchcrafting ai's hears
+call GDC_fnc_plutoHearing;
 
 // Lancement de Pluto
 [_sides] spawn {
