@@ -23,13 +23,22 @@
 			// nearEntities doesn't returns units inside vehicles, entities does but doesn't have radius argument.
 			// We got bohemia trolled
 			if (_x isKindOf "CAManBase") then {
-				_x reveal [_unit,( _x knowsAbout _unit + .25)];
+				_x reveal [
+					_unit,
+					(_x knowsAbout _unit) + linearConversion [0, _distance, _x distance _units, .35, .15]
+				];
 			} else {
-				crew _x apply {_x reveal [_unit,( _x knowsAbout _unit + linearConversion [0, _distance, _x distance _units, .35, .15])];}
+				crew _x apply {
+					_x reveal [
+						_unit,
+						(_x knowsAbout _unit) + linearConversion [0, _distance, _x distance _units, .35, .15]
+					];
+				}
 			};
-		} forEach _unit nearEntities [
-			["ManCAManBase", "Car", "StaticWeapon", "Helicopter", "Ship"],
+		} forEach (_unit nearEntities [
+			["CAManBase", "Car", "StaticWeapon", "Helicopter", "Ship"],
 			_distance
-		];
+		]);
 	}
 ] call CBA_fnc_addClassEventHandler;
+
