@@ -53,7 +53,8 @@ params [
 	["_timeoutarty",240],
 	["_artydelay",[20,30,60]],
 	["_artyrounds",[1,2,4]],
-	["_artyerror",[0,40,100]]
+	["_artyerror",[0,40,100]],
+	["_hearingRange", [1000, 300]]
 ];
 
 // Camp qui va être sous le commandement de PLUTO
@@ -89,6 +90,8 @@ gdc_plutoArtyDelay = _artydelay;
 gdc_plutoArtyRounds = _artyrounds;
 // Imprecision des tirs de l'artillerie en mètres [min,moy,max] (peut être réglé indépendament pour chaque groupe avec PLUTO_ARTYERROR)
 gdc_plutoArtyError = _artyerror;
+// Range at which AI hears unsuppressed and suppressed shots
+gdc_hearingRanges = _hearingRanges;
 
 // Listes
 gdc_plutoTargetList = []; //just here for retro compat
@@ -126,8 +129,12 @@ if (isnil "gdc_plutoRun") then {
 	"gdc_plutoArtyError",
 	"gdc_plutoTargetList",
 	"gdc_plutoGroupList",
-	"gdc_plutoRun"
+	"gdc_plutoRun",
+	"gdc_hearingRanges"
 ];
+
+// Witchcrafting ai's hears
+call GDC_fnc_plutoHearing;
 
 // Lancement de Pluto
 [_sides] spawn {
