@@ -91,7 +91,7 @@ gdc_plutoArtyRounds = _artyrounds;
 // Imprecision des tirs de l'artillerie en mètres [min,moy,max] (peut être réglé indépendament pour chaque groupe avec PLUTO_ARTYERROR)
 gdc_plutoArtyError = _artyerror;
 // Range at which AI hears unsuppressed and suppressed shots
-gdc_hearingRanges = _hearingRanges;
+gdc_hearingRanges = _hearingRange;
 
 // Listes
 gdc_plutoTargetList = []; //just here for retro compat
