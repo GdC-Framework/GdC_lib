@@ -60,7 +60,7 @@ if (_limitcurator) then {
 	// camera and editing area 
 	_curator addCuratorCameraArea [_id,[0,0,0],1];
 	_curator addCuratorEditingArea [_id,[0,0,0],1];
-	_curator setCuratorCameraAreaCeiling 1;
+	_curator setCuratorCameraAreaCeiling 1.75;
 	// attributes
 	[
 		_curator,
