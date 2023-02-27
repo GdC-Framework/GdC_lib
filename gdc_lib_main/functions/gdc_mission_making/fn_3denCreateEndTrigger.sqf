@@ -1,18 +1,34 @@
 /*
- * create a radio trigger that ends the mission
+ * Create Victory and defeat triggers
  *
- * Parameters
- * NONE
- *
- * Return : Nothing
-*/
-private ["_trg"];
+ */
+private ["_trigger"];
 
-if (({(_x get3DENAttribute 'ActivationBy') select 0 == 'ALPHA' } count (all3DENEntities #2)) < 1) then {
-	_trg = create3DENEntity ['Trigger','EmptyDetector',screenToWorld [0.5,0.5]];
-	_trg set3DENAttribute ['text',"Couper la mission"];
-	_trg set3DENAttribute ['ActivationBy',"ALPHA"];
-	_trg set3DENAttribute ['onActivation',"[""end1"",true] remoteExec [""BIS_fnc_endMission""];"];
+if (
+		{
+			(_x get3DENAttribute 'ActivationBy')#0 isEqualTo 'ALPHA'
+		} count (all3DENEntities#2) < 1
+		or {
+			(_x get3DENAttribute 'ActivationBy')#0 isEqualTo 'BRAVO'
+		} count (all3DENEntities#2) < 1
+) then {
+	_trigger = create3DENEntity [
+		'Trigger', 'EmptyDetector', screenToWorld [.45, .5]
+	];
+	_trigger set3DENAttribute ['text',"Victoire"];
+	_trigger set3DENAttribute ['ActivationBy',"ALPHA"];
+	_trigger set3DENAttribute [
+		'onActivation',"[""end1"", true] remoteExec [""BIS_fnc_endMission""];"
+	];
+
+	_trigger = create3DENEntity [
+		'Trigger', 'EmptyDetector', screenToWorld [.55, .5]
+	];
+	_trigger set3DENAttribute ['text', "Défaite"];
+	_trigger set3DENAttribute ['ActivationBy', "BRAVO"];
+	_trigger set3DENAttribute [
+		'onActivation',"[""end1"", false] remoteExec [""BIS_fnc_endMission""];"
+	];
 } else {
-	systemChat "ERREUR : le trigger radio Alpha existe déjà dans la mission";
+	systemChat "ERREUR : le trigger radio Alpha/Bravo existe déjà.";
 };
