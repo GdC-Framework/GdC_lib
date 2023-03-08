@@ -50,7 +50,7 @@ for '_i' from 1 to _numbers do {
 		];
 	} else {
 		_template resize [
-			_size#0 + (floor random ((_size#1 - _size#0) + 1)),
+			_size#0 + (floor random (_size#1 - _size#0)),
 			_classname
 		];
 	};
