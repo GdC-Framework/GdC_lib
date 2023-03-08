@@ -35,6 +35,8 @@ params[
 
 private['_template', '_groups'];
 
+_size set[-1, _size#-1 + 1];
+
 _groups = [];
 for '_i' from 1 to _numbers do {
 	_pos = [_positions, _blacklist] call BIS_fnc_randomPos;
@@ -43,7 +45,7 @@ for '_i' from 1 to _numbers do {
 	_template = [];
 	if (count _size == 3) then {
 		_template resize [
-			(floor random (_size set[2, _size#2 + 1])),
+			(floor random _size),
 			_classname
 		];
 	} else {
