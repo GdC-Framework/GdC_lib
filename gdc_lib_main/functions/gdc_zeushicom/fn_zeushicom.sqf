@@ -85,3 +85,16 @@ if (_nohicomkill) then {
 		}];
 	} forEach (playableUnits + switchableUnits);
 };
+
+[] spawn {
+	waitUntil { !isNull (findDisplay 46) };
+	findDisplay 46 displayAddEventHandler ["KeyDown", {
+		if (inputAction "CuratorInterface" > 0) then
+		{
+			private _curator = getAssignedCuratorLogic player;
+			private _camid = ((curatorCameraArea _curator) #0) #0;
+			[_curator,[_camid,position player,1]] remoteExec ["addCuratorCameraArea",2];
+		};
+		false
+	}];
+};
