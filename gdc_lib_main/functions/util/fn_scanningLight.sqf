@@ -20,12 +20,12 @@
  * unit exit combat mode.
  */
 params [
-	['_gunner'],
+	'_gunner',
 	['_distance_watch', 200, [0]],
 	['_direction_watch', 0, [0]],
 	['_semi_angle_watch', 90, [0]],
 	['_step_sleep', .3, [0]],
-	['_step', 1, [0]],
+	['_step', 1, [0]]
 ];
 private [
 	'_behaviour', '_direction_trig_circle', '_left_angle', '_pos_gunner',
@@ -58,8 +58,10 @@ _right_angle = -(_direction_trig_circle + _semi_angle_watch);
 // Executed only at the beginning
 
 _pos_watch_temp = [
-	_pos_gunner#0 + _distance_watch*cos(_left_angle),
-	_pos_gunner#1 + _distance_watch*sin(_left_angle)
+	[
+		_pos_gunner#0 + _distance_watch*cos(_left_angle),
+		_pos_gunner#1 + _distance_watch*sin(_left_angle)
+	]
 ];
 while {_left_angle > _right_angle}
 do {
@@ -70,7 +72,7 @@ do {
 	];
 };
 _pos_watch = +_pos_watch_temp;
-reverse _pos_watch_inverted;
+reverse _pos_watch_temp;
 _pos_watch append _pos_watch_temp;
 
 //------------------------------Scanning area loop------------------------------
