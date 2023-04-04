@@ -45,7 +45,7 @@ if ((count _units) == 0) then {
 if (rank player == _rank) then {
 	missionNamespace setVariable ["chooseSpawnPos_parameters", [_mk, _blist, _wlist, _water] ];
 
-	_eventMapSingleClickHandlerId = addMissionEventHandler ["MapSingleClick", {
+	GDC_choosespawnposEH = addMissionEventHandler ["MapSingleClick", {
 		params ["_units", "_pos", "_alt", "_shift"];
 		(missionNamespace getVariable "chooseSpawnPos_parameters") params ["_mk", "_blist", "_wlist", "_water"];
 
@@ -59,8 +59,8 @@ if (rank player == _rank) then {
 	private ["_pos"];
 	// au début de la mission, désactivation de la possibilité de déplacer le marqeur
 	waituntil {time > 0};
-	if (!(isNil "_eventMapSingleClickHandlerId")) then {
-		removeMissionEventHandler ["MapSingleClick", _eventMapSingleClickHandlerId];
+	if (!(isNil "GDC_choosespawnposEH")) then {
+		removeMissionEventHandler ["MapSingleClick", GDC_choosespawnposEH];
 	};
 
 	{
