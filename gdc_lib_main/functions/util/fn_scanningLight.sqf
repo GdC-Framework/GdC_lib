@@ -3,7 +3,7 @@
  * conic area. This function works only in a schedulded environment and where
  * the unit is local (return an error otherwise).
  *
- * @param {object} _gunner, unit in the spotlight
+ * @param {object} _spotlight, spotlight. (Should also work with the gunner)
  * @param {Number} [_distance_watch = 200], pointing distance of the spotlight
  * @param {Number} [_direction_watch = 0], cone azimut (taken at the center)
  * @param {Number} [_semi_angle_watch = 90], cone semi angle
@@ -20,7 +20,7 @@
  * unit exit combat mode.
  */
 params [
-	'_gunner',
+	'_spotlight',
 	['_distance_watch', 200, [0]],
 	['_direction_watch', 0, [0]],
 	['_semi_angle_watch', 90, [0]],
@@ -28,9 +28,11 @@ params [
 	['_step', 1, [0]]
 ];
 private [
-	'_behaviour', '_direction_trig_circle', '_left_angle', '_pos_gunner',
-	'_pos_watch', '_pos_watch_temp', '_right_angle'
+	'_behaviour', '_direction_trig_circle', '_gunner', '_left_angle',
+	'_pos_gunner', '_pos_watch', '_pos_watch_temp', '_right_angle'
 ];
+
+_gunner = gunner _spotlight;
 
 _gunner action ["SearchlightOn", vehicle _gunner];
 _gunner setBehaviour "SAFE";
