@@ -9,7 +9,7 @@
 	nothing
 */
 
-private ["_targetType","_targetPos","_target","_detector","_detectionDistance","_posError","_mkPos","_loopMkCount","_loopMkCount2"];
+private ["_targetType","_targetPos","_target","_detector","_mkPos","_loopMkCount","_loopMkCount2"];
 
 //Debug stuf
 _loopMkCount = 0;
@@ -30,10 +30,13 @@ _loopMkCount2 = 0;
 	};
 	_detector = _x #1;
 	
-	// Position error
-	_detectionDistance = (_target distance _detector);
-	_posError = random (((_detectionDistance * (_detectionDistance / 1000)) / (0.5 + (skill _detector))) min 100);
-	_mkPos = _targetPos getPos [_posError, random 360];
+	// Position error based on distance, speed and skill
+	private _skillfactor = linearConversion [0,0.5,(1-(skill _detector)),0,10,true];
+	private _distancefactor = linearConversion [0,1000,(_target distance _detector),0,_skillfactor,true];
+	private _speedfactor = linearConversion [0,100,(speed _target),0,_skillfactor,true];
+	private _posError = (_distancefactor + _speedfactor) * 10;
+
+	_mkPos = _targetPos getPos [random _posError, random 360];
 
 	private _nearestMkList = (gdc_OFTmkList select {(((markerPos _x) distance2D _mkPos) < 100) && ((markerType _x) == _targetType)});
 	if (count _nearestMkList < 1) then {// Create marker if no other same type marker in vicinity (100m)
@@ -59,7 +62,6 @@ _loopMkCount2 = 0;
 					sleep gdc_OFTcreateMkDelay;
 					params ["_mk"];
 					[_mk] call gdc_fnc_OFTMarkerEffects;
-					playsound "TacticalPing4";
 				};
 				_loopMkCount2 = _loopMkCount2 + 1;
 			};

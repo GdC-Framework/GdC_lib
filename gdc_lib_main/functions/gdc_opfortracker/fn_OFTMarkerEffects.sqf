@@ -25,6 +25,7 @@ _this spawn
 
 	// blinking
 	sleep 1;
+	if !(_ping) then {playsound "TacticalPing3";};
 	for "_i" from 1 to 6 do {
 		if (_ping) then {[_mk] spawn gdc_fnc_OFTMarkerPing;};
 		_mk setMarkerColorLocal "ColorRED";
