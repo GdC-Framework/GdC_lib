@@ -48,7 +48,7 @@ if ((count _targetLoc) > 0) then {
 
 _detector = vehicle _detector;
 _detector SideChat _txt;
-playsound "TacticalPing4";
+playsound "TacticalPing3";
 _txt = format ["<font color='#0061c1'>%1</font> : %2",_detector,_txt];
 if (player diarySubjectExists "gdc_hicom") then {
 	player createDiaryRecord ["gdc_hicom", ["Infos contacts",_txt]];
