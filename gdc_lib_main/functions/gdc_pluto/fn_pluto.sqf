@@ -20,6 +20,7 @@
 		7 (optionnal): ARRAY - arty delay [min,moy,max] (time between the arty order and the effective strike) (default=[20,30,60])
 		8 (optionnal): ARRAY - arty rounds [min,moy,max] (number of rounds fired by arty on each strike) (default=[1,2,4])
 		9 (optionnal): ARRAY - arty error [min,moy,max] (possible error for arty target position in meters from the real target position) (default=[0,40,100])
+		10 (optionnal): ARRAY - hearing range [non suppressed,supressed] (distance at which the AI will hear fired shots) (default=[1000,300])
 
 	Returns:
 	nothing
