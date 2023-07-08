@@ -27,7 +27,8 @@ _appearing3DBFTDevices = [];
 		}
 	];
 
-	if (_x in _otherobjects) then {
+	//Ne fonctionne pas
+	if (_x in gdc_bftOtherObjects) then {
 		{
 			_markerText = _markerText + " + "
 			+ _x getVariable [
@@ -43,7 +44,7 @@ _appearing3DBFTDevices = [];
 			];
 		} forEach (
 			(crew _x) arrayIntersect (
-				_playerobjects + (_otherobjects select {_x != _x})
+				_playerobjects + (gdc_bftOtherObjects select {_x != _x})
 			)
 		);
 	};

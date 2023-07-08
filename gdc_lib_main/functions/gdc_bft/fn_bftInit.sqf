@@ -38,7 +38,7 @@ private _action = [
 	{
 		params ["_target","_player","_params"];
 
-		(items _x) findIf {
+		(items _player) findIf {
 			_x isKindOf [_params#0, (configFile >> "CfgWeapons")]
 			|| {_x isKindOf _params#0}
 		} isNotEqualTo -1;
@@ -83,7 +83,7 @@ player createDiaryRecord ["gdc_bft", ["Instructions",_text]];
 
 [
 	{
-		(_this#0) params['_player', '_itemcondition', '_otherobjects'];
+		(_this#0) params['_player', '_itemcondition'];
 
 		{
 			deleteMarkerLocal _x;
@@ -98,16 +98,16 @@ player createDiaryRecord ["gdc_bft", ["Instructions",_text]];
 			|| {_x isKindOf _itemCondition}
 		} isNotEqualTo -1) then {
 			private _activatedBFTDevices = [
-				_itemCondition, _otherObjects
-			] call skst_fnc_bftUpdateList;
+				_itemCondition, gdc_bftOtherObjects
+			] call gdc_fnc_bftUpdateList;
 
 			gdc_appearing3DBFTDevices = [
 				_activatedBFTDevices
-			] call skst_fnc_bftDrawMarkers;
+			] call gdc_fnc_bftDrawMarkers;
 		};
 	},
 	_interval,
-	[player, _itemcondition, _otherobjects]
+	[player, _itemcondition]
 ] call CBA_fnc_addPerFrameHandler;
 
 true
