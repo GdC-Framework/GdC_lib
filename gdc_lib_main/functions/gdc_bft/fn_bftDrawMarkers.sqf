@@ -10,7 +10,7 @@
 params['_bftObjects'];
 private[
 	'_appearing3DBFTDevices', '_event_index', '_marker', '_markerColor',
-	'_markerText', '_markerType', '_texture'
+	'_markerText', '_markerType', '_texture', '_objVehicle'
 ];
 
 _appearing3DBFTDevices = [];
@@ -27,7 +27,15 @@ _appearing3DBFTDevices = [];
 		}
 	];
 
-	//Ne fonctionne pas
+	// Player inside BFT vehicles are skipped
+	_objVehicle = vehicle _x;
+	if (
+		_objVehicle isNotEqualTo _x
+		and _objVehicle in gdc_bftOtherObjects
+	) then {
+		continue;
+	};
+
 	if (_x in gdc_bftOtherObjects) then {
 		{
 			_markerText = _markerText + " + "
@@ -44,7 +52,7 @@ _appearing3DBFTDevices = [];
 			];
 		} forEach (
 			(crew _x) arrayIntersect (
-				_playerobjects + (gdc_bftOtherObjects select {_x != _x})
+				_bftObjects select {_x isNotEqualTo _x}
 			)
 		);
 	};
