@@ -85,26 +85,23 @@ _appearing3DBFTDevices = [];
 		_colour = getArray (
 			ConfigFile >> 'CfgMarkerColors' >> _markerColor >> 'color'
 		) call BIS_fnc_colorConfigToRGBA;
-		_appearing3DBFTDevices set[
-			str _x,
-			addMissionEventHandler [
-				"Draw3D",
-				{
-					drawIcon3D [
-						_thisArgs#1,
-						_thisArgs#3,
-						_thisArgs#0 modelToWorldVisual [0, 0, 1.5],
-						1,
-						1,
-						0,
-						_thisArgs#2,
-						true,
-						.05,
-						"TahomaB"
-					];
-				},
-				[_x, _texture, _markerText, _colour]
-			]
+		_appearing3DBFTDevices pushBack addMissionEventHandler [
+			"Draw3D",
+			{
+				drawIcon3D [
+					_thisArgs#1,
+					_thisArgs#3,
+					_thisArgs#0 modelToWorldVisual [0, 0, 1.5],
+					1,
+					1,
+					0,
+					_thisArgs#2,
+					true,
+					.05,
+					"TahomaB"
+				];
+			},
+			[_x, _texture, _markerText, _colour]
 		];
 	};
 
