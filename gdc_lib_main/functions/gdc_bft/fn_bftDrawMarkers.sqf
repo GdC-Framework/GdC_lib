@@ -18,7 +18,7 @@ _appearing3DBFTDevices = [];
 {
 	_markerText = _x getVariable [
 		"gdc_bft_markertext",
-		if (_object isKindOf "Man") then {
+		if (_x isKindOf "Man") then {
 			groupId (group _x)
 		} else {
 			getText (
@@ -94,11 +94,7 @@ _appearing3DBFTDevices = [];
 					_thisArgs#0 modelToWorldVisual [0, 0, 1.5],
 					1,
 					1,
-					0,
-					_thisArgs#2,
-					true,
-					.05,
-					"TahomaB"
+					0
 				];
 			},
 			[_x, _texture, _markerText, _colour]
