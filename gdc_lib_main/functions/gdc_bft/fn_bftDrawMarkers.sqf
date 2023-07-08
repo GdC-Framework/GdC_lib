@@ -39,7 +39,7 @@ _appearing3DBFTDevices = [];
 	if (_x in gdc_bftOtherObjects) then {
 		{
 			_markerText = _markerText + " + "
-			+ _x getVariable [
+			+ (_x getVariable [
 				"gdc_bft_markertext",
 				if (_x isKindOf "Man") then {
 					groupId (group _x)
@@ -49,10 +49,10 @@ _appearing3DBFTDevices = [];
 						(typeOf _x) >> "displayname"
 					)
 				}
-			];
+			]);
 		} forEach (
 			(crew _x) arrayIntersect (
-				_bftObjects select {_x isNotEqualTo _x}
+				_bftObjects select {(vehicle _x) isNotEqualTo _x}
 			)
 		);
 	};
