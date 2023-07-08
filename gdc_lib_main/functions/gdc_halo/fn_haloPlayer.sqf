@@ -38,6 +38,9 @@ if (gdc_halo_lalo) then {
 		sleep 1.0;
 		// Création et attribution du parachute
 		private _para = "NonSteerable_Parachute_F";
+		if (isClass (configFile >> 'CfgPatches' >> 'CUP_AirVehciles_StaticLine')) then {
+			_para = "CUP_T10_Parachute";
+		};
 		if (isClass (configFile >> 'CfgPatches' >> 'rhs_main')) then {
 			_para = "rhs_d6_Parachute";
 		};
