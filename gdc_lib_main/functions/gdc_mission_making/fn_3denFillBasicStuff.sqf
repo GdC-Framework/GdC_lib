@@ -8,17 +8,21 @@ _objects = _objects select {_x isKindOf "man"};
 if (_radio) then {
 	_items = [
 		["ACE_CableTie",1],
-		["ACE_fieldDressing",5],
-		["ACE_tourniquet",1],
 		["ACE_EarPlugs",1],
-		["ACRE_PRC343",1]
+		["ACE_EntrenchingTool",1],
+		["ACE_fieldDressing",5],
+		["ACRE_PRC343",1],
+		["ACE_tourniquet",1],
+		["SmokeShell",2]
 	];
 } else {
 	_items = [
 		["ACE_CableTie",1],
+		["ACE_EarPlugs",1],
+		["ACE_EntrenchingTool",1],
 		["ACE_fieldDressing",5],
 		["ACE_tourniquet",1],
-		["ACE_EarPlugs",1]
+		["SmokeShell",2]
 	];
 };
 
