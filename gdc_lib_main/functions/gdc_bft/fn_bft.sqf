@@ -1,28 +1,32 @@
-/*
-	Author: Morbakos & Sparfell
-
-	Description:
-	Main function for BFT (Blue Force Tracker) system. Generates ACE selfaction and the per frame handler that updates marker's positions.
-
-	Parameter(s):
-		STRING (optionnal) : classname of the item that should be in player's inventory in order to see and add BFT markers (default="itemmap")
-		ARRAY of OBJECTS (optionnal) : list of objects that should have a marker attached even if they do not carry the item defined in the first parameter (default=[])
-		NUMBER (optionnal) : time in seconds for refresh interval for markers' position (lower value may affect performances) (default=5)
-
-	Returns:
-	nothing
-
-	Marker settings can be modified by hande using (this being vehicle/unit with a marker attached)
-		this setVariable ["gdc_bft_markertext","mymarkertext"];
-		this setVariable ["gdc_bft_markertype",["mymarkertype",0]];
-		this setVariable ["gdc_bft_markercolor",["mymarkercolor",0]];
-*/
-
+/**
+ * @brief Initialize BFT on current machine.
+ *
+ * @param {String} [_itemcondition = itemMap] Item giving access to BFT.
+ * @param {Array} [_otherObjects = []] objects that should appear on BFT
+ * devices.
+ * @param {Number} [_interval = 5] BFT refresh interval.
+ * @param {Boolean} [_3DBFT = false] Activate 3D BFT.
+ *
+ * @return true on completed
+ *
+ * @author: Migoyan, based on Sparfell & Morbakos work.
+ */
 params [
-	["_itemcondition","itemmap",[""]],
-	["_otherobjects",[],[[]]],
-	["_interval",5,[5]]
+	['_itemcondition',"itemMap",[""]],
+	['_otherobjects',[],[[]]],
+	['_interval',5,[5]],
+	['_3DBFT', false, [true]]
 ];
+
+gdc_bftItemCondition = _itemcondition;
+gdc_bftOtherObjects = _otherObjects;
+gdc_bftInterval = _interval;
+gdc_3DBFT = _3DBFT;
+
+// We want to avoid erasing possible other Draw3D defined events
+// If you have a better solution to store index of missionEventHandlers, please
+// share it
+gdc_appearing3DBFTDevices = [];
 
 private _action = [
 	"gdc_bft_action",
@@ -31,10 +35,18 @@ private _action = [
 	{
 		if (!dialog) then {createDialog "gdc_bft_display";};
 	},
-	{params ["_target","_player","_params"];({_x isKindOf [(_params #0),(configFile >> "CfgWeapons")] || {_x isKindOf (_params #0)}} count (items _player) > 0);},
+	{
+		params ["_target","_player","_params"];
+
+		(items _player) findIf {
+			_x isKindOf [_params#0, (configFile >> "CfgWeapons")]
+			|| {_x isKindOf _params#0}
+		} isNotEqualTo -1;
+	},
 	{},
 	[_itemcondition]
 ] call ace_interact_menu_fnc_createAction;
+
 [
 	"CAManBase",
 	1,
@@ -43,43 +55,59 @@ private _action = [
 	true
 ] call ace_interact_menu_fnc_addActionToClass;
 
-if (isnil "gdc_bft_eh") then {
-	gdc_bft_eh = [{
-		(_this select 0) params ["_unit","_itemcondition","_otherobjects"];
+private _text = format [
+"<font size='20'>Blue Force Tracker :</font><br/><br/>
+
+Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent
+ ajouter un marqueur BFT au moyen de l'action disponible dans le menu
+ d'interaction sur soi de ACE.<br/><br/>
+
+Seuls les joueurs qui disposent d'un <font color='#FF0000'>%1</font>
+ peuvent voir les marqueurs BFT.<br/><br/>
+
+<font size='15'>Légende :</font>",
+	(getText (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))
+];
+{
+	_text = _text + format [
+		"<br/><img image='%1' width='32' height='32'/> %2",
+		(getText (configfile >> "CfgMarkers" >> _x >> "icon")),
+		(getText (configfile >> "CfgMarkers" >> _x >> "name"))
+	];
+} forEach [
+	"b_inf","b_motor_inf","b_armor","b_mech_inf","b_air","b_plane","b_uav",
+	"b_art","b_naval","b_hq","b_med"
+];
+player createDiarySubject ["gdc_bft","BFT"];
+player createDiaryRecord ["gdc_bft", ["Instructions",_text]];
+
+[
+	{
+		(_this#0) params['_player', '_itemcondition'];
 
 		{
 			deleteMarkerLocal _x;
 		} forEach (allMapMarkers select {"gdc_bft_" in _x});
 
-		if ({_x isKindOf [_itemcondition,(configFile >> "CfgWeapons")] || {_x isKindOf _itemcondition}} count (items _unit) > 0) then {
-			private _playerobjects = (playableUnits + switchableUnits) select {({_x isKindOf [_itemcondition,(configFile >> "CfgWeapons")] || {_x isKindOf _itemcondition}} count (items _x) > 0) && (_x getvariable ["gdc_bft_activated",false]) && !(_x in _otherobjects)};
-			{
-				private _object = _x;
-				if !((_object != vehicle _object) && ((vehicle _object) in _otherobjects)) then {
-					private _markerText = _object getVariable ["gdc_bft_markertext",(if (_object isKindOf "Man") then {groupId (group _object)} else {gettext (configfile >> "CfgVehicles" >> (typeOf _object) >> "displayname")})];
-					if (_object in _otherobjects) then {
-						{
-							_markerText = _markerText + " + " + (_x getVariable ["gdc_bft_markertext",(if (_object isKindOf "Man") then {groupId (group _object)} else {gettext (configfile >> "CfgVehicles" >> (typeOf _object) >> "displayname")})]);
-						} forEach ((crew _object) arrayIntersect (_playerobjects + (_otherobjects select {_x != _object})));
-					};
-					private _markerType = (_object getVariable ["gdc_bft_markertype",[([group _object] call ace_common_fnc_getMarkerType),0]]) #0;
-					private _markerColor = (_object getVariable ["gdc_bft_markercolor",["colorBLUFOR",0]]) #0;
-					private _marker = createMarkerLocal [format ["gdc_bft_%1", _object], getPos _object];
-					_marker setMarkerTextLocal _markerText;
-					_marker setMarkerTypeLocal _markerType;
-					_marker setMarkerColorLocal _markerColor;
-				};
-			} forEach (_playerobjects + _otherobjects) ;
-		};
-	},_interval,[player,_itemcondition,_otherobjects]] call CBA_fnc_addPerFrameHandler;
-};
+		{
+			removeMissionEventHandler ['Draw3D', _x];
+		} forEach gdc_appearing3DBFTDevices;
 
-private _txt = format ["<font size='20'>Blue Force Tracker :</font>
-<br/><br/>Les joueurs qui possèdent un <font color='#FF0000'>%1</font> peuvent ajouter un marqueur BFT au moyen de l'action disponible dans le menu d'interaction sur soi de ACE.
-<br/><br/>Seuls les joueurs qui disposent d'un <font color='#FF0000'>%1</font> peuvent voir les marqueurs BFT.
-<br/><br/><font size='15'>Légende :</font>",(gettext (configfile >> "CfgWeapons" >> _itemcondition >> "displayname"))];
-{
-	_txt = _txt + format ["<br/><img image='%1' width='32' height='32'/> %2",(gettext (configfile >> "CfgMarkers" >> _x >> "icon")),(gettext (configfile >> "CfgMarkers" >> _x >> "name"))];
-} forEach ["b_inf","b_motor_inf","b_armor","b_mech_inf","b_air","b_plane","b_uav","b_art","b_naval","b_hq","b_med"];
-player createDiarySubject ["gdc_bft","BFT"];
-player createDiaryRecord ["gdc_bft", ["Instructions",_txt]];
+		if ((items _player) findIf {
+			_x isKindOf [_itemCondition, (configFile >> "CfgWeapons")]
+			|| {_x isKindOf _itemCondition}
+		} isNotEqualTo -1) then {
+			private _activatedBFTDevices = [
+				_itemCondition, gdc_bftOtherObjects
+			] call gdc_fnc_bftUpdateList;
+
+			gdc_appearing3DBFTDevices = [
+				_activatedBFTDevices
+			] call gdc_fnc_bftDrawMarkers;
+		};
+	},
+	_interval,
+	[player, _itemcondition]
+] call CBA_fnc_addPerFrameHandler;
+
+true
