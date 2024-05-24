@@ -38,7 +38,7 @@ private _action = [
 	{
 		params ["_target","_player","_params"];
 
-		(items _player) findIf {
+		(items _player + assignedItems _player) findIf {
 			_x isKindOf [_params#0, (configFile >> "CfgWeapons")]
 			|| {_x isKindOf _params#0}
 		} isNotEqualTo -1;
@@ -93,7 +93,7 @@ player createDiaryRecord ["gdc_bft", ["Instructions",_text]];
 			removeMissionEventHandler ['Draw3D', _x];
 		} forEach gdc_appearing3DBFTDevices;
 
-		if ((items _player) findIf {
+		if ((items _player + assignedItems _player) findIf {
 			_x isKindOf [_itemCondition, (configFile >> "CfgWeapons")]
 			|| {_x isKindOf _itemCondition}
 		} isNotEqualTo -1) then {
