@@ -26,6 +26,7 @@ if(_inventory isEqualTo true || _inventory isEqualTo 1) then {
 
 if(hasInterface) then {
 	_roster = getMissionConfigValue ["GDC_Roster",false];
+	[] call GDC_fnc_markerToDAGR;
 
 	// remplacer la trousse de soin par 12 attelles.
 	if (isNil "GDC_allowPAK") then {
