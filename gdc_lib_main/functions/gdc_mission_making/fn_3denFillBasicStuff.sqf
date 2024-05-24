@@ -26,7 +26,6 @@ if (_radio) then {
 	];
 };
 
-
 _objects apply {
 	_old_loadout = getUnitLoadout _x;
 	_new_loadout = _old_loadout;
