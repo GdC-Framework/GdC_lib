@@ -8,7 +8,7 @@
 	"CAManBase",
 	"FiredMan",
 	{
-		if (_unit getVariable ["pluto_lastShot", 0] < time + 2) exitWith {}; // We don't the event to fire too often
+		if (_unit getVariable ["pluto_lastShot", 0] > time - 2) exitWith {}; // We don't the event to fire too often
 		if (_weapon isEqualTo "Put" || _weapon isEqualTo "Throw") exitwith {}; // We filter grenades out
 
 		_unit setVariable ["pluto_lastShot", time];
