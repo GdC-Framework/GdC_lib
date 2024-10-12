@@ -29,6 +29,7 @@ class lucySpawn
     class lucySpawnVehicleReinforcement {};
     class lucySpawnWithoutCollision {};
     class lucySpawnRandomPatrols {};
+    class lucySpawnRandomBuildingPos {};
 };
 class lucyUtilities
 {
