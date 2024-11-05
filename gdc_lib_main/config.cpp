@@ -78,7 +78,7 @@ class display3DEN
 		{
 			class Log
 			{
-				items[] += {"GDC_exportMultiplePosAslDir","STDR_exportMultiplePosAgls","STDR_exportMultiplePosAgl0","STDR_exportMultipleClasses", "GDC_boxCargoToScript"};
+				items[] += {"GDC_exportMultiplePosAslDir","STDR_exportMultiplePosAgls","STDR_exportMultiplePosAgl0","STDR_exportMultipleClasses","GDC_boxCargoToScript"};
 			};
 			class GDC_exportMultiplePosAslDir
 			{
@@ -111,7 +111,7 @@ class display3DEN
 			class GDC_boxCargoToScript
 			{
 				text = "Exporter contenu caisses en script d'init";
-				action = "[(get3DENSelected ""object""), true] call skst_fnc_boxCargoToScript;";
+				action = "[(get3DENSelected ""object""), true] call GDC_fnc_boxCargoToScript;";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
 			};
