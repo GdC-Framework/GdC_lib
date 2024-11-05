@@ -6,6 +6,7 @@ class util
     class addSingleUseHoldAction {};
     class addZeusToPlayer {};
     class addZeusToPlayerRemote {};
+    class boxCargoToScript {};
     class chooseIAHelicoInsert {};
     class chooseSpawnPos {};
     class chooseSpawnPos_onMapSingleClick {};
