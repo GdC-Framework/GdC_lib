@@ -12,10 +12,12 @@
 */
 
 // Onglet briefing
-player createDiarySubject ["markerToDAGR","Marqueurs DAGR"];
-player createDiaryRecord ["markerToDAGR", ["Instructions","<font size='20'><font color='#FF0000'>Marqueurs pour le DAGR</font></font>
+if([player, "ACE_DAGR"] call ace_common_fnc_hasItem) then {
+	player createDiarySubject ["markerToDAGR","Marqueurs DAGR"];
+	player createDiaryRecord ["markerToDAGR", ["Instructions","<font size='20'><font color='#FF0000'>Marqueurs pour le DAGR</font></font>
 <br/><br/>Pendant le briefing, les joueurs peuvent placer des marqueurs sur la carte afin que les positions ainsi marquées soient automatiquement ajoutés à la liste des waypoints enregistrés dans le DAGR.
 <br/>Pour cela, les marqueurs doivent être nommés avec le préfix <font color='#EF7619'>DAGR_</font>."]];
+};
 
 [] spawn {
 	private ["_mks","_pos","_count"];
