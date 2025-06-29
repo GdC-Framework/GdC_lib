@@ -2,10 +2,10 @@
 class lucy
 {
     file = "gdc_lib_main\functions\gdc_lucy";
-    class lucyInit {};
-    class lucyExecVMHC {};
-    class lucyRemoteExecVMHC {};
     class lucyConfigLoadoutIA {};
+    class lucyExecVMHC {};
+    class lucyInit {};
+    class lucyRemoteExecVMHC {};
 };
 class lucyMoves
 {
@@ -23,13 +23,14 @@ class lucySpawn
     class lucySpawnGroupInf {};
     class lucySpawnGroupInfParadrop {};
     class lucySpawnGroupVehicle {};
+    class lucySpawnRandomGarnison {};
+    class lucySpawnRandomBuildingPos {};
+    class lucySpawnRandomPatrols {};
+    class lucySpawnStaticInf {};
     class lucySpawnVehicle {};
     class lucySpawnVehicleCrew {};
-    class lucySpawnStaticInf {};
     class lucySpawnVehicleReinforcement {};
     class lucySpawnWithoutCollision {};
-    class lucySpawnRandomPatrols {};
-    class lucySpawnRandomBuildingPos {};
 };
 class lucyUtilities
 {
@@ -38,6 +39,6 @@ class lucyUtilities
     class lucyAISetConfig {};
     class lucyGetNearestPlayer {};
     class lucyGetRandomFormation {};
-    class lucyVehicleRemoveItems {};
     class lucyPrepareSpawnStatic {};
+    class lucyVehicleRemoveItems {};
 };
