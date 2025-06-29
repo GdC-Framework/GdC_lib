@@ -17,6 +17,7 @@ class util
     class inventoryBriefing {};
     class inventoryBriefing_v2 {};
     class markerToDAGR {};
+    class objectsInArea {};
     class posToGrid {};
     class rosterBriefing {};
     class scanningLight {};
