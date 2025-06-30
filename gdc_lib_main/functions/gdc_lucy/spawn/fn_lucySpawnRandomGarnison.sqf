@@ -13,7 +13,7 @@ params[
 	["_area", locationNull, ["", locationNull]],
 	["_unitNumbers", 0, [0]],
 	["_side", east, [east]],
-	["_classname", "O_Soldier_F", [""]],
+	["_classname", "O_Soldier_F", [""]]
 ];
 
 _buildings = [_area, ["Building"]] call GDC_fnc_objectsInArea;
