@@ -39,6 +39,7 @@ class lucyUtilities
     class lucyAISetConfig {};
     class lucyGetNearestPlayer {};
     class lucyGetRandomFormation {};
+    class lucyObjectsInsideMarkerArea {};
     class lucyPrepareSpawnStatic {};
     class lucyVehicleRemoveItems {};
 };
