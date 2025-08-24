@@ -1,4 +1,3 @@
-
 class util
 {
     file = "gdc_lib_main\functions\util";

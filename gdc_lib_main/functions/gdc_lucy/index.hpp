@@ -1,4 +1,3 @@
-
 class lucy
 {
     file = "gdc_lib_main\functions\gdc_lucy";

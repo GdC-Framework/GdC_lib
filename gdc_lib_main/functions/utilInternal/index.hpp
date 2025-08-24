@@ -1,4 +1,3 @@
-
 class utilInternal
 {
     file = "gdc_lib_main\functions\utilInternal";

@@ -1,4 +1,3 @@
-
 class gdc_pluto
 {
     file = "gdc_lib_main\functions\gdc_pluto";
