@@ -5,6 +5,7 @@
  * @param {Number} [_unitNumbers = 0], number of units
  * @param {Side} [_side = east], side of patrols
  * @param {String} [_classname = "O_Soldier_F"], Classname of units spawned
+ * @param {Array} [_excludeBuildings = []], Building to exclude from spawning
  *
  * @returns {Array} - list of units spawned
  * @author Migoyan
@@ -13,10 +14,13 @@ params[
 	["_area", locationNull, ["", locationNull]],
 	["_unitNumbers", 0, [0]],
 	["_side", east, [east]],
-	["_classname", "O_Soldier_F", [""]]
+	["_classname", "O_Soldier_F", [""]],
+	["_excludeBuildings", [], [[]]]
 ];
 
-_buildings = [_area, ["Building"]] call GDC_fnc_objectsInArea;
+private _buildings = [_area, ["Building"]] call GDC_fnc_objectsInArea;
+
+_buildings = _buildings - _excludeBuildings;
 
 [
 	_buildings, _unitNumbers, _east, _classname
