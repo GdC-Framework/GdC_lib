@@ -24,4 +24,4 @@ _buildings = _buildings - _excludeBuildings;
 
 [
 	_buildings, _unitNumbers, _east, _classname
-] call GDC_fnc_lucySpawnRandomGarnison
+] call GDC_fnc_lucySpawnRandomBuildingPos
