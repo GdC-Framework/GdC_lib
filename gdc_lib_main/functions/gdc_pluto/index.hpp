@@ -1,6 +1,6 @@
 class gdc_pluto
 {
-    file = "gdc_lib_main\functions\gdc_pluto";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_pluto";
     class pluto {};
     class plutoAction {};
     class plutoAnalize {};

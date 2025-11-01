@@ -8,7 +8,7 @@ class CfgMusic
 	class gdc_lib_sound_music_unairdorient // Musique crée par Looping
 	{
 		name="Un air d'orient (by Looping)";
-		sound[]={"\gdc_lib_sound\data\unairdorient.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\unairdorient.ogg",1,1};
 		duration = 182;
 		theme = "safe";
 		musicClass = "gdc_lib_music";
@@ -16,7 +16,7 @@ class CfgMusic
 	class gdc_lib_sound_music_urbanjazz // Musique crée par Looping
 	{
 		name="Urban Jazz (by Looping)";
-		sound[]={"\gdc_lib_sound\data\urbanjazz.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\urbanjazz.ogg",1,1};
 		duration = 160;
 		theme = "safe";
 		musicClass = "gdc_lib_music";
@@ -24,7 +24,7 @@ class CfgMusic
 	class gdc_lib_sound_music_conditionalsurrender // Musique crée par Looping
 	{
 		name="Conditional Surrender (by Looping)";
-		sound[]={"\gdc_lib_sound\data\conditionalsurrender.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\conditionalsurrender.ogg",1,1};
 		duration = 224;
 		theme = "safe";
 		musicClass = "gdc_lib_music";
@@ -32,7 +32,7 @@ class CfgMusic
 	class gdc_lib_sound_music_doachoice // Musique crée par Looping
 	{
 		name="Do a Choice (by Looping)";
-		sound[]={"\gdc_lib_sound\data\doachoice.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\doachoice.ogg",1,1};
 		duration = 221;
 		theme = "safe";
 		musicClass = "gdc_lib_music";
@@ -40,7 +40,7 @@ class CfgMusic
 	class gdc_lib_sound_music_waiting_for // Musique crée par Looping
 	{
 		name="Waiting For (by Looping)";
-		sound[]={"\gdc_lib_sound\data\waiting_for.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\waiting_for.ogg",1,1};
 		duration = 200;
 		theme = "safe";
 		musicClass = "gdc_lib_music";
@@ -48,7 +48,7 @@ class CfgMusic
 	class gdc_lib_sound_music_trouble_distress // Musique crée par Looping
 	{
 		name="Trouble Distress (by Looping)";
-		sound[]={"\gdc_lib_sound\data\trouble_distress.ogg",1,1};
+		sound[]={"\GDC_lib\gdc_lib_sound\data\trouble_distress.ogg",1,1};
 		duration = 42;
 		theme = "safe";
 		musicClass = "gdc_lib_music";

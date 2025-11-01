@@ -1,6 +1,6 @@
 class utilInternal
 {
-    file = "gdc_lib_main\functions\utilInternal";
+    file = "GDC_lib\gdc_lib_main\functions\utilInternal";
     class hasRadio {};
     class hasRadioOnRightChannel {};
     class prepareBlacklistForRandomPos {};

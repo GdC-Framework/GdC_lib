@@ -1,6 +1,6 @@
 class gdc_zeushicom
 {
-    file = "gdc_lib_main\functions\gdc_zeushicom";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_zeushicom";
 	class zeushicom {};
 	class assignzeushicom {};
 	class createhicomaceactions {};

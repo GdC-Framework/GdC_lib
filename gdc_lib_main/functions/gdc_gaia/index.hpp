@@ -4,7 +4,7 @@ class GDC_GAIA
 
     class init
     {
-        file = "gdc_lib_main\functions\gdc_gaia";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia";
 
         class init {};
         class initHC {};
@@ -13,7 +13,7 @@ class GDC_GAIA
 
     class ambient
     {
-        file = "gdc_lib_main\functions\gdc_gaia\ambient";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\ambient";
 
         class ambientCombat {};
         class ambientCombatServer {};
@@ -27,7 +27,7 @@ class GDC_GAIA
     };
     class Cache
     {
-        file = "gdc_lib_main\functions\gdc_gaia\cache";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\cache";
 
         class cache {};
         class cacheFar {};
@@ -41,7 +41,7 @@ class GDC_GAIA
     };
     class General
     {
-        file = "gdc_lib_main\functions\gdc_gaia\general";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\general";
 
         class controlGroup {};
         class findClosestPosition {};
@@ -51,7 +51,7 @@ class GDC_GAIA
     };
     class Control
     {
-        file = "gdc_lib_main\functions\gdc_gaia\control";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\control";
 
         class addAttackWaypoint {};
         class addWaypoint {};
@@ -84,7 +84,7 @@ class GDC_GAIA
     };
     class Orders
     {
-        file = "gdc_lib_main\functions\gdc_gaia\control\orders";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\control\orders";
 
         class doArtillery {};
         class doAttack {};
@@ -123,7 +123,7 @@ class GDC_GAIA
     };
     class Fortify
     {
-        file = "gdc_lib_main\functions\gdc_gaia\control\fortify";
+        file = "GDC_lib\gdc_lib_main\functions\gdc_gaia\control\fortify";
 
         class taskDefend {};
     };

@@ -1,6 +1,6 @@
 class util
 {
-    file = "gdc_lib_main\functions\util";
+    file = "GDC_lib\gdc_lib_main\functions\util";
     class addSingleUseAction {};
     class addSingleUseHoldAction {};
     class addZeusToPlayer {};

@@ -1,6 +1,6 @@
 class lucy
 {
-    file = "gdc_lib_main\functions\gdc_lucy";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_lucy";
     class lucyConfigLoadoutIA {};
     class lucyExecVMHC {};
     class lucyInit {};
@@ -8,7 +8,7 @@ class lucy
 };
 class lucyMoves
 {
-    file = "gdc_lib_main\functions\gdc_lucy\moves";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_lucy\moves";
     class lucyAddWaypoint {};
     class lucyAddWaypointListMoveCycle {};
     class lucyGroupRandomPatrol {};
@@ -18,7 +18,7 @@ class lucyMoves
 };
 class lucySpawn
 {
-    file = "gdc_lib_main\functions\gdc_lucy\spawn";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_lucy\spawn";
     class lucySpawnGroupInf {};
     class lucySpawnGroupInfParadrop {};
     class lucySpawnGroupVehicle {};
@@ -33,7 +33,7 @@ class lucySpawn
 };
 class lucyUtilities
 {
-    file = "gdc_lib_main\functions\gdc_lucy\utilities";
+    file = "GDC_lib\gdc_lib_main\functions\gdc_lucy\utilities";
     class lucyAICleaner {};
     class lucyAISetConfig {};
     class lucyGetNearestPlayer {};
