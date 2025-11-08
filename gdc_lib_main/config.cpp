@@ -46,7 +46,7 @@ class display3DEN
 				class GDC_AttributesCanardProof
 				{
 					text = "Attributs mission CanardProof";
-					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+					picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 					action = "[] call GDC_fnc_3denSetGdCAttributes";
 				};
 				class Tools
@@ -56,7 +56,7 @@ class display3DEN
 				class GDC_Tools
 				{
 					text = "Outils GDC";
-					picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+					picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 					items[] = {"GDC_spawnHC","GDC_spawnEndTrigger"};
 				};
 				class GDC_spawnHC
