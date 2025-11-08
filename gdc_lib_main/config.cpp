@@ -85,35 +85,35 @@ class display3DEN
 				text = "Exporter position(s) ASL [_x,_y,_z,_dir]";
 				action = "[(get3DENSelected ""object""),0] call GDC_fnc_3denExportMultiplePos;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class STDR_exportMultiplePosAgls
 			{
 				text = "Exporter position(s) [_x,_y,_z]";
 				action = "[(get3DENSelected ""object""),1] call GDC_fnc_3denExportMultiplePos;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class STDR_exportMultiplePosAgl0
 			{
 				text = "Exporter position(s) [_x,_y,0]";
 				action = "[(get3DENSelected ""object""),2] call GDC_fnc_3denExportMultiplePos;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class STDR_exportMultipleClasses
 			{
 				text = "Exporter classnames [""_class"",""_class"",etc]";
 				action = "[(get3DENSelected ""object"")] call GDC_fnc_3denExportMultipleClasses;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class GDC_boxCargoToScript
 			{
 				text = "Exporter contenu caisses en script d'init";
 				action = "[(get3DENSelected ""object""), true] call GDC_fnc_boxCargoToScript;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class Edit
 			{
@@ -122,7 +122,7 @@ class display3DEN
 			class GDC_medical
 			{
 				text = "GDC stuff médical";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 				items[] = {"GDC_FillMedicalBackpack","GDC_FillHeavyMedicalBackpack"};
 			};
 			class GDC_FillMedicalBackpack
@@ -130,19 +130,19 @@ class display3DEN
 				text = "Sac à dos médical standard";
 				action = "[(get3DENSelected ""object""), false] call GDC_fnc_3denFillMedicalBackpack;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class GDC_FillHeavyMedicalBackpack
 			{
 				text = "Sac à dos médical lourd";
 				action = "[(get3DENSelected ""object""), true] call GDC_fnc_3denFillMedicalBackpack;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class GDC_radio
 			{
 				text = "GDC stuff de base";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 				items[] = {"GDC_FillBasicItemsRadio","GDC_FillBasicItems"};
 			};
 			class GDC_FillBasicItemsRadio
@@ -150,14 +150,14 @@ class display3DEN
 				text = "Équipement de base avec radio (uniforme)";
 				action = "[(get3DENSelected ""object""), true] call GDC_fnc_3denFillBasicStuff;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 			class GDC_FillBasicItems
 			{
 				text = "Équipement de base sans radio (uniforme)";
 				action = "[(get3DENSelected ""object""), false] call GDC_fnc_3denFillBasicStuff;";
 				conditionShow = "selectedObject * hoverObject";
-				picture = "\gdc_lib_main\data\gdc_icon_32.paa";
+				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
 		};
 	};
