@@ -3,8 +3,8 @@
  * should face away from the building.
  *
  * Parameters :
- * @param {Array} _buildings List of buildings.
- * @param {Number} _unitNumber Number of spawned units.
+ * @param {Array} _buildings, List of buildings.
+ * @param {Number} _unitNumber, Number of spawned units.
  * @param {Side} _side, of unit spawned.
  * @param {Array} _unit_ai_disable, List of AI functionnalities to be disabled.
  *
