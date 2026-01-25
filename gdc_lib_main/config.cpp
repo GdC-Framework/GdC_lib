@@ -111,7 +111,7 @@ class display3DEN
 			class GDC_boxCargoToScript
 			{
 				text = "Exporter contenu caisses en script d'init";
-				action = "[(get3DENSelected ""object""), true] call GDC_fnc_boxCargoToScript;";
+				action = "copyToClipboard [(get3DENSelected ""object""), true] call GDC_fnc_boxCargoToScript; systemChat ""Contenu copié dans le presse-papier"";";
 				conditionShow = "selectedObject * hoverObject";
 				picture = "\GDC_lib\gdc_lib_main\data\gdc_icon_32.paa";
 			};
