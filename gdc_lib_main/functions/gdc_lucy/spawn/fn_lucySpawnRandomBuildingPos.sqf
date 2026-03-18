@@ -18,7 +18,8 @@ params[
 	'_unitNumber',
 	['_side', east, [east]],
 	['_classname', 'O_Soldier_F', ['', []]],
-	['_unit_ai_disable', [], [[]]]
+	['_unit_ai_disable', [], [[]]],
+	["_group_skill", -1,[0]]
 ];
 
 if (count _buildings isEqualTo 0 || _unitNumber isEqualTo 0) exitWith {
@@ -42,13 +43,14 @@ _units = [];
 _selectedBuildAndPos = [
 	_buildingsAndpositions, _unitNumber
 ] call CBA_fnc_selectRandomArray;
-_group = createGroup [east, LUCY_IA_REMOVE_EMPTY_GROUPS];
+_group = createGroup [_side, LUCY_IA_REMOVE_EMPTY_GROUPS];
 _group setFormDir random 360;
 {
 	_building = _x#1;
 	_position = _x#0;
 	_classname createUnit [_position, _group, "lucyUnitSpRdBdP = this"];
 	_units pushback lucyUnitSpRdBdP;
+	[lucyUnitSpRdBdP, _group_skill] call GDC_fnc_lucyAISetConfig;
 	lucyUnitSpRdBdP setPosATL _position;
 	{
         lucyUnitSpRdBdP disableAI _x;
